@@ -48,6 +48,15 @@ export const router = createBrowserRouter([
           return { Component: KinstaVsWpEngine };
         },
       },
+      {
+        path: 'comparisons/liquid-web-vs-wp-engine',
+        lazy: async () => {
+          const { LiquidWebVsWpEngine } =
+            await import('@/pages/comparisons/liquid-web-vs-wp-engine');
+
+          return { Component: LiquidWebVsWpEngine };
+        },
+      },
     ],
   },
 ]);
