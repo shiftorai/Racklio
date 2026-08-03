@@ -30,6 +30,15 @@ export const router = createBrowserRouter([
           return { Component: KinstaReview };
         },
       },
+      {
+        path: 'reviews/wp-engine',
+        lazy: async () => {
+          const { WpEngineReview } =
+            await import('@/pages/reviews/wp-engine-review');
+
+          return { Component: WpEngineReview };
+        },
+      },
     ],
   },
 ]);
