@@ -20,7 +20,7 @@ export function Header({
       className={cn('border-b border-border bg-surface-raised', className)}
       {...props}
     >
-      <Container className="flex min-h-16 flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3">
+      <Container className="flex min-h-16 flex-col items-stretch justify-center gap-x-6 gap-y-3 py-3 sm:flex-row sm:items-center sm:justify-between">
         <Link
           className="shrink-0 text-base font-semibold tracking-tight text-foreground"
           href={homeHref}
@@ -31,7 +31,7 @@ export function Header({
         {children ? (
           <nav
             aria-label="Primary"
-            className="flex flex-1 flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm"
+            className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-xs [&>a]:inline-flex [&>a]:min-h-8 [&>a]:items-center sm:flex-1 sm:justify-end sm:gap-x-5 sm:text-sm"
           >
             {children}
           </nav>
