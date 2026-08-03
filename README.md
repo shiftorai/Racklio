@@ -57,3 +57,16 @@ Only variables prefixed with `VITE_` are exposed to browser code. Never put priv
 ## Current scope
 
 This phase establishes tooling, routing, layout boundaries, accessibility defaults, design tokens, and a small utility layer. It does not include product pages, tracking, advertising, or affiliate integrations.
+
+## Design-system primitives
+
+Reusable interface primitives are exported from `src/components/ui`, while structural primitives are exported from `src/components/layout`.
+
+- `Button` supports primary, secondary, ghost, and destructive treatments in three sizes.
+- `Card` includes optional header, content, and footer regions.
+- `Container` controls responsive page width and gutters.
+- `Section` provides consistent vertical rhythm.
+- `Badge`, `Link`, and `Divider` cover common inline and separating elements.
+- `PageLayout`, `Header`, and `Footer` provide semantic, composable page structure.
+
+All components accept native element attributes and an optional `className`. Semantic theme values are declared separately from Tailwind mappings in `src/styles/globals.css`, leaving the system ready for a future dark theme without shipping one now.
