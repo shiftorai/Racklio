@@ -39,6 +39,15 @@ export const router = createBrowserRouter([
           return { Component: WpEngineReview };
         },
       },
+      {
+        path: 'comparisons/kinsta-vs-wp-engine',
+        lazy: async () => {
+          const { KinstaVsWpEngine } =
+            await import('@/pages/comparisons/kinsta-vs-wp-engine');
+
+          return { Component: KinstaVsWpEngine };
+        },
+      },
     ],
   },
 ]);
