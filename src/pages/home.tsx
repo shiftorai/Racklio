@@ -16,25 +16,6 @@ const trustCommitments = [
   'No paid rankings',
   'Evidence before recommendations',
   'Business-focused evaluations',
-  'No promotional scoring',
-] as const;
-
-const editorialValue = [
-  {
-    title: 'Save research time',
-    description:
-      'Racklio organizes complex hosting research into structured buying guides built around clear decisions.',
-  },
-  {
-    title: 'Compare with context',
-    description:
-      'Providers are compared according to business needs, technical requirements, and operating models—not popularity.',
-  },
-  {
-    title: 'Buy with confidence',
-    description:
-      'Recommendations are grounded in transparent editorial research rather than paid placement.',
-  },
 ] as const;
 
 const scenarios = [
@@ -75,23 +56,21 @@ const scenarios = [
   ],
 ] as const;
 
-const popularStartingPoints = scenarios.filter(([title]) => title !== 'SaaS');
-
 const decisionSteps = [
   [
     '01',
     'Describe your workload',
-    'Start with what the website or application needs to do.',
+    'Start with what the website or application needs to do. Racklio narrows the research to relevant buying guides.',
   ],
   [
     '02',
     'Compare providers',
-    'Focus on the operating model and tradeoffs that matter.',
+    'Compare operating models and tradeoffs in business context—not according to popularity.',
   ],
   [
     '03',
     'Read the recommendation',
-    'Review the reasoning, fit, and limitations before choosing.',
+    'Review the evidence, fit, and limitations before making the final choice.',
   ],
 ] as const;
 
@@ -104,6 +83,10 @@ const providers = [
       'Businesses considering more infrastructure control with managed operations.',
     description:
       'Liquid Web offers managed virtual private server hosting alongside other managed infrastructure products.',
+    reason:
+      'Consider it when managed server options and infrastructure flexibility are central to the decision.',
+    caution:
+      'It may be less relevant when your shortlist is limited to WordPress-only platforms.',
     href: '/reviews/liquid-web',
     category: 'Managed infrastructure',
   },
@@ -115,6 +98,10 @@ const providers = [
       'Teams seeking a focused managed environment for WordPress websites.',
     description:
       'Kinsta offers managed WordPress hosting with infrastructure-level management and daily backups.',
+    reason:
+      'Consider it when you want a focused managed environment for WordPress operations.',
+    caution:
+      'It may be less relevant when you need general-purpose server control outside a managed WordPress model.',
     href: '/reviews/kinsta',
     category: 'Managed WordPress',
   },
@@ -126,6 +113,10 @@ const providers = [
       'WordPress teams evaluating a specialist platform and developer tooling.',
     description:
       'WP Engine specializes in managed hosting and developer tools for websites built with WordPress.',
+    reason:
+      'Consider it when WordPress-specific workflows and platform tooling matter to your team.',
+    caution:
+      'It may be less relevant when the workload does not use WordPress.',
     href: '/reviews/wp-engine',
     category: 'WordPress platform',
   },
@@ -224,9 +215,9 @@ function DecisionAssistant() {
       </div>
 
       <div className="grid sm:grid-cols-2">
-        {scenarios.map(([title, , href], index) => (
+        {scenarios.map(([title, description, href], index) => (
           <Link
-            className="group grid grid-cols-[1.5rem_1fr_auto] items-center gap-3 border-b border-border px-5 py-3.5 hover:bg-muted/60 sm:px-6 sm:odd:border-r sm:last:col-span-2 sm:last:border-b-0"
+            className="group grid min-h-18 grid-cols-[1.5rem_1fr_auto] items-center gap-3 border-b border-border px-5 py-3.5 hover:bg-muted/60 sm:px-6 sm:odd:border-r sm:last:col-span-2 sm:last:border-b-0"
             href={href}
             key={title}
             variant="unstyled"
@@ -234,7 +225,12 @@ function DecisionAssistant() {
             <span className="font-mono text-[0.625rem] text-accent-strong">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <span className="text-sm font-semibold">{title}</span>
+            <span>
+              <span className="block text-sm font-semibold">{title}</span>
+              <span className="mt-1 block text-[0.6875rem] leading-4 text-muted-foreground">
+                {description}
+              </span>
+            </span>
             <span
               aria-hidden="true"
               className="text-xs text-muted-foreground group-hover:text-accent-strong"
@@ -248,8 +244,7 @@ function DecisionAssistant() {
       <div className="flex items-center gap-3 px-5 py-3 sm:px-6">
         <span aria-hidden="true" className="size-1.5 bg-accent" />
         <p className="text-[0.625rem] leading-4 text-muted-foreground">
-          Guidance is based on workload fit and editorial research—not paid
-          placement.
+          Next: compare relevant providers and read the supporting evidence.
         </p>
       </div>
     </aside>
@@ -281,6 +276,9 @@ function ProviderResearchCard({
               <h3 className="mt-1 text-2xl font-semibold tracking-[-0.035em]">
                 {provider.name}
               </h3>
+              <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                {provider.description}
+              </p>
             </div>
           </div>
           <div className="border-b border-border p-5 sm:p-6 lg:border-r lg:border-b-0">
@@ -297,10 +295,14 @@ function ProviderResearchCard({
           </div>
           <div className="p-5 sm:p-6">
             <p className="text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-              Why explore it
+              Why choose it
+            </p>
+            <p className="mt-3 text-sm leading-6">{provider.reason}</p>
+            <p className="mt-5 text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+              When it may not fit
             </p>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              {provider.description}
+              {provider.caution}
             </p>
             <ButtonLink
               className="mt-4"
@@ -346,10 +348,17 @@ function ProviderResearchCard({
           </div>
           <div className="p-5 sm:p-6">
             <p className="text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-              Why explore it
+              Why choose it
+            </p>
+            <p className="mt-3 text-sm leading-6">{provider.reason}</p>
+            <p className="mt-4 text-xs leading-5 text-muted-foreground">
+              {provider.description}
+            </p>
+            <p className="mt-5 text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+              When it may not fit
             </p>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              {provider.description}
+              {provider.caution}
             </p>
             <ButtonLink
               className="mt-4"
@@ -389,10 +398,17 @@ function ProviderResearchCard({
         </p>
         <p className="mt-3 text-sm leading-6">{provider.audience}</p>
         <p className="mt-5 text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-          Why explore it
+          Why choose it
         </p>
-        <p className="mt-5 text-sm leading-6 text-muted-foreground">
+        <p className="mt-3 text-sm leading-6">{provider.reason}</p>
+        <p className="mt-4 text-xs leading-5 text-muted-foreground">
           {provider.description}
+        </p>
+        <p className="mt-5 text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+          When it may not fit
+        </p>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          {provider.caution}
         </p>
         <ButtonLink
           className="mt-5"
@@ -489,23 +505,19 @@ export function Home() {
                 label="Web infrastructure intelligence"
               />
               <h1 className="mt-6 max-w-3xl text-5xl leading-[1.02] font-semibold tracking-[-0.055em] text-balance sm:text-6xl lg:text-[4.25rem]">
-                Choose the right hosting platform for your business.
+                Choose the right hosting—without second-guessing the decision.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                Turn your requirements into a focused shortlist with honest
-                reviews, transparent comparisons, and practical guidance for a
-                faster, more confident buying decision.
+                Racklio turns complex provider research into clear,
+                evidence-based guidance so you can narrow the options, avoid a
+                poor fit, and choose with confidence in less time.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="#comparisons" size="lg">
-                  Compare Hosting Providers
+                <ButtonLink href="#decision-assistant-heading" size="lg">
+                  Choose My Workload
                 </ButtonLink>
-                <ButtonLink
-                  href="#starting-points"
-                  size="lg"
-                  variant="secondary"
-                >
-                  Find the Right Starting Point
+                <ButtonLink href="#research" size="lg" variant="secondary">
+                  Explore Provider Reviews
                 </ButtonLink>
               </div>
             </div>
@@ -514,103 +526,9 @@ export function Home() {
         </Container>
       </Section>
 
-      <Section
-        aria-labelledby="editorial-value-heading"
-        className="border-b border-border bg-surface-raised py-12 sm:py-14"
-        spacing="none"
-      >
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
-            <div>
-              <ResearchMarker code="EV" label="Editorial value" />
-              <h2
-                className="mt-4 text-2xl font-semibold tracking-[-0.03em]"
-                id="editorial-value-heading"
-              >
-                Why businesses use Racklio
-              </h2>
-            </div>
-            <div>
-              <div className="grid gap-px border border-border bg-border md:grid-cols-3">
-                {editorialValue.map((item, index) => (
-                  <article
-                    className="bg-surface-raised p-5 sm:p-6"
-                    key={item.title}
-                  >
-                    <span className="font-mono text-[0.625rem] text-accent-strong">
-                      0{index + 1}
-                    </span>
-                    <h3 className="mt-5 text-base font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </article>
-                ))}
-              </div>
-              <Link className="mt-5 inline-block text-sm" href="/guides">
-                Explore Buying Guides
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      <section
-        aria-labelledby="starting-points-heading"
-        className="border-b border-border bg-surface-raised py-7"
-        id="starting-points"
-      >
-        <Container>
-          <div className="grid gap-5 lg:grid-cols-[13rem_1fr] lg:items-start">
-            <div>
-              <ResearchMarker code="SP" label="Buying guide pathways" />
-              <h2
-                className="mt-3 text-lg font-semibold tracking-tight"
-                id="starting-points-heading"
-              >
-                Popular starting points
-              </h2>
-            </div>
-            <ul className="grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3">
-              {popularStartingPoints.map(([title, , href]) => (
-                <li className="border-r border-b border-border" key={title}>
-                  <Link
-                    className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-medium hover:bg-muted/60"
-                    href={href}
-                    variant="unstyled"
-                  >
-                    {title}
-                    <span aria-hidden="true" className="text-accent-strong">
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-6 grid gap-4 border-l-2 border-accent pl-5 md:grid-cols-[1fr_auto] md:items-end">
-            <div className="max-w-4xl">
-              <p className="font-semibold">
-                Every guide starts with your workload—not with a “best hosting”
-                claim.
-              </p>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Racklio compares providers according to business context,
-                technical requirements, and operational priorities.
-              </p>
-            </div>
-            <Link className="text-sm" href="/editorial-standards">
-              Read Editorial Standards
-            </Link>
-          </div>
-        </Container>
-      </section>
-
       <div className="border-b border-border bg-muted">
         <Container>
-          <ul className="grid border-t border-l border-border sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid border-l border-border sm:grid-cols-2 lg:grid-cols-5">
             {trustCommitments.map((commitment, index) => (
               <li
                 className="flex items-center gap-3 border-r border-b border-border px-4 py-3.5 text-xs font-semibold"
@@ -630,23 +548,27 @@ export function Home() {
       </div>
 
       <section
-        aria-labelledby="how-racklio-helps-heading"
-        className="border-b border-border bg-surface py-10 sm:py-12"
+        aria-labelledby="decision-path-heading"
+        className="border-b border-border bg-surface-raised py-12 sm:py-14"
+        id="decision-path"
       >
         <Container>
-          <div className="grid gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-16">
             <div>
-              <p className="text-xs font-semibold tracking-[0.15em] text-accent-strong uppercase">
-                Decision path
-              </p>
+              <ResearchMarker code="DP" label="Guided decision path" />
               <h2
-                className="mt-3 text-2xl font-semibold tracking-[-0.03em]"
-                id="how-racklio-helps-heading"
+                className="mt-4 text-3xl leading-tight font-semibold tracking-[-0.035em]"
+                id="decision-path-heading"
               >
-                From workload to evidence-based recommendation.
+                A clearer path to the right provider.
               </h2>
-              <ButtonLink className="mt-6" href="#starting-points" size="sm">
-                Find the Right Starting Point
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                Racklio reduces research time by organizing the decision around
+                workload, business context, and evidence—not popularity or paid
+                placement.
+              </p>
+              <ButtonLink className="mt-6" href="/guides" size="sm">
+                Explore Buying Guides
               </ButtonLink>
             </div>
             <ol className="grid gap-px bg-border sm:grid-cols-3">
@@ -686,7 +608,8 @@ export function Home() {
           </div>
           <p className="mt-5 max-w-3xl text-xs leading-5 text-muted-foreground">
             Provider descriptions summarize publicly stated product positioning.
-            Fit guidance is editorial context, not a ranking or testing claim.
+            Fit guidance is editorial context, not a ranking, promotional score,
+            or testing claim.
           </p>
           <div className="mt-7">
             <ButtonLink href="/reviews" variant="secondary">
