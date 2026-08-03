@@ -4,6 +4,7 @@ import { Link as RouterLink } from 'react-router';
 import { cn } from '@/lib/cn';
 
 const variants = {
+  unstyled: '',
   default:
     'text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground',
   accent:
