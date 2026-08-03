@@ -1,5 +1,5 @@
-import { RacklioWordmark, ResearchMarker } from '@/components/brand';
-import { Footer, Header, PageLayout } from '@/components/layout';
+import { ResearchMarker } from '@/components/brand';
+import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import {
   ButtonLink,
   Card,
@@ -423,76 +423,9 @@ function ProviderResearchCard({
   );
 }
 
-const navigation = (
-  <>
-    <Link href="#research" variant="subtle">
-      Reviews
-    </Link>
-    <Link href="#comparisons" variant="subtle">
-      Comparisons
-    </Link>
-    <Link href="/guides" variant="subtle">
-      Buying Guides
-    </Link>
-    <Link href="#about" variant="subtle">
-      About
-    </Link>
-    <Link
-      aria-label="Search Racklio"
-      className="grid size-9 place-items-center border border-border"
-      href="/search"
-      variant="subtle"
-    >
-      <span aria-hidden="true" className="search-icon" />
-    </Link>
-  </>
-);
-
-const footerLinks = [
-  ['Reviews', '#research'],
-  ['Comparisons', '#comparisons'],
-  ['Buying Guides', '/guides'],
-  ['About', '#about'],
-  ['Contact', '/contact'],
-  ['Privacy', '/privacy'],
-  ['Terms', '/terms'],
-  ['Affiliate Disclosure', '/affiliate-disclosure'],
-] as const;
-
-const footer = (
-  <Footer
-    brand={<RacklioWordmark tone="dark" />}
-    legal={
-      <>
-        A brand of Keleva LLC
-        <br />© {new Date().getFullYear()} Keleva LLC
-      </>
-    }
-    tone="dark"
-  >
-    {footerLinks.map(([label, href]) => (
-      <Link
-        className="text-slate-300 hover:text-white"
-        href={href}
-        key={label}
-        variant="unstyled"
-      >
-        {label}
-      </Link>
-    ))}
-  </Footer>
-);
-
 export function Home() {
   return (
-    <PageLayout
-      footer={footer}
-      header={
-        <Header brand={<RacklioWordmark />} className="bg-surface">
-          {navigation}
-        </Header>
-      }
-    >
+    <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
       <Section
         className="overflow-hidden border-b border-border py-14 sm:py-16 lg:py-20"
         spacing="none"

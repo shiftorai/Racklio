@@ -9,6 +9,18 @@ export const router = createBrowserRouter([
     path: '/',
     Component: AppLayout,
     ErrorBoundary: RouteError,
-    children: [{ index: true, Component: Home }],
+    HydrateFallback: () => null,
+    children: [
+      { index: true, Component: Home },
+      {
+        path: 'reviews/liquid-web',
+        lazy: async () => {
+          const { LiquidWebReview } =
+            await import('@/pages/reviews/liquid-web-review');
+
+          return { Component: LiquidWebReview };
+        },
+      },
+    ],
   },
 ]);
