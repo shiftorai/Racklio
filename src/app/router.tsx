@@ -21,6 +21,15 @@ export const router = createBrowserRouter([
           return { Component: LiquidWebReview };
         },
       },
+      {
+        path: 'reviews/kinsta',
+        lazy: async () => {
+          const { KinstaReview } =
+            await import('@/pages/reviews/kinsta-review');
+
+          return { Component: KinstaReview };
+        },
+      },
     ],
   },
 ]);
