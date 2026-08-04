@@ -57,6 +57,15 @@ export const router = createBrowserRouter([
           return { Component: LiquidWebVsWpEngine };
         },
       },
+      {
+        path: 'comparisons/hostinger-vs-wp-engine',
+        lazy: async () => {
+          const { HostingerVsWpEngine } =
+            await import('@/pages/comparisons/hostinger-vs-wp-engine');
+
+          return { Component: HostingerVsWpEngine };
+        },
+      },
     ],
   },
 ]);
