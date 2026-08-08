@@ -40,6 +40,15 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/rocket-net',
+        lazy: async () => {
+          const { RocketNetReview } =
+            await import('@/pages/reviews/rocket-net-review');
+
+          return { Component: RocketNetReview };
+        },
+      },
+      {
         path: 'comparisons/kinsta-vs-wp-engine',
         lazy: async () => {
           const { KinstaVsWpEngine } =
