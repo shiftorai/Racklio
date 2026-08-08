@@ -84,6 +84,15 @@ export const router = createBrowserRouter([
           return { Component: HostingerVsWpEngine };
         },
       },
+      {
+        path: 'comparisons/rocket-net-vs-wp-engine',
+        lazy: async () => {
+          const { RocketNetVsWpEngine } =
+            await import('@/pages/comparisons/rocket-net-vs-wp-engine');
+
+          return { Component: RocketNetVsWpEngine };
+        },
+      },
     ],
   },
 ]);
