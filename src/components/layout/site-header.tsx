@@ -1,11 +1,11 @@
-import { RacklioWordmark } from '@/components/brand';
+import { RacklioLogo } from '@/components/brand';
 import { Link } from '@/components/ui';
 
 import { Header } from './header';
 
 export function SiteHeader() {
   return (
-    <Header brand={<RacklioWordmark />} className="bg-surface">
+    <Header brand={<RacklioLogo />} className="bg-surface">
       <Link href="/#research" variant="subtle">
         Reviews
       </Link>

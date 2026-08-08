@@ -1,4 +1,4 @@
-import { ResearchMarker } from '@/components/brand';
+import { ResearchMarker, RACKLIO_TAGLINE } from '@/components/brand';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import {
   ButtonLink,
@@ -433,10 +433,7 @@ export function Home() {
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14 xl:gap-20">
             <div>
-              <ResearchMarker
-                code="R0"
-                label="Web infrastructure intelligence"
-              />
+              <ResearchMarker code="R0" label={RACKLIO_TAGLINE} />
               <h1 className="mt-6 max-w-3xl text-5xl leading-[1.02] font-semibold tracking-[-0.055em] text-balance sm:text-6xl lg:text-[4.25rem]">
                 Choose the right hosting—without second-guessing the decision.
               </h1>

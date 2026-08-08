@@ -1,4 +1,4 @@
-import { RacklioWordmark } from '@/components/brand';
+import { RacklioLogo, RACKLIO_TAGLINE } from '@/components/brand';
 import { Link } from '@/components/ui';
 
 import { Footer } from './footer';
@@ -17,9 +17,11 @@ const footerLinks = [
 export function SiteFooter() {
   return (
     <Footer
-      brand={<RacklioWordmark tone="dark" />}
+      brand={<RacklioLogo tone="dark" />}
       legal={
         <>
+          {RACKLIO_TAGLINE}
+          <br />
           A brand of Keleva LLC
           <br />© {new Date().getFullYear()} Keleva LLC
         </>
