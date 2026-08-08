@@ -93,6 +93,15 @@ export const router = createBrowserRouter([
           return { Component: RocketNetVsWpEngine };
         },
       },
+      {
+        path: 'comparisons/rocket-net-vs-kinsta',
+        lazy: async () => {
+          const { RocketNetVsKinsta } =
+            await import('@/pages/comparisons/rocket-net-vs-kinsta');
+
+          return { Component: RocketNetVsKinsta };
+        },
+      },
     ],
   },
 ]);
