@@ -102,6 +102,15 @@ export const router = createBrowserRouter([
           return { Component: RocketNetVsKinsta };
         },
       },
+      {
+        path: 'comparisons/pressable-vs-wp-engine',
+        lazy: async () => {
+          const { PressableVsWpEngine } =
+            await import('@/pages/comparisons/pressable-vs-wp-engine');
+
+          return { Component: PressableVsWpEngine };
+        },
+      },
     ],
   },
 ]);
