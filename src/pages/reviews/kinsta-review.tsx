@@ -50,6 +50,11 @@ const sources = [
     title: 'Kinsta API',
     href: 'https://kinsta.com/docs/kinsta-api/',
   },
+  {
+    id: 8,
+    title: 'Current WordPress hosting pricing',
+    href: 'https://kinsta.com/pricing/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -106,7 +111,7 @@ const articleSchema = {
   description:
     'An evidence-based Kinsta review covering managed WordPress architecture, developer workflows, backups, security, support, pricing, and business fit.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -263,8 +268,8 @@ export function KinstaReview() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -667,6 +672,16 @@ export function KinstaReview() {
               <ReviewSection code="07" id="pricing" title="Pricing and value">
                 <div className="space-y-5 text-base leading-8">
                   <p>
+                    As of August 9, 2026, Kinsta's Single 20GB plan is $35 when
+                    billed monthly or an effective $30 per month when $350 is
+                    billed annually. It includes one WordPress install, 10 GB
+                    storage, either 20 GB server bandwidth or 35,000 monthly
+                    visits, 125 GB CDN bandwidth, and 14-day backup retention. A
+                    current first-month offer is promotional and should not be
+                    treated as the recurring price.
+                    <Citation source={8} />
+                  </p>
+                  <p>
                     Kinsta publishes WordPress plans with different allowances,
                     including combinations of installs, visits or bandwidth,
                     storage, and CDN usage. Plan structures and promotional
@@ -681,10 +696,11 @@ export function KinstaReview() {
                     team would otherwise spend on platform operations.
                   </p>
                   <p>
-                    Kinsta may represent stronger value when its managed
-                    WordPress workflow replaces meaningful operational work. It
-                    may represent weaker value when the site is simple, resource
-                    needs are modest, or a general-purpose server is required.
+                    <strong>Racklio analysis:</strong> Kinsta may represent
+                    stronger value when its managed WordPress workflow replaces
+                    meaningful operational work. It may represent weaker value
+                    when the site is simple, resource needs are modest, or a
+                    general-purpose server is required.
                   </p>
                 </div>
               </ReviewSection>
@@ -908,7 +924,7 @@ export function KinstaReview() {
                   publish unverified benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, and terms can change; verify material details before
                   purchase.
                 </p>

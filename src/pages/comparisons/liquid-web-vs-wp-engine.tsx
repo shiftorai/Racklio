@@ -83,6 +83,18 @@ const sources = [
     title: 'Plan usage and statistics',
     href: 'https://wpengine.com/support/usage/',
   },
+  {
+    id: 12,
+    provider: 'Liquid Web',
+    title: 'Current managed VPS plans and pricing',
+    href: 'https://www.liquidweb.com/vps-hosting/managed-vps/',
+  },
+  {
+    id: 13,
+    provider: 'WP Engine',
+    title: 'Current managed WordPress plans',
+    href: 'https://wpengine.com/plans/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -195,7 +207,7 @@ const articleSchema = {
   description:
     'An evidence-based comparison of Liquid Web and WP Engine for businesses evaluating managed hosting approaches.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -376,8 +388,8 @@ export function LiquidWebVsWpEngine() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -412,7 +424,9 @@ export function LiquidWebVsWpEngine() {
                     <dd className="mt-2 text-sm leading-6">
                       Choose by application scope, required server control,
                       release workflow, support boundaries, and operational
-                      ownership.
+                      ownership. Neither is appropriate when the workload needs
+                      neither managed server administration nor a WordPress-only
+                      platform.
                     </dd>
                   </div>
                 </dl>
@@ -822,6 +836,16 @@ export function LiquidWebVsWpEngine() {
                 id="pricing"
                 title="Pricing and configuration model"
               >
+                <p className="mb-6 text-base leading-8">
+                  As of August 9, 2026, Liquid Web displays its 4 GB managed VPS
+                  at $36 per month for two months and $72 per month thereafter.
+                  WP Engine lists Startup from $30 per month. These prices do
+                  not represent equivalent products: one is a promotional VPS
+                  configuration and the other is an entry WordPress platform
+                  plan.
+                  <Citation source={12} />
+                  <Citation source={13} />
+                </p>
                 <ProviderComparison
                   liquidWeb={
                     <p>
@@ -1007,7 +1031,7 @@ export function LiquidWebVsWpEngine() {
                   or publish unverified benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, and terms can change; verify material details before
                   purchase.
                 </p>

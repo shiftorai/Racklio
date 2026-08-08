@@ -55,6 +55,11 @@ const sources = [
     title: 'Plans and product extensions',
     href: 'https://wpengine.com/support/change-plan-user-portal/',
   },
+  {
+    id: 9,
+    title: 'Current managed WordPress plans',
+    href: 'https://wpengine.com/plans/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -112,7 +117,7 @@ const articleSchema = {
   description:
     'An evidence-based WP Engine review covering managed WordPress architecture, developer workflows, backups, security, support, pricing, and business fit.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -271,8 +276,8 @@ export function WpEngineReview() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -719,6 +724,23 @@ export function WpEngineReview() {
               <ReviewSection code="07" id="pricing" title="Pricing and value">
                 <div className="space-y-5 text-base leading-8">
                   <p>
+                    As of August 9, 2026, WP Engine lists Startup from $30,
+                    Professional from $55, Growth from $109, Scale from $276,
+                    and Core Hosting from $400 per month. Startup through Scale
+                    list 1, 3, 10, and 30 sites respectively; their published
+                    resource allowances differ by visits, local storage, and
+                    bandwidth.
+                    <Citation source={9} />
+                  </p>
+                  <p>
+                    Startup lists chat-only support, while Professional, Growth,
+                    Scale, and Core Hosting list chat and phone support. The
+                    current table identifies advanced DDoS protection and a
+                    managed WAF as optional add-ons rather than universal base
+                    inclusions.
+                    <Citation source={9} />
+                  </p>
+                  <p>
                     WP Engine publishes WordPress plans with different
                     allowances, including combinations of installs, visits or
                     bandwidth, storage, and CDN usage. Plan structures and
@@ -734,10 +756,11 @@ export function WpEngineReview() {
                     team would otherwise spend on platform operations.
                   </p>
                   <p>
-                    WP Engine may represent stronger value when its managed
-                    WordPress workflow replaces meaningful operational work. It
-                    may represent weaker value when the site is simple, resource
-                    needs are modest, or a general-purpose server is required.
+                    <strong>Racklio analysis:</strong> WP Engine may represent
+                    stronger value when its managed WordPress workflow replaces
+                    meaningful operational work. It may represent weaker value
+                    when the site is simple, resource needs are modest, or a
+                    general-purpose server is required.
                   </p>
                 </div>
               </ReviewSection>
@@ -963,7 +986,7 @@ export function WpEngineReview() {
                   publish unverified benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, and terms can change; verify material details before
                   purchase.
                 </p>

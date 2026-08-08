@@ -89,6 +89,18 @@ const sources = [
     title: 'Plan usage and statistics',
     href: 'https://wpengine.com/support/usage/',
   },
+  {
+    id: 13,
+    provider: 'Hostinger',
+    title: 'Current US hosting pricing',
+    href: 'https://www.hostinger.com/pricing',
+  },
+  {
+    id: 14,
+    provider: 'WP Engine',
+    title: 'Current managed WordPress plans',
+    href: 'https://wpengine.com/plans/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -201,7 +213,7 @@ const articleSchema = {
   description:
     'An evidence-based comparison of Hostinger and WP Engine for businesses evaluating managed WordPress hosting.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -382,8 +394,8 @@ export function HostingerVsWpEngine() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -420,6 +432,9 @@ export function HostingerVsWpEngine() {
                     <dd className="mt-2 text-sm leading-6">
                       Choose by plan limits, release workflow, application
                       compatibility, support boundaries, and expected usage.
+                      Neither is suitable when the application requires a
+                      different infrastructure model or neither provider's
+                      support scope fits the team's responsibilities.
                     </dd>
                   </div>
                 </dl>
@@ -828,6 +843,16 @@ export function HostingerVsWpEngine() {
                 id="pricing"
                 title="Pricing and usage model"
               >
+                <p className="mb-6 text-base leading-8">
+                  As of August 9, 2026, Hostinger's US pricing page lists
+                  Premium at $2.99 per month for a 48-month term, renewing at
+                  $10.99; Unlimited at $3.79, renewing at $16.99; and Cloud
+                  Startup at $7.99, renewing at $25.99. The full term is paid
+                  upfront. WP Engine lists Startup from $30 per month. These
+                  billing models and products are not directly equivalent.
+                  <Citation source={13} />
+                  <Citation source={14} />
+                </p>
                 <ProviderComparison
                   hostinger={
                     <p>
@@ -1008,7 +1033,7 @@ export function HostingerVsWpEngine() {
                   unverified benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, plan limits, and terms can change; verify material
                   details before purchase.
                 </p>

@@ -83,6 +83,18 @@ const sources = [
     title: 'Plan usage and statistics',
     href: 'https://wpengine.com/support/usage/',
   },
+  {
+    id: 12,
+    provider: 'Kinsta',
+    title: 'Current WordPress hosting pricing',
+    href: 'https://kinsta.com/pricing/',
+  },
+  {
+    id: 13,
+    provider: 'WP Engine',
+    title: 'Current managed WordPress plans',
+    href: 'https://wpengine.com/plans/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -186,7 +198,7 @@ const articleSchema = {
   description:
     'An evidence-based comparison of Kinsta and WP Engine for businesses evaluating managed WordPress hosting.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -363,8 +375,8 @@ export function KinstaVsWpEngine() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -399,7 +411,9 @@ export function KinstaVsWpEngine() {
                     <dd className="mt-2 text-sm leading-6">
                       Choose by workflow, support boundaries, platform
                       restrictions, expected usage, and application
-                      requirements.
+                      requirements. Neither is the right fit when the workload
+                      requires a general-purpose server or direct infrastructure
+                      control.
                     </dd>
                   </div>
                 </dl>
@@ -786,6 +800,17 @@ export function KinstaVsWpEngine() {
                 id="pricing"
                 title="Pricing and usage model"
               >
+                <p className="mb-6 text-base leading-8">
+                  As of August 9, 2026, Kinsta's entry single-site plan is $35
+                  monthly or an effective $30 per month when billed annually;
+                  its current first-month offer is promotional. WP Engine lists
+                  Startup from $30 per month, followed by Professional at $55,
+                  Growth at $109, Scale at $276, and Core Hosting at $400. These
+                  are not equivalent tiers, so price alone is not a fair
+                  comparison.
+                  <Citation source={12} />
+                  <Citation source={13} />
+                </p>
                 <ProviderComparison
                   kinsta={
                     <p>
@@ -958,7 +983,7 @@ export function KinstaVsWpEngine() {
                   benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, and terms can change; verify material details before
                   purchase.
                 </p>

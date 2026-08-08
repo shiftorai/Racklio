@@ -45,6 +45,11 @@ const sources = [
     title: 'Liquid Web company overview',
     href: 'https://www.liquidweb.com/about-us/',
   },
+  {
+    id: 7,
+    title: 'Current managed VPS plans and pricing',
+    href: 'https://www.liquidweb.com/vps-hosting/managed-vps/',
+  },
 ] as const;
 
 const tableOfContents = [
@@ -101,7 +106,7 @@ const articleSchema = {
   description:
     'An evidence-based Liquid Web review covering managed VPS and dedicated hosting, support, security, scalability, limitations, and business fit.',
   datePublished: '2026-08-04',
-  dateModified: '2026-08-04',
+  dateModified: '2026-08-09',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -260,8 +265,8 @@ export function LiquidWebReview() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last reviewed: August 4, 2026</span>
-                <span>Evidence reviewed August 4, 2026</span>
+                <span>Last verified: August 9, 2026</span>
+                <span>Official sources reviewed August 9, 2026</span>
               </div>
             </div>
 
@@ -637,6 +642,14 @@ export function LiquidWebReview() {
               <ReviewSection code="07" id="pricing" title="Pricing and value">
                 <div className="space-y-5 text-base leading-8">
                   <p>
+                    As of August 9, 2026, Liquid Web's entry managed VPS
+                    configuration lists 4 GB RAM, 2 vCPU, 80 GB SSD storage, and
+                    3 TB bandwidth. Its displayed $36 monthly price is a 50%
+                    promotion for two months; the same page shows $72 per month
+                    as the regular price.
+                    <Citation source={7} />
+                  </p>
+                  <p>
                     Liquid Web publishes different configurations and management
                     levels, and promotional pricing may change. For that reason,
                     Racklio does not treat a temporary advertised price as the
@@ -650,10 +663,11 @@ export function LiquidWebReview() {
                     server.
                   </p>
                   <p>
-                    Liquid Web can represent better value when the included
-                    management work replaces real operational effort. It can
-                    represent weaker value when the workload is simple and the
-                    additional server control or support scope is unnecessary.
+                    <strong>Racklio analysis:</strong> Liquid Web can represent
+                    better value when the included management work replaces real
+                    operational effort. It can represent weaker value when the
+                    workload is simple and the additional server control or
+                    support scope is unnecessary.
                   </p>
                 </div>
               </ReviewSection>
@@ -872,7 +886,7 @@ export function LiquidWebReview() {
                   publish unverified benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Provider materials were accessed on August 4, 2026. Features,
+                  Provider materials were accessed on August 9, 2026. Features,
                   prices, and terms can change; verify material details before
                   purchase.
                 </p>
