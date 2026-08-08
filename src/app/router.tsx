@@ -129,6 +129,15 @@ export const router = createBrowserRouter([
           return { Component: PressableVsKinsta };
         },
       },
+      {
+        path: 'comparisons/rocket-net-vs-pressable',
+        lazy: async () => {
+          const { RocketNetVsPressable } =
+            await import('@/pages/comparisons/rocket-net-vs-pressable');
+
+          return { Component: RocketNetVsPressable };
+        },
+      },
     ],
   },
 ]);
