@@ -120,6 +120,15 @@ export const router = createBrowserRouter([
           return { Component: LiquidWebVsKinsta };
         },
       },
+      {
+        path: 'comparisons/pressable-vs-kinsta',
+        lazy: async () => {
+          const { PressableVsKinsta } =
+            await import('@/pages/comparisons/pressable-vs-kinsta');
+
+          return { Component: PressableVsKinsta };
+        },
+      },
     ],
   },
 ]);
