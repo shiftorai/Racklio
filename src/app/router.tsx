@@ -49,6 +49,15 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/pressable',
+        lazy: async () => {
+          const { PressableReview } =
+            await import('@/pages/reviews/pressable-review');
+
+          return { Component: PressableReview };
+        },
+      },
+      {
         path: 'comparisons/kinsta-vs-wp-engine',
         lazy: async () => {
           const { KinstaVsWpEngine } =
