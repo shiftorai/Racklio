@@ -207,7 +207,10 @@ function HubPage({
       <meta property="og:url" content={canonical} />
       <meta name="twitter:card" content="summary" />
       <>
-        <Section className="border-b border-border bg-surface-subtle py-16 sm:py-20">
+        <Section
+          className="border-b border-border bg-surface-subtle py-14 sm:py-16 lg:py-14"
+          spacing="none"
+        >
           <Container>
             <ResearchMarker code={code} label={eyebrow} />
             <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
@@ -218,7 +221,7 @@ function HubPage({
             </p>
           </Container>
         </Section>
-        <Section>
+        <Section className="py-14 sm:py-16 lg:py-12" spacing="none">
           <Container>
             <div className="grid gap-4 md:grid-cols-2">
               {entries.map((entry, index) => (
