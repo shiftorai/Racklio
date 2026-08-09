@@ -154,6 +154,14 @@ export const router = createBrowserRouter([
           return { Component: LiquidWebVsPressable };
         },
       },
+      {
+        path: 'best/managed-wordpress-hosting-for-agencies',
+        lazy: async () => {
+          const { ManagedWordPressHostingForAgencies } =
+            await import('@/pages/best/managed-wordpress-hosting-for-agencies');
+          return { Component: ManagedWordPressHostingForAgencies };
+        },
+      },
     ],
   },
 ]);
