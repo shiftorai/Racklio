@@ -77,46 +77,130 @@ export function AboutPage() {
       <section>
         <h2 className="text-2xl font-semibold">Compare. Choose. Grow.</h2>
         <p className="mt-3">
-          Racklio helps businesses understand hosting and web-infrastructure
-          choices through provider reviews, conditional comparisons, and
-          workload-focused buying guides. Racklio is operated by Keleva LLC;
-          Racklio is the publishing brand, not a separate provider or hosting
-          company.
+          Racklio helps businesses evaluate hosting and web-infrastructure
+          choices without turning a complex purchase into a universal ranking.
+          The goal is to reduce unnecessary research complexity by organizing
+          relevant provider information around business fit, operational needs,
+          and the tradeoffs that can affect a buying decision.
+        </p>
+        <p className="mt-3">
+          Different workloads can require different infrastructure, support,
+          security, and deployment models. Racklio therefore focuses on the
+          conditions that make an option appropriate rather than presenting one
+          provider as the default choice for every organization.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold">What Racklio covers</h2>
+        <p className="mt-3">
+          Racklio publishes provider reviews that examine documented platform
+          scope and practical fit; conditional comparisons that explain how two
+          providers differ; and workload-focused buying guides that organize
+          options around a defined business scenario. Together, these formats
+          help readers move from broad research to a more focused shortlist.
+        </p>
+        <p className="mt-3">
+          Racklio is an editorial publisher and decision resource. It is not a
+          hosting company, reseller, infrastructure operator, or provider
+          support channel. Providers remain responsible for their products,
+          pricing, service delivery, contracts, and customer support.
+        </p>
+        <p className="mt-3">
+          Coverage is intentionally centered on the information a business can
+          use to evaluate fit. A review provides depth on one provider, a
+          comparison clarifies a specific choice, and a buying guide starts with
+          the workload before considering suitable approaches.
         </p>
       </section>
       <section>
         <h2 className="text-2xl font-semibold">How the research works</h2>
         <p className="mt-3">
-          Racklio reviews official provider pricing, product documentation,
-          support material, and legal or service-level documents where relevant.
-          Provider statements are identified as provider claims, while Racklio
-          analysis explains how documented terms may fit a particular workload.
-          Recommendations are conditional rather than universal rankings.
+          Research begins with official provider sources, including pricing
+          pages, product documentation, support materials, and legal or
+          service-level documents where relevant. Sources are reviewed for the
+          product scope and decision being discussed, and material details are
+          checked before publication or an identified verification date.
         </p>
         <p className="mt-3">
-          Racklio does not claim to personally test every provider, continuously
-          monitor uptime, or publish independent laboratory benchmarks. When no
-          independent testing has been performed, the relevant page says so.
-        </p>
-      </section>
-      <section>
-        <h2 className="text-2xl font-semibold">How Racklio is funded</h2>
-        <p className="mt-3">
-          Racklio may earn commissions from eligible provider links. Commercial
-          relationships do not determine Racklio&apos;s published rankings or
-          recommendations, and Racklio does not sell ranking positions. Read the{' '}
-          <Link href="/affiliate-disclosure">Affiliate Disclosure</Link> for
-          implementation details.
+          Racklio distinguishes documented facts, provider claims, and editorial
+          analysis. It does not fabricate tests, benchmarks, scores, support
+          experiences, or performance results. When independent testing has not
+          been performed, the content does not imply otherwise. The full process
+          is described in the{' '}
+          <Link href="/methodology">Editorial Methodology</Link>.
         </p>
       </section>
       <section>
-        <h2 className="text-2xl font-semibold">Limits of the guidance</h2>
+        <h2 className="text-2xl font-semibold">
+          How recommendations are formed
+        </h2>
         <p className="mt-3">
-          Hosting products, pricing, and terms can change after verification.
-          Racklio does not guarantee provider performance, availability,
-          security, support outcomes, or suitability for every organization.
-          Buyers should confirm material terms directly with a provider before
-          purchasing.
+          Racklio does not select a universal winner. Recommendations are
+          conditional on the decision context: the workload, operational
+          requirements, pricing structure, support model, deployment workflow,
+          business constraints, and relevant tradeoffs. A documented strength
+          may matter in one context and carry less weight in another.
+        </p>
+        <p className="mt-3">
+          Conclusions are based on the evidence available for the question being
+          addressed. Where official sources conflict or leave an important point
+          unresolved, Racklio qualifies the conclusion or omits the uncertain
+          detail rather than filling the gap with an assumption.
+        </p>
+        <p className="mt-3">
+          The purpose of a recommendation is to explain who should consider an
+          option, why it may fit, and when another approach deserves attention.
+          Readers should verify any material price, feature, or contractual term
+          directly with the provider before purchasing because provider
+          information can change after publication.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold">Editorial independence</h2>
+        <p className="mt-3">
+          Commercial relationships do not purchase rankings or determine
+          editorial conclusions. Racklio does not accept paid placement as an
+          editorial ranking, and affiliate eligibility is not treated as
+          evidence of product quality or suitability. Documented limitations
+          remain part of the analysis when a commercial relationship exists.
+        </p>
+        <p className="mt-3">
+          The principles governing source use, corrections, and commercial
+          separation are explained in the{' '}
+          <Link href="/editorial-standards">Editorial Standards</Link> and{' '}
+          <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold">How Racklio makes money</h2>
+        <p className="mt-3">
+          Racklio may earn commissions when readers follow eligible provider
+          links and complete qualifying purchases. Not every provider or
+          external link is necessarily an affiliate link. Monetization is kept
+          separate from the research process and does not determine the
+          conclusions published on Racklio.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold">Who operates Racklio</h2>
+        <p className="mt-3">
+          Racklio is the publishing brand, and Keleva LLC operates Racklio.
+          Racklio is not a separate legal entity, hosting provider, or
+          infrastructure company. This distinction keeps the publisher&apos;s
+          role clear: Racklio provides editorial information, while providers
+          control and deliver the services discussed.
+        </p>
+      </section>
+      <section>
+        <h2 className="text-2xl font-semibold">Corrections and contact</h2>
+        <p className="mt-3">
+          Readers can contact Racklio when provider information appears
+          outdated, a cited source appears inaccurate, or published analysis
+          needs clarification. Include the relevant page and enough detail to
+          identify the issue. Corrections and editorial inquiries can be sent to{' '}
+          <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>, or
+          readers can review the <Link href="/contact">Contact page</Link> for
+          Racklio&apos;s support boundaries.
         </p>
       </section>
     </InformationPage>
