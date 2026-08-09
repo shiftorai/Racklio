@@ -252,6 +252,10 @@ export function AffiliateDisclosurePage() {
           contractual terms. A link from Racklio does not make Racklio the
           provider or seller of the referenced service.
         </p>
+        <p className="mt-3">
+          Questions about this disclosure can be sent to{' '}
+          <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
+        </p>
       </section>
     </InformationPage>
   );
@@ -271,9 +275,11 @@ export function ContactPage() {
           Editorial and business inquiries
         </h2>
         <p className="mt-3">
-          Racklio is operated by Keleva LLC. A verified public Racklio contact
-          channel must be configured before launch; no unverified email,
-          address, telephone number, or response-time promise is published here.
+          Racklio is operated by Keleva LLC. No response time is promised.
+        </p>
+        <p className="mt-3">
+          <strong>Email:</strong>{' '}
+          <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
         </p>
       </section>
       <section>
@@ -345,6 +351,10 @@ export function PrivacyPage() {
           been reassessed.
         </p>
       </section>
+      <p>
+        Privacy questions can be sent to{' '}
+        <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
+      </p>
       <p>
         <strong>Manual legal review required:</strong> Keleva LLC should approve
         the final production privacy notice before launch and whenever tracking
@@ -422,11 +432,14 @@ export function TermsPage() {
         <p className="mt-3">
           Users must not misuse the site, interfere with its operation, or
           misrepresent Racklio content. These terms and the site may change as
-          the service, law, and business practices evolve. A verified public
-          contact channel and any governing-law provision require separate
-          business and legal approval before launch.
+          the service, law, and business practices evolve. Any governing-law
+          provision requires separate business and legal approval before launch.
         </p>
       </section>
+      <p>
+        Questions about these terms can be sent to{' '}
+        <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
+      </p>
       <p>
         <strong>Manual legal review required:</strong> Keleva LLC should approve
         the final production terms before public launch.

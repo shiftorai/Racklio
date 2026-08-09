@@ -32,7 +32,7 @@ export function Link({
     variants[variant],
     className,
   );
-  const isExternal = /^(https?:)?\/\//.test(href);
+  const isExternal = /^(?:(?:https?:)?\/\/|mailto:|tel:)/.test(href);
 
   if (isExternal) {
     const externalRel = getExternalLinkRel(href, rel, target === '_blank');
