@@ -561,8 +561,8 @@ export function ManagedWordPressHostingForMembershipSites() {
                 </ButtonLink>
                 <p className="mt-4 text-[0.6875rem] leading-5 text-muted-foreground">
                   Affiliate disclosure: Racklio may earn a commission from
-                  qualifying purchases. Provider relationships never determine
-                  our conclusions.
+                  qualifying purchases. Commercial relationships do not
+                  determine Racklio&apos;s published recommendations.
                 </p>
               </CardContent>
             </Card>

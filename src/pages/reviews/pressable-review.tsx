@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { ResearchMarker } from '@/components/brand';
+import { getProviderUrl } from '@/lib/provider-links';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote, ReviewSection } from '@/components/reviews';
 import {
@@ -13,7 +14,7 @@ import {
 } from '@/components/ui';
 
 const canonicalUrl = 'https://racklio.com/reviews/pressable';
-const providerUrl = 'https://pressable.com/';
+const providerUrl = getProviderUrl('pressable');
 
 const sources = [
   { id: 1, title: 'Plans and pricing', href: 'https://pressable.com/pricing/' },
@@ -364,7 +365,7 @@ export function PressableReview() {
                 'Based on current official Pressable documentation',
                 'Independent editorial analysis',
                 'No paid rankings or promotional scoring',
-                'Affiliate relationships never influence conclusions',
+                'Commercial relationships do not determine recommendations',
               ].map((item, index) => (
                 <li className="flex gap-3" key={item}>
                   <span className="font-mono text-[0.625rem] text-accent-strong">
@@ -975,18 +976,6 @@ export function PressableReview() {
                     infrastructure control, or makes a different capacity model
                     more economical.
                   </p>
-                </div>
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink
-                    href={providerUrl}
-                    rel="sponsored nofollow noopener"
-                    target="_blank"
-                  >
-                    Visit Pressable Official Website
-                  </ButtonLink>
-                  <ButtonLink href="/#comparisons" variant="secondary">
-                    Browse Hosting Comparisons
-                  </ButtonLink>
                 </div>
               </ReviewSection>
 

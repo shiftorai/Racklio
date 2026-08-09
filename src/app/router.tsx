@@ -41,6 +41,7 @@ export const router = createBrowserRouter([
         },
       },
       ...[
+        ['about', 'AboutPage'],
         ['methodology', 'MethodologyPage'],
         ['editorial-standards', 'EditorialStandardsPage'],
         ['affiliate-disclosure', 'AffiliateDisclosurePage'],

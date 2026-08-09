@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 
 import { ResearchMarker } from '@/components/brand';
+import { getProviderUrl } from '@/lib/provider-links';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote, ReviewSection } from '@/components/reviews';
 import {
@@ -13,8 +14,8 @@ import {
 } from '@/components/ui';
 
 const canonicalUrl = 'https://racklio.com/comparisons/rocket-net-vs-wp-engine';
-const rocketUrl = 'https://rocket.net/';
-const wpEngineUrl = 'https://wpengine.com/';
+const rocketUrl = getProviderUrl('rocketNet');
+const wpEngineUrl = getProviderUrl('wpEngine');
 
 const sources = [
   {
@@ -423,7 +424,7 @@ export function RocketNetVsWpEngine() {
                 'Based on current official provider documentation',
                 'Independent editorial analysis',
                 'No promotional rankings or scores',
-                'Affiliate relationships never influence conclusions',
+                'Commercial relationships do not determine recommendations',
               ].map((item, index) => (
                 <li className="flex gap-3" key={item}>
                   <span className="font-mono text-[0.625rem] text-accent-strong">

@@ -2,6 +2,7 @@ import type { AnchorHTMLAttributes } from 'react';
 import { Link as RouterLink } from 'react-router';
 
 import { cn } from '@/lib/cn';
+import { getExternalLinkRel } from '@/lib/provider-links';
 
 const variants = {
   unstyled: '',
@@ -34,11 +35,13 @@ export function Link({
   const isExternal = /^(https?:)?\/\//.test(href);
 
   if (isExternal) {
+    const externalRel = getExternalLinkRel(href, rel, target === '_blank');
+
     return (
       <a
         className={classes}
         href={href}
-        rel={target === '_blank' ? (rel ?? 'noreferrer') : rel}
+        rel={externalRel}
         target={target}
         {...props}
       >

@@ -772,19 +772,15 @@ export function Home() {
                 className="text-2xl leading-snug font-semibold tracking-[-0.03em] sm:text-3xl"
                 id="about-heading"
               >
-                Racklio is a brand of Keleva LLC, a U.S. technology company
-                building trusted digital businesses.
+                Racklio is operated by Keleva LLC.
               </h2>
               <p className="mt-5 leading-7 text-muted-foreground">
                 Our purpose is to make complex infrastructure choices easier to
                 understand through clear research and transparent editorial
                 standards.
               </p>
-              <Link
-                className="mt-6 inline-block text-sm"
-                href="/editorial-standards"
-              >
-                Read Editorial Standards
+              <Link className="mt-6 inline-block text-sm" href="/about">
+                About Racklio
               </Link>
             </div>
           </div>

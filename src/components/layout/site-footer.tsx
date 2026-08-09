@@ -7,7 +7,9 @@ const footerLinks = [
   ['Reviews', '/reviews'],
   ['Comparisons', '/comparisons'],
   ['Buying Guides', '/guides'],
-  ['About', '/#about'],
+  ['About', '/about'],
+  ['Methodology', '/methodology'],
+  ['Editorial Standards', '/editorial-standards'],
   ['Contact', '/contact'],
   ['Privacy', '/privacy'],
   ['Terms', '/terms'],
@@ -22,7 +24,7 @@ export function SiteFooter() {
         <>
           {RACKLIO_TAGLINE}
           <br />
-          A brand of Keleva LLC
+          Racklio is operated by Keleva LLC.
           <br />© {new Date().getFullYear()} Keleva LLC
         </>
       }

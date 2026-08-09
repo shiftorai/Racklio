@@ -1,4 +1,5 @@
 import { ResearchMarker } from '@/components/brand';
+import { getProviderUrl } from '@/lib/provider-links';
 import { useEffect } from 'react';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote, ReviewSection } from '@/components/reviews';
@@ -12,7 +13,7 @@ import {
 } from '@/components/ui';
 
 const canonicalUrl = 'https://racklio.com/reviews/liquid-web';
-const providerUrl = 'https://www.liquidweb.com/';
+const providerUrl = getProviderUrl('liquidWeb');
 
 const sources = [
   {
@@ -340,7 +341,7 @@ export function LiquidWebReview() {
                 'Based on official provider documentation',
                 'Independent editorial analysis',
                 'No paid rankings or promotional scoring',
-                'Affiliate relationships never influence conclusions',
+                'Commercial relationships do not determine recommendations',
               ].map((item, index) => (
                 <li className="flex gap-3" key={item}>
                   <span className="font-mono text-[0.625rem] text-accent-strong">
@@ -794,7 +795,7 @@ export function LiquidWebReview() {
                     context.
                   </p>
                   <p>
-                    Racklio is a brand of Keleva LLC. Commercial relationships
+                    Racklio is operated by Keleva LLC. Commercial relationships
                     do not determine our recommendation, the order of providers,
                     or the limitations we publish.
                   </p>
@@ -843,18 +844,6 @@ export function LiquidWebReview() {
                     primarily WordPress-specific, compare Liquid Web with Kinsta
                     and WP Engine before deciding.
                   </p>
-                </div>
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink
-                    href={providerUrl}
-                    rel="sponsored nofollow noopener"
-                    target="_blank"
-                  >
-                    Visit Liquid Web Official Website
-                  </ButtonLink>
-                  <ButtonLink href="/#comparisons" variant="secondary">
-                    Browse Hosting Comparisons
-                  </ButtonLink>
                 </div>
               </ReviewSection>
 

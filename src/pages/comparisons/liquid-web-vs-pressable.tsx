@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { ResearchMarker } from '@/components/brand';
+import { getProviderUrl } from '@/lib/provider-links';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote, ReviewSection } from '@/components/reviews';
 import {
@@ -12,8 +13,8 @@ import {
 } from '@/components/ui';
 
 const canonicalUrl = 'https://racklio.com/comparisons/liquid-web-vs-pressable';
-const liquidWebUrl = 'https://www.liquidweb.com/';
-const pressableUrl = 'https://pressable.com/';
+const liquidWebUrl = getProviderUrl('liquidWeb');
+const pressableUrl = getProviderUrl('pressable');
 const sources = [
   {
     id: 1,
@@ -419,7 +420,7 @@ export function LiquidWebVsPressable() {
                 'Based on current official provider documentation',
                 'Verified facts separated from provider claims',
                 'No promotional rankings or scores',
-                'Affiliate relationships never influence conclusions',
+                'Commercial relationships do not determine recommendations',
               ].map((item, index) => (
                 <li className="flex gap-3" key={item}>
                   <span className="font-mono text-[0.625rem] text-accent-strong">

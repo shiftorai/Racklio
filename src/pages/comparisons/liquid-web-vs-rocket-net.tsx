@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ResearchMarker } from '@/components/brand';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote, ReviewSection } from '@/components/reviews';
+import { getProviderUrl } from '@/lib/provider-links';
 import {
   ButtonLink,
   Card,
@@ -12,6 +13,8 @@ import {
 } from '@/components/ui';
 
 const canonicalUrl = 'https://racklio.com/comparisons/liquid-web-vs-rocket-net';
+const liquidWebUrl = getProviderUrl('liquidWeb');
+const rocketNetUrl = getProviderUrl('rocketNet');
 const sources = [
   {
     id: 1,
@@ -297,7 +300,7 @@ export function LiquidWebVsRocketNet() {
                 </dl>
                 <div className="mt-6 flex flex-col gap-3">
                   <ButtonLink
-                    href="https://www.liquidweb.com/"
+                    href={liquidWebUrl}
                     rel="sponsored nofollow noopener"
                     target="_blank"
                   >
@@ -323,8 +326,8 @@ export function LiquidWebVsRocketNet() {
           </h2>
           <p className="mt-4 text-sm text-muted-foreground">
             Current official documentation · Independent editorial analysis · No
-            promotional rankings · Affiliate relationships never influence
-            conclusions
+            promotional rankings · Commercial relationships do not determine
+            recommendations
           </p>
         </Container>
       </Section>
@@ -692,14 +695,14 @@ export function LiquidWebVsRocketNet() {
                 </p>
                 <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <ButtonLink
-                    href="https://www.liquidweb.com/"
+                    href={liquidWebUrl}
                     rel="sponsored nofollow noopener"
                     target="_blank"
                   >
                     Visit Liquid Web
                   </ButtonLink>
                   <ButtonLink
-                    href="https://rocket.net/"
+                    href={rocketNetUrl}
                     rel="sponsored nofollow noopener"
                     target="_blank"
                     variant="secondary"

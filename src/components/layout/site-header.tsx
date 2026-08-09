@@ -15,7 +15,7 @@ export function SiteHeader() {
       <Link href="/guides" variant="subtle">
         Buying Guides
       </Link>
-      <Link href="/#about" variant="subtle">
+      <Link href="/about" variant="subtle">
         About
       </Link>
       <Link
