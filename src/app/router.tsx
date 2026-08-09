@@ -170,6 +170,14 @@ export const router = createBrowserRouter([
           return { Component: ManagedWooCommerceHosting };
         },
       },
+      {
+        path: 'best/managed-wordpress-hosting-for-high-traffic-websites',
+        lazy: async () => {
+          const { ManagedWordPressHostingForHighTrafficWebsites } =
+            await import('@/pages/best/managed-wordpress-hosting-for-high-traffic-websites');
+          return { Component: ManagedWordPressHostingForHighTrafficWebsites };
+        },
+      },
     ],
   },
 ]);
