@@ -851,14 +851,11 @@ export function WpEngineReview() {
                   <ButtonLink href="/reviews/kinsta" variant="secondary">
                     Kinsta Review
                   </ButtonLink>
-                  <ButtonLink
-                    href="/guides/managed-wordpress-hosting"
-                    variant="secondary"
-                  >
+                  <ButtonLink href="/guides" variant="secondary">
                     Managed WordPress Buying Guide
                   </ButtonLink>
                   <ButtonLink
-                    href="/guides/business-website-hosting"
+                    href="/best/managed-wordpress-hosting-for-small-business"
                     variant="secondary"
                   >
                     Business Website Hosting Guide

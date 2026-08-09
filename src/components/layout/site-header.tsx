@@ -6,10 +6,10 @@ import { Header } from './header';
 export function SiteHeader() {
   return (
     <Header brand={<RacklioLogo />} className="bg-surface">
-      <Link href="/#research" variant="subtle">
+      <Link href="/reviews" variant="subtle">
         Reviews
       </Link>
-      <Link href="/#comparisons" variant="subtle">
+      <Link href="/comparisons" variant="subtle">
         Comparisons
       </Link>
       <Link href="/guides" variant="subtle">

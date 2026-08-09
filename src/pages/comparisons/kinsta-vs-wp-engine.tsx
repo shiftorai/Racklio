@@ -912,7 +912,7 @@ export function KinstaVsWpEngine() {
                   <ButtonLink href="/comparisons" variant="secondary">
                     Comparison Hub
                   </ButtonLink>
-                  <ButtonLink href="/buying-guides" variant="secondary">
+                  <ButtonLink href="/guides" variant="secondary">
                     Buying Guides
                   </ButtonLink>
                 </div>

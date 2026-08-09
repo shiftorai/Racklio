@@ -22,37 +22,37 @@ const scenarios = [
   [
     'Business Website',
     'Find a dependable platform for a business-critical site',
-    '/guides/business-website-hosting',
+    '/best/managed-wordpress-hosting-for-small-business',
   ],
   [
     'WooCommerce',
     'Evaluate hosting built around an online store workload',
-    '/guides/woocommerce-hosting',
+    '/best/managed-woocommerce-hosting',
   ],
   [
-    'WordPress',
-    'Compare managed platforms focused on WordPress',
-    '/guides/wordpress-hosting',
+    'Developers',
+    'Compare platforms by environments, tooling, and deployment workflow',
+    '/best/managed-wordpress-hosting-for-developers',
   ],
   [
     'Agency',
     'Explore options for managing multiple client websites',
-    '/guides/agency-hosting',
+    '/best/managed-wordpress-hosting-for-agencies',
   ],
   [
     'SaaS',
     'Assess infrastructure for an evolving software product',
-    '/guides/saas-hosting',
+    '/best/managed-wordpress-hosting-for-saas-websites',
   ],
   [
     'High Traffic',
     'Review platforms for demanding traffic requirements',
-    '/guides/high-traffic-hosting',
+    '/best/managed-wordpress-hosting-for-high-traffic-websites',
   ],
   [
-    'Managed VPS',
-    'Compare managed servers with greater infrastructure control',
-    '/guides/managed-vps-hosting',
+    'Multiple Sites',
+    'Compare portfolio plans, access, isolation, and workflow',
+    '/best/managed-wordpress-hosting-for-multiple-websites',
   ],
 ] as const;
 
@@ -120,6 +120,36 @@ const providers = [
     href: '/reviews/wp-engine',
     category: 'WordPress platform',
   },
+  {
+    name: 'Rocket.net',
+    initials: 'R',
+    fit: 'Managed edge delivery',
+    audience:
+      'WordPress teams comparing unmetered visitor accounting with finite resources.',
+    description:
+      'Rocket.net provides managed WordPress hosting with edge delivery and security operations.',
+    reason:
+      'Consider it when visit-count billing is undesirable and bandwidth can be planned.',
+    caution:
+      'It may be less relevant when you need general-purpose server control or formal newsroom workflow.',
+    href: '/reviews/rocket-net',
+    category: 'Managed WordPress',
+  },
+  {
+    name: 'Pressable',
+    initials: 'P',
+    fit: 'Portfolio collaboration',
+    audience:
+      'Teams managing one or several WordPress properties with collaborators and staging.',
+    description:
+      'Pressable provides managed WordPress hosting with published portfolio and per-site resource models.',
+    reason:
+      'Consider it when collaboration, portfolio management, and a Premium Site path matter.',
+    caution:
+      'It may be less relevant when you need root-level infrastructure control.',
+    href: '/reviews/pressable',
+    category: 'Managed WordPress',
+  },
 ] as const;
 
 const comparisons = [
@@ -141,6 +171,39 @@ const comparisons = [
     lens: 'Two managed WordPress approaches for business teams',
     href: '/comparisons/kinsta-vs-wp-engine',
   },
+] as const;
+
+const featuredGuides = [
+  [
+    'Small Business',
+    'Choose around business risk, workload, support, and cost.',
+    '/best/managed-wordpress-hosting-for-small-business',
+  ],
+  [
+    'Agencies',
+    'Compare client operations, permissions, workflow, and portfolio economics.',
+    '/best/managed-wordpress-hosting-for-agencies',
+  ],
+  [
+    'High-Traffic Websites',
+    'Evaluate cacheability, origin demand, transfer, and traffic spikes.',
+    '/best/managed-wordpress-hosting-for-high-traffic-websites',
+  ],
+  [
+    'Membership Sites',
+    'Compare logged-in traffic, database activity, and recovery requirements.',
+    '/best/managed-wordpress-hosting-for-membership-sites',
+  ],
+  [
+    'Enterprise',
+    'Evaluate SLA, governance, recovery, support, and infrastructure scope.',
+    '/best/managed-wordpress-hosting-for-enterprise',
+  ],
+  [
+    'Publishers',
+    'Compare editorial workflow, bandwidth, governance, and publishing scale.',
+    '/best/managed-wordpress-hosting-for-publishers',
+  ],
 ] as const;
 
 const methodology = [
@@ -426,6 +489,19 @@ function ProviderResearchCard({
 export function Home() {
   return (
     <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
+      <title>Racklio — Web Infrastructure Buying Intelligence</title>
+      <link rel="canonical" href="https://racklio.com/" />
+      <meta
+        name="description"
+        content="Compare hosting providers, read evidence-first reviews, and choose web infrastructure around your business workload."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="Racklio — Compare. Choose. Grow." />
+      <meta
+        property="og:description"
+        content="Evidence-first reviews, comparisons, and workload-based hosting buying guides."
+      />
+      <meta property="og:url" content="https://racklio.com/" />
       <Section
         className="overflow-hidden border-b border-border py-14 sm:py-16 lg:py-20"
         spacing="none"
@@ -517,6 +593,35 @@ export function Home() {
           </div>
         </Container>
       </section>
+
+      <Section id="guides" aria-labelledby="guides-heading" spacing="md">
+        <Container>
+          <SectionHeading
+            eyebrow="Buying guides"
+            id="guides-heading"
+            title="Start with the workload you need to support."
+            description="Workload-based guides connect provider evidence to the operating requirements that shape a real buying decision."
+          />
+          <div className="mt-10 grid gap-px border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
+            {featuredGuides.map(([title, description, href], index) => (
+              <article className="bg-surface-raised p-5 sm:p-6" key={href}>
+                <span className="font-mono text-[0.625rem] text-accent-strong">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">
+                  <Link href={href}>{title}</Link>
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {description}
+                </p>
+              </article>
+            ))}
+          </div>
+          <ButtonLink className="mt-7" href="/guides" variant="secondary">
+            Explore All Buying Guides
+          </ButtonLink>
+        </Container>
+      </Section>
 
       <Section id="research" aria-labelledby="research-heading" spacing="md">
         <Container>

@@ -4,8 +4,8 @@ import { Link } from '@/components/ui';
 import { Footer } from './footer';
 
 const footerLinks = [
-  ['Reviews', '/#research'],
-  ['Comparisons', '/#comparisons'],
+  ['Reviews', '/reviews'],
+  ['Comparisons', '/comparisons'],
   ['Buying Guides', '/guides'],
   ['About', '/#about'],
   ['Contact', '/contact'],

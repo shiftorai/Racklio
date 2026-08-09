@@ -13,6 +13,48 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       {
+        path: 'reviews',
+        lazy: async () => {
+          const { ReviewsHub } = await import('@/pages/content-hubs');
+          return { Component: ReviewsHub };
+        },
+      },
+      {
+        path: 'comparisons',
+        lazy: async () => {
+          const { ComparisonsHub } = await import('@/pages/content-hubs');
+          return { Component: ComparisonsHub };
+        },
+      },
+      {
+        path: 'guides',
+        lazy: async () => {
+          const { GuidesHub } = await import('@/pages/content-hubs');
+          return { Component: GuidesHub };
+        },
+      },
+      {
+        path: 'search',
+        lazy: async () => {
+          const { SearchPage } = await import('@/pages/content-hubs');
+          return { Component: SearchPage };
+        },
+      },
+      ...[
+        ['methodology', 'MethodologyPage'],
+        ['editorial-standards', 'EditorialStandardsPage'],
+        ['affiliate-disclosure', 'AffiliateDisclosurePage'],
+        ['contact', 'ContactPage'],
+        ['privacy', 'PrivacyPage'],
+        ['terms', 'TermsPage'],
+      ].map(([path, exportName]) => ({
+        path,
+        lazy: async () => {
+          const pages = await import('@/pages/site-information');
+          return { Component: pages[exportName as keyof typeof pages] };
+        },
+      })),
+      {
         path: 'reviews/liquid-web',
         lazy: async () => {
           const { LiquidWebReview } =

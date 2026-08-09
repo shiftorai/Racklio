@@ -755,25 +755,19 @@ export function LiquidWebReview() {
                   </article>
                 </div>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <ButtonLink
-                    href="/guides/best-managed-hosting"
-                    variant="secondary"
-                  >
+                  <ButtonLink href="/guides" variant="secondary">
                     Best Managed Hosting Guide
                   </ButtonLink>
-                  <ButtonLink
-                    href="/guides/managed-vps-hosting"
-                    variant="secondary"
-                  >
-                    Managed VPS Buying Guide
+                  <ButtonLink href="/guides" variant="secondary">
+                    Managed VPS Buying Guidance
                   </ButtonLink>
                   <ButtonLink
-                    href="/guides/dedicated-server-hosting"
+                    href="/best/managed-wordpress-hosting-for-enterprise"
                     variant="secondary"
                   >
                     Dedicated Server Buying Guide
                   </ButtonLink>
-                  <ButtonLink href="/#comparisons" variant="secondary">
+                  <ButtonLink href="/comparisons" variant="secondary">
                     Hosting Comparison Hub
                   </ButtonLink>
                 </div>

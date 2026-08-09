@@ -958,7 +958,7 @@ export function HostingerVsWpEngine() {
                   <ButtonLink href="/comparisons" variant="secondary">
                     Managed WordPress Comparisons
                   </ButtonLink>
-                  <ButtonLink href="/buying-guides" variant="secondary">
+                  <ButtonLink href="/guides" variant="secondary">
                     Buying Guides
                   </ButtonLink>
                   <ButtonLink href="/" variant="secondary">
