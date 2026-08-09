@@ -355,11 +355,6 @@ export function PrivacyPage() {
         Privacy questions can be sent to{' '}
         <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
       </p>
-      <p>
-        <strong>Manual legal review required:</strong> Keleva LLC should approve
-        the final production privacy notice before launch and whenever tracking
-        or data processing changes.
-      </p>
     </InformationPage>
   );
 }
@@ -400,8 +395,7 @@ export function TermsPage() {
           purpose. To the extent permitted by applicable law, Keleva LLC is not
           responsible for decisions, losses, outages, security events, or
           disputes arising from a provider&apos;s products, external website, or
-          contract. Professional legal review is required before relying on this
-          language in production.
+          contract.
         </p>
       </section>
       <section>
@@ -432,17 +426,12 @@ export function TermsPage() {
         <p className="mt-3">
           Users must not misuse the site, interfere with its operation, or
           misrepresent Racklio content. These terms and the site may change as
-          the service, law, and business practices evolve. Any governing-law
-          provision requires separate business and legal approval before launch.
+          the service, law, and business practices evolve.
         </p>
       </section>
       <p>
         Questions about these terms can be sent to{' '}
         <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
-      </p>
-      <p>
-        <strong>Manual legal review required:</strong> Keleva LLC should approve
-        the final production terms before public launch.
       </p>
     </InformationPage>
   );
