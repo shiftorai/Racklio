@@ -211,6 +211,14 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'best/managed-wordpress-hosting-for-publishers',
+        lazy: async () => {
+          const { ManagedWordPressHostingForPublishers } =
+            await import('@/pages/best/managed-wordpress-hosting-for-publishers');
+          return { Component: ManagedWordPressHostingForPublishers };
+        },
+      },
+      {
         path: 'best/managed-woocommerce-hosting',
         lazy: async () => {
           const { ManagedWooCommerceHosting } =
