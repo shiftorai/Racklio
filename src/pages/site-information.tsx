@@ -57,6 +57,14 @@ function InformationPage({
   );
 }
 
+function PolicyDate() {
+  return (
+    <p className="text-sm font-medium text-muted-foreground">
+      Last updated: August 10, 2026
+    </p>
+  );
+}
+
 export function AboutPage() {
   return (
     <InformationPage
@@ -65,6 +73,7 @@ export function AboutPage() {
       description="Racklio is an independent hosting decision resource operated by Keleva LLC."
       canonical="https://racklio.com/about"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">Compare. Choose. Grow.</h2>
         <p className="mt-3">
@@ -122,6 +131,7 @@ export function MethodologyPage() {
       description="How Racklio evaluates hosting providers and turns official documentation into conditional buying guidance."
       canonical="https://racklio.com/methodology"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">
           Evidence before recommendation
@@ -179,6 +189,7 @@ export function EditorialStandardsPage() {
       description="The principles Racklio uses to protect accuracy, transparency, and buyer trust."
       canonical="https://racklio.com/editorial-standards"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">Independent conclusions</h2>
         <p className="mt-3">
@@ -218,6 +229,7 @@ export function AffiliateDisclosurePage() {
       description="How Racklio's commercial relationships work and how they are kept separate from editorial conclusions."
       canonical="https://racklio.com/affiliate-disclosure"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">How Racklio may earn revenue</h2>
         <p className="mt-3">
@@ -270,6 +282,7 @@ export function ContactPage() {
       canonical="https://racklio.com/contact"
       noindex
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">
           Editorial and business inquiries
@@ -307,6 +320,7 @@ export function PrivacyPage() {
       description="How Racklio's current website handles data and external links."
       canonical="https://racklio.com/privacy"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">
           Operator and current frontend
@@ -322,15 +336,20 @@ export function PrivacyPage() {
       </section>
       <section>
         <h2 className="text-2xl font-semibold">
-          Search and technical delivery
+          Search, technical delivery, and email
         </h2>
         <p className="mt-3">
           Internal search filters Racklio&apos;s published page inventory in the
-          browser and does not submit the query to an analytics service. Like
-          any website, production hosting infrastructure may receive technical
-          request information needed to deliver and secure the site. Keleva LLC
-          must confirm the production host&apos;s logging, retention, and
-          processing practices before approving this notice.
+          browser and does not submit the query to an analytics service.
+          Racklio&apos;s hosting infrastructure may receive ordinary technical
+          request information needed to deliver and secure the site.
+        </p>
+        <p className="mt-3">
+          Messages sent to{' '}
+          <Link href="mailto:contact@racklio.com">contact@racklio.com</Link> may
+          include the sender&apos;s email address, message content, and ordinary
+          message metadata. Keleva LLC uses this information to respond to
+          inquiries and operate Racklio.
         </p>
       </section>
       <section>
@@ -367,6 +386,7 @@ export function TermsPage() {
       description="Terms for using Racklio's informational hosting research."
       canonical="https://racklio.com/terms"
     >
+      <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">Operator and purpose</h2>
         <p className="mt-3">
