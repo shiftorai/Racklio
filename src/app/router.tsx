@@ -146,6 +146,14 @@ export const router = createBrowserRouter([
           return { Component: LiquidWebVsRocketNet };
         },
       },
+      {
+        path: 'comparisons/liquid-web-vs-pressable',
+        lazy: async () => {
+          const { LiquidWebVsPressable } =
+            await import('@/pages/comparisons/liquid-web-vs-pressable');
+          return { Component: LiquidWebVsPressable };
+        },
+      },
     ],
   },
 ]);
