@@ -58,7 +58,7 @@ const sources = [
     id: 7,
     provider: 'Kinsta',
     title: 'WordPress hosting plans',
-    href: 'https://kinsta.com/docs/wordpress-hosting/wordpress-hosting-plans/',
+    href: 'https://kinsta.com/docs/billing/wordpress-hosting-plans/',
   },
   {
     id: 8,
@@ -76,19 +76,19 @@ const sources = [
     id: 10,
     provider: 'Kinsta',
     title: 'Support',
-    href: 'https://kinsta.com/docs/wordpress-hosting/wordpress-hosting-support/',
+    href: 'https://kinsta.com/docs/support/scope-of-support/',
   },
   {
     id: 11,
     provider: 'Kinsta',
     title: 'Support scope',
-    href: 'https://kinsta.com/docs/wordpress-hosting/wordpress-hosting-support/scope-of-support/',
+    href: 'https://kinsta.com/docs/support/scope-of-support/managed-wordpress-scope-of-support/',
   },
   {
     id: 12,
     provider: 'Kinsta',
     title: 'Backups',
-    href: 'https://kinsta.com/docs/wordpress-hosting/backups/',
+    href: 'https://kinsta.com/docs/wordpress-hosting/wordpress-backups/',
   },
 ] as const;
 
@@ -117,59 +117,87 @@ const rows = [
     factor: 'Entry price',
     rocket: '$30 monthly; $25 annual-effective; $1 first month',
     kinsta:
-      '$35 monthly; $350 yearly (about $30 monthly); current first-month offer is separate',
+      '$35 monthly; $30 per month billed as $350 annually; first month currently free',
+    relevance:
+      'Compare ongoing billing on the same term; introductory pricing does not establish long-term cost.',
   },
   {
     factor: 'Entry sites',
     rocket: '1 WordPress install',
     kinsta: '1 WordPress install',
+    relevance:
+      'Either entry plan can fit one site; portfolio buyers should model the next multi-site tier.',
   },
   {
     factor: 'Traffic model',
     rocket: 'Unmetered visitors; bandwidth remains limited',
     kinsta: 'Choice of server-bandwidth or visit-based billing',
+    relevance:
+      'Traffic shape determines which accounting model is easier to forecast; neither model removes resource limits.',
   },
   {
     factor: 'Entry allowance',
     rocket: '50 GB bandwidth',
     kinsta: '20 GB server bandwidth or 35,000 visits',
+    relevance:
+      'Estimate origin transfer and visits separately before comparing allowances.',
   },
-  { factor: 'Entry storage', rocket: '10 GB', kinsta: '10 GB' },
+  {
+    factor: 'Entry storage',
+    rocket: '10 GB',
+    kinsta: '10 GB',
+    relevance:
+      'Storage does not distinguish the entry plans; growth and overage rules may.',
+  },
   {
     factor: 'Entry CDN',
     rocket: 'Enterprise CDN included; plan bandwidth applies',
     kinsta: '125 GB CDN on the entry plan, separate from server bandwidth',
+    relevance:
+      'Kinsta separates CDN and server transfer; Rocket.net presents one plan bandwidth allowance.',
   },
   {
     factor: 'PHP workers',
     rocket: 'Unlimited PHP workers listed',
     kinsta:
       'Plan and container model; no equivalent public unlimited-worker claim used here',
+    relevance:
+      'Dynamic workloads require provider-specific validation; labels alone do not establish capacity.',
   },
   {
     factor: 'Security packaging',
     rocket: 'WAF, malware protection, SSL, and CDN listed as included',
     kinsta: 'Managed WAF and DDoS protection, SSL, and malware removal listed',
+    relevance:
+      'Included controls clarify platform scope but do not prove comparative security outcomes.',
   },
   {
     factor: 'Backups',
     rocket: 'Daily; 30-day retention listed',
     kinsta: 'Daily; retention varies, with 14 days on entry plans',
+    relevance:
+      'Recovery needs may make retention and independent backup options more important than frequency alone.',
   },
   {
     factor: 'Staging',
     rocket: 'Staging included',
     kinsta: 'One-click staging; premium staging is optional',
+    relevance:
+      'Teams should compare environment limits and deployment behavior against their release process.',
   },
   {
     factor: 'Support',
     rocket: '24/7/365 live chat and tickets listed',
     kinsta: '24/7 MyKinsta chat; published scope boundaries apply',
+    relevance:
+      'Channel and scope matter when a team expects application-level help or complex migrations.',
   },
   {
     factor: 'Platform scope',
     rocket: 'Managed WordPress',
     kinsta: 'Managed WordPress',
+    relevance:
+      'Neither is a fit for non-WordPress applications or buyers requiring root-level server control.',
   },
 ] as const;
 
@@ -180,7 +208,7 @@ const articleSchema = {
   description:
     'An evidence-based Rocket.net vs Kinsta comparison covering pricing models, resources, security, backups, workflows, support, and workload fit.',
   datePublished: '2026-08-09',
-  dateModified: '2026-08-09',
+  dateModified: '2026-08-11',
   mainEntityOfPage: canonicalUrl,
   isAccessibleForFree: true,
   author: {
@@ -354,8 +382,8 @@ export function RocketNetVsKinsta() {
               </p>
               <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
                 <span>Editorial author: Racklio Editorial</span>
-                <span>Last verified: August 9, 2026</span>
-                <span>Official sources reviewed August 9, 2026</span>
+                <span>Last verified: August 11, 2026</span>
+                <span>Official sources reviewed August 11, 2026</span>
               </div>
             </div>
             <Card className="overflow-hidden rounded-lg">
@@ -386,11 +414,11 @@ export function RocketNetVsKinsta() {
                   </div>
                   <div>
                     <dt className="text-[0.6875rem] font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-                      Consider neither if
+                      The decision depends on
                     </dt>
                     <dd className="mt-2 text-sm leading-6">
-                      You need non-WordPress hosting, root-level server control,
-                      or unmanaged infrastructure.
+                      Dynamic workload behavior, recovery requirements, or team
+                      workflow matters more than the published traffic unit.
                     </dd>
                   </div>
                 </dl>
@@ -457,7 +485,7 @@ export function RocketNetVsKinsta() {
           >
             <table className="min-w-[56rem] w-full border-collapse text-left text-sm">
               <caption className="sr-only">
-                Rocket.net and Kinsta factual comparison
+                Rocket.net and Kinsta factual comparison with decision relevance
               </caption>
               <thead className="bg-surface-raised">
                 <tr>
@@ -469,6 +497,9 @@ export function RocketNetVsKinsta() {
                   </th>
                   <th className="border-b border-border px-4 py-3" scope="col">
                     Kinsta
+                  </th>
+                  <th className="border-b border-border px-4 py-3" scope="col">
+                    Decision relevance
                   </th>
                 </tr>
               </thead>
@@ -487,11 +518,21 @@ export function RocketNetVsKinsta() {
                     <td className="px-4 py-4 text-muted-foreground">
                       {row.kinsta}
                     </td>
+                    <td className="px-4 py-4 text-muted-foreground">
+                      {row.relevance}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            Provider facts in this snapshot come from current Rocket.net and
+            Kinsta pricing and plan documentation.
+            <Citation source={1} />
+            <Citation source={6} /> Decision relevance is Racklio analysis, not
+            a provider claim.
+          </p>
         </Container>
       </Section>
 
@@ -543,6 +584,27 @@ export function RocketNetVsKinsta() {
                     Racklio makes a conditional recommendation. The decision
                     should follow the workload, billing unit, operational
                     workflow, and support boundaries.
+                  </p>
+                </div>
+                <div
+                  aria-label="Key difference between Rocket.net and Kinsta"
+                  className="mt-6 border-l-2 border-accent-strong bg-surface-raised px-5 py-5"
+                >
+                  <h3 className="text-sm font-semibold tracking-[-0.01em]">
+                    Key difference
+                  </h3>
+                  <p className="mt-3 text-sm leading-7">
+                    <strong>Provider fact:</strong> Rocket.net lists unmetered
+                    visitors with plan bandwidth limits, while Kinsta offers
+                    server-bandwidth and visit-based plan families.
+                    <Citation source={1} />
+                    <Citation source={6} />
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    <strong>Racklio analysis:</strong> this is primarily a
+                    forecasting decision. Favor the model that maps more clearly
+                    to measured workload data, then compare storage, CDN usage,
+                    recovery, workflows, and support before choosing.
                   </p>
                 </div>
                 <EvidenceNote>
@@ -597,10 +659,10 @@ export function RocketNetVsKinsta() {
                   }
                   kinsta={
                     <p>
-                      The entry Single plan is $35 monthly or $350 yearly (about
-                      $30 monthly). Kinsta also displays a separate current
-                      first-month promotion. WP2 is $70 monthly or $700 yearly
-                      (about $59 monthly).
+                      The entry Single plan is $35 monthly or $30 per month when
+                      billed as $350 annually. Kinsta currently lists the first
+                      month as free. WP 2 is $70 monthly or $59 per month when
+                      billed as $700 annually.
                       <Citation source={6} />
                     </p>
                   }
@@ -973,23 +1035,33 @@ export function RocketNetVsKinsta() {
                       {[
                         [
                           'Unpredictable visitor counts',
-                          'Consider Rocket.net',
+                          'Lean Rocket.net',
                           'Visitors are unmetered, while bandwidth and storage remain measurable.',
                         ],
                         [
                           'Bandwidth-led forecasting',
-                          'Consider Kinsta',
+                          'Lean Kinsta',
                           'A server-bandwidth plan can align billing to that unit; CDN remains separate.',
                         ],
                         [
                           'Visit-led forecasting',
-                          'Consider Kinsta',
+                          'Lean Kinsta',
                           'Visit-based plans publish a visit allowance and visit-overage unit.',
                         ],
                         [
                           'Bundled edge/security priority',
-                          'Consider Rocket.net',
+                          'Lean Rocket.net',
                           'Its managed pricing table lists CDN, WAF, malware protection, and SSL as included.',
+                        ],
+                        [
+                          'One business WordPress site',
+                          'Depends',
+                          'Both entry plans support one install; compare traffic accounting, transfer, recovery, and workflow.',
+                        ],
+                        [
+                          'Developer-heavy release workflow',
+                          'Lean Kinsta',
+                          'Investigate MyKinsta staging, API access, cloning, and optional premium environments against the team process.',
                         ],
                         [
                           'Agency portfolio',
@@ -1148,9 +1220,18 @@ export function RocketNetVsKinsta() {
                   We did not perform independent benchmarks.
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                  Sources were accessed August 9, 2026. Pricing, promotions,
+                  Sources were accessed August 11, 2026. Pricing, promotions,
                   limits, and terms can change; verify material details before
                   purchase.
+                </p>
+                <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                  Read Racklio&apos;s{' '}
+                  <Link href="/methodology">methodology</Link>,{' '}
+                  <Link href="/editorial-standards">editorial standards</Link>,
+                  and{' '}
+                  <Link href="/affiliate-disclosure">affiliate disclosure</Link>{' '}
+                  for the research and commercial-separation framework used on
+                  this page.
                 </p>
                 <ol className="mt-6 space-y-3">
                   {sources.map((source) => (
