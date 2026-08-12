@@ -462,8 +462,8 @@ export function ComparisonsHub() {
     <HubPage
       code="CP"
       eyebrow="Direct provider comparison"
-      title="Hosting Provider Comparisons"
-      description="Conditional comparisons that help you choose between providers without scores, rankings, or a fabricated universal winner."
+      title="Customer Service Software Comparisons"
+      description="Evidence-first comparisons of AI customer support and business communication software, focused on pricing, capabilities, limitations, and practical business fit."
       canonical="https://racklio.com/comparisons"
       entries={comparisonEntries}
       related={[
