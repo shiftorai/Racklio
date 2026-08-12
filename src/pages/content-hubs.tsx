@@ -139,6 +139,30 @@ const softwareDecisionEntries: Entry[] = [
 
 const comparisonEntries: Entry[] = [
   {
+    title: 'Tidio vs Gorgias',
+    description:
+      'Live chat and AI support versus an ecommerce help-desk workflow.',
+    href: '/comparisons/tidio-vs-gorgias',
+  },
+  {
+    title: 'respond.io vs Tidio',
+    description:
+      'Omnichannel messaging workflows versus web chat and ticket support.',
+    href: '/comparisons/respond-io-vs-tidio',
+  },
+  {
+    title: 'KrispCall vs CallHippo',
+    description:
+      'Cloud phone plans, virtual numbers, calling usage, and routing.',
+    href: '/comparisons/krispcall-vs-callhippo',
+  },
+  {
+    title: 'KrispCall vs Aircall',
+    description:
+      'A compact business-phone model versus structured communications workflows.',
+    href: '/comparisons/krispcall-vs-aircall',
+  },
+  {
     title: 'Kinsta vs WP Engine',
     description: 'Two managed WordPress operating models.',
     href: '/comparisons/kinsta-vs-wp-engine',

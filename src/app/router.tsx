@@ -141,6 +141,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'comparisons/tidio-vs-gorgias',
+        lazy: async () => {
+          const { TidioVsGorgias } =
+            await import('@/pages/comparisons/tidio-vs-gorgias');
+          return { Component: TidioVsGorgias };
+        },
+      },
+      {
+        path: 'comparisons/respond-io-vs-tidio',
+        lazy: async () => {
+          const { RespondIoVsTidio } =
+            await import('@/pages/comparisons/respond-io-vs-tidio');
+          return { Component: RespondIoVsTidio };
+        },
+      },
+      {
+        path: 'comparisons/krispcall-vs-callhippo',
+        lazy: async () => {
+          const { KrispCallVsCallHippo } =
+            await import('@/pages/comparisons/krispcall-vs-callhippo');
+          return { Component: KrispCallVsCallHippo };
+        },
+      },
+      {
+        path: 'comparisons/krispcall-vs-aircall',
+        lazy: async () => {
+          const { KrispCallVsAircall } =
+            await import('@/pages/comparisons/krispcall-vs-aircall');
+          return { Component: KrispCallVsAircall };
+        },
+      },
+      {
         path: 'comparisons/kinsta-vs-wp-engine',
         lazy: async () => {
           const { KinstaVsWpEngine } =
