@@ -70,46 +70,49 @@ export function AboutPage() {
     <InformationPage
       code="AB"
       title="About Racklio"
-      description="Racklio is an independent hosting decision resource operated by Keleva LLC."
+      description="Racklio is an independent software decision resource operated by Keleva LLC."
       canonical="https://racklio.com/about"
     >
       <PolicyDate />
       <section>
         <h2 className="text-2xl font-semibold">Compare. Choose. Grow.</h2>
         <p className="mt-3">
-          Racklio helps businesses evaluate hosting and web-infrastructure
-          choices without turning a complex purchase into a universal ranking.
-          The goal is to reduce unnecessary research complexity by organizing
-          relevant provider information around business fit, operational needs,
-          and the tradeoffs that can affect a buying decision.
+          Racklio helps businesses evaluate AI customer support and business
+          communication software without turning a complex purchase into a
+          universal ranking. The goal is to reduce unnecessary research
+          complexity by organizing relevant provider information around business
+          fit, operational needs, and the tradeoffs that can affect a buying
+          decision.
         </p>
         <p className="mt-3">
-          Different workloads can require different infrastructure, support,
-          security, and deployment models. Racklio therefore focuses on the
-          conditions that make an option appropriate rather than presenting one
-          provider as the default choice for every organization.
+          Different teams can require different workflows, communication
+          channels, automation, controls, and service models. Racklio therefore
+          focuses on the conditions that make an option appropriate rather than
+          presenting one provider as the default choice for every organization.
         </p>
       </section>
       <section>
         <h2 className="text-2xl font-semibold">What Racklio covers</h2>
         <p className="mt-3">
-          Racklio publishes provider reviews that examine documented platform
-          scope and practical fit; conditional comparisons that explain how two
-          providers differ; and workload-focused buying guides that organize
-          options around a defined business scenario. Together, these formats
-          help readers move from broad research to a more focused shortlist.
+          Racklio covers AI customer support, business phone systems, AI
+          receptionists, customer messaging, and help desk and live chat
+          software. Provider reviews examine documented product scope and
+          practical fit; conditional comparisons explain meaningful differences;
+          and decision guides organize options around a defined business need.
+          Together, these formats help readers move from broad research to a
+          more focused shortlist.
         </p>
         <p className="mt-3">
           Racklio is an editorial publisher and decision resource. It is not a
-          hosting company, reseller, infrastructure operator, or provider
-          support channel. Providers remain responsible for their products,
-          pricing, service delivery, contracts, and customer support.
+          software vendor, reseller, service operator, or provider support
+          channel. Providers remain responsible for their products, pricing,
+          service delivery, contracts, and customer support.
         </p>
         <p className="mt-3">
           Coverage is intentionally centered on the information a business can
           use to evaluate fit. A review provides depth on one provider, a
           comparison clarifies a specific choice, and a buying guide starts with
-          the workload before considering suitable approaches.
+          the business need before considering suitable approaches.
         </p>
       </section>
       <section>
@@ -136,8 +139,8 @@ export function AboutPage() {
         </h2>
         <p className="mt-3">
           Racklio does not select a universal winner. Recommendations are
-          conditional on the decision context: the workload, operational
-          requirements, pricing structure, support model, deployment workflow,
+          conditional on the decision context: the workflow, operational
+          requirements, pricing structure, support model, implementation path,
           business constraints, and relevant tradeoffs. A documented strength
           may matter in one context and carry less weight in another.
         </p>
@@ -185,10 +188,10 @@ export function AboutPage() {
         <h2 className="text-2xl font-semibold">Who operates Racklio</h2>
         <p className="mt-3">
           Racklio is the publishing brand, and Keleva LLC operates Racklio.
-          Racklio is not a separate legal entity, hosting provider, or
-          infrastructure company. This distinction keeps the publisher&apos;s
-          role clear: Racklio provides editorial information, while providers
-          control and deliver the services discussed.
+          Racklio is not a separate legal entity, software provider, or
+          communications service company. This distinction keeps the
+          publisher&apos;s role clear: Racklio provides editorial information,
+          while providers control and deliver the services discussed.
         </p>
       </section>
       <section>
@@ -212,7 +215,7 @@ export function MethodologyPage() {
     <InformationPage
       code="MT"
       title="Editorial Methodology"
-      description="How Racklio evaluates hosting providers and turns official documentation into conditional buying guidance."
+      description="How Racklio evaluates business software and turns official documentation into conditional buying guidance."
       canonical="https://racklio.com/methodology"
     >
       <PolicyDate />
@@ -233,10 +236,10 @@ export function MethodologyPage() {
           A consistent decision framework
         </h2>
         <p className="mt-3">
-          Reviews and comparisons examine platform scope, workload fit,
-          resources, traffic accounting, workflow, security boundaries, backups,
-          support, scaling, pricing, and limitations. Recommendations remain
-          conditional on the buyer&apos;s requirements.
+          Reviews and comparisons examine product scope, business fit,
+          workflows, automation boundaries, integrations, security and
+          governance, implementation, support, pricing, and limitations.
+          Recommendations remain conditional on the buyer&apos;s requirements.
         </p>
       </section>
       <section>

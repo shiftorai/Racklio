@@ -4,9 +4,10 @@ import { Link } from '@/components/ui';
 import { Footer } from './footer';
 
 const footerLinks = [
-  ['Reviews', '/reviews'],
-  ['Comparisons', '/comparisons'],
-  ['Buying Guides', '/guides'],
+  ['Reviews', '/#research'],
+  ['Comparisons', '/#comparisons'],
+  ['Best Software', '/#decision-paths'],
+  ['Categories', '/#categories'],
   ['About', '/about'],
   ['Methodology', '/methodology'],
   ['Editorial Standards', '/editorial-standards'],
