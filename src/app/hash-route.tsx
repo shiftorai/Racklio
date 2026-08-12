@@ -1,4 +1,5 @@
-import { lazy, Suspense, useSyncExternalStore } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 
 import { Home } from '@/pages/home';
 
@@ -28,17 +29,26 @@ const MethodologyPage = lazy(() =>
   })),
 );
 
-function subscribe(callback: () => void) {
-  window.addEventListener('hashchange', callback);
-  return () => window.removeEventListener('hashchange', callback);
-}
-
 function getHash() {
-  return window.location.hash.slice(1);
+  return window.location.hash.slice(1).toLowerCase();
 }
 
 export function HashRoute() {
-  const hash = useSyncExternalStore(subscribe, getHash, () => '');
+  const location = useLocation();
+  const [hash, setHash] = useState(getHash);
+  const locationHash = location.hash.slice(1).toLowerCase();
+
+  if (hash !== locationHash) {
+    setHash(locationHash);
+  }
+
+  useEffect(() => {
+    const handleHashChange = () => setHash(getHash());
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const page = {
     reviews: <ReviewsHub />,
     comparisons: <ComparisonsHub />,
