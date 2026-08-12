@@ -68,6 +68,21 @@ const framework = [
   ],
 ] as const;
 
+const selectedReviews = [
+  ['Typewise', '/reviews/typewise'],
+  ['KrispCall', '/reviews/krispcall'],
+  ['Tidio', '/reviews/tidio'],
+  ['respond.io', '/reviews/respond-io'],
+  ['Gorgias', '/reviews/gorgias'],
+] as const;
+
+const selectedComparisons = [
+  ['Tidio vs Gorgias', '/comparisons/tidio-vs-gorgias'],
+  ['respond.io vs Tidio', '/comparisons/respond-io-vs-tidio'],
+  ['KrispCall vs CallHippo', '/comparisons/krispcall-vs-callhippo'],
+  ['KrispCall vs Aircall', '/comparisons/krispcall-vs-aircall'],
+] as const;
+
 function DecisionWorkspace() {
   return (
     <aside
@@ -346,6 +361,40 @@ export function Home() {
                 </li>
               ))}
             </ol>
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-border" spacing="md">
+        <Container>
+          <ResearchMarker code="CV" label="Current coverage" />
+          <div className="mt-5 grid gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <div className="flex items-baseline justify-between gap-4">
+                <h2 className="text-2xl font-semibold">Selected reviews</h2>
+                <Link href="/#reviews">View all</Link>
+              </div>
+              <ul className="mt-5 divide-y divide-border border-y border-border">
+                {selectedReviews.map(([name, href]) => (
+                  <li className="py-3" key={href}>
+                    <Link href={href}>{name} Review</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <div className="flex items-baseline justify-between gap-4">
+                <h2 className="text-2xl font-semibold">Selected comparisons</h2>
+                <Link href="/#comparisons">View all</Link>
+              </div>
+              <ul className="mt-5 divide-y divide-border border-y border-border">
+                {selectedComparisons.map(([name, href]) => (
+                  <li className="py-3" key={href}>
+                    <Link href={href}>{name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>
       </Section>

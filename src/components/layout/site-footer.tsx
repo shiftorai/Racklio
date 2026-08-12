@@ -6,7 +6,6 @@ import { Footer } from './footer';
 const footerLinks = [
   ['Reviews', '/#reviews'],
   ['Comparisons', '/#comparisons'],
-  ['Best Software', '/#best'],
   ['Categories', '/#categories'],
   ['About', '/about'],
   ['Methodology', '/#methodology'],

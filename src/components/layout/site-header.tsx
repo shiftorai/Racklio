@@ -12,9 +12,6 @@ export function SiteHeader() {
       <Link href="/#comparisons" variant="subtle">
         Comparisons
       </Link>
-      <Link href="/#best" variant="subtle">
-        Best Software
-      </Link>
       <Link href="/#categories" variant="subtle">
         Categories
       </Link>

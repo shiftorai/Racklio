@@ -37,6 +37,7 @@ export type SoftwareReviewData = {
   scenarios: { scenario: string; fit: string; why: string }[];
   faqs: { question: string; answer: string }[];
   sources: { title: string; href: string }[];
+  relatedComparisons?: { title: string; href: string }[];
 };
 
 export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
@@ -251,6 +252,15 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     </CardContent>
                   </Card>
                 </div>
+                {data.relatedComparisons?.length ? (
+                  <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+                    {data.relatedComparisons.map((comparison) => (
+                      <Link href={comparison.href} key={comparison.href}>
+                        {comparison.title}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
               </ReviewSection>
               <ReviewSection
                 code="P0"

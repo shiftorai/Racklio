@@ -183,6 +183,16 @@ export const krispcallData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based KrispCall review covering per-user pricing, virtual numbers, calling, SMS, workspace features, usage charges, integrations, and fit.',
   officialUrl: 'https://krispcall.com/',
+  relatedComparisons: [
+    {
+      title: 'Compare KrispCall vs CallHippo',
+      href: '/comparisons/krispcall-vs-callhippo',
+    },
+    {
+      title: 'Compare KrispCall vs Aircall',
+      href: '/comparisons/krispcall-vs-aircall',
+    },
+  ],
   summary: [
     {
       label: 'What it is',
@@ -349,6 +359,16 @@ export const tidioData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based Tidio review covering live chat, help desk, Lyro AI, pricing, conversation limits, automation, integrations, and support-team fit.',
   officialUrl: 'https://www.tidio.com/',
+  relatedComparisons: [
+    {
+      title: 'Compare Tidio vs Gorgias',
+      href: '/comparisons/tidio-vs-gorgias',
+    },
+    {
+      title: 'Compare respond.io vs Tidio',
+      href: '/comparisons/respond-io-vs-tidio',
+    },
+  ],
   summary: [
     {
       label: 'What it is',
@@ -514,6 +534,12 @@ export const respondIoData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based respond.io review covering omnichannel messaging, WhatsApp, AI agents, workflows, users, active-contact pricing, security, and fit.',
   officialUrl: 'https://respond.io/',
+  relatedComparisons: [
+    {
+      title: 'Compare respond.io vs Tidio',
+      href: '/comparisons/respond-io-vs-tidio',
+    },
+  ],
   summary: [
     {
       label: 'What it is',
@@ -682,6 +708,12 @@ export const gorgiasData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based Gorgias review covering ecommerce help desk features, Shopify, ticket pricing, AI Agent charges, channels, overages, and tradeoffs.',
   officialUrl: 'https://www.gorgias.com/',
+  relatedComparisons: [
+    {
+      title: 'Compare Tidio vs Gorgias',
+      href: '/comparisons/tidio-vs-gorgias',
+    },
+  ],
   summary: [
     {
       label: 'What it is',

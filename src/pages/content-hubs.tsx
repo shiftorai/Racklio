@@ -3,7 +3,13 @@ import { ResearchMarker } from '@/components/brand';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { Card, CardContent, Container, Link, Section } from '@/components/ui';
 
-type Entry = { title: string; description: string; href: string };
+type Entry = {
+  title: string;
+  description: string;
+  href: string;
+  relatedLinks?: { title: string; href: string }[];
+  suppressLink?: boolean;
+};
 
 const reviewEntries: Entry[] = [
   {
@@ -11,12 +17,14 @@ const reviewEntries: Entry[] = [
     description:
       'AI customer service automation, outcome pricing, deployment, and security claims.',
     href: '/reviews/typewise',
+    suppressLink: true,
   },
   {
     title: 'KrispCall Review',
     description:
       'Cloud calling, virtual numbers, SMS, per-user pricing, and usage charges.',
     href: '/reviews/krispcall',
+    suppressLink: true,
   },
   {
     title: 'Tidio Review',
@@ -29,12 +37,14 @@ const reviewEntries: Entry[] = [
     description:
       'Omnichannel messaging, WhatsApp, AI workflows, users, and active-contact pricing.',
     href: '/reviews/respond-io',
+    suppressLink: true,
   },
   {
     title: 'Gorgias Review',
     description:
       'Ecommerce help desk, ticket pricing, AI Agent, channels, and overages.',
     href: '/reviews/gorgias',
+    suppressLink: true,
   },
 ];
 
@@ -76,31 +86,60 @@ const softwareCategoryEntries: Entry[] = [
     title: 'AI Customer Support',
     description:
       'Software for support automation, agent assistance, and customer-service workflows.',
-    href: '/#reviews',
+    href: '/reviews/typewise',
+    relatedLinks: [
+      { title: 'Typewise Review', href: '/reviews/typewise' },
+      { title: 'Tidio Review', href: '/reviews/tidio' },
+      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
+    ],
   },
   {
     title: 'Business Phone Systems',
     description:
       'Cloud calling, virtual numbers, messaging, and team communication workflows.',
-    href: '/#reviews',
+    href: '/reviews/krispcall',
+    relatedLinks: [
+      { title: 'KrispCall Review', href: '/reviews/krispcall' },
+      {
+        title: 'KrispCall vs CallHippo',
+        href: '/comparisons/krispcall-vs-callhippo',
+      },
+      {
+        title: 'KrispCall vs Aircall',
+        href: '/comparisons/krispcall-vs-aircall',
+      },
+    ],
   },
   {
     title: 'AI Receptionists',
     description:
-      'Software for answering, routing, and managing inbound business conversations.',
-    href: '/#reviews',
+      'Software for answering, routing, and managing inbound business conversations. Dedicated Racklio coverage is not yet published.',
+    href: '/#categories',
+    suppressLink: true,
   },
   {
     title: 'Customer Messaging',
     description:
       'Shared customer conversations across messaging channels and team inboxes.',
-    href: '/#reviews',
+    href: '/reviews/respond-io',
+    relatedLinks: [
+      { title: 'respond.io Review', href: '/reviews/respond-io' },
+      {
+        title: 'respond.io vs Tidio',
+        href: '/comparisons/respond-io-vs-tidio',
+      },
+    ],
   },
   {
     title: 'Help Desk & Live Chat',
     description:
       'Ticketing, live support, collaboration, automation, and support operations.',
-    href: '/#reviews',
+    href: '/reviews/gorgias',
+    relatedLinks: [
+      { title: 'Gorgias Review', href: '/reviews/gorgias' },
+      { title: 'Tidio Review', href: '/reviews/tidio' },
+      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
+    ],
   },
 ];
 
@@ -162,6 +201,9 @@ const comparisonEntries: Entry[] = [
       'A compact business-phone model versus structured communications workflows.',
     href: '/comparisons/krispcall-vs-aircall',
   },
+];
+
+const hostingComparisonEntries: Entry[] = [
   {
     title: 'Kinsta vs WP Engine',
     description: 'Two managed WordPress operating models.',
@@ -364,22 +406,41 @@ function HubPage({
                     </p>
                     {sectionTitle ? (
                       <h3 className="mt-4 text-xl font-semibold tracking-tight">
-                        <Link href={entry.href}>{entry.title}</Link>
+                        {entry.suppressLink ? (
+                          entry.title
+                        ) : (
+                          <Link href={entry.href}>{entry.title}</Link>
+                        )}
                       </h3>
                     ) : (
                       <h2 className="mt-4 text-xl font-semibold tracking-tight">
-                        <Link href={entry.href}>{entry.title}</Link>
+                        {entry.suppressLink ? (
+                          entry.title
+                        ) : (
+                          <Link href={entry.href}>{entry.title}</Link>
+                        )}
                       </h2>
                     )}
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
                       {entry.description}
                     </p>
-                    <Link
-                      className="mt-5 inline-block text-sm font-semibold"
-                      href={entry.href}
-                    >
-                      Open decision page →
-                    </Link>
+                    {!entry.suppressLink ? (
+                      <Link
+                        className="mt-5 inline-block text-sm font-semibold"
+                        href={entry.href}
+                      >
+                        Open decision page →
+                      </Link>
+                    ) : null}
+                    {entry.relatedLinks?.length ? (
+                      <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
+                        {entry.relatedLinks.map((link) => (
+                          <Link href={link.href} key={link.href}>
+                            {link.title}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
                   </CardContent>
                 </Card>
               ))}
@@ -408,7 +469,7 @@ function HubPage({
                           className="mt-5 inline-block text-sm font-semibold"
                           href={entry.href}
                         >
-                          Open review →
+                          Open decision page →
                         </Link>
                       </CardContent>
                     </Card>
@@ -466,6 +527,9 @@ export function ComparisonsHub() {
       description="Evidence-first comparisons of AI customer support and business communication software, focused on pricing, capabilities, limitations, and practical business fit."
       canonical="https://racklio.com/comparisons"
       entries={comparisonEntries}
+      sectionTitle="Customer service software"
+      secondaryEntries={hostingComparisonEntries}
+      secondaryTitle="Hosting comparisons"
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Choose by workload', description: '', href: '/guides' },
@@ -502,6 +566,7 @@ export function CategoriesHub() {
       description="Understand the software category before comparing products, pricing models, and implementation requirements."
       canonical="https://racklio.com/#categories"
       entries={softwareCategoryEntries}
+      sectionTitle="Software categories"
       related={[
         {
           title: 'Browse software reviews',
@@ -536,7 +601,12 @@ export function SearchPage() {
     'Search Racklio reviews, comparisons, and workload-based hosting buying guides.',
   );
   const entries = useMemo(
-    () => [...reviewEntries, ...comparisonEntries, ...guideEntries],
+    () => [
+      ...reviewEntries,
+      ...comparisonEntries,
+      ...hostingComparisonEntries,
+      ...guideEntries,
+    ],
     [],
   );
   const results = entries.filter((entry) =>
