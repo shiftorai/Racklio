@@ -4,12 +4,12 @@ import { Link } from '@/components/ui';
 import { Footer } from './footer';
 
 const footerLinks = [
-  ['Reviews', '/#research'],
+  ['Reviews', '/#reviews'],
   ['Comparisons', '/#comparisons'],
-  ['Best Software', '/#decision-paths'],
+  ['Best Software', '/#best'],
   ['Categories', '/#categories'],
   ['About', '/about'],
-  ['Methodology', '/methodology'],
+  ['Methodology', '/#methodology'],
   ['Editorial Standards', '/editorial-standards'],
   ['Contact', '/contact'],
   ['Privacy', '/privacy'],

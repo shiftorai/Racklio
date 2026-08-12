@@ -1,5 +1,14 @@
 export type CoreProvider =
-  'liquidWeb' | 'kinsta' | 'wpEngine' | 'rocketNet' | 'pressable';
+  | 'liquidWeb'
+  | 'kinsta'
+  | 'wpEngine'
+  | 'rocketNet'
+  | 'pressable'
+  | 'typewise'
+  | 'krispcall'
+  | 'tidio'
+  | 'respondIo'
+  | 'gorgias';
 
 interface ProviderLinkConfig {
   official: string;
@@ -27,6 +36,11 @@ export const providerLinks = {
     official: 'https://pressable.com/',
     affiliate: null,
   },
+  typewise: { official: 'https://www.typewise.app/', affiliate: null },
+  krispcall: { official: 'https://krispcall.com/', affiliate: null },
+  tidio: { official: 'https://www.tidio.com/', affiliate: null },
+  respondIo: { official: 'https://respond.io/', affiliate: null },
+  gorgias: { official: 'https://www.gorgias.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {

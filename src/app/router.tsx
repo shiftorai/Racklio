@@ -2,7 +2,8 @@ import { createBrowserRouter } from 'react-router';
 
 import { AppLayout } from '@/components/layout/app-layout';
 import { RouteError } from '@/components/routing/route-error';
-import { Home } from '@/pages/home';
+
+import { HashRoute } from './hash-route';
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ export const router = createBrowserRouter([
     ErrorBoundary: RouteError,
     HydrateFallback: () => null,
     children: [
-      { index: true, Component: Home },
+      { index: true, Component: HashRoute },
       {
         path: 'reviews',
         lazy: async () => {
@@ -98,6 +99,45 @@ export const router = createBrowserRouter([
             await import('@/pages/reviews/pressable-review');
 
           return { Component: PressableReview };
+        },
+      },
+      {
+        path: 'reviews/typewise',
+        lazy: async () => {
+          const { TypewiseReview } =
+            await import('@/pages/reviews/typewise-review');
+          return { Component: TypewiseReview };
+        },
+      },
+      {
+        path: 'reviews/krispcall',
+        lazy: async () => {
+          const { KrispCallReview } =
+            await import('@/pages/reviews/krispcall-review');
+          return { Component: KrispCallReview };
+        },
+      },
+      {
+        path: 'reviews/tidio',
+        lazy: async () => {
+          const { TidioReview } = await import('@/pages/reviews/tidio-review');
+          return { Component: TidioReview };
+        },
+      },
+      {
+        path: 'reviews/respond-io',
+        lazy: async () => {
+          const { RespondIoReview } =
+            await import('@/pages/reviews/respond-io-review');
+          return { Component: RespondIoReview };
+        },
+      },
+      {
+        path: 'reviews/gorgias',
+        lazy: async () => {
+          const { GorgiasReview } =
+            await import('@/pages/reviews/gorgias-review');
+          return { Component: GorgiasReview };
         },
       },
       {

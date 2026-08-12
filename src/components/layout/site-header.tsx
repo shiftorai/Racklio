@@ -6,19 +6,19 @@ import { Header } from './header';
 export function SiteHeader() {
   return (
     <Header brand={<RacklioLogo />} className="bg-surface">
-      <Link href="/#research" variant="subtle">
+      <Link href="/#reviews" variant="subtle">
         Reviews
       </Link>
       <Link href="/#comparisons" variant="subtle">
         Comparisons
       </Link>
-      <Link href="/#decision-paths" variant="subtle">
+      <Link href="/#best" variant="subtle">
         Best Software
       </Link>
       <Link href="/#categories" variant="subtle">
         Categories
       </Link>
-      <Link href="/methodology" variant="subtle">
+      <Link href="/#methodology" variant="subtle">
         Methodology
       </Link>
     </Header>

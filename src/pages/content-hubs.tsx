@@ -7,6 +7,39 @@ type Entry = { title: string; description: string; href: string };
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Typewise Review',
+    description:
+      'AI customer service automation, outcome pricing, deployment, and security claims.',
+    href: '/reviews/typewise',
+  },
+  {
+    title: 'KrispCall Review',
+    description:
+      'Cloud calling, virtual numbers, SMS, per-user pricing, and usage charges.',
+    href: '/reviews/krispcall',
+  },
+  {
+    title: 'Tidio Review',
+    description:
+      'Live chat, help desk, Lyro AI, automation, and conversation limits.',
+    href: '/reviews/tidio',
+  },
+  {
+    title: 'respond.io Review',
+    description:
+      'Omnichannel messaging, WhatsApp, AI workflows, users, and active-contact pricing.',
+    href: '/reviews/respond-io',
+  },
+  {
+    title: 'Gorgias Review',
+    description:
+      'Ecommerce help desk, ticket pricing, AI Agent, channels, and overages.',
+    href: '/reviews/gorgias',
+  },
+];
+
+const hostingReviewEntries: Entry[] = [
+  {
     title: 'Liquid Web Review',
     description:
       'Managed WordPress, VPS, dedicated infrastructure, and operational tradeoffs.',
@@ -35,6 +68,72 @@ const reviewEntries: Entry[] = [
     description:
       'Managed WordPress resources, collaboration, backups, and scaling paths.',
     href: '/reviews/pressable',
+  },
+];
+
+const softwareCategoryEntries: Entry[] = [
+  {
+    title: 'AI Customer Support',
+    description:
+      'Software for support automation, agent assistance, and customer-service workflows.',
+    href: '/#reviews',
+  },
+  {
+    title: 'Business Phone Systems',
+    description:
+      'Cloud calling, virtual numbers, messaging, and team communication workflows.',
+    href: '/#reviews',
+  },
+  {
+    title: 'AI Receptionists',
+    description:
+      'Software for answering, routing, and managing inbound business conversations.',
+    href: '/#reviews',
+  },
+  {
+    title: 'Customer Messaging',
+    description:
+      'Shared customer conversations across messaging channels and team inboxes.',
+    href: '/#reviews',
+  },
+  {
+    title: 'Help Desk & Live Chat',
+    description:
+      'Ticketing, live support, collaboration, automation, and support operations.',
+    href: '/#reviews',
+  },
+];
+
+const softwareDecisionEntries: Entry[] = [
+  {
+    title: 'Automate customer support',
+    description:
+      'Start with AI automation scope, escalation, knowledge, and human oversight.',
+    href: '/#categories',
+  },
+  {
+    title: 'Improve business calling',
+    description:
+      'Evaluate numbers, routing, calling, messaging, administration, and usage costs.',
+    href: '/#categories',
+  },
+  {
+    title: 'Manage customer conversations',
+    description:
+      'Compare channel coverage, shared context, ownership, and workflow automation.',
+    href: '/#categories',
+  },
+  {
+    title: 'Add an AI receptionist',
+    description:
+      'Review answering scope, handoff, operating hours, controls, and billing.',
+    href: '/#categories',
+  },
+  {
+    title: 'Equip a small support team',
+    description:
+      'Focus on inbox, ticketing, live chat, automation, seats, and practical limits.',
+    href: '/#categories',
   },
 ];
 
@@ -186,6 +285,9 @@ function HubPage({
   description,
   canonical,
   entries,
+  sectionTitle,
+  secondaryEntries,
+  secondaryTitle,
   related,
 }: {
   code: string;
@@ -194,6 +296,9 @@ function HubPage({
   description: string;
   canonical: string;
   entries: Entry[];
+  sectionTitle?: string;
+  secondaryEntries?: Entry[];
+  secondaryTitle?: string;
   related: Entry[];
 }) {
   useDescription(description);
@@ -223,16 +328,25 @@ function HubPage({
         </Section>
         <Section className="py-14 sm:py-16 lg:py-12" spacing="none">
           <Container>
+            {sectionTitle ? (
+              <h2 className="mb-7 text-2xl font-semibold">{sectionTitle}</h2>
+            ) : null}
             <div className="grid gap-4 md:grid-cols-2">
               {entries.map((entry, index) => (
-                <Card key={entry.href}>
+                <Card key={entry.title}>
                   <CardContent>
                     <p className="font-mono text-[0.625rem] text-accent-strong">
                       {String(index + 1).padStart(2, '0')}
                     </p>
-                    <h2 className="mt-4 text-xl font-semibold tracking-tight">
-                      <Link href={entry.href}>{entry.title}</Link>
-                    </h2>
+                    {sectionTitle ? (
+                      <h3 className="mt-4 text-xl font-semibold tracking-tight">
+                        <Link href={entry.href}>{entry.title}</Link>
+                      </h3>
+                    ) : (
+                      <h2 className="mt-4 text-xl font-semibold tracking-tight">
+                        <Link href={entry.href}>{entry.title}</Link>
+                      </h2>
+                    )}
                     <p className="mt-3 text-sm leading-6 text-muted-foreground">
                       {entry.description}
                     </p>
@@ -246,6 +360,38 @@ function HubPage({
                 </Card>
               ))}
             </div>
+            {secondaryEntries?.length && secondaryTitle ? (
+              <div className="mt-14 border-t border-border pt-10">
+                <h2 className="text-2xl font-semibold">{secondaryTitle}</h2>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  Racklio&apos;s earlier evidence-first hosting coverage remains
+                  available for readers researching web infrastructure.
+                </p>
+                <div className="mt-7 grid gap-4 md:grid-cols-2">
+                  {secondaryEntries.map((entry, index) => (
+                    <Card key={entry.href}>
+                      <CardContent>
+                        <p className="font-mono text-[0.625rem] text-muted-foreground">
+                          H{String(index + 1).padStart(2, '0')}
+                        </p>
+                        <h3 className="mt-4 text-xl font-semibold tracking-tight">
+                          <Link href={entry.href}>{entry.title}</Link>
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {entry.description}
+                        </p>
+                        <Link
+                          className="mt-5 inline-block text-sm font-semibold"
+                          href={entry.href}
+                        >
+                          Open review →
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </Container>
         </Section>
         <Section
@@ -273,10 +419,13 @@ export function ReviewsHub() {
     <HubPage
       code="RV"
       eyebrow="Provider investigation"
-      title="Hosting Provider Reviews"
-      description="Evidence-first provider reviews that explain product scope, business fit, tradeoffs, and the questions to resolve before buying."
+      title="Customer Service Software Reviews"
+      description="Evidence-first reviews of AI customer support and business communication software, focused on product scope, pricing, limits, and practical business fit."
       canonical="https://racklio.com/reviews"
       entries={reviewEntries}
+      sectionTitle="Customer service software"
+      secondaryEntries={hostingReviewEntries}
+      secondaryTitle="Hosting reviews"
       related={[
         { title: 'Compare providers', description: '', href: '/comparisons' },
         { title: 'Choose by workload', description: '', href: '/guides' },
@@ -296,6 +445,46 @@ export function ComparisonsHub() {
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Choose by workload', description: '', href: '/guides' },
+      ]}
+    />
+  );
+}
+export function BestSoftwareHub() {
+  return (
+    <HubPage
+      code="BS"
+      eyebrow="Outcome-based software decisions"
+      title="Best Software for Your Business Need"
+      description="Start with the outcome your team needs, then evaluate software around verified capabilities, limits, and operating fit."
+      canonical="https://racklio.com/#best"
+      entries={softwareDecisionEntries}
+      related={[
+        {
+          title: 'Browse software reviews',
+          description: '',
+          href: '/#reviews',
+        },
+        { title: 'Explore categories', description: '', href: '/#categories' },
+      ]}
+    />
+  );
+}
+export function CategoriesHub() {
+  return (
+    <HubPage
+      code="CT"
+      eyebrow="Software category map"
+      title="Customer Service Software Categories"
+      description="Understand the software category before comparing products, pricing models, and implementation requirements."
+      canonical="https://racklio.com/#categories"
+      entries={softwareCategoryEntries}
+      related={[
+        {
+          title: 'Browse software reviews',
+          description: '',
+          href: '/#reviews',
+        },
+        { title: 'Choose by business need', description: '', href: '/#best' },
       ]}
     />
   );
