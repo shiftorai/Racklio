@@ -50,12 +50,52 @@ const reviewEntries: Entry[] = [
     description:
       'CRM, marketing, sales, service workflows, plan limits, and small-business fit.',
     href: '/reviews/engagebay',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/engagebay-pricing' },
+      { title: 'Alternatives', href: '/alternatives/engagebay-alternatives' },
+      {
+        title: 'Compare with HubSpot',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
+    ],
   },
   {
     title: 'EazyChat.io Review',
     description:
       'AI website chat, human handoff, help-desk integration, usage limits, and product maturity.',
     href: '/reviews/eazychat',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/eazychat-pricing' },
+      { title: 'Alternatives', href: '/alternatives/eazychat-alternatives' },
+      { title: 'Compare with Tidio', href: '/comparisons/eazychat-vs-tidio' },
+    ],
+  },
+];
+
+const commercialGuideEntries: Entry[] = [
+  {
+    title: 'EngageBay Pricing',
+    description:
+      'Plans, contacts, billing terms, limits, and practical cost decisions.',
+    href: '/guides/engagebay-pricing',
+    relatedLinks: [
+      {
+        title: 'EngageBay alternatives',
+        href: '/alternatives/engagebay-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'EazyChat.io Pricing',
+    description:
+      'Per-user rates, AI conversation allowances, add-ons, and plan fit.',
+    href: '/guides/eazychat-pricing',
+    relatedLinks: [
+      {
+        title: 'EazyChat.io alternatives',
+        href: '/alternatives/eazychat-alternatives',
+      },
+    ],
   },
 ];
 
@@ -99,6 +139,18 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'EngageBay vs HubSpot',
+    description:
+      'A compact customer suite compared with a broader multi-hub platform.',
+    href: '/comparisons/engagebay-vs-hubspot',
+  },
+  {
+    title: 'EazyChat.io vs Tidio',
+    description:
+      'Focused AI website chat compared with a broader support stack.',
+    href: '/comparisons/eazychat-vs-tidio',
+  },
   {
     title: 'Tidio vs Gorgias',
     description:
@@ -403,8 +455,9 @@ export function GuidesHub() {
       title="Customer Service Software Guides"
       description="Start with the customer workflow your team needs to improve, then evaluate software around relevant capabilities, limits, and operating fit."
       canonical="https://racklio.com/guides"
-      entries={softwareCategoryEntries}
-      sectionTitle="Customer support and business communications"
+      entries={commercialGuideEntries}
+      sectionTitle="Pricing and product decisions"
+      categoryEntries={softwareCategoryEntries}
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Compare providers', description: '', href: '/comparisons' },
@@ -419,7 +472,12 @@ export function SearchPage() {
     'Search Racklio reviews, comparisons, categories, and software buying guidance.',
   );
   const entries = useMemo(
-    () => [...reviewEntries, ...comparisonEntries, ...softwareCategoryEntries],
+    () => [
+      ...reviewEntries,
+      ...comparisonEntries,
+      ...commercialGuideEntries,
+      ...softwareCategoryEntries,
+    ],
     [],
   );
   const results = entries.filter((entry) =>

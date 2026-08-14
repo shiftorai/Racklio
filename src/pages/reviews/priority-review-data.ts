@@ -19,6 +19,17 @@ export const engageBayData: SoftwareReviewData = {
   metaDescription:
     'Evidence-first EngageBay review covering CRM, marketing, sales, help desk, pricing limits, integrations, strengths, limitations, and small-business fit.',
   officialUrl: 'https://www.engagebay.com/',
+  relatedComparisons: [
+    { title: 'EngageBay pricing guide', href: '/guides/engagebay-pricing' },
+    {
+      title: 'EngageBay alternatives',
+      href: '/alternatives/engagebay-alternatives',
+    },
+    {
+      title: 'Compare EngageBay vs HubSpot',
+      href: '/comparisons/engagebay-vs-hubspot',
+    },
+  ],
   verificationDate,
   idealUser:
     'Small or growing businesses that want customer records, sales activity, marketing workflows, and service context in one system.',
@@ -229,6 +240,17 @@ export const eazyChatData: SoftwareReviewData = {
   metaDescription:
     'Evidence-first EazyChat.io review covering AI chat, knowledge inputs, human handoff, help desk, integrations, pricing limits, strengths, and limitations.',
   officialUrl: 'https://eazychat.io/',
+  relatedComparisons: [
+    { title: 'EazyChat.io pricing guide', href: '/guides/eazychat-pricing' },
+    {
+      title: 'EazyChat.io alternatives',
+      href: '/alternatives/eazychat-alternatives',
+    },
+    {
+      title: 'Compare EazyChat.io vs Tidio',
+      href: '/comparisons/eazychat-vs-tidio',
+    },
+  ],
   verificationDate,
   idealUser:
     'Small teams that want website AI chat trained from existing content, with unlimited human chats and a path to connected ticketing.',

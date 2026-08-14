@@ -12,24 +12,25 @@ import {
   Section,
 } from '@/components/ui';
 
-export type ComparisonData = {
-  slug: string;
-  a: string;
-  b: string;
-  category: string;
-  categoryLinks?: { title: string; href: string }[];
+export type CommercialPageData = {
+  path: string;
+  breadcrumbParent: { title: string; href: string };
+  code: string;
+  eyebrow: string;
   headline: string;
   dek: string;
   metaTitle: string;
   metaDescription: string;
-  aUrl: string;
-  bUrl: string;
-  aReview?: string;
-  bReview?: string;
-  verificationDate?: string;
-  related?: { title: string; href: string }[];
+  verificationDate: string;
+  provider: string;
+  officialUrl: string;
+  categoryLinks: { title: string; href: string }[];
   summary: { label: string; text: string }[];
-  factors: { factor: string; a: string; b: string; relevance: string }[];
+  table: {
+    caption: string;
+    columns: string[];
+    rows: string[][];
+  };
   sections: {
     id: string;
     code: string;
@@ -38,13 +39,14 @@ export type ComparisonData = {
     paragraphs: string[];
     evidence?: string;
   }[];
-  scenarios: { scenario: string; lean: string; why: string }[];
+  scenarios: { scenario: string; guidance: string; why: string }[];
   faqs: { question: string; answer: string }[];
   sources: { title: string; href: string }[];
+  related: { title: string; href: string }[];
 };
 
-export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
-  const canonical = `https://racklio.com/comparisons/${data.slug}`;
+export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
+  const canonical = `https://racklio.com${data.path}`;
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -55,14 +57,15 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
       if (meta && previous) meta.content = previous;
     };
   }, [data.metaDescription]);
+
   const schemas = [
     {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: data.headline,
       description: data.metaDescription,
-      datePublished: data.verificationDate ? '2026-08-14' : '2026-08-13',
-      dateModified: data.verificationDate ? '2026-08-14' : '2026-08-13',
+      datePublished: '2026-08-14',
+      dateModified: '2026-08-14',
       mainEntityOfPage: canonical,
       isAccessibleForFree: true,
       author: {
@@ -75,20 +78,6 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         name: 'Keleva LLC',
         url: 'https://racklio.com/',
       },
-      about: [
-        {
-          '@type': 'SoftwareApplication',
-          name: data.a,
-          applicationCategory: data.category,
-          url: data.aUrl,
-        },
-        {
-          '@type': 'SoftwareApplication',
-          name: data.b,
-          applicationCategory: data.category,
-          url: data.bUrl,
-        },
-      ],
       citation: data.sources.map((source) => source.href),
     },
     {
@@ -104,13 +93,13 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Comparisons',
-          item: 'https://racklio.com/comparisons',
+          name: data.breadcrumbParent.title,
+          item: `https://racklio.com${data.breadcrumbParent.href}`,
         },
         {
           '@type': 'ListItem',
           position: 3,
-          name: `${data.a} vs ${data.b}`,
+          name: data.headline,
           item: canonical,
         },
       ],
@@ -118,11 +107,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
   ];
   const toc = [
     ['overview', 'Decision snapshot'],
-    ...data.sections.map((s) => [s.id, s.title]),
-    ['scenarios', 'Scenario matrix'],
-    ['faq', 'Frequently asked questions'],
-    ['sources', 'Sources'],
+    ...data.sections.map((section) => [section.id, section.title]),
+    ['scenarios', 'Scenario guidance'],
+    ['faq', 'Buyer questions'],
+    ['sources', 'Sources reviewed'],
   ];
+
   return (
     <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
       <title>{data.metaTitle}</title>
@@ -132,13 +122,13 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
       <meta property="og:description" content={data.metaDescription} />
       <meta property="og:url" content={canonical} />
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={`${data.a} vs ${data.b} | Racklio`} />
+      <meta name="twitter:title" content={data.metaTitle} />
       <meta name="twitter:description" content={data.metaDescription} />
       {schemas.map((schema) => (
         <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
           key={schema['@type']}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
       <div className="border-b border-border bg-surface/80">
@@ -153,12 +143,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/comparisons">Comparisons</Link>
+                <Link href={data.breadcrumbParent.href}>
+                  {data.breadcrumbParent.title}
+                </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page">
-                {data.a} vs {data.b}
-              </li>
+              <li aria-current="page">{data.provider}</li>
             </ol>
           </nav>
         </Container>
@@ -170,19 +160,17 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
             <div>
-              <ResearchMarker code="CP" label={`${data.category} comparison`} />
-              {data.categoryLinks?.length ? (
-                <nav
-                  aria-label="Related software categories"
-                  className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
-                >
-                  {data.categoryLinks.map((category) => (
-                    <Link href={category.href} key={category.href}>
-                      {category.title}
-                    </Link>
-                  ))}
-                </nav>
-              ) : null}
+              <ResearchMarker code={data.code} label={data.eyebrow} />
+              <nav
+                aria-label="Related software categories"
+                className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
+              >
+                {data.categoryLinks.map((category) => (
+                  <Link href={category.href} key={category.href}>
+                    {category.title}
+                  </Link>
+                ))}
+              </nav>
               <h1 className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
@@ -190,14 +178,14 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 {data.dek}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="#overview">Compare the evidence</ButtonLink>
+                <ButtonLink href="#overview">Review the evidence</ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
-                  See scenario guidance
+                  See decision scenarios
                 </ButtonLink>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                Independent editorial comparison. No paid ranking or score.
-                Outbound provider links are not affiliate links at publication.
+                Independent editorial analysis. No paid ranking or score.
+                Pricing verified {data.verificationDate}.
               </p>
             </div>
             <Card className="relative overflow-hidden border-brand/30 bg-white/90 shadow-panel before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-brand">
@@ -206,12 +194,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   Decision summary
                 </p>
                 <dl className="mt-5 space-y-5">
-                  {data.summary.map((x) => (
-                    <div key={x.label}>
+                  {data.summary.map((item) => (
+                    <div key={item.label}>
                       <dt className="text-xs font-semibold text-muted-foreground uppercase">
-                        {x.label}
+                        {item.label}
                       </dt>
-                      <dd className="mt-2 text-sm leading-6">{x.text}</dd>
+                      <dd className="mt-2 text-sm leading-6">{item.text}</dd>
                     </div>
                   ))}
                 </dl>
@@ -224,10 +212,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
             <aside>
-              <nav
-                aria-label="Comparison sections"
-                className="lg:sticky lg:top-6"
-              >
+              <nav aria-label="Page sections" className="lg:sticky lg:top-6">
                 <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
                   On this page
                 </p>
@@ -248,37 +233,44 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
             <article className="min-w-0 space-y-10">
               <ReviewSection
                 code="D0"
+                description="The published facts and decision implications that matter first."
                 id="overview"
                 title="Decision snapshot"
-                description={`The documented differences between ${data.a} and ${data.b} that matter most.`}
               >
-                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
-                  <table className="w-full min-w-[50rem] text-left text-sm">
-                    <caption className="sr-only">
-                      {data.a} and {data.b} decision factors
-                    </caption>
+                <div
+                  aria-label={`${data.provider} decision table`}
+                  className="overflow-x-auto rounded-xl border border-brand/20 bg-white"
+                  role="region"
+                  tabIndex={0}
+                >
+                  <table className="w-full min-w-[46rem] text-left text-sm">
+                    <caption className="sr-only">{data.table.caption}</caption>
                     <thead className="bg-accent-subtle">
                       <tr>
-                        {['Factor', data.a, data.b, 'Decision relevance'].map(
-                          (x) => (
-                            <th className="p-4" key={x} scope="col">
-                              {x}
-                            </th>
-                          ),
-                        )}
+                        {data.table.columns.map((column) => (
+                          <th className="p-4" key={column} scope="col">
+                            {column}
+                          </th>
+                        ))}
                       </tr>
                     </thead>
                     <tbody>
-                      {data.factors.map((x) => (
-                        <tr className="border-t border-border" key={x.factor}>
-                          <th className="p-4" scope="row">
-                            {x.factor}
-                          </th>
-                          <td className="p-4">{x.a}</td>
-                          <td className="p-4">{x.b}</td>
-                          <td className="p-4 text-muted-foreground">
-                            {x.relevance}
-                          </td>
+                      {data.table.rows.map((row) => (
+                        <tr className="border-t border-border" key={row[0]}>
+                          {row.map((cell, index) =>
+                            index === 0 ? (
+                              <th className="p-4" key={cell} scope="row">
+                                {cell}
+                              </th>
+                            ) : (
+                              <td
+                                className="p-4 text-muted-foreground"
+                                key={`${row[0]}-${index}`}
+                              >
+                                {cell}
+                              </td>
+                            ),
+                          )}
                         </tr>
                       ))}
                     </tbody>
@@ -286,59 +278,70 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 </div>
                 <div className="mt-5">
                   <EvidenceNote>
-                    Pricing verified: {data.verificationDate ?? 'August 2026'}.
-                    Confirm currency, taxes, usage definitions, add-ons,
-                    availability, and contract terms directly with each
-                    provider.
+                    Current provider documentation is the factual basis.
+                    Pricing, limits, taxes, eligibility, and contract terms can
+                    change; verify material terms before purchase.
                   </EvidenceNote>
                 </div>
               </ReviewSection>
-              {data.sections.map((s) => (
+              {data.sections.map((section) => (
                 <ReviewSection
-                  code={s.code}
-                  description={s.description}
-                  id={s.id}
-                  key={s.id}
-                  title={s.title}
+                  code={section.code}
+                  description={section.description}
+                  id={section.id}
+                  key={section.id}
+                  title={section.title}
                 >
-                  {s.paragraphs.map((p) => (
-                    <p className="mt-4 first:mt-0 leading-7" key={p}>
-                      {p}
+                  {section.paragraphs.map((paragraph) => (
+                    <p className="mt-4 first:mt-0 leading-7" key={paragraph}>
+                      {paragraph}
                     </p>
                   ))}
-                  {s.evidence ? (
+                  {section.evidence ? (
                     <div className="mt-6">
-                      <EvidenceNote>{s.evidence}</EvidenceNote>
+                      <EvidenceNote>{section.evidence}</EvidenceNote>
                     </div>
                   ) : null}
                 </ReviewSection>
               ))}
               <ReviewSection
                 code="M0"
+                description="Conditional guidance based on documented scope, pricing, and workflow."
                 id="scenarios"
-                title="Scenario-based decision matrix"
-                description="Conditional guidance based on documented product scope, billing, and workflow."
+                title="Scenario-based decision guidance"
               >
-                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
+                <div
+                  aria-label="Scenario decision table"
+                  className="overflow-x-auto rounded-xl border border-brand/20 bg-white"
+                  role="region"
+                  tabIndex={0}
+                >
                   <table className="w-full min-w-[38rem] text-left text-sm">
-                    <caption className="sr-only">Decision scenarios</caption>
+                    <caption className="sr-only">
+                      Scenario decision guidance
+                    </caption>
                     <thead className="bg-accent-subtle">
                       <tr>
-                        {['Scenario', 'Lean', 'Why'].map((x) => (
-                          <th className="p-4" key={x} scope="col">
-                            {x}
+                        {['Scenario', 'Guidance', 'Why'].map((column) => (
+                          <th className="p-4" key={column} scope="col">
+                            {column}
                           </th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
-                      {data.scenarios.map((x) => (
-                        <tr className="border-t border-border" key={x.scenario}>
+                      {data.scenarios.map((item) => (
+                        <tr
+                          className="border-t border-border"
+                          key={item.scenario}
+                        >
                           <th className="p-4" scope="row">
-                            {x.scenario}
+                            {item.scenario}
                           </th>
-                          <td className="p-4">{x.lean}</td>
-                          <td className="p-4 text-muted-foreground">{x.why}</td>
+                          <td className="p-4">{item.guidance}</td>
+                          <td className="p-4 text-muted-foreground">
+                            {item.why}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -347,16 +350,16 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </ReviewSection>
               <ReviewSection
                 code="F0"
+                description="Direct answers to practical purchasing questions."
                 id="faq"
-                title="Frequently asked questions"
-                description="Direct answers to practical buyer questions."
+                title="Questions buyers ask before choosing"
               >
                 <div className="divide-y divide-border border-y border-border">
-                  {data.faqs.map((x) => (
-                    <section className="py-6" key={x.question}>
-                      <h3 className="font-semibold">{x.question}</h3>
+                  {data.faqs.map((item) => (
+                    <section className="py-6" key={item.question}>
+                      <h3 className="font-semibold">{item.question}</h3>
                       <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                        {x.answer}
+                        {item.answer}
                       </p>
                     </section>
                   ))}
@@ -364,80 +367,64 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </ReviewSection>
               <ReviewSection
                 code="S0"
+                description="Official provider-controlled pages used for this analysis."
                 id="sources"
-                title="Sources and methodology"
-                description="Provider-primary research, not fabricated product testing."
+                title="Sources reviewed"
               >
                 <p className="leading-7">
-                  Sources accessed {data.verificationDate ?? 'August 2026'}.
-                  Provider statements are identified as provider facts; decision
-                  guidance is Racklio analysis.
+                  Sources accessed {data.verificationDate}. Provider facts and
+                  provider claims are separated from Racklio analysis; no
+                  hands-on testing is represented.
                 </p>
                 <ol className="mt-6 space-y-3 text-sm">
-                  {data.sources.map((x, i) => (
-                    <li id={`source-${i + 1}`} key={x.href}>
-                      [{i + 1}]{' '}
+                  {data.sources.map((source, index) => (
+                    <li key={source.href}>
+                      [{index + 1}]{' '}
                       <a
                         className="underline underline-offset-4"
-                        href={x.href}
+                        href={source.href}
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        {x.title}
+                        {source.title}
                       </a>
                     </li>
                   ))}
                 </ol>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {data.aReview ? (
-                    <ButtonLink href={data.aReview} variant="secondary">
-                      Read {data.a} review
-                    </ButtonLink>
-                  ) : (
+                  <ButtonLink
+                    href={data.officialUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Visit {data.provider}
+                  </ButtonLink>
+                  {data.related.slice(0, 2).map((link) => (
                     <ButtonLink
-                      href={data.aUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
+                      href={link.href}
+                      key={link.href}
                       variant="secondary"
                     >
-                      Visit {data.a}
+                      {link.title}
                     </ButtonLink>
-                  )}
-                  {data.bReview ? (
-                    <ButtonLink href={data.bReview} variant="secondary">
-                      Read {data.b} review
-                    </ButtonLink>
-                  ) : (
-                    <ButtonLink
-                      href={data.bUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      variant="secondary"
-                    >
-                      Visit {data.b}
-                    </ButtonLink>
-                  )}
+                  ))}
                 </div>
-                <p className="mt-7 border-l-2 border-accent pl-5 text-sm leading-6 text-muted-foreground">
-                  Racklio has not represented this comparison as hands-on
-                  testing. Read the <Link href="/methodology">Methodology</Link>
-                  , <Link href="/editorial-standards">Editorial Standards</Link>
-                  , and{' '}
+                <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                  The provider link is not an affiliate link at publication.
+                  Read Racklio's{' '}
                   <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
                   .
                 </p>
-                {data.related?.length ? (
-                  <div className="mt-8 border-t border-border pt-6">
-                    <h3 className="font-semibold">Continue your research</h3>
-                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                      {data.related.map((link) => (
-                        <Link href={link.href} key={link.href}>
-                          {link.title}
-                        </Link>
-                      ))}
-                    </div>
+                <div className="mt-8 border-t border-border pt-6">
+                  <h3 className="font-semibold">Continue your research</h3>
+                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+                    {data.related.map((link) => (
+                      <Link href={link.href} key={link.href}>
+                        {link.title}
+                      </Link>
+                    ))}
                   </div>
-                ) : null}
+                </div>
               </ReviewSection>
             </article>
           </div>

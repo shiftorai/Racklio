@@ -31,7 +31,7 @@ export const softwareCategories: SoftwareCategoryData[] = [
         title: 'Combine AI with human agents',
         description:
           'Evaluate handoff rules, context transfer, permissions, and agent workflow.',
-        href: '/reviews/tidio',
+        href: '/comparisons/eazychat-vs-tidio',
       },
       {
         title: 'Support ecommerce customers',
@@ -84,6 +84,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Omnichannel messaging workflows compared with web chat and ticket support.',
         href: '/comparisons/respond-io-vs-tidio',
+      },
+      {
+        title: 'EazyChat.io vs Tidio',
+        description:
+          'Focused AI website chat compared with a broader live-chat and support stack.',
+        href: '/comparisons/eazychat-vs-tidio',
       },
     ],
     factors: (
@@ -382,7 +388,7 @@ export const softwareCategories: SoftwareCategoryData[] = [
         title: 'Choose a small-business CRM',
         description:
           'Compare setup effort, contact management, communication, automation, integrations, and cost.',
-        href: '/categories/crm-customer-engagement',
+        href: '/guides/engagebay-pricing',
       },
     ],
     products: [
@@ -393,7 +399,14 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/reviews/engagebay',
       },
     ],
-    comparisons: [],
+    comparisons: [
+      {
+        title: 'EngageBay vs HubSpot',
+        description:
+          'A compact CRM, marketing, sales, and service suite compared with a broader customer platform.',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
+    ],
     factors: (
       [
         [

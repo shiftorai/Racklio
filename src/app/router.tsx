@@ -35,6 +35,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'guides/engagebay-pricing',
+        lazy: async () => {
+          const { EngageBayPricing } =
+            await import('@/pages/guides/engagebay-pricing');
+          return { Component: EngageBayPricing };
+        },
+      },
+      {
+        path: 'guides/eazychat-pricing',
+        lazy: async () => {
+          const { EazyChatPricing } =
+            await import('@/pages/guides/eazychat-pricing');
+          return { Component: EazyChatPricing };
+        },
+      },
+      {
+        path: 'alternatives/engagebay-alternatives',
+        lazy: async () => {
+          const { EngageBayAlternatives } =
+            await import('@/pages/alternatives/engagebay-alternatives');
+          return { Component: EngageBayAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/eazychat-alternatives',
+        lazy: async () => {
+          const { EazyChatAlternatives } =
+            await import('@/pages/alternatives/eazychat-alternatives');
+          return { Component: EazyChatAlternatives };
+        },
+      },
+      {
         path: 'search',
         lazy: async () => {
           const { SearchPage } = await import('@/pages/content-hubs');
@@ -194,6 +226,22 @@ export const router = createBrowserRouter([
           const { TidioVsGorgias } =
             await import('@/pages/comparisons/tidio-vs-gorgias');
           return { Component: TidioVsGorgias };
+        },
+      },
+      {
+        path: 'comparisons/engagebay-vs-hubspot',
+        lazy: async () => {
+          const { EngageBayVsHubSpot } =
+            await import('@/pages/comparisons/engagebay-vs-hubspot');
+          return { Component: EngageBayVsHubSpot };
+        },
+      },
+      {
+        path: 'comparisons/eazychat-vs-tidio',
+        lazy: async () => {
+          const { EazyChatVsTidio } =
+            await import('@/pages/comparisons/eazychat-vs-tidio');
+          return { Component: EazyChatVsTidio };
         },
       },
       {
