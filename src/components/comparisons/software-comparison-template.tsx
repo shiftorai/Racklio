@@ -198,7 +198,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 Outbound provider links are not affiliate links at publication.
               </p>
             </div>
-            <Card className="border-brand/20 bg-white/85 shadow-panel">
+            <Card className="relative overflow-hidden border-brand/30 bg-white/90 shadow-panel before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-brand">
               <CardContent>
                 <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
                   Decision summary
@@ -250,12 +250,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 title="Decision snapshot"
                 description={`The documented differences between ${data.a} and ${data.b} that matter most.`}
               >
-                <div className="overflow-x-auto border border-border">
+                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
                   <table className="w-full min-w-[50rem] text-left text-sm">
                     <caption className="sr-only">
                       {data.a} and {data.b} decision factors
                     </caption>
-                    <thead className="bg-muted">
+                    <thead className="bg-accent-subtle">
                       <tr>
                         {['Factor', data.a, data.b, 'Decision relevance'].map(
                           (x) => (
@@ -316,10 +316,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 title="Scenario-based decision matrix"
                 description="Conditional guidance based on documented product scope, billing, and workflow."
               >
-                <div className="overflow-x-auto border border-border">
+                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
                   <table className="w-full min-w-[38rem] text-left text-sm">
                     <caption className="sr-only">Decision scenarios</caption>
-                    <thead className="bg-muted">
+                    <thead className="bg-accent-subtle">
                       <tr>
                         {['Scenario', 'Lean', 'Why'].map((x) => (
                           <th className="p-4" key={x} scope="col">

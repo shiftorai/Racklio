@@ -248,7 +248,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 Facts verified {verificationDate}
               </p>
             </div>
-            <Card className="border-brand/20 bg-white/85 shadow-panel">
+            <Card className="relative overflow-hidden border-brand/25 bg-white/90 shadow-panel before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-brand">
               <CardContent>
                 <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
                   Decision summary
@@ -356,10 +356,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 title="Pricing and billing"
                 description={`Pricing verified: ${verificationDate}. Review the billing unit, not only the headline price.`}
               >
-                <div className="hidden overflow-x-auto border border-border sm:block">
+                <div className="hidden overflow-x-auto rounded-xl border border-border bg-white sm:block">
                   <table className="w-full min-w-[42rem] text-left text-sm">
                     <caption className="sr-only">{data.name} pricing</caption>
-                    <thead className="bg-muted">
+                    <thead className="bg-accent-subtle">
                       <tr>
                         {[
                           'Plan',
@@ -511,7 +511,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title="Strengths and limitations"
                   description="Racklio analysis of where the documented product model helps and where it introduces trade-offs."
                 >
-                  <div className="grid gap-5 md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2 [&>div:first-child]:border-mint-deep/20 [&>div:last-child]:border-brand/20">
                     <Card>
                       <CardContent>
                         <h3 className="font-semibold">Analytical strengths</h3>

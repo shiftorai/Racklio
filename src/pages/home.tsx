@@ -177,22 +177,30 @@ function SectionIntro({
   title,
   text,
   action,
+  tone = 'light',
 }: {
   eyebrow: string;
   title: string;
   text: string;
   action?: ReactNode;
+  tone?: 'light' | 'dark';
 }) {
   return (
     <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
-        <p className="text-xs font-bold tracking-[0.16em] text-mint-deep uppercase">
+        <p
+          className={`text-xs font-bold tracking-[0.16em] uppercase ${tone === 'dark' ? 'text-mint' : 'text-accent-strong'}`}
+        >
           {eyebrow}
         </p>
         <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
           {title}
         </h2>
-        <p className="mt-4 leading-7 text-muted-foreground">{text}</p>
+        <p
+          className={`mt-4 leading-7 ${tone === 'dark' ? 'text-stone-200' : 'text-muted-foreground'}`}
+        >
+          {text}
+        </p>
       </div>
       {action}
     </div>
@@ -212,8 +220,14 @@ function DecisionOrbit() {
     <div className="dot-field relative mx-auto min-h-[26rem] w-full max-w-xl overflow-hidden rounded-[2rem] border border-border bg-white/80 p-6 shadow-panel sm:min-h-[31rem] sm:p-8">
       <div className="absolute inset-10 rounded-full border border-dashed border-brand/25" />
       <div className="absolute inset-[28%] rounded-full border border-mint-deep/20 bg-mint-subtle shadow-card" />
-      <div className="absolute inset-[36%] grid place-items-center rounded-full bg-foreground text-center text-sm font-bold text-white shadow-panel">
+      <div className="absolute inset-[36%] grid place-items-center rounded-[38%] bg-foreground text-center text-sm font-bold text-white shadow-panel">
         <span>
+          <img
+            alt=""
+            aria-hidden="true"
+            className="mx-auto mb-2 size-6"
+            src="/racklio-mark.svg"
+          />
           Racklio
           <br />
           <span className="font-normal text-mint">decision lab</span>
@@ -238,7 +252,7 @@ function DecisionOrbit() {
           </div>
         );
       })}
-      <span className="absolute top-[27%] left-[39%] rounded-full bg-violet-100 px-3 py-1 text-[0.65rem] font-bold text-accent-strong">
+      <span className="absolute top-[27%] left-[39%] rounded-full bg-accent-subtle px-3 py-1 text-[0.65rem] font-bold text-accent-strong">
         VERIFIED
       </span>
       <span className="absolute right-[26%] bottom-[26%] rounded-full bg-mint-subtle px-3 py-1 text-[0.65rem] font-bold text-mint-deep">
@@ -257,7 +271,7 @@ function ProblemExplorer() {
         {problems.map((problem, index) => (
           <button
             aria-pressed={selected === index}
-            className={`min-h-16 rounded-xl border p-4 text-left text-sm font-semibold transition-all ${selected === index ? 'border-brand bg-violet-50 text-accent-strong shadow-card' : 'border-border bg-white hover:border-mint-deep/35 hover:bg-mint-subtle/50'}`}
+            className={`min-h-16 rounded-xl border p-4 text-left text-sm font-semibold transition-all ${selected === index ? 'border-brand bg-accent-subtle text-accent-strong shadow-card ring-1 ring-brand/15' : 'border-border bg-white hover:border-brand/35 hover:bg-accent-subtle/45'}`}
             key={problem[0]}
             onClick={() => setSelected(index)}
             type="button"
@@ -279,7 +293,7 @@ function ProblemExplorer() {
           {current[2]}
         </p>
         <ButtonLink
-          className="mt-7 bg-mint text-foreground hover:bg-[#48d8b5]"
+          className="mt-7 bg-mint text-foreground hover:bg-mint-hover"
           href={current[3]}
         >
           Explore this path <Arrow />
@@ -394,7 +408,7 @@ export function Home() {
                 className="border-b border-border p-5 last:border-b-0 even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0"
                 key={label}
               >
-                <dd className="text-3xl font-semibold tracking-tight">
+                <dd className="text-3xl font-semibold tracking-tight text-accent-strong">
                   <CountUp value={Number(value)} />
                 </dd>
                 <dt className="mt-1 text-xs font-semibold text-muted-foreground">
@@ -441,11 +455,11 @@ export function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {reviews.map((item) => (
                 <article
-                  className="decision-card flex min-h-64 flex-col rounded-[1.4rem] border border-border bg-white p-6 shadow-card"
+                  className="decision-card flex min-h-52 flex-col overflow-hidden rounded-xl border border-border bg-white p-5 shadow-card"
                   key={item[0]}
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="rounded-full bg-mint-subtle px-3 py-1 text-[0.65rem] font-bold text-mint-deep uppercase">
+                    <span className="rounded-full bg-accent-subtle px-3 py-1 text-[0.65rem] font-bold text-accent-strong uppercase">
                       {item[1]}
                     </span>
                     <span
@@ -453,14 +467,14 @@ export function Home() {
                       className="size-3 rounded-full bg-brand/70"
                     />
                   </div>
-                  <h3 className="mt-7 text-2xl font-semibold">{item[0]}</h3>
+                  <h3 className="mt-5 text-xl font-semibold">{item[0]}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     <strong className="text-foreground">
                       Best suited for:{' '}
                     </strong>
                     {item[2]}
                   </p>
-                  <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6">
+                  <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4">
                     <Link className="group" href={item[3]}>
                       Read review <Arrow />
                     </Link>
@@ -491,17 +505,19 @@ export function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {comparisons.map((item) => (
                 <Link
-                  className="group decision-card block rounded-[1.4rem] border border-border bg-white p-6 shadow-card"
+                  className="group decision-card relative block overflow-hidden rounded-xl border border-brand/20 bg-white p-6 shadow-card"
                   href={item[3]}
                   key={item[3]}
                   variant="unstyled"
                 >
-                  <div className="flex items-center gap-3 text-xl font-semibold">
+                  <div className="relative flex items-center justify-between gap-3 text-xl font-semibold before:absolute before:top-1/2 before:right-10 before:left-10 before:h-px before:bg-brand/20">
                     <span>{item[0]}</span>
-                    <span className="grid size-9 place-items-center rounded-full bg-violet-100 text-sm text-brand transition-transform group-hover:rotate-180">
+                    <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full bg-brand text-sm text-white shadow-card transition-transform group-hover:scale-105">
                       ⇄
                     </span>
-                    <span>{item[1]}</span>
+                    <span className="relative z-10 bg-white pl-2">
+                      {item[1]}
+                    </span>
                   </div>
                   <p className="mt-4 text-sm leading-6 text-muted-foreground">
                     {item[2]}
@@ -525,10 +541,10 @@ export function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {categories.map((item, index) => (
                 <article
-                  className={`decision-card relative overflow-hidden rounded-[1.5rem] border border-border p-7 shadow-card ${index % 2 ? 'bg-violet-50/65' : 'bg-mint-subtle/75'}`}
+                  className="decision-card relative overflow-hidden border-t border-border bg-transparent px-1 py-7"
                   key={item[0]}
                 >
-                  <span className="font-mono text-xs font-bold text-muted-foreground">
+                  <span className="font-mono text-xs font-bold text-accent-strong">
                     0{index + 1} / {item[0]}
                   </span>
                   <h3 className="mt-8 text-2xl font-semibold">{item[1]}</h3>
@@ -543,7 +559,7 @@ export function Home() {
                   </Link>
                   <span
                     aria-hidden="true"
-                    className="absolute -right-8 -bottom-8 size-32 rounded-full border-[1.5rem] border-white/50"
+                    className={`absolute top-7 right-3 h-14 w-24 opacity-50 ${index === 0 ? 'dot-field rounded-full' : index === 1 ? 'border-y-2 border-brand/30 before:absolute before:inset-x-3 before:top-1/2 before:h-0.5 before:bg-brand/20' : index === 2 ? 'rounded-full border border-mint-deep/30 before:absolute before:inset-3 before:rounded-full before:border before:border-brand/25' : 'bg-[linear-gradient(135deg,transparent_45%,var(--color-brand)_46%,var(--color-brand)_48%,transparent_49%)]'}`}
                   />
                 </article>
               ))}
@@ -560,6 +576,7 @@ export function Home() {
               eyebrow="How Racklio decides"
               title="Research made inspectable"
               text="A transparent editorial process keeps provider statements, verified facts, and Racklio analysis distinct."
+              tone="dark"
             />
             <ol className="mt-10 grid gap-7 md:grid-cols-5">
               {steps.map((step, index) => (
@@ -570,11 +587,11 @@ export function Home() {
                   {index < steps.length - 1 ? (
                     <span
                       aria-hidden="true"
-                      className="absolute top-5 left-12 hidden h-px w-[calc(100%-2.25rem)] bg-white/20 md:block"
+                      className="absolute top-5 left-12 hidden h-px w-[calc(100%-2.25rem)] bg-[linear-gradient(90deg,var(--color-mint),var(--color-brand))] opacity-60 md:block"
                     />
                   ) : null}
                   <h3 className="mt-5 font-semibold">{step[1]}</h3>
-                  <p className="mt-2 text-xs leading-5 text-stone-300">
+                  <p className="mt-2 text-xs leading-5 text-stone-200">
                     {step[2]}
                   </p>
                 </li>
@@ -582,7 +599,7 @@ export function Home() {
             </ol>
             <div className="mt-9 flex flex-wrap gap-3">
               <ButtonLink
-                className="bg-mint text-foreground hover:bg-[#48d8b5]"
+                className="bg-mint text-foreground hover:bg-mint-hover"
                 href="/methodology"
               >
                 Read methodology
@@ -599,7 +616,7 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section className="relative overflow-hidden rounded-[2rem] border border-brand/20 bg-[linear-gradient(120deg,#eee9ff,#e4faf4)] p-8 sm:p-12">
+          <section className="relative overflow-hidden rounded-[2rem] border border-brand/20 bg-[linear-gradient(120deg,var(--color-accent-subtle),var(--color-mint-subtle))] p-8 sm:p-12">
             <div className="max-w-2xl">
               <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
                 Make the next decision clearer

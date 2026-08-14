@@ -22,7 +22,7 @@ export function Footer({
       className={cn(
         'border-t',
         tone === 'dark'
-          ? 'border-white/10 bg-[#272622] text-white'
+          ? 'relative border-white/10 bg-foreground text-white before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-[linear-gradient(90deg,var(--color-mint),var(--color-brand),transparent_85%)]'
           : 'border-border',
         className,
       )}

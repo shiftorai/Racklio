@@ -7,22 +7,29 @@
 :root {
   color-scheme: light;
 
-  --ds-surface: #faf8f3;
+  --ds-brand-primary: #8e1d4f;
+  --ds-brand-primary-hover: #6f143c;
+  --ds-brand-primary-surface: #fbe9ef;
+  --ds-evidence-accent: #2ecaa6;
+  --ds-canvas: #faf6f1;
+  --ds-ink: #111827;
+  --ds-surface: var(--ds-canvas);
   --ds-surface-raised: #ffffff;
-  --ds-foreground: #202124;
+  --ds-foreground: var(--ds-ink);
   --ds-muted: #f0eee8;
   --ds-muted-foreground: #65645f;
   --ds-border: #dedbd2;
   --ds-navy-muted: #b9b6ae;
-  --ds-accent: #6847eb;
-  --ds-accent-hover: #5838d4;
-  --ds-accent-strong: #5535cf;
+  --ds-accent: var(--ds-brand-primary);
+  --ds-accent-hover: var(--ds-brand-primary-hover);
+  --ds-accent-strong: var(--ds-brand-primary-hover);
   --ds-accent-foreground: #ffffff;
-  --ds-accent-subtle: #ebe6ff;
-  --ds-brand: #7557f6;
-  --ds-mint: #62e6c4;
+  --ds-accent-subtle: var(--ds-brand-primary-surface);
+  --ds-brand: var(--ds-brand-primary);
+  --ds-mint: var(--ds-evidence-accent);
+  --ds-mint-hover: #25b894;
   --ds-mint-deep: #087d67;
-  --ds-mint-subtle: #e4faf4;
+  --ds-mint-subtle: #e2f8f2;
   --ds-coral: #ef7c68;
   --ds-danger: #dc2626;
   --ds-danger-hover: #b91c1c;
@@ -47,6 +54,7 @@
   --color-accent-subtle: var(--ds-accent-subtle);
   --color-brand: var(--ds-brand);
   --color-mint: var(--ds-mint);
+  --color-mint-hover: var(--ds-mint-hover);
   --color-mint-deep: var(--ds-mint-deep);
   --color-mint-subtle: var(--ds-mint-subtle);
   --color-coral: var(--ds-coral);
@@ -225,7 +233,7 @@
   .dot-field {
     background-image: radial-gradient(
       circle,
-      rgb(117 87 246 / 0.2) 1px,
+      rgb(142 29 79 / 0.2) 1px,
       transparent 1px
     );
     background-size: 18px 18px;
@@ -244,7 +252,7 @@
   }
   84% {
     box-shadow:
-      0 0 0 7px rgb(117 87 246 / 0.1),
+      0 0 0 7px rgb(142 29 79 / 0.1),
       var(--shadow-card);
   }
 }

@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
   <title id="title">Racklio</title>
-  <path fill="#7557F6" d="M9 8h22c5.5 0 10 4.5 10 10v8c0 5.5-4.5 10-10 10h-5.2l-7.6 6v-6H17C11.5 36 7 31.5 7 26V10a2 2 0 0 1 2-2Z"/>
-  <path fill="#62E6C4" d="M15 17.5h18v3H15zm0 7h12v3H15z"/>
-  <circle cx="33" cy="26" r="2.25" fill="#FAF8F3"/>
+  <path fill="#8E1D4F" fill-rule="evenodd" d="M6 4h21c8.3 0 15 6.7 15 15 0 5.5-3 10.4-7.4 13L44 44H32L22.7 32H16v12H6V4Zm10 10v9h11a4.5 4.5 0 1 0 0-9H16Z" clip-rule="evenodd"/>
+  <path fill="#2ECAA6" d="m19 18 3.5-3v6L19 18Zm8 0-3.5 3v-6l3.5 3Z"/>
 </svg>

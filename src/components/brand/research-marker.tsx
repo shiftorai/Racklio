@@ -19,7 +19,7 @@ export function ResearchMarker({
     <div
       className={cn(
         'grid grid-cols-[auto_2.25rem_1fr] items-center gap-3 text-[0.6875rem] font-semibold tracking-[0.15em] uppercase',
-        tone === 'dark' ? 'text-blue-300' : 'text-accent-strong',
+        tone === 'dark' ? 'text-mint' : 'text-accent-strong',
         className,
       )}
       {...props}
@@ -30,7 +30,7 @@ export function ResearchMarker({
         className={cn(
           "relative h-px after:absolute after:top-1/2 after:right-0 after:size-1.5 after:-translate-y-1/2 after:content-['']",
           tone === 'dark'
-            ? 'bg-white/30 after:bg-blue-300'
+            ? 'bg-white/30 after:bg-mint'
             : 'bg-border after:bg-accent',
         )}
       />

@@ -5,8 +5,6 @@ const navigation = [
   ['Categories', '/#categories'],
   ['Reviews', '/#reviews'],
   ['Comparisons', '/#comparisons'],
-  ['Best Software', '/#best'],
-  ['Guides', '/guides'],
   ['Methodology', '/#methodology'],
 ] as const;
 
@@ -47,12 +45,12 @@ export function SiteHeader() {
 
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-5 xl:flex"
+            className="hidden items-center gap-6 lg:flex"
           >
             <NavigationLinks />
           </nav>
 
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <Link
               aria-label="Search Racklio"
               className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground hover:text-foreground"
@@ -65,11 +63,11 @@ export function SiteHeader() {
               className="bg-brand hover:bg-accent-hover"
               href="/#categories"
             >
-              Find the Right Software
+              Find software →
             </ButtonLink>
           </div>
 
-          <details className="group relative xl:hidden">
+          <details className="group relative lg:hidden">
             <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-surface-raised px-3 text-sm font-semibold marker:content-none">
               Menu
               <span

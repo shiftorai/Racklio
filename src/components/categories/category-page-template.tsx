@@ -161,7 +161,7 @@ function LinkCards({ items }: { items: CategoryLink[] }) {
     <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => (
         <article
-          className="decision-card flex min-h-48 flex-col rounded-xl border border-border bg-white p-5 shadow-card"
+          className="decision-card flex min-h-48 flex-col rounded-xl border border-border bg-white p-5 shadow-card hover:border-brand/30"
           key={item.title}
         >
           <h3 className="text-lg font-semibold tracking-[-0.025em]">
@@ -329,7 +329,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section
             aria-labelledby="trust-heading"
-            className="grid items-center gap-5 rounded-lg border border-violet-200/70 bg-violet-50/70 p-6 shadow-card lg:grid-cols-[1fr_auto]"
+            className="grid items-center gap-5 rounded-lg border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]"
           >
             <div>
               <h2 className="font-semibold" id="trust-heading">
@@ -472,7 +472,7 @@ export function CategoryHubTemplate({
                   key={category.slug}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="grid size-10 place-items-center rounded-lg bg-violet-50 text-xs font-bold text-brand">
+                    <span className="grid size-10 place-items-center rounded-lg bg-accent-subtle text-xs font-bold text-brand">
                       {category.code}
                     </span>
                     <span className="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
@@ -529,7 +529,7 @@ export function CategoryHubTemplate({
             ))}
           </section>
 
-          <section className="grid items-center gap-5 rounded-lg border border-violet-200/70 bg-violet-50/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
+          <section className="grid items-center gap-5 rounded-lg border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
             <div>
               <h2 className="font-semibold">
                 Categories built around buyer decisions

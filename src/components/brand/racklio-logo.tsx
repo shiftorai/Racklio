@@ -12,7 +12,7 @@ function RacklioMark() {
     <img
       alt=""
       aria-hidden="true"
-      className="h-8 w-auto shrink-0 transition-transform duration-200 group-hover:-rotate-2"
+      className="h-8 w-auto shrink-0 transition-transform duration-200 group-hover:-translate-y-px"
       height="32"
       src="/racklio-mark.svg"
       width="32"
