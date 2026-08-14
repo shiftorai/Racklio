@@ -32,18 +32,30 @@ const reviewEntries: Entry[] = [
     description:
       'Live chat, help desk, Lyro AI, automation, and conversation limits.',
     href: '/reviews/tidio',
+    relatedLinks: [
+      { title: 'Alternatives', href: '/alternatives/tidio-alternatives' },
+      { title: 'Compare with Gorgias', href: '/comparisons/tidio-vs-gorgias' },
+    ],
   },
   {
     title: 'respond.io Review',
     description:
       'Omnichannel messaging, WhatsApp, AI workflows, users, and active-contact pricing.',
     href: '/reviews/respond-io',
+    relatedLinks: [
+      { title: 'Alternatives', href: '/alternatives/respond-io-alternatives' },
+      { title: 'Compare with Tidio', href: '/comparisons/respond-io-vs-tidio' },
+    ],
   },
   {
     title: 'Gorgias Review',
     description:
       'Ecommerce help desk, ticket pricing, AI Agent, channels, and overages.',
     href: '/reviews/gorgias',
+    relatedLinks: [
+      { title: 'Alternatives', href: '/alternatives/gorgias-alternatives' },
+      { title: 'Compare with Tidio', href: '/comparisons/tidio-vs-gorgias' },
+    ],
   },
   {
     title: 'EngageBay Review',
@@ -95,6 +107,78 @@ const commercialGuideEntries: Entry[] = [
         title: 'EazyChat.io alternatives',
         href: '/alternatives/eazychat-alternatives',
       },
+    ],
+  },
+];
+
+const alternativeEntries: Entry[] = [
+  {
+    title: 'EngageBay Alternatives',
+    description:
+      'Choose among broader platforms, specialist support, and omnichannel messaging based on operating fit.',
+    href: '/alternatives/engagebay-alternatives',
+    relatedLinks: [
+      { title: 'EngageBay Review', href: '/reviews/engagebay' },
+      {
+        title: 'EngageBay vs HubSpot',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
+    ],
+  },
+  {
+    title: 'EazyChat.io Alternatives',
+    description:
+      'Compare broader help-desk, ecommerce, and omnichannel options with focused AI website chat.',
+    href: '/alternatives/eazychat-alternatives',
+    relatedLinks: [
+      { title: 'EazyChat.io Review', href: '/reviews/eazychat' },
+      { title: 'EazyChat.io vs Tidio', href: '/comparisons/eazychat-vs-tidio' },
+    ],
+  },
+  {
+    title: 'Tidio Alternatives',
+    description:
+      'Choose by ecommerce specialization, omnichannel messaging, or a narrower AI-chat model.',
+    href: '/alternatives/tidio-alternatives',
+    relatedLinks: [
+      { title: 'Tidio Review', href: '/reviews/tidio' },
+      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
+    ],
+  },
+  {
+    title: 'Gorgias Alternatives',
+    description:
+      'Evaluate general support, omnichannel, or CRM paths when ecommerce help-desk depth is not central.',
+    href: '/alternatives/gorgias-alternatives',
+    relatedLinks: [
+      { title: 'Gorgias Review', href: '/reviews/gorgias' },
+      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
+    ],
+  },
+  {
+    title: 'respond.io Alternatives',
+    description:
+      'Compare website support, CRM, and business-phone paths with omnichannel conversation management.',
+    href: '/alternatives/respond-io-alternatives',
+    relatedLinks: [
+      { title: 'respond.io Review', href: '/reviews/respond-io' },
+      {
+        title: 'respond.io vs Tidio',
+        href: '/comparisons/respond-io-vs-tidio',
+      },
+    ],
+  },
+  {
+    title: 'HubSpot Alternatives',
+    description:
+      'Choose by lower-complexity suite, support-first, live-chat, or omnichannel requirements.',
+    href: '/alternatives/hubspot-alternatives',
+    relatedLinks: [
+      {
+        title: 'EngageBay vs HubSpot',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
+      { title: 'EngageBay Pricing', href: '/guides/engagebay-pricing' },
     ],
   },
 ];
@@ -201,6 +285,7 @@ function HubPage({
   related,
   categoryEntries,
   showReviewMethodology = false,
+  structuredData = false,
 }: {
   code: string;
   eyebrow: string;
@@ -212,6 +297,7 @@ function HubPage({
   related: Entry[];
   categoryEntries?: Entry[];
   showReviewMethodology?: boolean;
+  structuredData?: boolean;
 }) {
   useDescription(description);
   return (
@@ -223,6 +309,50 @@ function HubPage({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
       <meta name="twitter:card" content="summary" />
+      {structuredData ? (
+        <>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: title,
+                description,
+                url: canonical,
+                hasPart: entries.map((entry) => ({
+                  '@type': 'Article',
+                  name: entry.title,
+                  url: `https://racklio.com${entry.href}`,
+                })),
+              }),
+            }}
+            type="application/ld+json"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  {
+                    '@type': 'ListItem',
+                    position: 1,
+                    name: 'Home',
+                    item: 'https://racklio.com/',
+                  },
+                  {
+                    '@type': 'ListItem',
+                    position: 2,
+                    name: title,
+                    item: canonical,
+                  },
+                ],
+              }),
+            }}
+            type="application/ld+json"
+          />
+        </>
+      ) : null}
       <>
         <Section
           className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-14 sm:py-16 lg:py-14"
@@ -466,6 +596,28 @@ export function GuidesHub() {
   );
 }
 
+export function AlternativesHub() {
+  return (
+    <HubPage
+      code="AL"
+      eyebrow="Scenario-led replacement paths"
+      title="Software Alternatives by Business Need"
+      description="Alternative guides begin with the reason a product may not fit, then connect buyers to products with a meaningfully different workflow, scope, pricing model, or operating requirement. No universal replacements or paid rankings."
+      canonical="https://racklio.com/alternatives"
+      entries={alternativeEntries}
+      sectionTitle="Current alternative guides"
+      categoryEntries={softwareCategoryEntries}
+      showReviewMethodology
+      structuredData
+      related={[
+        { title: 'Read software reviews', description: '', href: '/reviews' },
+        { title: 'Compare finalists', description: '', href: '/comparisons' },
+        { title: 'Understand pricing', description: '', href: '/guides' },
+      ]}
+    />
+  );
+}
+
 export function SearchPage() {
   const [query, setQuery] = useState('');
   useDescription(
@@ -476,6 +628,7 @@ export function SearchPage() {
       ...reviewEntries,
       ...comparisonEntries,
       ...commercialGuideEntries,
+      ...alternativeEntries,
       ...softwareCategoryEntries,
     ],
     [],

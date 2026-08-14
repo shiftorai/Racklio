@@ -43,6 +43,16 @@ export const tidioVsGorgias: ComparisonData = {
   bUrl: 'https://www.gorgias.com/pricing',
   aReview: '/reviews/tidio',
   bReview: '/reviews/gorgias',
+  related: [
+    {
+      title: 'Explore Tidio alternatives',
+      href: '/alternatives/tidio-alternatives',
+    },
+    {
+      title: 'Explore Gorgias alternatives',
+      href: '/alternatives/gorgias-alternatives',
+    },
+  ],
   summary: [
     {
       label: 'Main difference',
@@ -263,6 +273,16 @@ export const respondIoVsTidio: ComparisonData = {
   bUrl: 'https://www.tidio.com/pricing/',
   aReview: '/reviews/respond-io',
   bReview: '/reviews/tidio',
+  related: [
+    {
+      title: 'Explore respond.io alternatives',
+      href: '/alternatives/respond-io-alternatives',
+    },
+    {
+      title: 'Explore Tidio alternatives',
+      href: '/alternatives/tidio-alternatives',
+    },
+  ],
   summary: [
     {
       label: 'Main difference',

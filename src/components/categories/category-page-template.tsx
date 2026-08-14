@@ -35,11 +35,19 @@ export type SoftwareCategoryData = {
   metaTitle: string;
   metaDescription: string;
   startPaths: CategoryLink[];
+  quickDecision: { label: string; text: string }[];
+  scenarios: { scenario: string; consider: string; why: string }[];
   products: CategoryLink[];
   comparisons: CategoryLink[];
+  alternativeGuides: CategoryLink[];
+  guides: CategoryLink[];
   factors: { title: string; description: string }[];
+  tradeoffs: { title: string; description: string }[];
   audience: string[];
   alternatives: string[];
+  verificationDate: string;
+  sources: { title: string; href: string }[];
+  faqs: { question: string; answer: string }[];
 };
 
 function CategoryMetadata({ data }: { data: SoftwareCategoryData }) {
@@ -218,7 +226,31 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
       </section>
 
       <div className="bg-surface py-8 sm:py-12">
-        <Container className="grid gap-8 sm:gap-10" size="wide">
+        <Container
+          className="grid min-w-0 gap-8 sm:gap-10 [&>*]:min-w-0"
+          size="wide"
+        >
+          <section aria-labelledby="quick-decision-heading">
+            <SectionHeading
+              eyebrow="Quick decision"
+              id="quick-decision-heading"
+              title="Match the category to the operating need"
+            />
+            <dl className="mt-5 grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2">
+              {data.quickDecision.map((item) => (
+                <div
+                  className="border-b border-border p-5 md:odd:border-r"
+                  key={item.label}
+                >
+                  <dt className="text-sm font-semibold">{item.label}</dt>
+                  <dd className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {item.text}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
           <section aria-labelledby="start-heading">
             <SectionHeading
               eyebrow="Start here"
@@ -226,6 +258,46 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               title="Choose the decision that matches your need"
             />
             <LinkCards items={data.startPaths} />
+          </section>
+
+          <section aria-labelledby="scenario-heading">
+            <SectionHeading
+              eyebrow="Scenario guidance"
+              id="scenario-heading"
+              title="Which product model fits which situation?"
+            />
+            <div
+              aria-label={`${data.shortTitle} scenario decision matrix`}
+              className="mt-5 overflow-x-auto rounded-lg border border-border bg-white shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              role="region"
+              tabIndex={0}
+            >
+              <table className="w-full min-w-[42rem] text-left text-sm">
+                <caption className="sr-only">
+                  Scenario-based software guidance for {data.shortTitle}
+                </caption>
+                <thead className="bg-accent-subtle">
+                  <tr>
+                    {['Scenario', 'Consider', 'Why'].map((heading) => (
+                      <th className="p-4" key={heading} scope="col">
+                        {heading}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.scenarios.map((item) => (
+                    <tr className="border-t border-border" key={item.scenario}>
+                      <th className="p-4" scope="row">
+                        {item.scenario}
+                      </th>
+                      <td className="p-4 font-medium">{item.consider}</td>
+                      <td className="p-4 text-muted-foreground">{item.why}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
 
           <section aria-labelledby="software-heading">
@@ -275,6 +347,28 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               </div>
             )}
           </section>
+
+          {data.alternativeGuides.length ? (
+            <section aria-labelledby="alternatives-heading">
+              <SectionHeading
+                eyebrow="Replacement paths"
+                id="alternatives-heading"
+                title="Relevant alternative guides"
+              />
+              <LinkCards items={data.alternativeGuides} />
+            </section>
+          ) : null}
+
+          {data.guides.length ? (
+            <section aria-labelledby="guides-heading">
+              <SectionHeading
+                eyebrow="Cost and scope"
+                id="guides-heading"
+                title="Related buying guides"
+              />
+              <LinkCards items={data.guides} />
+            </section>
+          ) : null}
 
           <section aria-labelledby="factors-heading">
             <SectionHeading
@@ -327,6 +421,47 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             </article>
           </section>
 
+          <section aria-labelledby="tradeoffs-heading">
+            <SectionHeading
+              eyebrow="Decision boundaries"
+              id="tradeoffs-heading"
+              title="Meaningful trade-offs"
+            />
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {data.tradeoffs.map((item) => (
+                <article
+                  className="rounded-lg border border-border bg-white p-5 shadow-card"
+                  key={item.title}
+                >
+                  <h3 className="font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {data.faqs.length ? (
+            <section aria-labelledby="faq-heading">
+              <SectionHeading
+                eyebrow="Buyer questions"
+                id="faq-heading"
+                title={`Questions about ${data.shortTitle}`}
+              />
+              <div className="mt-5 divide-y divide-border border-y border-border">
+                {data.faqs.map((item) => (
+                  <article className="py-5" key={item.question}>
+                    <h3 className="font-semibold">{item.question}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {item.answer}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
           <section
             aria-labelledby="trust-heading"
             className="grid items-center gap-5 rounded-lg border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]"
@@ -337,8 +472,22 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                 Racklio separates official provider facts from editorial
-                analysis and does not sell paid rankings.
+                analysis and does not sell paid rankings. Category evidence was
+                reviewed {data.verificationDate}.
               </p>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                {data.sources.map((source) => (
+                  <a
+                    className="underline underline-offset-4"
+                    href={source.href}
+                    key={source.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {source.title}
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               <ButtonLink href="/methodology" variant="secondary">

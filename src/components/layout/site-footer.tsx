@@ -10,6 +10,7 @@ const groups = [
       ['Categories', '/#categories'],
       ['Reviews', '/#reviews'],
       ['Comparisons', '/#comparisons'],
+      ['Alternatives', '/alternatives'],
       ['Best Software', '/#best'],
       ['Guides', '/guides'],
     ],

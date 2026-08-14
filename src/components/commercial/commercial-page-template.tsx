@@ -22,6 +22,7 @@ export type CommercialPageData = {
   metaTitle: string;
   metaDescription: string;
   verificationDate: string;
+  schemaDate?: string;
   provider: string;
   officialUrl: string;
   categoryLinks: { title: string; href: string }[];
@@ -64,8 +65,8 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
       '@type': 'Article',
       headline: data.headline,
       description: data.metaDescription,
-      datePublished: '2026-08-14',
-      dateModified: '2026-08-14',
+      datePublished: data.schemaDate ?? '2026-08-14',
+      dateModified: data.schemaDate ?? '2026-08-14',
       mainEntityOfPage: canonical,
       isAccessibleForFree: true,
       author: {

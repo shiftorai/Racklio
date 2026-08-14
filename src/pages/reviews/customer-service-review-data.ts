@@ -390,6 +390,10 @@ export const tidioData: SoftwareReviewData = {
       title: 'Compare respond.io vs Tidio',
       href: '/comparisons/respond-io-vs-tidio',
     },
+    {
+      title: 'Explore Tidio alternatives',
+      href: '/alternatives/tidio-alternatives',
+    },
   ],
   summary: [
     {
@@ -570,6 +574,10 @@ export const respondIoData: SoftwareReviewData = {
     {
       title: 'Compare respond.io vs Tidio',
       href: '/comparisons/respond-io-vs-tidio',
+    },
+    {
+      title: 'Explore respond.io alternatives',
+      href: '/alternatives/respond-io-alternatives',
     },
   ],
   summary: [
@@ -754,6 +762,10 @@ export const gorgiasData: SoftwareReviewData = {
     {
       title: 'Compare Tidio vs Gorgias',
       href: '/comparisons/tidio-vs-gorgias',
+    },
+    {
+      title: 'Explore Gorgias alternatives',
+      href: '/alternatives/gorgias-alternatives',
     },
   ],
   summary: [

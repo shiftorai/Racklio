@@ -67,6 +67,45 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'alternatives',
+        lazy: async () => {
+          const { AlternativesHub } = await import('@/pages/content-hubs');
+          return { Component: AlternativesHub };
+        },
+      },
+      {
+        path: 'alternatives/tidio-alternatives',
+        lazy: async () => {
+          const { TidioAlternatives } =
+            await import('@/pages/alternatives/tidio-alternatives');
+          return { Component: TidioAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/gorgias-alternatives',
+        lazy: async () => {
+          const { GorgiasAlternatives } =
+            await import('@/pages/alternatives/gorgias-alternatives');
+          return { Component: GorgiasAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/respond-io-alternatives',
+        lazy: async () => {
+          const { RespondIoAlternatives } =
+            await import('@/pages/alternatives/respond-io-alternatives');
+          return { Component: RespondIoAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/hubspot-alternatives',
+        lazy: async () => {
+          const { HubSpotAlternatives } =
+            await import('@/pages/alternatives/hubspot-alternatives');
+          return { Component: HubSpotAlternatives };
+        },
+      },
+      {
         path: 'search',
         lazy: async () => {
           const { SearchPage } = await import('@/pages/content-hubs');
