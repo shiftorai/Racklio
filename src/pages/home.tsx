@@ -8,6 +8,7 @@ const categories = [
     code: '01',
     icon: 'AI',
     title: 'AI Customer Support',
+    href: '/categories/ai-customer-support',
     description:
       'AI agents, automation, help desks, and customer-service platforms.',
   },
@@ -15,6 +16,7 @@ const categories = [
     code: '02',
     icon: 'VO',
     title: 'Business Phone & Voice AI',
+    href: '/categories/business-phone-voice-ai',
     description:
       'Cloud phone systems, AI voice agents, contact-center and receptionist software.',
   },
@@ -22,6 +24,7 @@ const categories = [
     code: '03',
     icon: 'CH',
     title: 'Live Chat & Messaging',
+    href: '/categories/live-chat-messaging',
     description:
       'Live chat, WhatsApp, conversational messaging, and omnichannel communication.',
   },
@@ -29,6 +32,7 @@ const categories = [
     code: '04',
     icon: 'CRM',
     title: 'CRM & Customer Engagement',
+    href: '/categories/crm-customer-engagement',
     description:
       'Software for managing customer relationships, conversations, and engagement.',
   },
@@ -120,11 +124,15 @@ const researchSteps = [
 ] as const;
 
 const decisionChoices = [
-  ['Automate customer support', '/#categories', 'spark'],
-  ['Improve business calling', '/#categories', 'phone'],
-  ['Manage customer conversations', '/#categories', 'message'],
-  ['Add an AI receptionist', '/#categories', 'people'],
-  ['Equip a small support team', '/#best', 'support'],
+  ['Automate customer support', '/categories/ai-customer-support', 'spark'],
+  ['Improve business calling', '/categories/business-phone-voice-ai', 'phone'],
+  [
+    'Manage customer conversations',
+    '/categories/live-chat-messaging',
+    'message',
+  ],
+  ['Add an AI receptionist', '/categories/business-phone-voice-ai', 'people'],
+  ['Equip a small support team', '/categories/ai-customer-support', 'support'],
 ] as const;
 
 const trustItems = [
@@ -420,7 +428,7 @@ export function Home() {
                   <p className="mt-5 text-sm leading-6 text-muted-foreground">
                     {category.description}
                   </p>
-                  <Link className="mt-auto pt-6" href="/#categories">
+                  <Link className="mt-auto pt-6" href={category.href}>
                     Explore category &rarr;
                   </Link>
                 </article>

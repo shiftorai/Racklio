@@ -19,6 +19,12 @@ export const typewiseData: SoftwareReviewData = {
   slug: 'typewise',
   name: 'Typewise',
   category: 'AI customer service automation',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+  ],
   headline:
     'Typewise review: outcome-priced AI automation for established customer service teams',
   dek: 'Typewise combines AI agents and agent assistance for customer communication. Its published outcome-based pricing and enterprise-oriented deployment make it most relevant to teams with meaningful automation volume and integration capacity.',
@@ -176,6 +182,12 @@ export const krispcallData: SoftwareReviewData = {
   slug: 'krispcall',
   name: 'KrispCall',
   category: 'cloud business phone system',
+  categoryLinks: [
+    {
+      title: 'Business Phone & Voice AI',
+      href: '/categories/business-phone-voice-ai',
+    },
+  ],
   headline:
     'KrispCall review: cloud calling and messaging for distributed business teams',
   dek: 'KrispCall combines virtual numbers, calling, SMS, voicemail, workspaces, and call-management features. The subscription is per user, while numbers and communications can add separate usage charges.',
@@ -352,6 +364,16 @@ export const tidioData: SoftwareReviewData = {
   slug: 'tidio',
   name: 'Tidio',
   category: 'AI customer support, live chat, and help desk',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+    {
+      title: 'Live Chat & Messaging',
+      href: '/categories/live-chat-messaging',
+    },
+  ],
   headline:
     'Tidio review: live support, ticketing, automation, and Lyro AI in one service stack',
   dek: 'Tidio combines live chat, ticketing, Flows automation, and the Lyro AI Agent. Its modular usage model can suit growing support teams, but buyers need to separate billable conversations, Flow visitors, Lyro conversations, seats, and add-on costs.',
@@ -527,6 +549,16 @@ export const respondIoData: SoftwareReviewData = {
   slug: 'respond-io',
   name: 'respond.io',
   category: 'omnichannel customer conversation management',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+    {
+      title: 'Live Chat & Messaging',
+      href: '/categories/live-chat-messaging',
+    },
+  ],
   headline:
     'respond.io review: omnichannel messaging, workflows, and AI for B2C conversation teams',
   dek: 'respond.io brings messaging, email, and supported calling channels into a shared workspace with automation and AI. Pricing scales through plan tier, users, and Monthly Active Contacts, while channel-provider fees remain separate.',
@@ -701,6 +733,16 @@ export const gorgiasData: SoftwareReviewData = {
   slug: 'gorgias',
   name: 'Gorgias',
   category: 'ecommerce customer support help desk',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+    {
+      title: 'Live Chat & Messaging',
+      href: '/categories/live-chat-messaging',
+    },
+  ],
   headline:
     'Gorgias review: ticket-priced customer support built around ecommerce operations',
   dek: 'Gorgias is a help desk designed around ecommerce stores, with tickets, multiple support channels, commerce data, rules, and an optional AI Agent. Its cost follows support volume rather than a simple per-seat model.',

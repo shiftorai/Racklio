@@ -41,6 +41,38 @@ export const router = createBrowserRouter([
           return { Component: SearchPage };
         },
       },
+      {
+        path: 'categories/ai-customer-support',
+        lazy: async () => {
+          const { AiCustomerSupportCategory } =
+            await import('@/pages/categories/ai-customer-support');
+          return { Component: AiCustomerSupportCategory };
+        },
+      },
+      {
+        path: 'categories/business-phone-voice-ai',
+        lazy: async () => {
+          const { BusinessPhoneVoiceAiCategory } =
+            await import('@/pages/categories/business-phone-voice-ai');
+          return { Component: BusinessPhoneVoiceAiCategory };
+        },
+      },
+      {
+        path: 'categories/live-chat-messaging',
+        lazy: async () => {
+          const { LiveChatMessagingCategory } =
+            await import('@/pages/categories/live-chat-messaging');
+          return { Component: LiveChatMessagingCategory };
+        },
+      },
+      {
+        path: 'categories/crm-customer-engagement',
+        lazy: async () => {
+          const { CrmCustomerEngagementCategory } =
+            await import('@/pages/categories/crm-customer-engagement');
+          return { Component: CrmCustomerEngagementCategory };
+        },
+      },
       ...[
         ['about', 'AboutPage'],
         ['methodology', 'MethodologyPage'],

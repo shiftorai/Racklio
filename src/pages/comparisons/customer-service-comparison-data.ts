@@ -23,6 +23,16 @@ export const tidioVsGorgias: ComparisonData = {
   a: 'Tidio',
   b: 'Gorgias',
   category: 'customer service software',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+    {
+      title: 'Live Chat & Messaging',
+      href: '/categories/live-chat-messaging',
+    },
+  ],
   headline:
     'Tidio vs Gorgias: which customer-support model fits your business?',
   dek: 'Tidio centers live chat, ticketing, Flows, and Lyro AI; Gorgias centers an ecommerce help desk with ticket-based plans and commerce actions. The useful choice depends on support channels, store workflow, and the usage unit you can forecast.',
@@ -233,6 +243,16 @@ export const respondIoVsTidio: ComparisonData = {
   a: 'respond.io',
   b: 'Tidio',
   category: 'customer messaging software',
+  categoryLinks: [
+    {
+      title: 'AI Customer Support',
+      href: '/categories/ai-customer-support',
+    },
+    {
+      title: 'Live Chat & Messaging',
+      href: '/categories/live-chat-messaging',
+    },
+  ],
   headline:
     'respond.io vs Tidio: omnichannel messaging or web-support workspace?',
   dek: 'respond.io is organized around messaging channels, contacts, team inboxes, workflows, and AI agents. Tidio combines website live chat, ticketing, Flows, and Lyro AI. The decision starts with where customer conversations originate.',
@@ -436,6 +456,12 @@ export const respondIoVsTidio: ComparisonData = {
 const krispBase = {
   a: 'KrispCall',
   category: 'cloud business phone systems',
+  categoryLinks: [
+    {
+      title: 'Business Phone & Voice AI',
+      href: '/categories/business-phone-voice-ai',
+    },
+  ],
   aUrl: 'https://krispcall.com/pricing/',
   aReview: '/reviews/krispcall',
 };

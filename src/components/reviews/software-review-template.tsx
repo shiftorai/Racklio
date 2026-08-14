@@ -16,6 +16,7 @@ export type SoftwareReviewData = {
   slug: string;
   name: string;
   category: string;
+  categoryLinks?: { title: string; href: string }[];
   headline: string;
   dek: string;
   metaTitle: string;
@@ -158,6 +159,18 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
           <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
             <div>
               <ResearchMarker code="RV" label={`${data.category} review`} />
+              {data.categoryLinks?.length ? (
+                <nav
+                  aria-label="Related software categories"
+                  className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
+                >
+                  {data.categoryLinks.map((category) => (
+                    <Link href={category.href} key={category.href}>
+                      {category.title}
+                    </Link>
+                  ))}
+                </nav>
+              ) : null}
               <h1 className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>

@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ResearchMarker } from '@/components/brand';
+import { CategoryHubTemplate } from '@/components/categories';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { Card, CardContent, Container, Link, Section } from '@/components/ui';
+
+import { softwareCategories } from './categories/category-data';
 
 type Entry = {
   title: string;
@@ -81,67 +84,11 @@ const hostingReviewEntries: Entry[] = [
   },
 ];
 
-const softwareCategoryEntries: Entry[] = [
-  {
-    title: 'AI Customer Support',
-    description:
-      'Software for support automation, agent assistance, and customer-service workflows.',
-    href: '/reviews/typewise',
-    relatedLinks: [
-      { title: 'Typewise Review', href: '/reviews/typewise' },
-      { title: 'Tidio Review', href: '/reviews/tidio' },
-      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
-    ],
-  },
-  {
-    title: 'Business Phone Systems',
-    description:
-      'Cloud calling, virtual numbers, messaging, and team communication workflows.',
-    href: '/reviews/krispcall',
-    relatedLinks: [
-      { title: 'KrispCall Review', href: '/reviews/krispcall' },
-      {
-        title: 'KrispCall vs CallHippo',
-        href: '/comparisons/krispcall-vs-callhippo',
-      },
-      {
-        title: 'KrispCall vs Aircall',
-        href: '/comparisons/krispcall-vs-aircall',
-      },
-    ],
-  },
-  {
-    title: 'AI Receptionists',
-    description:
-      'Software for answering, routing, and managing inbound business conversations. Dedicated Racklio coverage is not yet published.',
-    href: '/#categories',
-    suppressLink: true,
-  },
-  {
-    title: 'Customer Messaging',
-    description:
-      'Shared customer conversations across messaging channels and team inboxes.',
-    href: '/reviews/respond-io',
-    relatedLinks: [
-      { title: 'respond.io Review', href: '/reviews/respond-io' },
-      {
-        title: 'respond.io vs Tidio',
-        href: '/comparisons/respond-io-vs-tidio',
-      },
-    ],
-  },
-  {
-    title: 'Help Desk & Live Chat',
-    description:
-      'Ticketing, live support, collaboration, automation, and support operations.',
-    href: '/reviews/gorgias',
-    relatedLinks: [
-      { title: 'Gorgias Review', href: '/reviews/gorgias' },
-      { title: 'Tidio Review', href: '/reviews/tidio' },
-      { title: 'Tidio vs Gorgias', href: '/comparisons/tidio-vs-gorgias' },
-    ],
-  },
-];
+const softwareCategoryEntries: Entry[] = softwareCategories.map((category) => ({
+  title: category.shortTitle,
+  description: category.definition,
+  href: `/categories/${category.slug}`,
+}));
 
 const softwareDecisionEntries: Entry[] = [
   {
@@ -558,25 +505,7 @@ export function BestSoftwareHub() {
   );
 }
 export function CategoriesHub() {
-  return (
-    <HubPage
-      code="CT"
-      eyebrow="Software category map"
-      title="Customer Service Software Categories"
-      description="Understand the software category before comparing products, pricing models, and implementation requirements."
-      canonical="https://racklio.com/#categories"
-      entries={softwareCategoryEntries}
-      sectionTitle="Software categories"
-      related={[
-        {
-          title: 'Browse software reviews',
-          description: '',
-          href: '/#reviews',
-        },
-        { title: 'Choose by business need', description: '', href: '/#best' },
-      ]}
-    />
-  );
+  return <CategoryHubTemplate categories={softwareCategories} />;
 }
 export function GuidesHub() {
   return (
@@ -604,6 +533,7 @@ export function SearchPage() {
     () => [
       ...reviewEntries,
       ...comparisonEntries,
+      ...softwareCategoryEntries,
       ...hostingComparisonEntries,
       ...guideEntries,
     ],
