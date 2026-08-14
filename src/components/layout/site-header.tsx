@@ -42,7 +42,7 @@ export function SiteHeader() {
             href="/"
             variant="unstyled"
           >
-            <RacklioLogo />
+            <RacklioLogo className="[&_img]:h-8" />
           </Link>
 
           <nav

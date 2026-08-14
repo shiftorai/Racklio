@@ -253,7 +253,7 @@ function DecisionPanel() {
           ))}
         </ul>
         <p className="mt-4 text-xs text-muted-foreground">
-          Discovery links &middot; No calculated recommendations
+          Explore software by your business needs
         </p>
       </div>
     </aside>
@@ -322,7 +322,7 @@ export function Home() {
         />
       ))}
 
-      <section className="relative overflow-hidden border-b border-border bg-white py-12 sm:py-16 lg:py-20">
+      <section className="relative overflow-hidden border-b border-border bg-white py-10 sm:py-14 lg:py-16">
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_82%_10%,rgba(124,58,237,.1),transparent_30%),radial-gradient(circle_at_55%_82%,rgba(37,93,229,.08),transparent_28%)]"
@@ -391,8 +391,8 @@ export function Home() {
         </Container>
       </section>
 
-      <div className="bg-surface py-10 sm:py-14">
-        <Container className="grid gap-10 sm:gap-12" size="wide">
+      <div className="bg-surface py-8 sm:py-12">
+        <Container className="grid gap-8 sm:gap-10" size="wide">
           <section aria-labelledby="categories-heading">
             <SectionHeading
               action={
@@ -403,10 +403,10 @@ export function Home() {
             >
               <span id="categories-heading">Explore by what you need</span>
             </SectionHeading>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {categories.map((category) => (
                 <article
-                  className="flex min-h-64 flex-col rounded-lg border border-border bg-white p-5 shadow-card"
+                  className="flex flex-col rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/30 md:min-h-60 xl:min-h-64"
                   key={category.code}
                 >
                   <div className="flex items-center gap-3">
@@ -438,10 +438,10 @@ export function Home() {
             >
               <span id="featured-heading">Featured software research</span>
             </SectionHeading>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {featuredResearch.map((item) => (
                 <article
-                  className="flex min-h-64 flex-col rounded-lg border border-border bg-white p-5 shadow-subtle"
+                  className="flex flex-col rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/30 md:min-h-64"
                   key={item.href}
                 >
                   <p className="text-[0.6875rem] font-semibold tracking-[0.12em] text-brand uppercase">
@@ -473,10 +473,10 @@ export function Home() {
                 Compare software side by side
               </span>
             </SectionHeading>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {comparisons.map((comparison) => (
                 <Link
-                  className="group grid min-h-24 grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-border bg-white p-4 shadow-subtle hover:border-brand/40"
+                  className="group grid min-h-24 grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/40"
                   href={comparison.href}
                   key={comparison.href}
                   variant="unstyled"
@@ -519,7 +519,7 @@ export function Home() {
                 Read our methodology
               </ButtonLink>
             </div>
-            <ol className="grid overflow-hidden rounded-lg border border-border bg-white md:grid-cols-2 xl:grid-cols-4">
+            <ol className="grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2 xl:grid-cols-4">
               {researchSteps.map((step, index) => (
                 <li
                   className="relative border-b border-border p-5 last:border-b-0 md:odd:border-r xl:border-r xl:border-b-0 xl:last:border-r-0"
@@ -539,7 +539,7 @@ export function Home() {
 
           <section
             aria-labelledby="independence-heading"
-            className="grid items-center gap-6 rounded-lg border border-violet-200/70 bg-violet-50/70 p-5 sm:p-7 lg:grid-cols-[1fr_auto]"
+            className="grid items-center gap-6 rounded-lg border border-violet-200/70 bg-violet-50/70 p-5 shadow-card sm:p-7 lg:grid-cols-[1fr_auto]"
           >
             <div className="grid gap-4 sm:grid-cols-[3rem_1fr]">
               <span className="grid size-11 place-items-center rounded-full border border-violet-200 bg-white text-brand">
@@ -576,7 +576,7 @@ export function Home() {
 
           <section
             aria-labelledby="final-cta-heading"
-            className="relative overflow-hidden rounded-lg border border-violet-200/70 bg-white px-5 py-7 sm:px-9"
+            className="relative overflow-hidden rounded-lg border border-violet-200/70 bg-white px-5 py-7 shadow-card sm:px-9"
           >
             <div
               aria-hidden="true"
