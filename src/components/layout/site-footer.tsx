@@ -3,17 +3,34 @@ import { Link } from '@/components/ui';
 
 import { Footer } from './footer';
 
-const footerLinks = [
-  ['Reviews', '/#reviews'],
-  ['Comparisons', '/#comparisons'],
-  ['Categories', '/#categories'],
-  ['About', '/about'],
-  ['Methodology', '/#methodology'],
-  ['Editorial Standards', '/editorial-standards'],
-  ['Contact', '/contact'],
-  ['Privacy', '/privacy'],
-  ['Terms', '/terms'],
-  ['Affiliate Disclosure', '/affiliate-disclosure'],
+const groups = [
+  {
+    title: 'Explore',
+    links: [
+      ['Categories', '/#categories'],
+      ['Reviews', '/#reviews'],
+      ['Comparisons', '/#comparisons'],
+      ['Best Software', '/#best'],
+      ['Guides', '/guides'],
+    ],
+  },
+  {
+    title: 'Research',
+    links: [
+      ['Methodology', '/#methodology'],
+      ['Editorial Standards', '/editorial-standards'],
+      ['Affiliate Disclosure', '/affiliate-disclosure'],
+    ],
+  },
+  {
+    title: 'Racklio',
+    links: [
+      ['About', '/about'],
+      ['Contact', '/contact'],
+      ['Privacy', '/privacy'],
+      ['Terms', '/terms'],
+    ],
+  },
 ] as const;
 
 export function SiteFooter() {
@@ -22,23 +39,34 @@ export function SiteFooter() {
       brand={<RacklioLogo tone="dark" />}
       legal={
         <>
-          {RACKLIO_TAGLINE}
+          Racklio &mdash; {RACKLIO_TAGLINE}
           <br />
-          Racklio is operated by Keleva LLC.
-          <br />© {new Date().getFullYear()} Keleva LLC
+          Independent software research operated by Keleva LLC.
+          <br />
+          &copy; {new Date().getFullYear()} Keleva LLC
         </>
       }
       tone="dark"
     >
-      {footerLinks.map(([label, href]) => (
-        <Link
-          className="text-slate-300 hover:text-white"
-          href={href}
-          key={label}
-          variant="unstyled"
-        >
-          {label}
-        </Link>
+      {groups.map((group) => (
+        <div key={group.title}>
+          <h2 className="text-xs font-semibold tracking-[0.14em] text-white uppercase">
+            {group.title}
+          </h2>
+          <ul className="mt-4 grid gap-3">
+            {group.links.map(([label, href]) => (
+              <li key={label}>
+                <Link
+                  className="text-slate-300 hover:text-white"
+                  href={href}
+                  variant="unstyled"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))}
     </Footer>
   );

@@ -48,10 +48,7 @@ export function Footer({
           ) : null}
         </div>
         {children ? (
-          <nav
-            aria-label="Footer"
-            className="flex flex-wrap items-center gap-5"
-          >
+          <nav aria-label="Footer" className="grid gap-8 sm:grid-cols-3">
             {children}
           </nav>
         ) : null}

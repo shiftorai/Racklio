@@ -9,35 +9,14 @@ export interface RacklioLogoProps extends HTMLAttributes<HTMLSpanElement> {
 
 function RacklioMark() {
   return (
-    <svg
+    <img
+      alt=""
       aria-hidden="true"
-      className="size-7 shrink-0 text-brand"
-      focusable="false"
-      viewBox="0 0 64 64"
-    >
-      <path
-        d="M13 6h26.5C50.82 6 60 15.18 60 26.5c0 8.07-4.67 15.05-11.45 18.4l-7.62-7.62C46.03 36.59 50 32.21 50 26.5 50 20.7 45.3 16 39.5 16H13a5 5 0 0 1 0-10Z"
-        fill="currentColor"
-      />
-      <path
-        clipRule="evenodd"
-        d="M7 24h25.17c2.12 0 4.16.84 5.66 2.34l21.34 21.34c1.95 1.95.57 5.32-2.19 5.32h-7.81c-2.12 0-4.16-.84-5.66-2.34L27.85 35H7a3 3 0 0 1-3-3v-5a3 3 0 0 1 3-3Zm8.5 3.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-      <path
-        clipRule="evenodd"
-        d="M7 38h17.5a6 6 0 0 1 5.45 3.49L32.95 48H7a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3Zm8.5 2.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-      <path
-        clipRule="evenodd"
-        d="M7 51h23.5l3.35 8H7a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3Zm8.5 1.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-    </svg>
+      className="h-7 w-auto shrink-0"
+      height="28"
+      src="/racklio-mark.svg"
+      width="30"
+    />
   );
 }
 
