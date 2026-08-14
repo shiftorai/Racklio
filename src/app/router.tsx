@@ -173,6 +173,22 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/engagebay',
+        lazy: async () => {
+          const { EngageBayReview } =
+            await import('@/pages/reviews/engagebay-review');
+          return { Component: EngageBayReview };
+        },
+      },
+      {
+        path: 'reviews/eazychat',
+        lazy: async () => {
+          const { EazyChatReview } =
+            await import('@/pages/reviews/eazychat-review');
+          return { Component: EazyChatReview };
+        },
+      },
+      {
         path: 'comparisons/tidio-vs-gorgias',
         lazy: async () => {
           const { TidioVsGorgias } =

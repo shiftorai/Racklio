@@ -65,6 +65,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
           'Omnichannel messaging, AI workflows, users, channels, and active-contact pricing.',
         href: '/reviews/respond-io',
       },
+      {
+        title: 'EazyChat.io Review',
+        description:
+          'AI website chat, human handoff, EazyDesk integration, conversation limits, and product maturity.',
+        href: '/reviews/eazychat',
+      },
     ],
     comparisons: [
       {
@@ -379,7 +385,14 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/categories/crm-customer-engagement',
       },
     ],
-    products: [],
+    products: [
+      {
+        title: 'EngageBay Review',
+        description:
+          'CRM, marketing, sales, service workflows, plan limits, integrations, and small-business fit.',
+        href: '/reviews/engagebay',
+      },
+    ],
     comparisons: [],
     factors: (
       [

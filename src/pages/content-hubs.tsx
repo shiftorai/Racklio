@@ -20,14 +20,12 @@ const reviewEntries: Entry[] = [
     description:
       'AI customer service automation, outcome pricing, deployment, and security claims.',
     href: '/reviews/typewise',
-    suppressLink: true,
   },
   {
     title: 'KrispCall Review',
     description:
       'Cloud calling, virtual numbers, SMS, per-user pricing, and usage charges.',
     href: '/reviews/krispcall',
-    suppressLink: true,
   },
   {
     title: 'Tidio Review',
@@ -40,14 +38,24 @@ const reviewEntries: Entry[] = [
     description:
       'Omnichannel messaging, WhatsApp, AI workflows, users, and active-contact pricing.',
     href: '/reviews/respond-io',
-    suppressLink: true,
   },
   {
     title: 'Gorgias Review',
     description:
       'Ecommerce help desk, ticket pricing, AI Agent, channels, and overages.',
     href: '/reviews/gorgias',
-    suppressLink: true,
+  },
+  {
+    title: 'EngageBay Review',
+    description:
+      'CRM, marketing, sales, service workflows, plan limits, and small-business fit.',
+    href: '/reviews/engagebay',
+  },
+  {
+    title: 'EazyChat.io Review',
+    description:
+      'AI website chat, human handoff, help-desk integration, usage limits, and product maturity.',
+    href: '/reviews/eazychat',
   },
 ];
 
@@ -302,6 +310,8 @@ function HubPage({
   secondaryEntries,
   secondaryTitle,
   related,
+  categoryEntries,
+  showReviewMethodology = false,
 }: {
   code: string;
   eyebrow: string;
@@ -313,6 +323,8 @@ function HubPage({
   secondaryEntries?: Entry[];
   secondaryTitle?: string;
   related: Entry[];
+  categoryEntries?: Entry[];
+  showReviewMethodology?: boolean;
 }) {
   useDescription(description);
   return (
@@ -341,6 +353,35 @@ function HubPage({
         </Section>
         <Section className="py-14 sm:py-16 lg:py-12" spacing="none">
           <Container>
+            {categoryEntries?.length ? (
+              <div className="mb-12 border-b border-border pb-12">
+                <h2 className="text-2xl font-semibold">Browse by category</h2>
+                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  Start with the customer workflow, then evaluate the products
+                  and trade-offs inside that category.
+                </p>
+                <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {categoryEntries.map((entry) => (
+                    <Card key={entry.href}>
+                      <CardContent className="flex h-full flex-col">
+                        <h3 className="font-semibold">
+                          <Link href={entry.href}>{entry.title}</Link>
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {entry.description}
+                        </p>
+                        <Link
+                          className="mt-auto pt-5 text-sm"
+                          href={entry.href}
+                        >
+                          Explore category →
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             {sectionTitle ? (
               <h2 className="mb-7 text-2xl font-semibold">{sectionTitle}</h2>
             ) : null}
@@ -424,6 +465,52 @@ function HubPage({
                 </div>
               </div>
             ) : null}
+            {showReviewMethodology ? (
+              <div className="mt-14 grid gap-4 border-t border-border pt-10 md:grid-cols-2">
+                <Card>
+                  <CardContent>
+                    <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
+                      Research process
+                    </p>
+                    <h2 className="mt-3 text-xl font-semibold">
+                      How Racklio reviews software
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      Racklio starts with official pricing, product
+                      documentation, help centers, legal pages, and other
+                      provider-controlled sources. Conclusions remain
+                      conditional on buyer needs.
+                    </p>
+                    <Link className="mt-5 inline-block" href="/methodology">
+                      Read the methodology →
+                    </Link>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent>
+                    <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
+                      Editorial independence
+                    </p>
+                    <h2 className="mt-3 text-xl font-semibold">
+                      Evidence before commercial relationships
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      Racklio does not sell rankings or publish scores.
+                      Affiliate relationships do not determine conclusions or
+                      product fit.
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                      <Link href="/editorial-standards">
+                        Editorial Standards
+                      </Link>
+                      <Link href="/affiliate-disclosure">
+                        Affiliate Disclosure
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ) : null}
           </Container>
         </Section>
         <Section
@@ -451,13 +538,15 @@ export function ReviewsHub() {
     <HubPage
       code="RV"
       eyebrow="Provider investigation"
-      title="Customer Service Software Reviews"
-      description="Evidence-first reviews of AI customer support and business communication software, focused on product scope, pricing, limits, and practical business fit."
+      title="Software Reviews for Customer-Facing Teams"
+      description="Racklio reviews software used to support customers, manage conversations, improve business communication, and organize customer relationships—using official evidence, explicit limitations, and conditional decision guidance."
       canonical="https://racklio.com/reviews"
       entries={reviewEntries}
       sectionTitle="Customer service software"
       secondaryEntries={hostingReviewEntries}
       secondaryTitle="Hosting reviews"
+      categoryEntries={softwareCategoryEntries}
+      showReviewMethodology
       related={[
         { title: 'Compare providers', description: '', href: '/comparisons' },
         { title: 'Choose by workload', description: '', href: '/guides' },
