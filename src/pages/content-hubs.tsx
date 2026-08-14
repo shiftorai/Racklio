@@ -59,39 +59,6 @@ const reviewEntries: Entry[] = [
   },
 ];
 
-const hostingReviewEntries: Entry[] = [
-  {
-    title: 'Liquid Web Review',
-    description:
-      'Managed WordPress, VPS, dedicated infrastructure, and operational tradeoffs.',
-    href: '/reviews/liquid-web',
-  },
-  {
-    title: 'Kinsta Review',
-    description:
-      'Managed WordPress operations, traffic accounting, workflow, and limitations.',
-    href: '/reviews/kinsta',
-  },
-  {
-    title: 'WP Engine Review',
-    description:
-      'Managed WordPress platform workflows, environments, and business fit.',
-    href: '/reviews/wp-engine',
-  },
-  {
-    title: 'Rocket.net Review',
-    description:
-      'Managed WordPress, edge delivery, finite resources, and operational model.',
-    href: '/reviews/rocket-net',
-  },
-  {
-    title: 'Pressable Review',
-    description:
-      'Managed WordPress resources, collaboration, backups, and scaling paths.',
-    href: '/reviews/pressable',
-  },
-];
-
 const softwareCategoryEntries: Entry[] = softwareCategories.map((category) => ({
   title: category.shortTitle,
   description: category.definition,
@@ -158,134 +125,6 @@ const comparisonEntries: Entry[] = [
   },
 ];
 
-const hostingComparisonEntries: Entry[] = [
-  {
-    title: 'Kinsta vs WP Engine',
-    description: 'Two managed WordPress operating models.',
-    href: '/comparisons/kinsta-vs-wp-engine',
-  },
-  {
-    title: 'Liquid Web vs WP Engine',
-    description: 'Infrastructure breadth versus a WordPress-focused platform.',
-    href: '/comparisons/liquid-web-vs-wp-engine',
-  },
-  {
-    title: 'Hostinger vs WP Engine',
-    description: 'Broad hosting scope versus managed WordPress specialization.',
-    href: '/comparisons/hostinger-vs-wp-engine',
-  },
-  {
-    title: 'Rocket.net vs WP Engine',
-    description:
-      'Managed edge operations versus structured platform workflows.',
-    href: '/comparisons/rocket-net-vs-wp-engine',
-  },
-  {
-    title: 'Rocket.net vs Kinsta',
-    description:
-      'Unmetered visitor accounting versus selectable traffic models.',
-    href: '/comparisons/rocket-net-vs-kinsta',
-  },
-  {
-    title: 'Pressable vs WP Engine',
-    description:
-      'Portfolio collaboration versus structured managed environments.',
-    href: '/comparisons/pressable-vs-wp-engine',
-  },
-  {
-    title: 'Liquid Web vs Kinsta',
-    description:
-      'Infrastructure control versus standardized managed WordPress.',
-    href: '/comparisons/liquid-web-vs-kinsta',
-  },
-  {
-    title: 'Pressable vs Kinsta',
-    description:
-      'Per-site resources and collaboration versus selectable accounting.',
-    href: '/comparisons/pressable-vs-kinsta',
-  },
-  {
-    title: 'Rocket.net vs Pressable',
-    description:
-      'Visitor accounting versus portfolio and resource disclosures.',
-    href: '/comparisons/rocket-net-vs-pressable',
-  },
-  {
-    title: 'Liquid Web vs Rocket.net',
-    description:
-      'Broader infrastructure versus managed WordPress edge operations.',
-    href: '/comparisons/liquid-web-vs-rocket-net',
-  },
-  {
-    title: 'Liquid Web vs Pressable',
-    description:
-      'Server-level options versus managed WordPress portfolio tooling.',
-    href: '/comparisons/liquid-web-vs-pressable',
-  },
-];
-
-const guideEntries: Entry[] = [
-  {
-    title: 'Managed WordPress Hosting for Small Business',
-    description: 'Choose around business risk, workload, support, and cost.',
-    href: '/best/managed-wordpress-hosting-for-small-business',
-  },
-  {
-    title: 'Managed WordPress Hosting for Agencies',
-    description:
-      'Evaluate client operations, permissions, workflow, and portfolio economics.',
-    href: '/best/managed-wordpress-hosting-for-agencies',
-  },
-  {
-    title: 'Managed WordPress Hosting for Multiple Websites',
-    description:
-      'Compare installs, isolation, access, resources, and portfolio management.',
-    href: '/best/managed-wordpress-hosting-for-multiple-websites',
-  },
-  {
-    title: 'Managed WordPress Hosting for Developers',
-    description:
-      'Compare local tools, environments, Git, SSH, WP-CLI, APIs, and deployment.',
-    href: '/best/managed-wordpress-hosting-for-developers',
-  },
-  {
-    title: 'Managed WordPress Hosting for Membership Sites',
-    description:
-      'Evaluate logged-in traffic, cacheability, database activity, and recovery.',
-    href: '/best/managed-wordpress-hosting-for-membership-sites',
-  },
-  {
-    title: 'Managed WordPress Hosting for SaaS Websites',
-    description:
-      'Separate the WordPress content layer from the SaaS application backend.',
-    href: '/best/managed-wordpress-hosting-for-saas-websites',
-  },
-  {
-    title: 'Managed WordPress Hosting for Enterprise',
-    description:
-      'Compare SLA, governance, recovery, support, and infrastructure scope.',
-    href: '/best/managed-wordpress-hosting-for-enterprise',
-  },
-  {
-    title: 'Managed WordPress Hosting for Publishers',
-    description:
-      'Evaluate editorial workflow, traffic shape, bandwidth, and publishing scale.',
-    href: '/best/managed-wordpress-hosting-for-publishers',
-  },
-  {
-    title: 'Managed WordPress Hosting for High-Traffic Websites',
-    description:
-      'Compare cacheability, origin demand, transfer, spikes, and scaling paths.',
-    href: '/best/managed-wordpress-hosting-for-high-traffic-websites',
-  },
-  {
-    title: 'Managed WooCommerce Hosting',
-    description:
-      'Evaluate checkout, dynamic traffic, transactional data, and store operations.',
-    href: '/best/managed-woocommerce-hosting',
-  },
-];
-
 function useDescription(content: string) {
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
@@ -307,8 +146,6 @@ function HubPage({
   canonical,
   entries,
   sectionTitle,
-  secondaryEntries,
-  secondaryTitle,
   related,
   categoryEntries,
   showReviewMethodology = false,
@@ -320,8 +157,6 @@ function HubPage({
   canonical: string;
   entries: Entry[];
   sectionTitle?: string;
-  secondaryEntries?: Entry[];
-  secondaryTitle?: string;
   related: Entry[];
   categoryEntries?: Entry[];
   showReviewMethodology?: boolean;
@@ -433,38 +268,6 @@ function HubPage({
                 </Card>
               ))}
             </div>
-            {secondaryEntries?.length && secondaryTitle ? (
-              <div className="mt-14 border-t border-border pt-10">
-                <h2 className="text-2xl font-semibold">{secondaryTitle}</h2>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                  Racklio&apos;s earlier evidence-first hosting coverage remains
-                  available for readers researching web infrastructure.
-                </p>
-                <div className="mt-7 grid gap-4 md:grid-cols-2">
-                  {secondaryEntries.map((entry, index) => (
-                    <Card key={entry.href}>
-                      <CardContent>
-                        <p className="font-mono text-[0.625rem] text-muted-foreground">
-                          H{String(index + 1).padStart(2, '0')}
-                        </p>
-                        <h3 className="mt-4 text-xl font-semibold tracking-tight">
-                          <Link href={entry.href}>{entry.title}</Link>
-                        </h3>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                          {entry.description}
-                        </p>
-                        <Link
-                          className="mt-5 inline-block text-sm font-semibold"
-                          href={entry.href}
-                        >
-                          Open decision page →
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            ) : null}
             {showReviewMethodology ? (
               <div className="mt-14 grid gap-4 border-t border-border pt-10 md:grid-cols-2">
                 <Card>
@@ -543,8 +346,6 @@ export function ReviewsHub() {
       canonical="https://racklio.com/reviews"
       entries={reviewEntries}
       sectionTitle="Customer service software"
-      secondaryEntries={hostingReviewEntries}
-      secondaryTitle="Hosting reviews"
       categoryEntries={softwareCategoryEntries}
       showReviewMethodology
       related={[
@@ -564,8 +365,6 @@ export function ComparisonsHub() {
       canonical="https://racklio.com/comparisons"
       entries={comparisonEntries}
       sectionTitle="Customer service software"
-      secondaryEntries={hostingComparisonEntries}
-      secondaryTitle="Hosting comparisons"
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Choose by workload', description: '', href: '/guides' },
@@ -601,10 +400,11 @@ export function GuidesHub() {
     <HubPage
       code="BG"
       eyebrow="Workload-based decisions"
-      title="Hosting Buying Guides"
-      description="Choose a hosting model around the workload, operating requirements, and business context that actually shape the decision."
+      title="Customer Service Software Guides"
+      description="Start with the customer workflow your team needs to improve, then evaluate software around relevant capabilities, limits, and operating fit."
       canonical="https://racklio.com/guides"
-      entries={guideEntries}
+      entries={softwareCategoryEntries}
+      sectionTitle="Customer support and business communications"
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Compare providers', description: '', href: '/comparisons' },
@@ -616,16 +416,10 @@ export function GuidesHub() {
 export function SearchPage() {
   const [query, setQuery] = useState('');
   useDescription(
-    'Search Racklio reviews, comparisons, and workload-based hosting buying guides.',
+    'Search Racklio reviews, comparisons, categories, and software buying guidance.',
   );
   const entries = useMemo(
-    () => [
-      ...reviewEntries,
-      ...comparisonEntries,
-      ...softwareCategoryEntries,
-      ...hostingComparisonEntries,
-      ...guideEntries,
-    ],
+    () => [...reviewEntries, ...comparisonEntries, ...softwareCategoryEntries],
     [],
   );
   const results = entries.filter((entry) =>

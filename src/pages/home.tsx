@@ -60,6 +60,13 @@ const reviews = [
     '',
   ],
   [
+    'Gorgias',
+    'AI Customer Support',
+    'Ecommerce support teams evaluating ticket-based help-desk and AI workflows.',
+    '/reviews/gorgias',
+    '/comparisons/tidio-vs-gorgias',
+  ],
+  [
     'EngageBay',
     'CRM & Customer Engagement',
     'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',

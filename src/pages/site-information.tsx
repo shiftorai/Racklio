@@ -386,7 +386,7 @@ export function ContactPage() {
         <h2 className="text-2xl font-semibold">Provider support</h2>
         <p className="mt-3">
           Racklio is an editorial decision resource and does not provide
-          customer support on behalf of hosting companies. Billing, account,
+          customer support on behalf of software companies. Billing, account,
           outage, security-incident, and technical-support requests must be
           directed to the relevant provider.
         </p>
@@ -470,7 +470,7 @@ export function TermsPage() {
     <InformationPage
       code="TR"
       title="Terms of Use"
-      description="Terms for using Racklio's informational hosting research."
+      description="Terms for using Racklio's informational software research."
       canonical="https://racklio.com/terms"
     >
       <PolicyDate />
@@ -478,7 +478,7 @@ export function TermsPage() {
         <h2 className="text-2xl font-semibold">Operator and purpose</h2>
         <p className="mt-3">
           Racklio is operated by Keleva LLC and provides informational editorial
-          material to support hosting decisions. Racklio is not a hosting
+          material to support software decisions. Racklio is not a software
           provider, reseller, or provider support channel.
         </p>
       </section>
