@@ -12,10 +12,10 @@ function RacklioMark() {
     <img
       alt=""
       aria-hidden="true"
-      className="h-7 w-auto shrink-0"
-      height="28"
+      className="h-8 w-auto shrink-0 transition-transform duration-200 group-hover:-rotate-2"
+      height="32"
       src="/racklio-mark.svg"
-      width="30"
+      width="32"
     />
   );
 }
@@ -34,7 +34,7 @@ export function RacklioLogo({
     <span
       aria-label={isMarkOnly ? (ariaLabel ?? 'Racklio') : ariaLabel}
       className={cn(
-        'inline-flex items-center',
+        'group inline-flex items-center',
         !isMarkOnly && 'gap-2.5',
         className,
       )}
@@ -45,7 +45,7 @@ export function RacklioLogo({
       {isMarkOnly ? null : (
         <span
           className={cn(
-            'text-[1.0625rem] font-semibold tracking-[-0.035em]',
+            'text-[1.125rem] font-bold tracking-[-0.04em]',
             tone === 'dark' ? 'text-white' : 'text-foreground',
           )}
         >

@@ -33,7 +33,7 @@ function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface-raised/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
       <Container size="wide">
         <div className="flex min-h-16 items-center justify-between gap-5">
           <Link
@@ -42,7 +42,7 @@ export function SiteHeader() {
             href="/"
             variant="unstyled"
           >
-            <RacklioLogo className="[&_img]:h-8" />
+            <RacklioLogo />
           </Link>
 
           <nav
@@ -62,7 +62,7 @@ export function SiteHeader() {
               <span aria-hidden="true" className="search-icon" />
             </Link>
             <ButtonLink
-              className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
+              className="bg-brand hover:bg-accent-hover"
               href="/#categories"
             >
               Find the Right Software
@@ -81,7 +81,7 @@ export function SiteHeader() {
                 <span className="h-px w-4 bg-current transition-transform" />
               </span>
             </summary>
-            <div className="absolute top-[calc(100%+0.5rem)] right-0 w-[min(19rem,calc(100vw-2.5rem))] border border-border bg-surface-raised p-4 shadow-panel">
+            <div className="absolute top-[calc(100%+0.5rem)] right-0 w-[min(19rem,calc(100vw-2.5rem))] rounded-xl border border-border bg-surface-raised p-4 shadow-panel">
               <nav aria-label="Mobile primary" className="grid">
                 <NavigationLinks mobile />
               </nav>
@@ -95,7 +95,7 @@ export function SiteHeader() {
                   <span aria-hidden="true" className="search-icon" />
                 </Link>
                 <ButtonLink
-                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
+                  className="bg-brand hover:bg-accent-hover"
                   href="/#categories"
                 >
                   Find the Right Software

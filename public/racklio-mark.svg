@@ -1,23 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 100" role="img" aria-label="Racklio">
-  <defs>
-    <linearGradient id="racklio-purple" x1="12" y1="4" x2="96" y2="96" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#a749ff"/>
-      <stop offset="0.52" stop-color="#8730ff"/>
-      <stop offset="1" stop-color="#5b16ea"/>
-    </linearGradient>
-  </defs>
-  <g fill="url(#racklio-purple)">
-    <path d="M14 0h50c21.9 0 39.5 17.4 39.5 39 0 14.5-7.5 27-20.3 33.8L108 100H80.8L47.9 55.4H0V34h49.6c2.2 0 4.2.9 5.7 2.5l12.4 13.3h1.8c8.8 0 15.7-6.2 15.7-14.5 0-8.1-6.9-13.8-16.6-13.8H14V0Z"/>
-    <path d="M0 63.2h39.5c2.4 0 4.6 1.4 5.7 3.5l7.4 14H0V63.2Z"/>
-    <path d="M0 86.2h49.1c2.1 0 4 1.2 4.9 3.1l5.4 10.7H0V86.2Z"/>
-  </g>
-  <g fill="#fff">
-    <path d="M0 39h5v3h5v4H5v3H0V39Z"/>
-    <path d="M0 67.3h5v2.8h4.4v4H5v2.7H0v-9.5Z"/>
-    <path d="M0 89.2h5v2.5h4.4v3.8H5V98H0v-8.8Z"/>
-    <path d="M14.5 41.3h3.7V45h-3.7zM14.5 69.9h3.7v3.7h-3.7zM14.5 91.2h3.7v3.7h-3.7z"/>
-    <circle cx="26" cy="43.2" r="3.1" fill-opacity=".72"/>
-    <circle cx="26" cy="71.8" r="3.1" fill-opacity=".72"/>
-    <circle cx="26" cy="93.1" r="3.1" fill-opacity=".72"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">Racklio</title>
+  <path fill="#7557F6" d="M9 8h22c5.5 0 10 4.5 10 10v8c0 5.5-4.5 10-10 10h-5.2l-7.6 6v-6H17C11.5 36 7 31.5 7 26V10a2 2 0 0 1 2-2Z"/>
+  <path fill="#62E6C4" d="M15 17.5h18v3H15zm0 7h12v3H15z"/>
+  <circle cx="33" cy="26" r="2.25" fill="#FAF8F3"/>
 </svg>

@@ -139,7 +139,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <div className="border-b border-border bg-surface-raised">
+      <div className="border-b border-border bg-surface/80">
         <Container>
           <nav
             aria-label="Breadcrumb"
@@ -162,7 +162,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-surface-subtle"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))]"
         spacing="md"
       >
         <Container>
@@ -198,7 +198,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 Outbound provider links are not affiliate links at publication.
               </p>
             </div>
-            <Card>
+            <Card className="border-brand/20 bg-white/85 shadow-panel">
               <CardContent>
                 <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
                   Decision summary

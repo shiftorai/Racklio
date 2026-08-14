@@ -1,295 +1,303 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { ButtonLink, Container, Link } from '@/components/ui';
+import { ButtonLink, Container, CountUp, Link, Reveal } from '@/components/ui';
 
 const categories = [
-  {
-    code: '01',
-    icon: 'AI',
-    title: 'AI Customer Support',
-    href: '/categories/ai-customer-support',
-    description:
-      'AI agents, automation, help desks, and customer-service platforms.',
-  },
-  {
-    code: '02',
-    icon: 'VO',
-    title: 'Business Phone & Voice AI',
-    href: '/categories/business-phone-voice-ai',
-    description:
-      'Cloud phone systems, AI voice agents, contact-center and receptionist software.',
-  },
-  {
-    code: '03',
-    icon: 'CH',
-    title: 'Live Chat & Messaging',
-    href: '/categories/live-chat-messaging',
-    description:
-      'Live chat, WhatsApp, conversational messaging, and omnichannel communication.',
-  },
-  {
-    code: '04',
-    icon: 'CRM',
-    title: 'CRM & Customer Engagement',
-    href: '/categories/crm-customer-engagement',
-    description:
-      'Software for managing customer relationships, conversations, and engagement.',
-  },
+  [
+    'AI',
+    'AI Customer Support',
+    '/categories/ai-customer-support',
+    'AI agents, help desks, automation, and human handoff.',
+  ],
+  [
+    'VO',
+    'Business Phone & Voice AI',
+    '/categories/business-phone-voice-ai',
+    'Cloud calling, virtual numbers, routing, and voice automation.',
+  ],
+  [
+    'CH',
+    'Live Chat & Messaging',
+    '/categories/live-chat-messaging',
+    'Website chat, WhatsApp, shared inboxes, and omnichannel workflows.',
+  ],
+  [
+    'CRM',
+    'CRM & Customer Engagement',
+    '/categories/crm-customer-engagement',
+    'Customer records, communication, lifecycle activity, and engagement.',
+  ],
 ] as const;
 
-const featuredResearch = [
-  {
-    type: 'Review',
-    title: 'Tidio Review',
-    description:
-      'Understand live chat, help-desk workflows, Lyro AI, usage limits, and pricing structure.',
-    context: 'Pricing and documentation reviewed August 2026',
-    href: '/reviews/tidio',
-  },
-  {
-    type: 'Review',
-    title: 'respond.io Review',
-    description:
-      'Evaluate omnichannel messaging, WhatsApp workflows, AI agents, users, and active-contact pricing.',
-    context: 'Official provider sources reviewed August 2026',
-    href: '/reviews/respond-io',
-  },
-  {
-    type: 'Comparison',
-    title: 'Tidio vs Gorgias',
-    description:
-      'Compare a live-chat and AI-support model with an ecommerce-oriented help-desk workflow.',
-    context: 'Conditional guidance without a universal winner',
-    href: '/comparisons/tidio-vs-gorgias',
-  },
-  {
-    type: 'Review',
-    title: 'KrispCall Review',
-    description:
-      'Examine cloud calling, virtual numbers, SMS, per-user plans, and separate usage charges.',
-    context: 'Pricing and limitations included',
-    href: '/reviews/krispcall',
-  },
-  {
-    type: 'Review',
-    title: 'Typewise Review',
-    description:
-      'Assess outcome-priced AI customer-service automation, integration scope, and deployment fit.',
-    context: 'Provider claims separated from Racklio analysis',
-    href: '/reviews/typewise',
-  },
+const reviews = [
+  [
+    'Tidio',
+    'Live Chat & Messaging',
+    'Web chat, help-desk workflow, and Lyro AI with documented usage limits.',
+    '/reviews/tidio',
+    '/comparisons/tidio-vs-gorgias',
+  ],
+  [
+    'respond.io',
+    'Live Chat & Messaging',
+    'Omnichannel messaging teams working across WhatsApp and other channels.',
+    '/reviews/respond-io',
+    '/comparisons/respond-io-vs-tidio',
+  ],
+  [
+    'KrispCall',
+    'Business Phone & Voice AI',
+    'Teams evaluating virtual numbers, cloud calling, and usage-based costs.',
+    '/reviews/krispcall',
+    '/comparisons/krispcall-vs-aircall',
+  ],
+  [
+    'Typewise',
+    'AI Customer Support',
+    'Established service teams evaluating outcome-priced AI automation.',
+    '/reviews/typewise',
+    '',
+  ],
+  [
+    'EngageBay',
+    'CRM & Customer Engagement',
+    'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',
+    '/reviews/engagebay',
+    '',
+  ],
+  [
+    'EazyChat.io',
+    'AI Customer Support',
+    'Small teams evaluating AI website chat with human handoff.',
+    '/reviews/eazychat',
+    '',
+  ],
 ] as const;
 
 const comparisons = [
-  {
-    providers: ['Tidio', 'Gorgias'],
-    href: '/comparisons/tidio-vs-gorgias',
-  },
-  {
-    providers: ['respond.io', 'Tidio'],
-    href: '/comparisons/respond-io-vs-tidio',
-  },
-  {
-    providers: ['KrispCall', 'Aircall'],
-    href: '/comparisons/krispcall-vs-aircall',
-  },
-  {
-    providers: ['KrispCall', 'CallHippo'],
-    href: '/comparisons/krispcall-vs-callhippo',
-  },
-] as const;
-
-const researchSteps = [
-  {
-    title: 'Research',
-    description:
-      'Use official pricing, product documentation, help centers, security information, terms, and other authoritative provider sources.',
-  },
-  {
-    title: 'Verify',
-    description:
-      'Check important facts such as pricing, limits, capabilities, and plan conditions.',
-  },
-  {
-    title: 'Compare',
-    description:
-      'Separate provider facts from editorial analysis and identify meaningful trade-offs.',
-  },
-  {
-    title: 'Recommend',
-    description:
-      'Explain which type of buyer each product may or may not suit.',
-  },
-] as const;
-
-const decisionChoices = [
-  ['Automate customer support', '/categories/ai-customer-support', 'spark'],
-  ['Improve business calling', '/categories/business-phone-voice-ai', 'phone'],
   [
-    'Manage customer conversations',
-    '/categories/live-chat-messaging',
-    'message',
+    'Tidio',
+    'Gorgias',
+    'Web chat and AI support or an ecommerce-centered help desk?',
+    '/comparisons/tidio-vs-gorgias',
   ],
-  ['Add an AI receptionist', '/categories/business-phone-voice-ai', 'people'],
-  ['Equip a small support team', '/categories/ai-customer-support', 'support'],
+  [
+    'respond.io',
+    'Tidio',
+    'Omnichannel messaging workflows or web chat and ticket support?',
+    '/comparisons/respond-io-vs-tidio',
+  ],
+  [
+    'KrispCall',
+    'Aircall',
+    'Compact cloud calling or a structured team communications platform?',
+    '/comparisons/krispcall-vs-aircall',
+  ],
+  [
+    'KrispCall',
+    'CallHippo',
+    'How do plans, numbers, usage, SMS, and routing differ?',
+    '/comparisons/krispcall-vs-callhippo',
+  ],
 ] as const;
 
-const trustItems = [
-  ['research', 'Independent', 'Editorial Research'],
-  ['method', 'Transparent', 'Methodology'],
-  ['rank', 'No Paid', 'Rankings'],
-  ['evidence', 'Evidence Before', 'Recommendations'],
+const problems = [
+  [
+    'I need faster customer replies',
+    'AI Customer Support',
+    'Assess automation scope, knowledge inputs, escalation, and human oversight.',
+    '/categories/ai-customer-support',
+  ],
+  [
+    'I need website live chat',
+    'Live Chat & Messaging',
+    'Start with web-chat deployment, inbox ownership, automation, and pricing units.',
+    '/categories/live-chat-messaging',
+  ],
+  [
+    'I need omnichannel messaging',
+    'Live Chat & Messaging',
+    'Compare supported channels, shared context, routing, and active-contact models.',
+    '/categories/live-chat-messaging',
+  ],
+  [
+    'I need a business phone system',
+    'Business Phone & Voice AI',
+    'Evaluate numbers, countries, routing, included usage, SMS, and integrations.',
+    '/categories/business-phone-voice-ai',
+  ],
+  [
+    'I need CRM + customer communication',
+    'CRM & Customer Engagement',
+    'Map records, ownership, lifecycle activity, communication, and automation.',
+    '/categories/crm-customer-engagement',
+  ],
+  [
+    'I want AI handling more conversations',
+    'AI Customer Support',
+    'Define what AI may resolve, how it escalates, and how usage is charged.',
+    '/categories/ai-customer-support',
+  ],
 ] as const;
 
-function LineIcon({ name }: { name: string }) {
-  const paths: Record<string, ReactNode> = {
-    spark: (
-      <path d="m12 3 1.3 4.2L17 9l-3.7 1.8L12 15l-1.3-4.2L7 9l3.7-1.8L12 3Zm6 11 .7 2.3L21 17.5l-2.3 1.2L18 21l-.7-2.3-2.3-1.2 2.3-1.2L18 14Z" />
-    ),
-    phone: (
-      <path d="M7.2 3.8 10 8 8.2 9.8a14.2 14.2 0 0 0 6 6l1.8-1.8 4.2 2.8-1 3c-.3.8-1.1 1.3-2 1.2C9.8 20.2 3.8 14.2 3 6.8c-.1-.9.4-1.7 1.2-2l3-1Z" />
-    ),
-    message: <path d="M5 5.5h14v10H9l-4 3v-13Z" />,
-    people: (
-      <>
-        <circle cx="9" cy="8" r="3" />
-        <circle cx="17" cy="9" r="2.5" />
-        <path d="M3.5 20c.5-4 2.4-6 5.5-6s5 2 5.5 6M14 15c3.4-.5 5.6 1.2 6.5 4" />
-      </>
-    ),
-    support: (
-      <>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
-      </>
-    ),
-    research: (
-      <>
-        <path d="M6 4h9l3 3v13H6V4Z" />
-        <path d="M15 4v4h4M9 12h6M9 16h4" />
-      </>
-    ),
-    method: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v10M7 12h10" />
-      </>
-    ),
-    rank: (
-      <>
-        <path d="M7 9V7a5 5 0 0 1 10 0v2M5 9h14v11H5V9Z" />
-        <path d="M9 4V2M15 4V2" />
-      </>
-    ),
-    evidence: (
-      <>
-        <path d="M5 5h14v14H5V5Z" />
-        <path d="m8 12 2.5 2.5L16 9" />
-      </>
-    ),
-  };
+const steps = [
+  [
+    '01',
+    'Research',
+    'Official pricing, documentation, help centers, and provider-controlled sources.',
+  ],
+  [
+    '02',
+    'Verify',
+    'Important facts, plan limits, capabilities, and conditions are checked.',
+  ],
+  ['03', 'Compare', 'Provider statements stay separate from Racklio analysis.'],
+  [
+    '04',
+    'Explain',
+    'Trade-offs are translated into practical buyer scenarios.',
+  ],
+  ['05', 'Update', 'Verification dates make changing product facts visible.'],
+] as const;
 
+function Arrow() {
   return (
-    <svg
+    <span
       aria-hidden="true"
-      className="size-5"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.6"
-      viewBox="0 0 24 24"
+      className="transition-transform group-hover:translate-x-1"
     >
-      {paths[name]}
-    </svg>
+      →
+    </span>
   );
 }
 
-function DecisionPanel() {
-  return (
-    <aside
-      aria-labelledby="decision-panel-heading"
-      className="overflow-hidden rounded-xl border border-border/80 bg-white shadow-panel"
-    >
-      <div className="grid grid-cols-2 border-b border-border text-center text-sm font-semibold">
-        <Link
-          className="border-b-2 border-brand px-4 py-4 text-brand"
-          href="/#categories"
-          variant="unstyled"
-        >
-          Find My Best Fit
-        </Link>
-        <Link
-          className="px-4 py-4 text-muted-foreground hover:text-foreground"
-          href="/#comparisons"
-          variant="unstyled"
-        >
-          Compare Tools
-        </Link>
-      </div>
-      <div className="p-5 sm:p-7">
-        <h2
-          className="text-xl font-semibold tracking-[-0.035em]"
-          id="decision-panel-heading"
-        >
-          What do you want to improve?
-        </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Choose a starting point for your research.
-        </p>
-        <ul className="mt-5 grid gap-2">
-          {decisionChoices.map(([label, href, icon]) => (
-            <li key={label}>
-              <Link
-                className="group flex min-h-12 items-center gap-3 rounded-md border border-border bg-white px-3.5 text-sm font-semibold shadow-subtle hover:border-brand/40 hover:bg-violet-50/50"
-                href={href}
-                variant="unstyled"
-              >
-                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-violet-50 text-brand">
-                  <LineIcon name={icon} />
-                </span>
-                <span className="flex-1">{label}</span>
-                <span
-                  aria-hidden="true"
-                  className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
-                >
-                  &rarr;
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-xs text-muted-foreground">
-          Explore software by your business needs
-        </p>
-      </div>
-    </aside>
-  );
-}
-
-function SectionHeading({
+function SectionIntro({
+  eyebrow,
+  title,
+  text,
   action,
-  children,
 }: {
+  eyebrow: string;
+  title: string;
+  text: string;
   action?: ReactNode;
-  children: ReactNode;
 }) {
   return (
-    <div className="flex items-end justify-between gap-5">
-      <h2 className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">
-        {children}
-      </h2>
+    <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div className="max-w-2xl">
+        <p className="text-xs font-bold tracking-[0.16em] text-mint-deep uppercase">
+          {eyebrow}
+        </p>
+        <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
+          {title}
+        </h2>
+        <p className="mt-4 leading-7 text-muted-foreground">{text}</p>
+      </div>
       {action}
+    </div>
+  );
+}
+
+function DecisionOrbit() {
+  const tiles = [
+    'Customer Support',
+    'Live Chat',
+    'CRM',
+    'Business Phone',
+    'Omnichannel',
+    'AI Service',
+  ];
+  return (
+    <div className="dot-field relative mx-auto min-h-[26rem] w-full max-w-xl overflow-hidden rounded-[2rem] border border-border bg-white/80 p-6 shadow-panel sm:min-h-[31rem] sm:p-8">
+      <div className="absolute inset-10 rounded-full border border-dashed border-brand/25" />
+      <div className="absolute inset-[28%] rounded-full border border-mint-deep/20 bg-mint-subtle shadow-card" />
+      <div className="absolute inset-[36%] grid place-items-center rounded-full bg-foreground text-center text-sm font-bold text-white shadow-panel">
+        <span>
+          Racklio
+          <br />
+          <span className="font-normal text-mint">decision lab</span>
+        </span>
+      </div>
+      {tiles.map((tile, index) => {
+        const positions = [
+          'top-8 left-8',
+          'top-12 right-5',
+          'top-[43%] right-3',
+          'bottom-10 right-8',
+          'bottom-7 left-8',
+          'top-[43%] left-3',
+        ];
+        return (
+          <div
+            className={`absolute ${positions[index]} max-w-36 rounded-xl border border-border bg-white px-3 py-2.5 text-xs font-semibold shadow-card transition-transform duration-300 hover:-translate-y-1 hover:rotate-1`}
+            key={tile}
+          >
+            <span className="mb-2 block size-2 rounded-full bg-mint" />
+            {tile}
+          </div>
+        );
+      })}
+      <span className="absolute top-[27%] left-[39%] rounded-full bg-violet-100 px-3 py-1 text-[0.65rem] font-bold text-accent-strong">
+        VERIFIED
+      </span>
+      <span className="absolute right-[26%] bottom-[26%] rounded-full bg-mint-subtle px-3 py-1 text-[0.65rem] font-bold text-mint-deep">
+        BEST FIT
+      </span>
+    </div>
+  );
+}
+
+function ProblemExplorer() {
+  const [selected, setSelected] = useState(0);
+  const current = problems[selected] ?? problems[0];
+  return (
+    <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="grid gap-2 sm:grid-cols-2">
+        {problems.map((problem, index) => (
+          <button
+            aria-pressed={selected === index}
+            className={`min-h-16 rounded-xl border p-4 text-left text-sm font-semibold transition-all ${selected === index ? 'border-brand bg-violet-50 text-accent-strong shadow-card' : 'border-border bg-white hover:border-mint-deep/35 hover:bg-mint-subtle/50'}`}
+            key={problem[0]}
+            onClick={() => setSelected(index)}
+            type="button"
+          >
+            {problem[0]}
+          </button>
+        ))}
+      </div>
+      <div className="relative overflow-hidden rounded-[1.5rem] bg-foreground p-7 text-white shadow-panel sm:p-9">
+        <div
+          aria-hidden="true"
+          className="absolute -right-10 -bottom-10 size-44 rounded-full border-[2rem] border-mint/15"
+        />
+        <p className="text-xs font-bold tracking-[0.14em] text-mint uppercase">
+          Suggested starting point
+        </p>
+        <h3 className="mt-5 text-2xl font-semibold">{current[1]}</h3>
+        <p className="mt-4 max-w-md text-sm leading-6 text-stone-300">
+          {current[2]}
+        </p>
+        <ButtonLink
+          className="mt-7 bg-mint text-foreground hover:bg-[#48d8b5]"
+          href={current[3]}
+        >
+          Explore this path <Arrow />
+        </ButtonLink>
+      </div>
     </div>
   );
 }
 
 export function Home() {
   const canonical = 'https://racklio.com/';
-  const title = 'Racklio \u2014 Compare AI Customer Support Software';
+  const title = 'Racklio — Compare AI Customer Support Software';
   const description =
     'Evidence-based reviews and comparisons of AI customer support, business communications, CRM, and customer engagement software.';
+  const toolCount = new Set([
+    ...reviews.map((item) => item[0]),
+    ...comparisons.flatMap((item) => [item[0], item[1]]),
+  ]).size;
   const schemas = [
     {
       '@context': 'https://schema.org',
@@ -330,294 +338,295 @@ export function Home() {
         />
       ))}
 
-      <section className="relative overflow-hidden border-b border-border bg-white py-10 sm:py-14 lg:py-16">
+      <section className="relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20">
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_82%_10%,rgba(124,58,237,.1),transparent_30%),radial-gradient(circle_at_55%_82%,rgba(37,93,229,.08),transparent_28%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -top-20 right-[-8rem] size-[30rem] rounded-full border-[5rem] border-violet-100/60"
+          className="absolute top-0 right-0 h-full w-1/2 bg-[radial-gradient(circle_at_50%_30%,rgba(98,230,196,.23),transparent_48%)]"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 xl:gap-24">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
+              <p className="inline-flex rounded-full border border-mint-deep/15 bg-mint-subtle px-3 py-1.5 text-xs font-bold tracking-[0.13em] text-mint-deep uppercase">
                 Compare. Choose. Grow.
               </p>
-              <h1 className="mt-5 max-w-2xl text-5xl leading-[1.04] font-semibold tracking-[-0.055em] text-balance sm:text-6xl lg:text-[4.25rem]">
-                Find the right customer service software
+              <h1 className="mt-6 max-w-3xl text-[clamp(2.8rem,5.2vw,4.8rem)] leading-[0.98] font-semibold tracking-[-0.06em]">
+                Choose customer software with evidence, not noise.
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                Independent reviews and side-by-side comparisons to help you
-                choose the best tools for your team and your customers.
+              <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">
+                Racklio turns official product facts, pricing limits, and
+                meaningful trade-offs into clearer software decisions for
+                customer-facing teams.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink
-                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] shadow-card hover:brightness-95"
-                  href="/#categories"
-                  size="lg"
-                >
-                  Find My Best Fit
+                <ButtonLink className="cta-halo" href="/#categories" size="lg">
+                  Explore software <Arrow />
                 </ButtonLink>
                 <ButtonLink href="/#comparisons" size="lg" variant="secondary">
-                  Compare Two Tools
+                  Compare tools <Arrow />
                 </ButtonLink>
               </div>
-              <p className="mt-6 max-w-md text-sm leading-6 text-muted-foreground">
-                Independent research based on official sources, transparent
-                methodology, and no paid rankings.
-              </p>
+              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-muted-foreground">
+                <span>Official-source research</span>
+                <span>•</span>
+                <span>No paid rankings</span>
+                <span>•</span>
+                <span>Conditional guidance</span>
+              </div>
             </div>
-            <DecisionPanel />
+            <DecisionOrbit />
           </div>
         </Container>
       </section>
 
       <section
-        aria-label="Racklio editorial principles"
-        className="border-b border-border bg-white"
+        aria-label="Racklio coverage"
+        className="border-b border-border bg-white/65"
       >
         <Container size="wide">
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
-            {trustItems.map(([icon, primary, secondary], index) => (
-              <li
-                className={`flex min-h-20 items-center gap-4 py-4 sm:px-5 ${index > 0 ? 'sm:border-l' : ''}`}
-                key={primary}
+          <dl className="grid grid-cols-2 lg:grid-cols-5">
+            {[
+              [toolCount, 'Software tools'],
+              [reviews.length, 'Published reviews'],
+              [comparisons.length, 'Comparisons'],
+              [categories.length, 'Active categories'],
+            ].map(([value, label]) => (
+              <div
+                className="border-b border-border p-5 last:border-b-0 even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0"
+                key={label}
               >
-                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-violet-50 text-brand">
-                  <LineIcon name={icon} />
-                </span>
-                <p className="text-sm leading-5 font-semibold">
-                  {primary}
-                  <br />
-                  {secondary}
-                </p>
-              </li>
+                <dd className="text-3xl font-semibold tracking-tight">
+                  <CountUp value={Number(value)} />
+                </dd>
+                <dt className="mt-1 text-xs font-semibold text-muted-foreground">
+                  {label}
+                </dt>
+              </div>
             ))}
-          </ul>
+            <div className="col-span-2 p-5 lg:col-span-1 lg:border-l">
+              <dd className="text-lg font-semibold">August 2026</dd>
+              <dt className="mt-1 text-xs font-semibold text-muted-foreground">
+                Latest editorial update
+              </dt>
+            </div>
+          </dl>
         </Container>
       </section>
 
-      <div className="bg-surface py-8 sm:py-12">
-        <Container className="grid gap-8 sm:gap-10" size="wide">
-          <section aria-labelledby="categories-heading">
-            <SectionHeading
+      <Container className="space-y-20 py-16 sm:py-20" size="wide">
+        <Reveal>
+          <section id="categories" aria-labelledby="problem-heading">
+            <SectionIntro
+              eyebrow="Start with your problem"
+              title="What are you trying to improve?"
+              text="Choose a real business need. Racklio will take you to relevant research—not pretend to calculate a universal answer."
+            />
+            <div className="mt-8">
+              <ProblemExplorer />
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section aria-labelledby="software-heading">
+            <SectionIntro
+              eyebrow="Decision cards"
+              title="Featured software research"
+              text="Concise starting points built from current provider documentation and explicit product limits."
               action={
-                <Link className="hidden sm:inline" href="/#categories">
-                  See all categories &rarr;
+                <Link className="group" href="/#reviews">
+                  All reviews <Arrow />
                 </Link>
               }
-            >
-              <span id="categories-heading">Explore by what you need</span>
-            </SectionHeading>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {categories.map((category) => (
+            />
+            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {reviews.map((item) => (
                 <article
-                  className="flex flex-col rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/30 md:min-h-60 xl:min-h-64"
-                  key={category.code}
+                  className="decision-card flex min-h-64 flex-col rounded-[1.4rem] border border-border bg-white p-6 shadow-card"
+                  key={item[0]}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="grid size-10 place-items-center rounded-lg bg-violet-50 text-xs font-bold text-brand">
-                      {category.icon}
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="rounded-full bg-mint-subtle px-3 py-1 text-[0.65rem] font-bold text-mint-deep uppercase">
+                      {item[1]}
                     </span>
-                    <h3 className="text-base font-semibold tracking-[-0.02em]">
-                      {category.title}
-                    </h3>
+                    <span
+                      aria-hidden="true"
+                      className="size-3 rounded-full bg-brand/70"
+                    />
                   </div>
-                  <p className="mt-5 text-sm leading-6 text-muted-foreground">
-                    {category.description}
+                  <h3 className="mt-7 text-2xl font-semibold">{item[0]}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    <strong className="text-foreground">
+                      Best suited for:{' '}
+                    </strong>
+                    {item[2]}
                   </p>
-                  <Link className="mt-auto pt-6" href={category.href}>
-                    Explore category &rarr;
-                  </Link>
+                  <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 pt-6">
+                    <Link className="group" href={item[3]}>
+                      Read review <Arrow />
+                    </Link>
+                    {item[4] ? (
+                      <Link className="group" href={item[4]} variant="subtle">
+                        Compare <Arrow />
+                      </Link>
+                    ) : null}
+                  </div>
                 </article>
               ))}
             </div>
           </section>
+        </Reveal>
 
-          <section aria-labelledby="featured-heading">
-            <SectionHeading
+        <Reveal>
+          <section id="comparisons" aria-labelledby="comparison-heading">
+            <SectionIntro
+              eyebrow="Comparison explorer"
+              title="Put the operating models side by side"
+              text="Comparison is not a winner badge. It is a structured way to understand which trade-offs matter for your workflow."
               action={
-                <Link className="hidden sm:inline" href="/#reviews">
-                  View all reviews &rarr;
+                <Link className="group" href="/#comparisons">
+                  All comparisons <Arrow />
                 </Link>
               }
-            >
-              <span id="featured-heading">Featured software research</span>
-            </SectionHeading>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {featuredResearch.map((item) => (
-                <article
-                  className="flex flex-col rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/30 md:min-h-64"
-                  key={item.href}
-                >
-                  <p className="text-[0.6875rem] font-semibold tracking-[0.12em] text-brand uppercase">
-                    {item.type}
-                  </p>
-                  <h3 className="mt-3 text-base font-semibold tracking-[-0.02em]">
-                    <Link href={item.href}>{item.title}</Link>
-                  </h3>
-                  <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                    {item.description}
-                  </p>
-                  <p className="mt-auto pt-6 text-xs leading-5 text-muted-foreground">
-                    {item.context}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section aria-labelledby="comparisons-heading">
-            <SectionHeading
-              action={
-                <Link className="hidden sm:inline" href="/#comparisons">
-                  See all comparisons &rarr;
-                </Link>
-              }
-            >
-              <span id="comparisons-heading">
-                Compare software side by side
-              </span>
-            </SectionHeading>
-            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {comparisons.map((comparison) => (
+            />
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {comparisons.map((item) => (
                 <Link
-                  className="group grid min-h-24 grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/40"
-                  href={comparison.href}
-                  key={comparison.href}
+                  className="group decision-card block rounded-[1.4rem] border border-border bg-white p-6 shadow-card"
+                  href={item[3]}
+                  key={item[3]}
                   variant="unstyled"
                 >
-                  <span className="text-sm font-semibold">
-                    {comparison.providers[0]}
-                  </span>
-                  <span className="text-xs text-muted-foreground">vs</span>
-                  <span className="text-right text-sm font-semibold">
-                    {comparison.providers[1]}
+                  <div className="flex items-center gap-3 text-xl font-semibold">
+                    <span>{item[0]}</span>
+                    <span className="grid size-9 place-items-center rounded-full bg-violet-100 text-sm text-brand transition-transform group-hover:rotate-180">
+                      ⇄
+                    </span>
+                    <span>{item[1]}</span>
+                  </div>
+                  <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                    {item[2]}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 font-semibold text-accent-strong">
+                    See comparison <Arrow />
                   </span>
                 </Link>
               ))}
             </div>
           </section>
+        </Reveal>
 
-          <section
-            aria-labelledby="methodology-heading"
-            className="grid gap-7 lg:grid-cols-[0.38fr_1fr] lg:items-stretch"
-          >
-            <div className="py-3">
-              <p className="text-xs font-semibold tracking-[0.14em] text-brand uppercase">
-                Our methodology
-              </p>
-              <h2
-                className="mt-4 text-3xl leading-tight font-semibold tracking-[-0.045em] sm:text-4xl"
-                id="methodology-heading"
-              >
-                Software decisions backed by evidence
-              </h2>
-              <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-                We follow a clear process so buyers can make confident software
-                decisions.
-              </p>
-              <ButtonLink
-                className="mt-6"
-                href="/methodology"
-                variant="secondary"
-              >
-                Read our methodology
-              </ButtonLink>
-            </div>
-            <ol className="grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2 xl:grid-cols-4">
-              {researchSteps.map((step, index) => (
-                <li
-                  className="relative border-b border-border p-5 last:border-b-0 md:odd:border-r xl:border-r xl:border-b-0 xl:last:border-r-0"
-                  key={step.title}
+        <Reveal>
+          <section aria-labelledby="territories-heading">
+            <SectionIntro
+              eyebrow="Category territories"
+              title="Explore the customer software landscape"
+              text="Each territory starts with a distinct operational problem and a focused set of evaluation criteria."
+            />
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {categories.map((item, index) => (
+                <article
+                  className={`decision-card relative overflow-hidden rounded-[1.5rem] border border-border p-7 shadow-card ${index % 2 ? 'bg-violet-50/65' : 'bg-mint-subtle/75'}`}
+                  key={item[0]}
                 >
-                  <span className="grid size-9 place-items-center rounded-full bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] text-sm font-semibold text-white">
-                    {index + 1}
+                  <span className="font-mono text-xs font-bold text-muted-foreground">
+                    0{index + 1} / {item[0]}
                   </span>
-                  <h3 className="mt-5 font-semibold">{step.title}</h3>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                    {step.description}
+                  <h3 className="mt-8 text-2xl font-semibold">{item[1]}</h3>
+                  <p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
+                    {item[3]}
+                  </p>
+                  <Link
+                    className="group mt-6 inline-flex items-center gap-2"
+                    href={item[2]}
+                  >
+                    Enter category <Arrow />
+                  </Link>
+                  <span
+                    aria-hidden="true"
+                    className="absolute -right-8 -bottom-8 size-32 rounded-full border-[1.5rem] border-white/50"
+                  />
+                </article>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section
+            className="overflow-hidden rounded-[2rem] bg-foreground p-7 text-white shadow-panel sm:p-10"
+            aria-labelledby="process-heading"
+          >
+            <SectionIntro
+              eyebrow="How Racklio decides"
+              title="Research made inspectable"
+              text="A transparent editorial process keeps provider statements, verified facts, and Racklio analysis distinct."
+            />
+            <ol className="mt-10 grid gap-7 md:grid-cols-5">
+              {steps.map((step, index) => (
+                <li className="relative" key={step[0]}>
+                  <span className="grid size-10 place-items-center rounded-full bg-mint font-bold text-foreground">
+                    {step[0]}
+                  </span>
+                  {index < steps.length - 1 ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-5 left-12 hidden h-px w-[calc(100%-2.25rem)] bg-white/20 md:block"
+                    />
+                  ) : null}
+                  <h3 className="mt-5 font-semibold">{step[1]}</h3>
+                  <p className="mt-2 text-xs leading-5 text-stone-300">
+                    {step[2]}
                   </p>
                 </li>
               ))}
             </ol>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <ButtonLink
+                className="bg-mint text-foreground hover:bg-[#48d8b5]"
+                href="/methodology"
+              >
+                Read methodology
+              </ButtonLink>
+              <ButtonLink
+                className="border-white/25 bg-white/5 text-white hover:bg-white/10"
+                href="/editorial-standards"
+                variant="secondary"
+              >
+                Editorial standards
+              </ButtonLink>
+            </div>
           </section>
+        </Reveal>
 
-          <section
-            aria-labelledby="independence-heading"
-            className="grid items-center gap-6 rounded-lg border border-violet-200/70 bg-violet-50/70 p-5 shadow-card sm:p-7 lg:grid-cols-[1fr_auto]"
-          >
-            <div className="grid gap-4 sm:grid-cols-[3rem_1fr]">
-              <span className="grid size-11 place-items-center rounded-full border border-violet-200 bg-white text-brand">
-                <LineIcon name="evidence" />
-              </span>
-              <div>
-                <h2
-                  className="text-base font-semibold"
-                  id="independence-heading"
-                >
-                  Independent research. Transparent business model.
-                </h2>
-                <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
-                  Racklio may earn commissions from some links. Affiliate
-                  relationships do not determine rankings or conclusions, and
-                  Racklio does not sell paid rankings. Important claims are
-                  sourced and periodically rechecked; material limitations and
-                  reasons not to choose a product remain part of the analysis.
-                </p>
+        <Reveal>
+          <section className="relative overflow-hidden rounded-[2rem] border border-brand/20 bg-[linear-gradient(120deg,#eee9ff,#e4faf4)] p-8 sm:p-12">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
+                Make the next decision clearer
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
+                Start with the software problem your team needs to solve.
+              </h2>
+              <p className="mt-4 leading-7 text-muted-foreground">
+                Explore focused categories or open an evidence-first comparison
+                without a score, ranking, or manufactured winner.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <ButtonLink href="/#categories">
+                  Explore categories <Arrow />
+                </ButtonLink>
+                <ButtonLink href="/#comparisons" variant="secondary">
+                  Browse comparisons
+                </ButtonLink>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <ButtonLink href="/editorial-standards" variant="secondary">
-                Editorial Standards
-              </ButtonLink>
-              <ButtonLink href="/methodology" variant="secondary">
-                Methodology
-              </ButtonLink>
-              <ButtonLink href="/affiliate-disclosure" variant="secondary">
-                Affiliate Disclosure
-              </ButtonLink>
-            </div>
-          </section>
-
-          <section
-            aria-labelledby="final-cta-heading"
-            className="relative overflow-hidden rounded-lg border border-violet-200/70 bg-white px-5 py-7 shadow-card sm:px-9"
-          >
             <div
               aria-hidden="true"
-              className="absolute right-0 bottom-0 h-16 w-1/2 rounded-tl-[100%] border-t border-brand/30 bg-violet-50/60"
+              className="dot-field absolute top-0 right-0 h-full w-1/3 opacity-60"
             />
-            <div className="relative grid items-center gap-6 lg:grid-cols-[1fr_auto]">
-              <div>
-                <h2
-                  className="max-w-xl text-2xl leading-tight font-semibold tracking-[-0.04em] sm:text-3xl"
-                  id="final-cta-heading"
-                >
-                  Start with the software decision you need to make.
-                </h2>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Explore categories or compare tools to find your best fit.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <ButtonLink
-                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
-                  href="/#categories"
-                  size="lg"
-                >
-                  Explore Categories
-                </ButtonLink>
-                <ButtonLink href="/#comparisons" size="lg" variant="secondary">
-                  Browse Comparisons
-                </ButtonLink>
-              </div>
-            </div>
           </section>
-        </Container>
-      </div>
+        </Reveal>
+      </Container>
     </PageLayout>
   );
 }

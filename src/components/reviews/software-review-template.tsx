@@ -176,7 +176,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
-      <div className="border-b border-border bg-surface-raised">
+      <div className="border-b border-border bg-surface/80">
         <Container>
           <nav
             aria-label="Breadcrumb"
@@ -203,7 +203,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-surface-subtle"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))]"
         spacing="md"
       >
         <Container>
@@ -248,7 +248,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 Facts verified {verificationDate}
               </p>
             </div>
-            <Card>
+            <Card className="border-brand/20 bg-white/85 shadow-panel">
               <CardContent>
                 <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
                   Decision summary

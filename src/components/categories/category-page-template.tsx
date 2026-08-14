@@ -109,7 +109,7 @@ function CategoryMetadata({ data }: { data: SoftwareCategoryData }) {
 
 function Breadcrumbs({ current }: { current: string }) {
   return (
-    <div className="border-b border-border bg-white">
+    <div className="border-b border-border bg-surface/80">
       <Container size="wide">
         <nav
           aria-label="Breadcrumb"
@@ -161,7 +161,7 @@ function LinkCards({ items }: { items: CategoryLink[] }) {
     <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => (
         <article
-          className="flex min-h-48 flex-col rounded-lg border border-border bg-white p-5 shadow-card transition-colors hover:border-brand/30"
+          className="decision-card flex min-h-48 flex-col rounded-xl border border-border bg-white p-5 shadow-card"
           key={item.title}
         >
           <h3 className="text-lg font-semibold tracking-[-0.025em]">
@@ -187,7 +187,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
       <CategoryMetadata data={data} />
       <Breadcrumbs current={data.shortTitle} />
 
-      <section className="relative overflow-hidden border-b border-border bg-white py-10 sm:py-14 lg:py-16">
+      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-14 lg:py-16">
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(124,58,237,.1),transparent_32%)]"
@@ -205,7 +205,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
                 {data.definition}
               </p>
             </div>
-            <div className="rounded-lg border border-violet-200/70 bg-violet-50/70 p-5 shadow-card">
+            <div className="rounded-xl border border-mint-deep/15 bg-white/80 p-5 shadow-card">
               <p className="text-xs font-semibold tracking-[0.12em] text-brand uppercase">
                 Buyer perspective
               </p>
@@ -424,7 +424,7 @@ export function CategoryHubTemplate({
         type="application/ld+json"
       />
 
-      <section className="relative overflow-hidden border-b border-border bg-white py-10 sm:py-14 lg:py-16">
+      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-14 lg:py-16">
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(124,58,237,.1),transparent_34%)]"

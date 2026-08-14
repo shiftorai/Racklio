@@ -338,7 +338,7 @@ function HubPage({
       <meta name="twitter:card" content="summary" />
       <>
         <Section
-          className="border-b border-border bg-surface-subtle py-14 sm:py-16 lg:py-14"
+          className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-14 sm:py-16 lg:py-14"
           spacing="none"
         >
           <Container>

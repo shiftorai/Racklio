@@ -6,7 +6,7 @@ import { Link, type LinkProps } from './link';
 
 const variants = {
   primary:
-    'border-transparent bg-accent text-accent-foreground shadow-subtle hover:bg-accent-hover',
+    'border-transparent bg-accent text-accent-foreground shadow-card hover:bg-accent-hover hover:-translate-y-0.5',
   secondary:
     'border-border bg-surface text-foreground shadow-subtle hover:bg-muted',
   ghost: 'border-transparent bg-transparent text-foreground hover:bg-muted',
@@ -33,7 +33,7 @@ function buttonStyles({
   variant?: ButtonVariant;
 } = {}) {
   return cn(
-    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-md border font-medium whitespace-nowrap transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border font-semibold whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 disabled:pointer-events-none disabled:opacity-50',
     variants[variant],
     sizes[size],
     className,

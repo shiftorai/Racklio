@@ -22,7 +22,7 @@ export function Footer({
       className={cn(
         'border-t',
         tone === 'dark'
-          ? 'border-white/15 bg-foreground text-white'
+          ? 'border-white/10 bg-[#272622] text-white'
           : 'border-border',
         className,
       )}
@@ -31,7 +31,7 @@ export function Footer({
       <Container
         className={cn(
           'flex flex-col gap-8 py-10 text-sm sm:flex-row sm:items-start sm:justify-between sm:py-12',
-          tone === 'dark' ? 'text-slate-300' : 'text-muted-foreground',
+          tone === 'dark' ? 'text-stone-300' : 'text-muted-foreground',
         )}
       >
         <div>
