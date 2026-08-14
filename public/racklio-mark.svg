@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
   <title id="title">Racklio</title>
-  <path fill="#8E1D4F" fill-rule="evenodd" d="M6 4h21c8.3 0 15 6.7 15 15 0 5.5-3 10.4-7.4 13L44 44H32L22.7 32H16v12H6V4Zm10 10v9h11a4.5 4.5 0 1 0 0-9H16Z" clip-rule="evenodd"/>
-  <path fill="#2ECAA6" d="m19 18 3.5-3v6L19 18Zm8 0-3.5 3v-6l3.5 3Z"/>
+  <path fill="#8E1D4F" fill-rule="evenodd" d="M6 4h21c8.3 0 15 6.7 15 15 0 5.5-3 10.4-7.4 13L44 44H32L22.7 32H16v12H6V4Zm10 10h11a4.5 4.5 0 1 1 0 9h-3l-5 5v-5h-3v-9Z" clip-rule="evenodd"/>
+  <path fill="#2ECAA6" d="m17 18.5 4.5-4v8l-4.5-4Zm10 0-4.5 4v-8l4.5 4Z"/>
 </svg>
