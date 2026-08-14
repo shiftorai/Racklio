@@ -226,7 +226,7 @@ function DecisionOrbit() {
             alt=""
             aria-hidden="true"
             className="mx-auto mb-2 size-6"
-            src="/racklio-mark.svg"
+            src="/racklio-mark-v2.svg"
           />
           Racklio
           <br />
@@ -318,7 +318,7 @@ export function Home() {
       '@type': 'Organization',
       name: 'Racklio',
       url: canonical,
-      logo: 'https://racklio.com/racklio-mark.svg',
+      logo: 'https://racklio.com/racklio-mark-v2.svg',
       parentOrganization: { '@type': 'Organization', name: 'Keleva LLC' },
       description,
     },

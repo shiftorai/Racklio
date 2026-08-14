@@ -14,7 +14,7 @@ function RacklioMark() {
       aria-hidden="true"
       className="h-8 w-auto shrink-0 transition-transform duration-200 group-hover:-translate-y-px"
       height="32"
-      src="/racklio-mark.svg"
+      src="/racklio-mark-v2.svg"
       width="32"
     />
   );
