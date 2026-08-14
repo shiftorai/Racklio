@@ -27,6 +27,11 @@ const groups = [
     links: [
       ['About', '/about'],
       ['Contact', '/contact'],
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
       ['Privacy', '/privacy'],
       ['Terms', '/terms'],
     ],

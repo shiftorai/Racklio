@@ -48,7 +48,10 @@ export function Footer({
           ) : null}
         </div>
         {children ? (
-          <nav aria-label="Footer" className="grid gap-8 sm:grid-cols-3">
+          <nav
+            aria-label="Footer"
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {children}
           </nav>
         ) : null}

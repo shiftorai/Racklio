@@ -1,35 +1,36 @@
-import { ResearchMarker } from '@/components/brand';
+import type { ReactNode } from 'react';
+
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { ButtonLink, Container, Link, Section } from '@/components/ui';
+import { ButtonLink, Container, Link } from '@/components/ui';
 
 const categories = [
   {
     code: '01',
+    icon: 'AI',
     title: 'AI Customer Support',
     description:
       'AI agents, automation, help desks, and customer-service platforms.',
-    lens: 'Automation / Knowledge / Handoff',
   },
   {
     code: '02',
+    icon: 'VO',
     title: 'Business Phone & Voice AI',
     description:
       'Cloud phone systems, AI voice agents, contact-center and receptionist software.',
-    lens: 'Calling / Routing / Oversight',
   },
   {
     code: '03',
+    icon: 'CH',
     title: 'Live Chat & Messaging',
     description:
       'Live chat, WhatsApp, conversational messaging, and omnichannel communication.',
-    lens: 'Channels / Inbox / Workflow',
   },
   {
     code: '04',
+    icon: 'CRM',
     title: 'CRM & Customer Engagement',
     description:
       'Software for managing customer relationships, conversations, and engagement.',
-    lens: 'Context / Coordination / Retention',
   },
 ] as const;
 
@@ -78,127 +79,201 @@ const featuredResearch = [
 
 const comparisons = [
   {
-    title: 'Tidio vs Gorgias',
-    description: 'Web support and AI versus commerce-centered help-desk work.',
+    providers: ['Tidio', 'Gorgias'],
     href: '/comparisons/tidio-vs-gorgias',
   },
   {
-    title: 'respond.io vs Tidio',
-    description: 'Omnichannel messaging versus web chat and ticket support.',
+    providers: ['respond.io', 'Tidio'],
     href: '/comparisons/respond-io-vs-tidio',
   },
   {
-    title: 'KrispCall vs Aircall',
-    description:
-      'A compact cloud-phone model versus structured team workflows.',
+    providers: ['KrispCall', 'Aircall'],
     href: '/comparisons/krispcall-vs-aircall',
   },
   {
-    title: 'KrispCall vs CallHippo',
-    description: 'Virtual numbers, calling usage, routing, and plan structure.',
+    providers: ['KrispCall', 'CallHippo'],
     href: '/comparisons/krispcall-vs-callhippo',
   },
 ] as const;
 
 const researchSteps = [
   {
-    number: '01',
     title: 'Research',
     description:
-      'Use official pricing, product documentation, help centers, security information, and terms.',
+      'Use official pricing, product documentation, help centers, security information, terms, and other authoritative provider sources.',
   },
   {
-    number: '02',
     title: 'Verify',
     description:
-      'Check material facts such as pricing, limits, capabilities, and plan conditions.',
+      'Check important facts such as pricing, limits, capabilities, and plan conditions.',
   },
   {
-    number: '03',
     title: 'Compare',
     description:
       'Separate provider facts from editorial analysis and identify meaningful trade-offs.',
   },
   {
-    number: '04',
     title: 'Recommend',
     description:
-      'Explain which buyer may or may not suit each product without manufacturing a universal winner.',
+      'Explain which type of buyer each product may or may not suit.',
   },
 ] as const;
 
-const trustItems = [
-  ['01', 'Research-backed'],
-  ['02', 'Pricing verified'],
-  ['03', 'Limitations included'],
-  ['04', 'Affiliate-transparent'],
+const decisionChoices = [
+  ['Automate customer support', '/#categories', 'spark'],
+  ['Improve business calling', '/#categories', 'phone'],
+  ['Manage customer conversations', '/#categories', 'message'],
+  ['Add an AI receptionist', '/#categories', 'people'],
+  ['Equip a small support team', '/#best', 'support'],
 ] as const;
+
+const trustItems = [
+  ['research', 'Independent', 'Editorial Research'],
+  ['method', 'Transparent', 'Methodology'],
+  ['rank', 'No Paid', 'Rankings'],
+  ['evidence', 'Evidence Before', 'Recommendations'],
+] as const;
+
+function LineIcon({ name }: { name: string }) {
+  const paths: Record<string, ReactNode> = {
+    spark: (
+      <path d="m12 3 1.3 4.2L17 9l-3.7 1.8L12 15l-1.3-4.2L7 9l3.7-1.8L12 3Zm6 11 .7 2.3L21 17.5l-2.3 1.2L18 21l-.7-2.3-2.3-1.2 2.3-1.2L18 14Z" />
+    ),
+    phone: (
+      <path d="M7.2 3.8 10 8 8.2 9.8a14.2 14.2 0 0 0 6 6l1.8-1.8 4.2 2.8-1 3c-.3.8-1.1 1.3-2 1.2C9.8 20.2 3.8 14.2 3 6.8c-.1-.9.4-1.7 1.2-2l3-1Z" />
+    ),
+    message: <path d="M5 5.5h14v10H9l-4 3v-13Z" />,
+    people: (
+      <>
+        <circle cx="9" cy="8" r="3" />
+        <circle cx="17" cy="9" r="2.5" />
+        <path d="M3.5 20c.5-4 2.4-6 5.5-6s5 2 5.5 6M14 15c3.4-.5 5.6 1.2 6.5 4" />
+      </>
+    ),
+    support: (
+      <>
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
+      </>
+    ),
+    research: (
+      <>
+        <path d="M6 4h9l3 3v13H6V4Z" />
+        <path d="M15 4v4h4M9 12h6M9 16h4" />
+      </>
+    ),
+    method: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v10M7 12h10" />
+      </>
+    ),
+    rank: (
+      <>
+        <path d="M7 9V7a5 5 0 0 1 10 0v2M5 9h14v11H5V9Z" />
+        <path d="M9 4V2M15 4V2" />
+      </>
+    ),
+    evidence: (
+      <>
+        <path d="M5 5h14v14H5V5Z" />
+        <path d="m8 12 2.5 2.5L16 9" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-5"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.6"
+      viewBox="0 0 24 24"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
 
 function DecisionPanel() {
   return (
     <aside
       aria-labelledby="decision-panel-heading"
-      className="relative border border-white/15 bg-white text-foreground shadow-panel"
+      className="overflow-hidden rounded-xl border border-border/80 bg-white shadow-panel"
     >
-      <span
-        aria-hidden="true"
-        className="absolute -top-px -left-px size-5 border-t-2 border-l-2 border-brand"
-      />
-      <div className="flex items-center justify-between border-b border-border px-5 py-4 sm:px-7">
-        <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-          Decision brief
-        </p>
-        <span className="font-mono text-[0.625rem] text-muted-foreground">
-          RB / 001
-        </span>
-      </div>
-      <div className="px-5 py-6 sm:px-7 sm:py-7">
-        <h2
-          className="text-2xl font-semibold tracking-[-0.04em]"
-          id="decision-panel-heading"
+      <div className="grid grid-cols-2 border-b border-border text-center text-sm font-semibold">
+        <Link
+          className="border-b-2 border-brand px-4 py-4 text-brand"
+          href="/#categories"
+          variant="unstyled"
         >
-          Find the right fit
-        </h2>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Start with the customer workflow, then narrow the software model.
-        </p>
-        <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-3">
-          {[
-            ['AI', 'Customer support'],
-            ['COMMS', 'Business communications'],
-            ['CRM', 'Customer engagement'],
-          ].map(([code, label]) => (
-            <div className="bg-surface-raised p-4" key={code}>
-              <span className="font-mono text-[0.625rem] text-accent-strong">
-                {code}
-              </span>
-              <p className="mt-2 text-xs leading-5 font-semibold">{label}</p>
-            </div>
-          ))}
-        </div>
-        <dl className="mt-6 divide-y divide-border border-y border-border">
-          {[
-            ['Example fit', 'Small business'],
-            ['Priority', 'AI automation'],
-            ['Need', 'Omnichannel support'],
-          ].map(([term, detail]) => (
-            <div
-              className="grid grid-cols-[6.5rem_1fr] gap-4 py-3 text-sm"
-              key={term}
-            >
-              <dt className="text-muted-foreground">{term}</dt>
-              <dd className="font-semibold">{detail}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-4 text-xs leading-5 text-muted-foreground">
-          Illustrative decision criteria, not a calculated recommendation.
-        </p>
-        <Link className="mt-5 inline-block" href="/#categories">
-          View matching software &rarr;
+          Find My Best Fit
+        </Link>
+        <Link
+          className="px-4 py-4 text-muted-foreground hover:text-foreground"
+          href="/#comparisons"
+          variant="unstyled"
+        >
+          Compare Tools
         </Link>
       </div>
+      <div className="p-5 sm:p-7">
+        <h2
+          className="text-xl font-semibold tracking-[-0.035em]"
+          id="decision-panel-heading"
+        >
+          What do you want to improve?
+        </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Choose a starting point for your research.
+        </p>
+        <ul className="mt-5 grid gap-2">
+          {decisionChoices.map(([label, href, icon]) => (
+            <li key={label}>
+              <Link
+                className="group flex min-h-12 items-center gap-3 rounded-md border border-border bg-white px-3.5 text-sm font-semibold shadow-subtle hover:border-brand/40 hover:bg-violet-50/50"
+                href={href}
+                variant="unstyled"
+              >
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-violet-50 text-brand">
+                  <LineIcon name={icon} />
+                </span>
+                <span className="flex-1">{label}</span>
+                <span
+                  aria-hidden="true"
+                  className="text-muted-foreground transition-transform group-hover:translate-x-0.5"
+                >
+                  &rarr;
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-xs text-muted-foreground">
+          Discovery links &middot; No calculated recommendations
+        </p>
+      </div>
     </aside>
+  );
+}
+
+function SectionHeading({
+  action,
+  children,
+}: {
+  action?: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex items-end justify-between gap-5">
+      <h2 className="text-2xl font-semibold tracking-[-0.04em] sm:text-3xl">
+        {children}
+      </h2>
+      {action}
+    </div>
   );
 }
 
@@ -247,295 +322,284 @@ export function Home() {
         />
       ))}
 
-      <Section
-        className="relative overflow-hidden border-b border-white/10 bg-foreground py-16 text-white sm:py-20 lg:py-24"
-        spacing="none"
-      >
+      <section className="relative overflow-hidden border-b border-border bg-white py-12 sm:py-16 lg:py-20">
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-60 [background-image:linear-gradient(to_right,rgba(255,255,255,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.045)_1px,transparent_1px)] [background-size:42px_42px]"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_82%_10%,rgba(124,58,237,.1),transparent_30%),radial-gradient(circle_at_55%_82%,rgba(37,93,229,.08),transparent_28%)]"
         />
         <div
           aria-hidden="true"
-          className="absolute top-0 right-0 h-full w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(124,58,237,.2),transparent_60%)]"
+          className="absolute -top-20 right-[-8rem] size-[30rem] rounded-full border-[5rem] border-violet-100/60"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 xl:gap-24">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 xl:gap-24">
             <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-blue-300 uppercase">
-                Independent software research
+              <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
+                Compare. Choose. Grow.
               </p>
-              <h1 className="mt-6 max-w-3xl text-5xl leading-[1.02] font-semibold tracking-[-0.06em] text-balance sm:text-6xl lg:text-[4.5rem]">
-                Choose the right customer software with confidence.
+              <h1 className="mt-5 max-w-2xl text-5xl leading-[1.04] font-semibold tracking-[-0.055em] text-balance sm:text-6xl lg:text-[4.25rem]">
+                Find the right customer service software
               </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
-                {description}
+              <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
+                Independent reviews and side-by-side comparisons to help you
+                choose the best tools for your team and your customers.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/#categories" size="lg">
-                  Explore Software
-                </ButtonLink>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink
-                  className="border-white/25 bg-white/5 text-white hover:bg-white/10"
-                  href="/#comparisons"
+                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] shadow-card hover:brightness-95"
+                  href="/#categories"
                   size="lg"
-                  variant="secondary"
                 >
-                  Compare Tools
+                  Find My Best Fit
+                </ButtonLink>
+                <ButtonLink href="/#comparisons" size="lg" variant="secondary">
+                  Compare Two Tools
                 </ButtonLink>
               </div>
-              <p className="mt-6 text-sm text-slate-300">
-                Independent research &middot; Official sources &middot; No paid
-                rankings
+              <p className="mt-6 max-w-md text-sm leading-6 text-muted-foreground">
+                Independent research based on official sources, transparent
+                methodology, and no paid rankings.
               </p>
             </div>
             <DecisionPanel />
           </div>
         </Container>
-      </Section>
+      </section>
 
-      <div className="border-b border-border bg-surface-raised">
+      <section
+        aria-label="Racklio editorial principles"
+        className="border-b border-border bg-white"
+      >
         <Container size="wide">
-          <ul className="grid border-l border-border sm:grid-cols-2 lg:grid-cols-4">
-            {trustItems.map(([code, label]) => (
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
+            {trustItems.map(([icon, primary, secondary], index) => (
               <li
-                className="flex min-h-14 items-center gap-3 border-r border-b border-border px-4 text-sm font-semibold lg:border-b-0"
-                key={code}
+                className={`flex min-h-20 items-center gap-4 py-4 sm:px-5 ${index > 0 ? 'sm:border-l' : ''}`}
+                key={primary}
               >
-                <span className="font-mono text-[0.625rem] text-accent-strong">
-                  {code}
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-violet-50 text-brand">
+                  <LineIcon name={icon} />
                 </span>
-                {label}
+                <p className="text-sm leading-5 font-semibold">
+                  {primary}
+                  <br />
+                  {secondary}
+                </p>
               </li>
             ))}
           </ul>
         </Container>
-      </div>
+      </section>
 
-      <Section id="explore" spacing="lg">
-        <Container size="wide">
-          <ResearchMarker code="EX" label="Explore the market" />
-          <div className="mt-5 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <div>
-              <h2 className="text-4xl leading-tight font-semibold tracking-[-0.05em] text-balance sm:text-5xl">
-                Explore by what you need
-              </h2>
-            </div>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              Begin with the customer problem or communication capability your
-              business needs&mdash;even if you do not yet know which vendor
-              belongs on the shortlist.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-px border border-border bg-border md:grid-cols-2">
-            {categories.map((category) => (
-              <article
-                className="group relative bg-surface-raised p-6 sm:p-8"
-                key={category.code}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <span className="font-mono text-xs text-accent-strong">
-                    {category.code}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="h-px w-12 bg-border group-hover:bg-accent"
-                  />
-                </div>
-                <h3 className="mt-8 text-2xl font-semibold tracking-[-0.035em]">
-                  {category.title}
-                </h3>
-                <p className="mt-3 max-w-lg leading-7 text-muted-foreground">
-                  {category.description}
-                </p>
-                <p className="mt-7 border-t border-border pt-4 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                  {category.lens}
-                </p>
-                <Link className="mt-5 inline-block" href="/#categories">
-                  Explore category &rarr;
+      <div className="bg-surface py-10 sm:py-14">
+        <Container className="grid gap-10 sm:gap-12" size="wide">
+          <section aria-labelledby="categories-heading">
+            <SectionHeading
+              action={
+                <Link className="hidden sm:inline" href="/#categories">
+                  See all categories &rarr;
                 </Link>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section
-        className="border-y border-border bg-surface-raised"
-        spacing="lg"
-      >
-        <Container size="wide">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <ResearchMarker code="FR" label="Editorial coverage" />
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.05em] sm:text-5xl">
-                Featured software research
-              </h2>
-            </div>
-            <Link href="/#reviews">Browse all reviews &rarr;</Link>
-          </div>
-          <div className="mt-12 grid gap-px border-y border-border bg-border lg:grid-cols-5">
-            {featuredResearch.map((item, index) => (
-              <article
-                className={`bg-surface-raised py-6 lg:px-6 ${index === 0 ? 'lg:pl-0' : ''} ${index === featuredResearch.length - 1 ? 'lg:pr-0' : ''}`}
-                key={item.href}
-              >
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  {item.type}
-                </p>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight">
-                  <Link href={item.href}>{item.title}</Link>
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  {item.description}
-                </p>
-                <p className="mt-6 text-xs leading-5 text-muted-foreground">
-                  {item.context}
-                </p>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section spacing="lg">
-        <Container size="wide">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <div>
-              <ResearchMarker code="CP" label="Decision comparisons" />
-              <h2 className="mt-5 text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl">
-                Compare software side by side
-              </h2>
-              <p className="mt-5 max-w-lg text-lg leading-8 text-muted-foreground">
-                Understand meaningful differences in operating model, pricing,
-                limitations, and buyer fit&mdash;not merely longer feature
-                lists.
-              </p>
-              <ButtonLink
-                className="mt-8"
-                href="/#comparisons"
-                variant="secondary"
-              >
-                Browse Comparisons
-              </ButtonLink>
-            </div>
-            <div className="border-y border-border">
-              {comparisons.map((comparison, index) => (
+              }
+            >
+              <span id="categories-heading">Explore by what you need</span>
+            </SectionHeading>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {categories.map((category) => (
                 <article
-                  className="grid gap-4 border-b border-border py-6 last:border-b-0 sm:grid-cols-[2rem_1fr_auto] sm:items-center"
-                  key={comparison.href}
+                  className="flex min-h-64 flex-col rounded-lg border border-border bg-white p-5 shadow-card"
+                  key={category.code}
                 >
-                  <span className="font-mono text-xs text-accent-strong">
-                    0{index + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      {comparison.title}
+                  <div className="flex items-center gap-3">
+                    <span className="grid size-10 place-items-center rounded-lg bg-violet-50 text-xs font-bold text-brand">
+                      {category.icon}
+                    </span>
+                    <h3 className="text-base font-semibold tracking-[-0.02em]">
+                      {category.title}
                     </h3>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                      {comparison.description}
-                    </p>
                   </div>
-                  <Link href={comparison.href}>Compare &rarr;</Link>
+                  <p className="mt-5 text-sm leading-6 text-muted-foreground">
+                    {category.description}
+                  </p>
+                  <Link className="mt-auto pt-6" href="/#categories">
+                    Explore category &rarr;
+                  </Link>
                 </article>
               ))}
             </div>
-          </div>
-        </Container>
-      </Section>
+          </section>
 
-      <Section className="bg-foreground text-white" spacing="lg">
-        <Container size="wide">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-            <div>
-              <ResearchMarker
-                code="MT"
-                label="Editorial methodology"
-                tone="dark"
-              />
-              <h2 className="mt-5 text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl">
+          <section aria-labelledby="featured-heading">
+            <SectionHeading
+              action={
+                <Link className="hidden sm:inline" href="/#reviews">
+                  View all reviews &rarr;
+                </Link>
+              }
+            >
+              <span id="featured-heading">Featured software research</span>
+            </SectionHeading>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {featuredResearch.map((item) => (
+                <article
+                  className="flex min-h-64 flex-col rounded-lg border border-border bg-white p-5 shadow-subtle"
+                  key={item.href}
+                >
+                  <p className="text-[0.6875rem] font-semibold tracking-[0.12em] text-brand uppercase">
+                    {item.type}
+                  </p>
+                  <h3 className="mt-3 text-base font-semibold tracking-[-0.02em]">
+                    <Link href={item.href}>{item.title}</Link>
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                    {item.description}
+                  </p>
+                  <p className="mt-auto pt-6 text-xs leading-5 text-muted-foreground">
+                    {item.context}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section aria-labelledby="comparisons-heading">
+            <SectionHeading
+              action={
+                <Link className="hidden sm:inline" href="/#comparisons">
+                  See all comparisons &rarr;
+                </Link>
+              }
+            >
+              <span id="comparisons-heading">
+                Compare software side by side
+              </span>
+            </SectionHeading>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {comparisons.map((comparison) => (
+                <Link
+                  className="group grid min-h-24 grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-border bg-white p-4 shadow-subtle hover:border-brand/40"
+                  href={comparison.href}
+                  key={comparison.href}
+                  variant="unstyled"
+                >
+                  <span className="text-sm font-semibold">
+                    {comparison.providers[0]}
+                  </span>
+                  <span className="text-xs text-muted-foreground">vs</span>
+                  <span className="text-right text-sm font-semibold">
+                    {comparison.providers[1]}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <section
+            aria-labelledby="methodology-heading"
+            className="grid gap-7 lg:grid-cols-[0.38fr_1fr] lg:items-stretch"
+          >
+            <div className="py-3">
+              <p className="text-xs font-semibold tracking-[0.14em] text-brand uppercase">
+                Our methodology
+              </p>
+              <h2
+                className="mt-4 text-3xl leading-tight font-semibold tracking-[-0.045em] sm:text-4xl"
+                id="methodology-heading"
+              >
                 Software decisions backed by evidence
               </h2>
-              <p className="mt-5 max-w-lg leading-7 text-slate-300">
-                Racklio turns official provider information into conditional,
-                business-focused guidance while keeping claims and analysis
-                distinct.
+              <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
+                We follow a clear process so buyers can make confident software
+                decisions.
               </p>
               <ButtonLink
-                className="mt-8"
+                className="mt-6"
                 href="/methodology"
                 variant="secondary"
               >
                 Read our methodology
               </ButtonLink>
             </div>
-            <ol className="grid border-t border-white/20 sm:grid-cols-2">
-              {researchSteps.map((step) => (
+            <ol className="grid overflow-hidden rounded-lg border border-border bg-white md:grid-cols-2 xl:grid-cols-4">
+              {researchSteps.map((step, index) => (
                 <li
-                  className="grid grid-cols-[2rem_1fr] gap-4 border-b border-white/20 py-6 sm:odd:pr-7 sm:even:border-l sm:even:pl-7"
-                  key={step.number}
+                  className="relative border-b border-border p-5 last:border-b-0 md:odd:border-r xl:border-r xl:border-b-0 xl:last:border-r-0"
+                  key={step.title}
                 >
-                  <span className="font-mono text-xs text-blue-300">
-                    {step.number}
+                  <span className="grid size-9 place-items-center rounded-full bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] text-sm font-semibold text-white">
+                    {index + 1}
                   </span>
-                  <div>
-                    <h3 className="text-lg font-semibold">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">
-                      {step.description}
-                    </p>
-                  </div>
+                  <h3 className="mt-5 font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                    {step.description}
+                  </p>
                 </li>
               ))}
             </ol>
-          </div>
-        </Container>
-      </Section>
+          </section>
 
-      <Section className="border-b border-border" spacing="lg">
-        <Container size="wide">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            <div>
-              <ResearchMarker code="EI" label="Editorial independence" />
-              <h2 className="mt-5 text-4xl leading-tight font-semibold tracking-[-0.05em] text-balance sm:text-5xl">
-                Independent research. Transparent business model.
-              </h2>
-            </div>
-            <div>
-              <p className="text-lg leading-8 text-muted-foreground">
-                Racklio may earn commissions from some links. Affiliate
-                relationships do not determine rankings or conclusions, and
-                Racklio does not sell paid rankings. Important claims are
-                sourced and periodically rechecked; material limitations and
-                reasons not to choose a product remain part of the analysis.
-              </p>
-              <div className="mt-7 flex flex-wrap gap-x-7 gap-y-3">
-                <Link href="/methodology">Methodology</Link>
-                <Link href="/editorial-standards">Editorial Standards</Link>
-                <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
+          <section
+            aria-labelledby="independence-heading"
+            className="grid items-center gap-6 rounded-lg border border-violet-200/70 bg-violet-50/70 p-5 sm:p-7 lg:grid-cols-[1fr_auto]"
+          >
+            <div className="grid gap-4 sm:grid-cols-[3rem_1fr]">
+              <span className="grid size-11 place-items-center rounded-full border border-violet-200 bg-white text-brand">
+                <LineIcon name="evidence" />
+              </span>
+              <div>
+                <h2
+                  className="text-base font-semibold"
+                  id="independence-heading"
+                >
+                  Independent research. Transparent business model.
+                </h2>
+                <p className="mt-2 max-w-4xl text-sm leading-6 text-muted-foreground">
+                  Racklio may earn commissions from some links. Affiliate
+                  relationships do not determine rankings or conclusions, and
+                  Racklio does not sell paid rankings. Important claims are
+                  sourced and periodically rechecked; material limitations and
+                  reasons not to choose a product remain part of the analysis.
+                </p>
               </div>
             </div>
-          </div>
-        </Container>
-      </Section>
+            <div className="flex flex-wrap gap-2">
+              <ButtonLink href="/editorial-standards" variant="secondary">
+                Editorial Standards
+              </ButtonLink>
+              <ButtonLink href="/methodology" variant="secondary">
+                Methodology
+              </ButtonLink>
+              <ButtonLink href="/affiliate-disclosure" variant="secondary">
+                Affiliate Disclosure
+              </ButtonLink>
+            </div>
+          </section>
 
-      <Section spacing="lg">
-        <Container size="wide">
-          <div className="relative overflow-hidden border border-border bg-surface-raised px-6 py-10 shadow-card sm:px-10 sm:py-12 lg:px-14">
-            <span
+          <section
+            aria-labelledby="final-cta-heading"
+            className="relative overflow-hidden rounded-lg border border-violet-200/70 bg-white px-5 py-7 sm:px-9"
+          >
+            <div
               aria-hidden="true"
-              className="absolute top-0 left-0 h-1 w-28 bg-[linear-gradient(90deg,var(--color-accent),var(--color-brand))]"
+              className="absolute right-0 bottom-0 h-16 w-1/2 rounded-tl-[100%] border-t border-brand/30 bg-violet-50/60"
             />
-            <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+            <div className="relative grid items-center gap-6 lg:grid-cols-[1fr_auto]">
               <div>
-                <p className="text-xs font-semibold tracking-[0.16em] text-accent-strong uppercase">
-                  Begin your research
-                </p>
-                <h2 className="mt-4 max-w-3xl text-3xl leading-tight font-semibold tracking-[-0.045em] sm:text-4xl">
+                <h2
+                  className="max-w-xl text-2xl leading-tight font-semibold tracking-[-0.04em] sm:text-3xl"
+                  id="final-cta-heading"
+                >
                   Start with the software decision you need to make.
                 </h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Explore categories or compare tools to find your best fit.
+                </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/#categories" size="lg">
+                <ButtonLink
+                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
+                  href="/#categories"
+                  size="lg"
+                >
                   Explore Categories
                 </ButtonLink>
                 <ButtonLink href="/#comparisons" size="lg" variant="secondary">
@@ -543,9 +607,9 @@ export function Home() {
                 </ButtonLink>
               </div>
             </div>
-          </div>
+          </section>
         </Container>
-      </Section>
+      </div>
     </PageLayout>
   );
 }

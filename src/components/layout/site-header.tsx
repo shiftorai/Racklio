@@ -61,7 +61,12 @@ export function SiteHeader() {
             >
               <span aria-hidden="true" className="search-icon" />
             </Link>
-            <ButtonLink href="/#categories">Find the Right Software</ButtonLink>
+            <ButtonLink
+              className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
+              href="/#categories"
+            >
+              Find the Right Software
+            </ButtonLink>
           </div>
 
           <details className="group relative xl:hidden">
@@ -89,7 +94,10 @@ export function SiteHeader() {
                 >
                   <span aria-hidden="true" className="search-icon" />
                 </Link>
-                <ButtonLink href="/#categories">
+                <ButtonLink
+                  className="bg-[linear-gradient(135deg,var(--color-accent),var(--color-brand))] hover:brightness-95"
+                  href="/#categories"
+                >
                   Find the Right Software
                 </ButtonLink>
               </div>
