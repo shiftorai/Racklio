@@ -28,6 +28,10 @@ export const softwareCategories: SoftwareCategoryData[] = [
         label: 'Focused website AI chat',
         text: 'Consider EazyChat.io when a small team needs website AI answers, human takeover, and can forecast its monthly AI allowance.',
       },
+      {
+        label: 'Cross-channel AI agent deployment',
+        text: 'Consider Vida.io when agents must handle communications across channels while connecting to operational workflows through a pilot-led deployment.',
+      },
     ],
     scenarios: [
       {
@@ -54,6 +58,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         scenario: 'Messaging-led B2C service across several channels',
         consider: 'respond.io',
         why: 'Its shared conversation workspace, workflows, and active-contact model align with omnichannel operations.',
+      },
+      {
+        scenario:
+          'Defined support workflow spanning voice, text, email, and web chat',
+        consider: 'Consider Vida.io',
+        why: 'Vida documents omnichannel agents and connected workflow integrations through a pilot-led deployment model.',
       },
     ],
     metaTitle: 'AI Customer Support Software Reviews & Comparisons | Racklio',
@@ -83,6 +93,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Consider commerce context, store actions, channels, ticket volume, and automation.',
         href: '/reviews/gorgias',
+      },
+      {
+        title: 'Plan an omnichannel AI agent',
+        description:
+          'Define the channels, integrations, human escalation, pilot scope, and production responsibilities.',
+        href: '/reviews/vida',
       },
     ],
     products: [
@@ -115,6 +131,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'AI website chat, human handoff, EazyDesk integration, conversation limits, and product maturity.',
         href: '/reviews/eazychat',
+      },
+      {
+        title: 'Vida.io Review',
+        description:
+          'Pilot-led AI agents for voice, text, email, web chat, connected workflows, and business-system integrations.',
+        href: '/reviews/vida',
       },
     ],
     comparisons: [
@@ -156,6 +178,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
           'Compare a focused AI-chat product with broader support and messaging platforms.',
         href: '/alternatives/eazychat-alternatives',
       },
+      {
+        title: 'Vida.io Alternatives',
+        description:
+          'Choose between a pilot-led AI-agent deployment and narrower phone, texting, or messaging workflows.',
+        href: '/alternatives/vida-alternatives',
+      },
     ],
     guides: [
       {
@@ -163,6 +191,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Understand per-user rates, AI conversation allowances, add-ons, and plan boundaries.',
         href: '/guides/eazychat-pricing',
+      },
+      {
+        title: 'Vida.io Pricing',
+        description:
+          'Understand the pilot-first model, $1,500 starting investment, scope-dependent production pricing, and proposal questions.',
+        href: '/guides/vida-pricing',
       },
     ],
     factors: (
@@ -228,13 +262,14 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Teams centered on WhatsApp or shared messaging may need Live Chat & Messaging.',
       'Organizations seeking broad relationship and lifecycle management may need CRM & Customer Engagement.',
     ],
-    verificationDate: 'August 15, 2026',
+    verificationDate: 'August 21, 2026',
     sources: [
       { title: 'Tidio pricing', href: 'https://www.tidio.com/pricing/' },
       { title: 'Gorgias pricing', href: 'https://www.gorgias.com/pricing' },
       { title: 'respond.io pricing', href: 'https://respond.io/pricing' },
       { title: 'EazyChat.io pricing', href: 'https://eazychat.io/pricing' },
       { title: 'Typewise product', href: 'https://www.typewise.app/' },
+      { title: 'Vida platform', href: 'https://vida.io/platform' },
     ],
     faqs: [
       {
@@ -278,8 +313,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         text: 'Evaluate CallHippo when its plan, included usage, number availability, and routing model align more closely with target countries.',
       },
       {
-        label: 'AI receptionist requirement',
-        text: 'Treat voice automation as a separate requirements track covering tasks, disclosure, recording, human handoff, monitoring, and billing.',
+        label: 'CRM-connected texting and calling',
+        text: 'Consider Salesmsg when business SMS and calling need shared ownership, supported CRM synchronization, workflow automation, and separately modeled credits and carrier costs.',
+      },
+      {
+        label: 'Pilot-led omnichannel AI agents',
+        text: 'Consider Vida.io when the project requires agents across voice, text, email, web chat, and connected operational workflows rather than a self-service phone plan.',
       },
     ],
     scenarios: [
@@ -299,9 +338,14 @@ export const softwareCategories: SoftwareCategoryData[] = [
         why: 'Seat rates alone do not establish number, destination, minute, SMS, or fair-use cost.',
       },
       {
-        scenario: 'WhatsApp- or chat-first customer service',
-        consider: 'Use another category',
-        why: 'A phone-centered system may add unnecessary carrier and number complexity to a messaging-led workflow.',
+        scenario: 'CRM-led sales or support workflow using SMS and calls',
+        consider: 'Consider Salesmsg',
+        why: 'Its documented platform combines business texting, calling, CRM synchronization, shared inboxes, and workflow automation.',
+      },
+      {
+        scenario: 'Business designing a cross-channel AI agent deployment',
+        consider: 'Consider Vida.io',
+        why: 'Vida documents omnichannel agents, integrations, operations automation, and a discovery-to-pilot deployment process.',
       },
     ],
     metaTitle: 'Business Phone & Voice AI Software | Racklio',
@@ -327,10 +371,16 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/comparisons/krispcall-vs-aircall',
       },
       {
-        title: 'Investigate AI reception',
+        title: 'Connect texting and calling to CRM workflows',
         description:
-          'Define answering scope, escalation, operating hours, oversight, and billing before selecting a tool.',
-        href: '/categories/business-phone-voice-ai',
+          'Evaluate business SMS, calls, shared inboxes, CRM sync, credits, carrier fees, and compliance requirements.',
+        href: '/reviews/salesmsg',
+      },
+      {
+        title: 'Scope an AI agent deployment',
+        description:
+          'Define channels, routing, integrations, human handoff, pilot success measures, and production responsibilities.',
+        href: '/reviews/vida',
       },
     ],
     products: [
@@ -339,6 +389,24 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Cloud calling, virtual numbers, SMS, per-user plans, and separate usage charges.',
         href: '/reviews/krispcall',
+      },
+      {
+        title: 'Salesmsg Review',
+        description:
+          'Business texting, calling, CRM workflow connections, AI agents, credits, carrier charges, and compliance cost boundaries.',
+        href: '/reviews/salesmsg',
+      },
+      {
+        title: 'Vida.io Review',
+        description:
+          'Pilot-led AI agents for voice, text, email, web chat, workflow automation, integrations, and reseller use cases.',
+        href: '/reviews/vida',
+      },
+      {
+        title: 'Fireflies.ai Review',
+        description:
+          'Meeting and dialer capture, Voice Agents, workflow integrations, and AI-credit cost boundaries for teams with call context needs.',
+        href: '/reviews/fireflies',
       },
     ],
     comparisons: [
@@ -355,8 +423,34 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/comparisons/krispcall-vs-callhippo',
       },
     ],
-    alternativeGuides: [],
-    guides: [],
+    alternativeGuides: [
+      {
+        title: 'Salesmsg Alternatives',
+        description:
+          'Compare phone-system, omnichannel messaging, and broader CRM-suite paths.',
+        href: '/alternatives/salesmsg-alternatives',
+      },
+      {
+        title: 'Vida.io Alternatives',
+        description:
+          'Choose between pilot-led agents and narrower business-phone, texting, or messaging operating models.',
+        href: '/alternatives/vida-alternatives',
+      },
+    ],
+    guides: [
+      {
+        title: 'Salesmsg Pricing',
+        description:
+          'Review plan pricing, credits, extra capacity, carrier fees, 10DLC, and total-cost drivers.',
+        href: '/guides/salesmsg-pricing',
+      },
+      {
+        title: 'Vida.io Pricing',
+        description:
+          'Review the pilot-first model, $1,500 starting investment, and scope-dependent production proposal.',
+        href: '/guides/vida-pricing',
+      },
+    ],
     factors: (
       [
         [
@@ -420,12 +514,22 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Ticket-based service operations may need an AI Customer Support platform.',
       'Teams seeking contact records and lifecycle automation may need CRM & Customer Engagement.',
     ],
-    verificationDate: 'August 15, 2026',
+    verificationDate: 'August 21, 2026',
     sources: [
       { title: 'KrispCall pricing', href: 'https://krispcall.com/pricing/' },
       { title: 'KrispCall features', href: 'https://krispcall.com/features/' },
       { title: 'Aircall pricing', href: 'https://aircall.io/pricing/' },
       { title: 'CallHippo pricing', href: 'https://callhippo.com/pricing/' },
+      {
+        title: 'Salesmsg pricing',
+        href: 'https://www.salesmessage.com/pricing',
+      },
+      {
+        title: 'Salesmsg integrations',
+        href: 'https://www.salesmessage.com/integrations',
+      },
+      { title: 'Vida pricing', href: 'https://vida.io/pricing' },
+      { title: 'Vida features', href: 'https://vida.io/features' },
     ],
     faqs: [
       {
@@ -719,6 +823,30 @@ export const softwareCategories: SoftwareCategoryData[] = [
         label: 'Messaging-led relationship workflow',
         text: 'Start in Live Chat & Messaging when WhatsApp, shared conversations, and channel operations are the central system requirement.',
       },
+      {
+        label: 'Agent-led connected operations',
+        text: 'Consider Vida.io when AI agents must work across communications while connecting to CRM and other operating systems through a scoped deployment.',
+      },
+      {
+        label: 'Sales conversation intelligence',
+        text: 'Consider Demodesk when revenue teams need customer-conversation capture, coaching, CRM review, deal context, and governed post-call automation together.',
+      },
+      {
+        label: 'Conversation-led CRM enrichment',
+        text: 'Consider Claap when revenue teams need captured customer conversations to support CRM enrichment, coaching, deal intelligence, and structured post-meeting workflow.',
+      },
+      {
+        label: 'Email-led customer engagement',
+        text: 'Consider Campaign Monitor when branded email, segmentation, automated journeys, transactional messages, analytics, and plan-supported AI are the primary workflow rather than full CRM operations.',
+      },
+      {
+        label: 'Creator and small-business email automation',
+        text: 'Consider AWeber when explicit subscriber and send tiers, landing pages, straightforward automation, and light ecommerce tools fit better than a broad CRM platform.',
+      },
+      {
+        label: 'Pay-as-you-go B2B prospecting data',
+        text: 'Consider Bookyourdata when targeted contact acquisition, suppression, export, or enrichment is needed without a recurring subscription; it does not replace CRM or outreach workflow.',
+      },
     ],
     scenarios: [
       {
@@ -740,6 +868,34 @@ export const softwareCategories: SoftwareCategoryData[] = [
         scenario: 'WhatsApp-led B2C conversation operation',
         consider: 'respond.io or messaging software',
         why: 'A conversation platform can align more directly than lifecycle CRM when messaging channels are the center of work.',
+      },
+      {
+        scenario: 'CRM-connected AI agents handling customer communications',
+        consider: 'Consider Vida.io',
+        why: 'Vida documents CRM integrations, workflow automation, and omnichannel agent deployment; proposal scope should define the actual CRM work.',
+      },
+      {
+        scenario:
+          'Revenue team standardizing sales conversations and CRM follow-up',
+        consider: 'Consider Demodesk',
+        why: 'Demodesk documents capture, AI coaching, CRM Concierge with approval, deal insights, reporting, and custom-agent workflows for revenue teams.',
+      },
+      {
+        scenario:
+          'Sales team enriching CRM records from meeting and call context',
+        consider: 'Consider Claap',
+        why: 'Claap documents conversation capture, CRM Auto-Complete, AI Coaching, Deal Insights, Smart Tables, and Business-level sales workflow features.',
+      },
+      {
+        scenario:
+          'Marketing team running email campaigns and lifecycle journeys',
+        consider: 'Consider Campaign Monitor',
+        why: 'Campaign Monitor documents campaign creation, segmentation, automated journeys, transactional email, analytics, and plan-dependent AI tools.',
+      },
+      {
+        scenario: 'Creator or small business building an email-led audience',
+        consider: 'Consider AWeber',
+        why: 'AWeber documents a free starting plan, subscriber/send tiers, campaigns, pages, automation, segmentation, ecommerce tools, and integrations.',
       },
     ],
     metaTitle: 'CRM & Customer Engagement Software | Racklio',
@@ -770,6 +926,42 @@ export const softwareCategories: SoftwareCategoryData[] = [
           'Compare setup effort, contact management, communication, automation, integrations, and cost.',
         href: '/guides/engagebay-pricing',
       },
+      {
+        title: 'Connect texting and calling to CRM',
+        description:
+          'Assess conversation sync, workflow triggers, numbers, credits, carrier fees, and consent requirements.',
+        href: '/reviews/salesmsg',
+      },
+      {
+        title: 'Connect AI agents to operational systems',
+        description:
+          'Assess CRM, calendar, ticketing, webhook, API, workflow, ownership, and deployment boundaries.',
+        href: '/reviews/vida',
+      },
+      {
+        title: 'Connect sales conversations to CRM workflow',
+        description:
+          'Evaluate capture coverage, coaching, suggested CRM changes, approval controls, deal context, and agent usage costs.',
+        href: '/reviews/demodesk',
+      },
+      {
+        title: 'Enrich CRM records from customer conversations',
+        description:
+          'Evaluate recording coverage, CRM mapping, AI credits, coaching, deal review, sharing controls, and operational ownership.',
+        href: '/reviews/claap',
+      },
+      {
+        title: 'Run email-led customer engagement',
+        description:
+          'Evaluate contacts, send frequency, segmentation, journeys, transactional email, analytics, AI availability, and billing model.',
+        href: '/reviews/campaign-monitor',
+      },
+      {
+        title: 'Build a creator or small-business email program',
+        description:
+          'Evaluate subscribers, sends, lists, landing pages, automations, segments, users, ecommerce, integrations, and billing thresholds.',
+        href: '/reviews/aweber',
+      },
     ],
     products: [
       {
@@ -778,8 +970,62 @@ export const softwareCategories: SoftwareCategoryData[] = [
           'CRM, marketing, sales, service workflows, plan limits, integrations, and small-business fit.',
         href: '/reviews/engagebay',
       },
+      {
+        title: 'Salesmsg Review',
+        description:
+          'Business texting and calling connected to supported CRM workflows, with usage and compliance cost boundaries.',
+        href: '/reviews/salesmsg',
+      },
+      {
+        title: 'Vida.io Review',
+        description:
+          'Pilot-led omnichannel AI agents with documented CRM, calendar, ticketing, webhook, API, and workflow connections.',
+        href: '/reviews/vida',
+      },
+      {
+        title: 'Demodesk Review',
+        description:
+          'Sales conversation capture, AI coaching, CRM workflow, deal analysis, and separate autonomous-agent billing.',
+        href: '/reviews/demodesk',
+      },
+      {
+        title: 'Claap Review',
+        description:
+          'Meeting capture, transcription, CRM enrichment, coaching, deal intelligence, Smart Tables, and AI-credit plan boundaries.',
+        href: '/reviews/claap',
+      },
+      {
+        title: 'Fireflies.ai Review',
+        description:
+          'Meeting capture, summaries, conversation intelligence, CRM and workflow integrations, and AI-credit cost boundaries.',
+        href: '/reviews/fireflies',
+      },
+      {
+        title: 'Campaign Monitor Review',
+        description:
+          'Email campaigns, segmentation, automated journeys, transactional email, analytics, plan-dependent AI, and contact-based pricing.',
+        href: '/reviews/campaign-monitor',
+      },
+      {
+        title: 'AWeber Review',
+        description:
+          'Email campaigns, landing pages, automation, subscriber tiers, send limits, ecommerce tools, and creator or small-business fit.',
+        href: '/reviews/aweber',
+      },
+      {
+        title: 'Bookyourdata Review',
+        description:
+          'Pay-as-you-go B2B prospecting data, email verification, non-expiring credits, suppression, exports, enrichment, and provider guarantee context.',
+        href: '/reviews/bookyourdata',
+      },
     ],
     comparisons: [
+      {
+        title: 'Campaign Monitor vs AWeber',
+        description:
+          'Dedicated team-oriented email engagement compared with creator and small-business email automation and explicit subscriber tiers.',
+        href: '/comparisons/campaign-monitor-vs-aweber',
+      },
       {
         title: 'EngageBay vs HubSpot',
         description:
@@ -795,10 +1041,58 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/alternatives/engagebay-alternatives',
       },
       {
+        title: 'Salesmsg Alternatives',
+        description:
+          'Evaluate a phone, messaging, or CRM-suite path when business texting is not central.',
+        href: '/alternatives/salesmsg-alternatives',
+      },
+      {
         title: 'HubSpot Alternatives',
         description:
           'Choose by lower-complexity CRM, support-first, live-chat, or omnichannel requirements.',
         href: '/alternatives/hubspot-alternatives',
+      },
+      {
+        title: 'Vida.io Alternatives',
+        description:
+          'Compare pilot-led agent operations with CRM-connected texting, messaging, and phone-system paths.',
+        href: '/alternatives/vida-alternatives',
+      },
+      {
+        title: 'Demodesk Alternatives',
+        description:
+          'Compare meeting intelligence, sales coaching, CRM workflow, autonomous-agent scope, and governance needs.',
+        href: '/alternatives/demodesk-alternatives',
+      },
+      {
+        title: 'Claap Alternatives',
+        description:
+          'Compare conversation intelligence with simpler notes, CRM-first operations, sales coaching, and enterprise governance paths.',
+        href: '/alternatives/claap-alternatives',
+      },
+      {
+        title: 'Fireflies.ai Alternatives',
+        description:
+          'Compare broad meeting intelligence with sales-specific conversation, CRM, and coaching workflows.',
+        href: '/alternatives/fireflies-alternatives',
+      },
+      {
+        title: 'Campaign Monitor Alternatives',
+        description:
+          'Choose by email workflow, broader CRM scope, support operations, messaging channels, automation, and billing model.',
+        href: '/alternatives/campaign-monitor-alternatives',
+      },
+      {
+        title: 'AWeber Alternatives',
+        description:
+          'Choose by subscriber economics, creator workflow, ecommerce depth, CRM breadth, volume, and automation needs.',
+        href: '/alternatives/aweber-alternatives',
+      },
+      {
+        title: 'Bookyourdata Alternatives',
+        description:
+          'Choose by pay-as-you-go versus subscription, sales intelligence, outreach, CRM-native workflow, enrichment, geography, and volume.',
+        href: '/alternatives/bookyourdata-alternatives',
       },
     ],
     guides: [
@@ -807,6 +1101,54 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Review per-user rates, contact allowances, tier limits, and suite economics.',
         href: '/guides/engagebay-pricing',
+      },
+      {
+        title: 'Salesmsg Pricing',
+        description:
+          'Review subscription tiers, credits, extra users and numbers, carrier fees, and messaging compliance costs.',
+        href: '/guides/salesmsg-pricing',
+      },
+      {
+        title: 'Vida.io Pricing',
+        description:
+          'Review pilot investment, production-scope pricing, and the operational requirements behind a proposal.',
+        href: '/guides/vida-pricing',
+      },
+      {
+        title: 'Demodesk Pricing',
+        description:
+          'Review Capture and Coaching & AI seats, Enterprise, Workflow Runs, Compute Credits, and total-cost boundaries.',
+        href: '/guides/demodesk-pricing',
+      },
+      {
+        title: 'Claap Pricing',
+        description:
+          'Review Basic, Pro, Business, and Enterprise recording limits, AI credits, advanced sales workflow, and pricing boundaries.',
+        href: '/guides/claap-pricing',
+      },
+      {
+        title: 'Fireflies.ai Pricing',
+        description:
+          'Review Free, Pro, Business, Enterprise, storage, analytics, and advanced AI-credit costs.',
+        href: '/guides/fireflies-pricing',
+      },
+      {
+        title: 'Campaign Monitor Pricing',
+        description:
+          'Review contact-tier pricing, send allowances, trial, annual purchase, AI scope, and subscription versus pay-per-campaign billing.',
+        href: '/guides/campaign-monitor-pricing',
+      },
+      {
+        title: 'AWeber Pricing',
+        description:
+          'Review Free, Lite, Plus, Unlimited, subscriber tiers, send multiples, annual display, trial, upgrades, and Hold Package.',
+        href: '/guides/aweber-pricing',
+      },
+      {
+        title: 'Bookyourdata Pricing',
+        description:
+          'Review pay-as-you-go credits, free evaluation, volume discounts, no-expiry economics, guarantee remedies, and BeSpoke context.',
+        href: '/guides/bookyourdata-pricing',
       },
     ],
     factors: (
@@ -872,7 +1214,7 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Service teams focused on tickets and AI resolution may need AI Customer Support.',
       'Voice-first operations may need Business Phone & Voice AI.',
     ],
-    verificationDate: 'August 15, 2026',
+    verificationDate: 'August 21, 2026',
     sources: [
       {
         title: 'EngageBay All-in-One pricing',
@@ -889,6 +1231,45 @@ export const softwareCategories: SoftwareCategoryData[] = [
       {
         title: 'EngageBay integrations',
         href: 'https://www.engagebay.com/integrations/',
+      },
+      {
+        title: 'Salesmsg integrations',
+        href: 'https://www.salesmessage.com/integrations',
+      },
+      { title: 'Vida features', href: 'https://vida.io/features' },
+      { title: 'Demodesk pricing', href: 'https://demodesk.com/pricing' },
+      {
+        title: 'Demodesk AI Agents documentation',
+        href: 'https://help.demodesk.com/en/articles/14490765-ai-agents',
+      },
+      { title: 'Claap pricing', href: 'https://www.claap.io/pricing' },
+      {
+        title: 'Claap CRM enrichment',
+        href: 'https://help.claap.io/en/articles/10257285-use-ai-fields-to-automatically-enrich-your-crm',
+      },
+      {
+        title: 'Campaign Monitor pricing',
+        href: 'https://www.campaignmonitor.com/pricing/',
+      },
+      {
+        title: 'Campaign Monitor AI features',
+        href: 'https://www.campaignmonitor.com/features/ai-features/',
+      },
+      {
+        title: 'AWeber pricing',
+        href: 'https://www.aweber.com/pricing.htm',
+      },
+      {
+        title: 'AWeber integrations',
+        href: 'https://www.aweber.com/integrations/',
+      },
+      {
+        title: 'Bookyourdata pricing',
+        href: 'https://www.bookyourdata.com/pricing',
+      },
+      {
+        title: 'Bookyourdata data enrichment',
+        href: 'https://www.bookyourdata.com/platform/data-enrichment',
       },
     ],
     faqs: [

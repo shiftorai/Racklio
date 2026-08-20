@@ -573,7 +573,7 @@ export const krispcallVsCallHippo: ComparisonData = {
       title: 'Per-user pricing, usage, and overages',
       description: 'Seat fees are only one layer of telephony cost.',
       paragraphs: [
-        'KrispCall publishes Essential at $15 per user monthly or $12 per user per month billed annually, for up to five users. Standard is $40 monthly or $32 annual-effective and supports unlimited users. Its plan cards and terms state that calling and SMS charges apply.',
+        'KrispCall publishes Essential at $15 per user monthly or $12 per user per month billed annually, for up to five users. Standard is $40 monthly or $32 annual-effective and supports up to 50 users. Its plan cards and terms state that calling and SMS charges apply.',
         'CallHippo’s current Core Calling table publishes Basic at $0, Starter at $18, Professional at $30, and Ultimate at $42 per user per month billed annually. Starter lists 1,000 US/Canada calling minutes and 100 SMS; Professional and Ultimate describe unlimited US/Canada calling, while footnotes and plan details limit destinations and disclose fair-use and additional charges.',
         'Racklio analysis: build a destination-by-destination bill including seats, number rental, inbound and outbound minutes, messages, recordings, add-ons, taxes, and seasonal use. The plans are not equivalent merely because both quote per-user prices.',
       ],

@@ -51,11 +51,97 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'guides/salesmsg-pricing',
+        lazy: async () => {
+          const { SalesmsgPricing } =
+            await import('@/pages/guides/salesmsg-pricing');
+          return { Component: SalesmsgPricing };
+        },
+      },
+      {
+        path: 'guides/vida-pricing',
+        lazy: async () => {
+          const { VidaPricing } = await import('@/pages/guides/vida-pricing');
+          return { Component: VidaPricing };
+        },
+      },
+      {
+        path: 'guides/demodesk-pricing',
+        lazy: async () => {
+          const { DemodeskPricing } =
+            await import('@/pages/guides/demodesk-pricing');
+          return { Component: DemodeskPricing };
+        },
+      },
+      {
+        path: 'guides/claap-pricing',
+        lazy: async () => {
+          const { ClaapPricing } = await import('@/pages/guides/claap-pricing');
+          return { Component: ClaapPricing };
+        },
+      },
+      {
+        path: 'guides/fireflies-pricing',
+        lazy: async () => {
+          const { FirefliesPricing } =
+            await import('@/pages/guides/fireflies-pricing');
+          return { Component: FirefliesPricing };
+        },
+      },
+      {
+        path: 'guides/campaign-monitor-pricing',
+        lazy: async () => {
+          const { CampaignMonitorPricing } =
+            await import('@/pages/guides/campaign-monitor-pricing');
+          return { Component: CampaignMonitorPricing };
+        },
+      },
+      {
+        path: 'guides/aweber-pricing',
+        lazy: async () => {
+          const { AWeberPricing } =
+            await import('@/pages/guides/aweber-pricing');
+          return { Component: AWeberPricing };
+        },
+      },
+      {
         path: 'alternatives/engagebay-alternatives',
         lazy: async () => {
           const { EngageBayAlternatives } =
             await import('@/pages/alternatives/engagebay-alternatives');
           return { Component: EngageBayAlternatives };
+        },
+      },
+      {
+        path: 'guides/bookyourdata-pricing',
+        lazy: async () => {
+          const { BookyourdataPricing } =
+            await import('@/pages/guides/bookyourdata-pricing');
+          return { Component: BookyourdataPricing };
+        },
+      },
+      {
+        path: 'guides/ninjaone-pricing',
+        lazy: async () => {
+          const { NinjaOnePricing } =
+            await import('@/pages/guides/ninjaone-pricing');
+          return { Component: NinjaOnePricing };
+        },
+      },
+      {
+        path: 'alternatives/bookyourdata-alternatives',
+        lazy: async () => {
+          const { BookyourdataAlternatives } =
+            await import('@/pages/alternatives/bookyourdata-alternatives');
+          return { Component: BookyourdataAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/ninjaone-alternatives',
+        lazy: async () => {
+          const { NinjaOneAlternatives } =
+            await import('@/pages/alternatives/ninjaone-alternatives');
+          return { Component: NinjaOneAlternatives };
         },
       },
       {
@@ -103,6 +189,62 @@ export const router = createBrowserRouter([
           const { HubSpotAlternatives } =
             await import('@/pages/alternatives/hubspot-alternatives');
           return { Component: HubSpotAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/salesmsg-alternatives',
+        lazy: async () => {
+          const { SalesmsgAlternatives } =
+            await import('@/pages/alternatives/salesmsg-alternatives');
+          return { Component: SalesmsgAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/vida-alternatives',
+        lazy: async () => {
+          const { VidaAlternatives } =
+            await import('@/pages/alternatives/vida-alternatives');
+          return { Component: VidaAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/demodesk-alternatives',
+        lazy: async () => {
+          const { DemodeskAlternatives } =
+            await import('@/pages/alternatives/demodesk-alternatives');
+          return { Component: DemodeskAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/claap-alternatives',
+        lazy: async () => {
+          const { ClaapAlternatives } =
+            await import('@/pages/alternatives/claap-alternatives');
+          return { Component: ClaapAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/fireflies-alternatives',
+        lazy: async () => {
+          const { FirefliesAlternatives } =
+            await import('@/pages/alternatives/fireflies-alternatives');
+          return { Component: FirefliesAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/campaign-monitor-alternatives',
+        lazy: async () => {
+          const { CampaignMonitorAlternatives } =
+            await import('@/pages/alternatives/campaign-monitor-alternatives');
+          return { Component: CampaignMonitorAlternatives };
+        },
+      },
+      {
+        path: 'alternatives/aweber-alternatives',
+        lazy: async () => {
+          const { AWeberAlternatives } =
+            await import('@/pages/alternatives/aweber-alternatives');
+          return { Component: AWeberAlternatives };
         },
       },
       {
@@ -166,6 +308,22 @@ export const router = createBrowserRouter([
             await import('@/pages/reviews/liquid-web-review');
 
           return { Component: LiquidWebReview };
+        },
+      },
+      {
+        path: 'reviews/bookyourdata',
+        lazy: async () => {
+          const { BookyourdataReview } =
+            await import('@/pages/reviews/bookyourdata-review');
+          return { Component: BookyourdataReview };
+        },
+      },
+      {
+        path: 'reviews/ninjaone',
+        lazy: async () => {
+          const { NinjaOneReview } =
+            await import('@/pages/reviews/ninjaone-review');
+          return { Component: NinjaOneReview };
         },
       },
       {
@@ -260,6 +418,60 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/salesmsg',
+        lazy: async () => {
+          const { SalesmsgReview } =
+            await import('@/pages/reviews/salesmsg-review');
+          return { Component: SalesmsgReview };
+        },
+      },
+      {
+        path: 'reviews/vida',
+        lazy: async () => {
+          const { VidaReview } = await import('@/pages/reviews/vida-review');
+          return { Component: VidaReview };
+        },
+      },
+      {
+        path: 'reviews/demodesk',
+        lazy: async () => {
+          const { DemodeskReview } =
+            await import('@/pages/reviews/demodesk-review');
+          return { Component: DemodeskReview };
+        },
+      },
+      {
+        path: 'reviews/claap',
+        lazy: async () => {
+          const { ClaapReview } = await import('@/pages/reviews/claap-review');
+          return { Component: ClaapReview };
+        },
+      },
+      {
+        path: 'reviews/fireflies',
+        lazy: async () => {
+          const { FirefliesReview } =
+            await import('@/pages/reviews/fireflies-review');
+          return { Component: FirefliesReview };
+        },
+      },
+      {
+        path: 'reviews/campaign-monitor',
+        lazy: async () => {
+          const { CampaignMonitorReview } =
+            await import('@/pages/reviews/campaign-monitor-review');
+          return { Component: CampaignMonitorReview };
+        },
+      },
+      {
+        path: 'reviews/aweber',
+        lazy: async () => {
+          const { AWeberReview } =
+            await import('@/pages/reviews/aweber-review');
+          return { Component: AWeberReview };
+        },
+      },
+      {
         path: 'comparisons/tidio-vs-gorgias',
         lazy: async () => {
           const { TidioVsGorgias } =
@@ -305,6 +517,30 @@ export const router = createBrowserRouter([
           const { KrispCallVsAircall } =
             await import('@/pages/comparisons/krispcall-vs-aircall');
           return { Component: KrispCallVsAircall };
+        },
+      },
+      {
+        path: 'comparisons/claap-vs-demodesk',
+        lazy: async () => {
+          const { ClaapVsDemodesk } =
+            await import('@/pages/comparisons/claap-vs-demodesk');
+          return { Component: ClaapVsDemodesk };
+        },
+      },
+      {
+        path: 'comparisons/fireflies-vs-claap',
+        lazy: async () => {
+          const { FirefliesVsClaap } =
+            await import('@/pages/comparisons/fireflies-vs-claap');
+          return { Component: FirefliesVsClaap };
+        },
+      },
+      {
+        path: 'comparisons/campaign-monitor-vs-aweber',
+        lazy: async () => {
+          const { CampaignMonitorVsAWeber } =
+            await import('@/pages/comparisons/campaign-monitor-vs-aweber');
+          return { Component: CampaignMonitorVsAWeber };
         },
       },
       {

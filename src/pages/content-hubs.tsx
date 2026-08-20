@@ -16,6 +16,74 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'NinjaOne Review',
+    description:
+      'Adjacent IT support and endpoint management covering RMM, patching, remote access, MDM, assets, ticketing, automation, modules, and quote pricing.',
+    href: '/reviews/ninjaone',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/ninjaone-pricing' },
+      { title: 'Alternatives', href: '/alternatives/ninjaone-alternatives' },
+    ],
+  },
+  {
+    title: 'Bookyourdata Review',
+    description:
+      'Pay-as-you-go B2B prospecting data, verification, non-expiring credits, suppression, exports, enrichment, and guarantee context.',
+    href: '/reviews/bookyourdata',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/bookyourdata-pricing' },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/bookyourdata-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'AWeber Review',
+    description:
+      'Email campaigns, landing pages, automation, subscriber tiers, send limits, ecommerce tools, and creator or small-business fit.',
+    href: '/reviews/aweber',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/aweber-pricing' },
+      { title: 'Alternatives', href: '/alternatives/aweber-alternatives' },
+      {
+        title: 'Compare with Campaign Monitor',
+        href: '/comparisons/campaign-monitor-vs-aweber',
+      },
+    ],
+  },
+  {
+    title: 'Campaign Monitor Review',
+    description:
+      'Email campaigns, segmentation, automated journeys, transactional email, plan-dependent AI, and contact-based pricing.',
+    href: '/reviews/campaign-monitor',
+    relatedLinks: [
+      {
+        title: 'Pricing guide',
+        href: '/guides/campaign-monitor-pricing',
+      },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/campaign-monitor-alternatives',
+      },
+      {
+        title: 'CRM & Customer Engagement',
+        href: '/categories/crm-customer-engagement',
+      },
+    ],
+  },
+  {
+    title: 'Fireflies.ai Review',
+    description:
+      'Meeting intelligence, workflow integrations, plan storage, and advanced AI-credit boundaries.',
+    href: '/reviews/fireflies',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/fireflies-pricing' },
+      { title: 'Alternatives', href: '/alternatives/fireflies-alternatives' },
+      { title: 'Compare with Claap', href: '/comparisons/fireflies-vs-claap' },
+    ],
+  },
+  {
     title: 'Typewise Review',
     description:
       'AI customer service automation, outcome pricing, deployment, and security claims.',
@@ -26,6 +94,62 @@ const reviewEntries: Entry[] = [
     description:
       'Cloud calling, virtual numbers, SMS, per-user pricing, and usage charges.',
     href: '/reviews/krispcall',
+  },
+  {
+    title: 'Salesmsg Review',
+    description:
+      'Business texting, calling, CRM workflows, AI agents, credits, carrier fees, and messaging-compliance cost boundaries.',
+    href: '/reviews/salesmsg',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/salesmsg-pricing' },
+      { title: 'Alternatives', href: '/alternatives/salesmsg-alternatives' },
+      {
+        title: 'Business Phone & Voice AI',
+        href: '/categories/business-phone-voice-ai',
+      },
+    ],
+  },
+  {
+    title: 'Vida.io Review',
+    description:
+      'Pilot-led omnichannel AI agents, connected workflows, deployment scope, and pricing boundaries.',
+    href: '/reviews/vida',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/vida-pricing' },
+      { title: 'Alternatives', href: '/alternatives/vida-alternatives' },
+      {
+        title: 'Business Phone & Voice AI',
+        href: '/categories/business-phone-voice-ai',
+      },
+    ],
+  },
+  {
+    title: 'Demodesk Review',
+    description:
+      'Sales conversation intelligence, AI coaching, CRM automation, and separate custom-agent usage costs.',
+    href: '/reviews/demodesk',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/demodesk-pricing' },
+      { title: 'Alternatives', href: '/alternatives/demodesk-alternatives' },
+      {
+        title: 'CRM & Customer Engagement',
+        href: '/categories/crm-customer-engagement',
+      },
+    ],
+  },
+  {
+    title: 'Claap Review',
+    description:
+      'Sales conversation capture, CRM enrichment, coaching, deal intelligence, plan limits, and AI-credit boundaries.',
+    href: '/reviews/claap',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/claap-pricing' },
+      { title: 'Alternatives', href: '/alternatives/claap-alternatives' },
+      {
+        title: 'Compare with Demodesk',
+        href: '/comparisons/claap-vs-demodesk',
+      },
+    ],
   },
   {
     title: 'Tidio Review',
@@ -86,6 +210,71 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'NinjaOne Pricing',
+    description:
+      'Per-device guidance, volume behavior, module scope, regional differences, commercial-instance limits, incentives, and personalized quotes.',
+    href: '/guides/ninjaone-pricing',
+    relatedLinks: [
+      { title: 'NinjaOne review', href: '/reviews/ninjaone' },
+      {
+        title: 'NinjaOne alternatives',
+        href: '/alternatives/ninjaone-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Bookyourdata Pricing',
+    description:
+      'Pay-as-you-go credits, free evaluation, volume discounts, no-expiry economics, guarantee remedies, and BeSpoke context.',
+    href: '/guides/bookyourdata-pricing',
+    relatedLinks: [
+      { title: 'Bookyourdata review', href: '/reviews/bookyourdata' },
+      {
+        title: 'Bookyourdata alternatives',
+        href: '/alternatives/bookyourdata-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'AWeber Pricing',
+    description:
+      'Free, Lite, Plus, and Unlimited pricing, subscriber tiers, send multiples, annual display, trial, upgrades, and Hold Package.',
+    href: '/guides/aweber-pricing',
+    relatedLinks: [
+      { title: 'AWeber review', href: '/reviews/aweber' },
+      {
+        title: 'AWeber alternatives',
+        href: '/alternatives/aweber-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Campaign Monitor Pricing',
+    description:
+      'Contact-tier pricing, plan send allowances, trial, annual purchase, AI scope, and subscription versus pay-per-campaign billing.',
+    href: '/guides/campaign-monitor-pricing',
+    relatedLinks: [
+      { title: 'Campaign Monitor review', href: '/reviews/campaign-monitor' },
+      {
+        title: 'Campaign Monitor alternatives',
+        href: '/alternatives/campaign-monitor-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Fireflies.ai Pricing',
+    description:
+      'Free through Enterprise seats, storage, analytics, included credits, and recurring AI-credit add-ons.',
+    href: '/guides/fireflies-pricing',
+    relatedLinks: [
+      { title: 'Fireflies.ai review', href: '/reviews/fireflies' },
+      {
+        title: 'Fireflies.ai alternatives',
+        href: '/alternatives/fireflies-alternatives',
+      },
+    ],
+  },
+  {
     title: 'EngageBay Pricing',
     description:
       'Plans, contacts, billing terms, limits, and practical cost decisions.',
@@ -109,9 +298,117 @@ const commercialGuideEntries: Entry[] = [
       },
     ],
   },
+  {
+    title: 'Salesmsg Pricing',
+    description:
+      'Basic, Pro, and Enterprise plans, credits, extra capacity, carrier fees, 10DLC, and total-cost questions.',
+    href: '/guides/salesmsg-pricing',
+    relatedLinks: [
+      { title: 'Salesmsg review', href: '/reviews/salesmsg' },
+      {
+        title: 'Salesmsg alternatives',
+        href: '/alternatives/salesmsg-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Vida.io Pricing',
+    description:
+      'Pilot investment, production-scope pricing, deployment stages, and proposal questions.',
+    href: '/guides/vida-pricing',
+    relatedLinks: [
+      { title: 'Vida.io review', href: '/reviews/vida' },
+      {
+        title: 'Vida.io alternatives',
+        href: '/alternatives/vida-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Demodesk Pricing',
+    description:
+      'Capture and Coaching & AI seats, Enterprise thresholds, Workflow Runs, and AI Compute Credits.',
+    href: '/guides/demodesk-pricing',
+    relatedLinks: [
+      { title: 'Demodesk review', href: '/reviews/demodesk' },
+      {
+        title: 'Demodesk alternatives',
+        href: '/alternatives/demodesk-alternatives',
+      },
+    ],
+  },
+  {
+    title: 'Claap Pricing',
+    description:
+      'Basic, Pro, Business, and Enterprise recording limits, AI credits, revenue-intelligence features, and pricing boundaries.',
+    href: '/guides/claap-pricing',
+    relatedLinks: [
+      { title: 'Claap review', href: '/reviews/claap' },
+      { title: 'Claap alternatives', href: '/alternatives/claap-alternatives' },
+    ],
+  },
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'NinjaOne Alternatives',
+    description:
+      'Choose by endpoint management, RMM, patching, IT help desk, remote support, MSP workflow, MDM, and narrower product scope.',
+    href: '/alternatives/ninjaone-alternatives',
+    relatedLinks: [
+      { title: 'NinjaOne Review', href: '/reviews/ninjaone' },
+      { title: 'NinjaOne Pricing', href: '/guides/ninjaone-pricing' },
+    ],
+  },
+  {
+    title: 'Bookyourdata Alternatives',
+    description:
+      'Choose by subscription versus pay as you go, sales intelligence, outreach, CRM-native workflow, enrichment, geography, and volume.',
+    href: '/alternatives/bookyourdata-alternatives',
+    relatedLinks: [
+      { title: 'Bookyourdata Review', href: '/reviews/bookyourdata' },
+      { title: 'Bookyourdata Pricing', href: '/guides/bookyourdata-pricing' },
+    ],
+  },
+  {
+    title: 'AWeber Alternatives',
+    description:
+      'Choose by subscriber economics, creator workflow, ecommerce depth, CRM breadth, volume, and automation needs.',
+    href: '/alternatives/aweber-alternatives',
+    relatedLinks: [
+      { title: 'AWeber Review', href: '/reviews/aweber' },
+      {
+        title: 'Campaign Monitor vs AWeber',
+        href: '/comparisons/campaign-monitor-vs-aweber',
+      },
+    ],
+  },
+  {
+    title: 'Campaign Monitor Alternatives',
+    description:
+      'Choose by email workflow, broader CRM scope, support operations, messaging channels, automation, and billing model.',
+    href: '/alternatives/campaign-monitor-alternatives',
+    relatedLinks: [
+      { title: 'Campaign Monitor Review', href: '/reviews/campaign-monitor' },
+      {
+        title: 'Campaign Monitor Pricing',
+        href: '/guides/campaign-monitor-pricing',
+      },
+    ],
+  },
+  {
+    title: 'Fireflies.ai Alternatives',
+    description:
+      'Choose by broad meeting intelligence, sales coaching, CRM workflow, AI-credit use, and governance needs.',
+    href: '/alternatives/fireflies-alternatives',
+    relatedLinks: [
+      { title: 'Fireflies.ai Review', href: '/reviews/fireflies' },
+      {
+        title: 'Fireflies.ai vs Claap',
+        href: '/comparisons/fireflies-vs-claap',
+      },
+    ],
+  },
   {
     title: 'EngageBay Alternatives',
     description:
@@ -181,6 +478,46 @@ const alternativeEntries: Entry[] = [
       { title: 'EngageBay Pricing', href: '/guides/engagebay-pricing' },
     ],
   },
+  {
+    title: 'Salesmsg Alternatives',
+    description:
+      'Choose among cloud-phone, omnichannel messaging, and CRM-suite paths when CRM-connected texting is not central.',
+    href: '/alternatives/salesmsg-alternatives',
+    relatedLinks: [
+      { title: 'Salesmsg Review', href: '/reviews/salesmsg' },
+      { title: 'Salesmsg Pricing', href: '/guides/salesmsg-pricing' },
+    ],
+  },
+  {
+    title: 'Vida.io Alternatives',
+    description:
+      'Choose by AI-agent deployment, business calling, CRM-connected texting, or messaging operations.',
+    href: '/alternatives/vida-alternatives',
+    relatedLinks: [
+      { title: 'Vida.io Review', href: '/reviews/vida' },
+      { title: 'Vida.io Pricing', href: '/guides/vida-pricing' },
+    ],
+  },
+  {
+    title: 'Demodesk Alternatives',
+    description:
+      'Choose by meeting intelligence, sales coaching, CRM workflow, autonomous agents, and governance needs.',
+    href: '/alternatives/demodesk-alternatives',
+    relatedLinks: [
+      { title: 'Demodesk Review', href: '/reviews/demodesk' },
+      { title: 'Demodesk Pricing', href: '/guides/demodesk-pricing' },
+    ],
+  },
+  {
+    title: 'Claap Alternatives',
+    description:
+      'Choose by meeting capture, sales coaching, CRM enrichment, deal intelligence, enterprise governance, and AI workflow needs.',
+    href: '/alternatives/claap-alternatives',
+    relatedLinks: [
+      { title: 'Claap Review', href: '/reviews/claap' },
+      { title: 'Claap vs Demodesk', href: '/comparisons/claap-vs-demodesk' },
+    ],
+  },
 ];
 
 const softwareCategoryEntries: Entry[] = softwareCategories.map((category) => ({
@@ -223,6 +560,24 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Campaign Monitor vs AWeber',
+    description:
+      'Compare buyer fit, email workflow, automation, AI, contact and subscriber pricing, sends, integrations, and commerce context.',
+    href: '/comparisons/campaign-monitor-vs-aweber',
+  },
+  {
+    title: 'Fireflies.ai vs Claap',
+    description:
+      'Meeting intelligence, sales conversation workflow, CRM enrichment, coaching, AI-credit use, and plan boundaries.',
+    href: '/comparisons/fireflies-vs-claap',
+  },
+  {
+    title: 'Claap vs Demodesk',
+    description:
+      'Sales conversation capture, coaching, CRM workflow, deal intelligence, AI automation, and commercial-model boundaries.',
+    href: '/comparisons/claap-vs-demodesk',
+  },
   {
     title: 'EngageBay vs HubSpot',
     description:

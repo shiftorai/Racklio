@@ -8,7 +8,41 @@ export type CoreProvider =
   | 'krispcall'
   | 'tidio'
   | 'respondIo'
-  | 'gorgias';
+  | 'gorgias'
+  | 'engageBay'
+  | 'eazyChat'
+  | 'aircall'
+  | 'callHippo'
+  | 'salesmsg'
+  | 'vida'
+  | 'demodesk'
+  | 'claap'
+  | 'fireflies'
+  | 'campaignMonitor'
+  | 'aweber'
+  | 'bookyourdata'
+  | 'ninjaOne';
+
+export const currentSoftwareProviders = [
+  'typewise',
+  'krispcall',
+  'tidio',
+  'respondIo',
+  'gorgias',
+  'engageBay',
+  'eazyChat',
+  'aircall',
+  'callHippo',
+  'salesmsg',
+  'vida',
+  'demodesk',
+  'claap',
+  'fireflies',
+  'campaignMonitor',
+  'aweber',
+  'bookyourdata',
+  'ninjaOne',
+] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
   official: string;
@@ -41,6 +75,22 @@ export const providerLinks = {
   tidio: { official: 'https://www.tidio.com/', affiliate: null },
   respondIo: { official: 'https://respond.io/', affiliate: null },
   gorgias: { official: 'https://www.gorgias.com/', affiliate: null },
+  engageBay: { official: 'https://www.engagebay.com/', affiliate: null },
+  eazyChat: { official: 'https://eazychat.io/', affiliate: null },
+  aircall: { official: 'https://aircall.io/', affiliate: null },
+  callHippo: { official: 'https://callhippo.com/', affiliate: null },
+  salesmsg: { official: 'https://www.salesmessage.com/', affiliate: null },
+  vida: { official: 'https://vida.io/', affiliate: null },
+  demodesk: { official: 'https://demodesk.com/', affiliate: null },
+  claap: { official: 'https://www.claap.io/', affiliate: null },
+  fireflies: { official: 'https://fireflies.ai/', affiliate: null },
+  campaignMonitor: {
+    official: 'https://www.campaignmonitor.com/',
+    affiliate: null,
+  },
+  aweber: { official: 'https://www.aweber.com/', affiliate: null },
+  bookyourdata: { official: 'https://www.bookyourdata.com/', affiliate: null },
+  ninjaOne: { official: 'https://www.ninjaone.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {

@@ -40,6 +40,7 @@ export type SoftwareReviewData = {
   sources: { title: string; href: string }[];
   relatedComparisons?: { title: string; href: string }[];
   verificationDate?: string;
+  schemaDate?: string;
   idealUser?: string;
   pricingModel?: string;
   strengths?: string[];
@@ -88,8 +89,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
     '@type': 'Article',
     headline: data.headline,
     description: data.metaDescription,
-    datePublished: '2026-08-13',
-    dateModified: '2026-08-14',
+    datePublished: data.schemaDate ?? '2026-08-13',
+    dateModified: data.schemaDate ?? '2026-08-14',
     mainEntityOfPage: canonical,
     isAccessibleForFree: true,
     author: {

@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { ButtonLink, Container, CountUp, Link, Reveal } from '@/components/ui';
+import { currentSoftwareProviders } from '@/lib/provider-links';
 
 const categories = [
   [
@@ -315,10 +316,7 @@ export function Home() {
   const title = 'Racklio — Compare AI Customer Support Software';
   const description =
     'Evidence-based reviews and comparisons of AI customer support, business communications, CRM, and customer engagement software.';
-  const toolCount = new Set([
-    ...reviews.map((item) => item[0]),
-    ...comparisons.flatMap((item) => [item[0], item[1]]),
-  ]).size;
+  const toolCount = currentSoftwareProviders.length;
   const schemas = [
     {
       '@context': 'https://schema.org',
@@ -407,8 +405,8 @@ export function Home() {
           <dl className="grid grid-cols-2 lg:grid-cols-5">
             {[
               [toolCount, 'Software tools'],
-              [reviews.length, 'Published reviews'],
-              [comparisons.length, 'Comparisons'],
+              [reviews.length, 'Featured reviews'],
+              [comparisons.length, 'Featured comparisons'],
               [categories.length, 'Active categories'],
             ].map(([value, label]) => (
               <div
