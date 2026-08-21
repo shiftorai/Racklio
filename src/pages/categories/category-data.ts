@@ -391,6 +391,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         href: '/reviews/krispcall',
       },
       {
+        title: 'CallHippo Review',
+        description:
+          'Cloud business calling, virtual numbers, routing, messaging, plan allowances, integrations, and total-cost boundaries.',
+        href: '/reviews/callhippo',
+      },
+      {
         title: 'Salesmsg Review',
         description:
           'Business texting, calling, CRM workflow connections, AI agents, credits, carrier charges, and compliance cost boundaries.',

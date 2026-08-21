@@ -3497,3 +3497,372 @@ export const ninjaOneData: SoftwareReviewData = {
     },
   ],
 };
+
+export const callHippoData: SoftwareReviewData = {
+  slug: 'callhippo',
+  name: 'CallHippo',
+  category: 'cloud business phone and VoIP software',
+  categoryLinks: [
+    {
+      title: 'Business Phone & Voice AI',
+      href: '/categories/business-phone-voice-ai',
+    },
+  ],
+  headline:
+    'CallHippo review: cloud business calling, routing, and usage-based cost boundaries',
+  dek: 'CallHippo combines business numbers, cloud calling, messaging, routing, analytics, and plan-dependent supervisor or AI functions. Its multiple product tracks and region-sensitive pricing make scope definition essential before comparing headline seat prices.',
+  metaTitle: 'CallHippo Review (2026): Pricing, Calling & Fit | Racklio',
+  metaDescription:
+    'Evidence-based CallHippo review covering business phone pricing, numbers, calling allowances, routing, SMS, integrations, add-ons, and buyer fit.',
+  officialUrl: 'https://callhippo.com/',
+  verificationDate: 'August 21, 2026',
+  schemaDate: '2026-08-21',
+  idealUser:
+    'Small and midsize teams that need a cloud business phone system with virtual numbers, routing, messaging, and plan-based call administration.',
+  pricingModel:
+    'Per-seat subscription pricing with billing-cycle, region, team-size, number, usage, credit, and add-on variables.',
+  summary: [
+    {
+      label: 'What it is',
+      text: 'A cloud business phone and VoIP platform with numbers, calling, messaging, routing, analytics, integrations, and separate advanced product tracks.',
+    },
+    {
+      label: 'Primary fit',
+      text: 'Teams replacing or extending a conventional business phone system and willing to verify country coverage, plan scope, usage, and telephony rules.',
+    },
+    {
+      label: 'Pricing model',
+      text: 'Per billable seat, with selected-plan allowances and separate costs that can include numbers, calls, messages, credits, add-ons, taxes, or regional fees.',
+    },
+    {
+      label: 'Main tradeoff',
+      text: 'The pricing page combines multiple product suites, regional selectors, billing toggles, allowances, fair-use terms, and add-ons, so one headline price cannot represent every deployment.',
+    },
+    {
+      label: 'Facts verified',
+      text: 'August 21, 2026, using current CallHippo pricing, product, help-center, integration, security, and policy documentation.',
+    },
+  ],
+  fit: [
+    'Your target countries, number types, included calling allowance, and required routing features are covered by one documented CallHippo plan.',
+    'Your team needs desktop, mobile, or browser calling alongside voicemail, SMS, analytics, and supported CRM integrations.',
+    'You can model seats, numbers, calling destinations, messages, recording, add-ons, taxes, and seasonal usage before signing.',
+  ],
+  notFit: [
+    'You need one simple global price without region, usage, number, fair-use, or add-on variables.',
+    'A sales CRM, help desk, or omnichannel customer-support workspace is the primary system being purchased.',
+    'Your calling workflow depends on countries, number types, SMS support, or compliance controls that CallHippo has not confirmed for the proposed account.',
+  ],
+  strengths: [
+    'The official pricing and feature materials document a broad phone-system scope across numbers, calling, routing, messaging, analytics, integrations, and higher-tier controls.',
+    'Current documentation exposes meaningful cost inputs beyond the seat price, including numbers, credits, add-ons, call and SMS rates, and fair-use boundaries.',
+  ],
+  limitations: [
+    'Multiple suites, region and team selectors, billing views, custom-price labels, usage terms, and add-ons make total cost more complex than the visible per-user figure.',
+    'Number availability, documentation, SMS support, verification, and activation timing vary by country and number type.',
+    'Features such as advanced routing, recording, supervisor tools, AI analysis, and integrations are plan- or add-on-dependent rather than universal.',
+  ],
+  capabilities: [
+    {
+      title: 'Business numbers and cloud calling',
+      description:
+        'CallHippo documents local, mobile, and toll-free number types, browser calling, desktop and mobile apps, voicemail, forwarding, transfers, and number porting subject to regional requirements.',
+    },
+    {
+      title: 'Routing and call handling',
+      description:
+        'Published capabilities include business hours, failover, IVR, multilevel IVR, queues, call distribution, smart routing, transfers, and country or call blocking on selected plans.',
+    },
+    {
+      title: 'Recording, supervision, and analytics',
+      description:
+        'Plan materials list call recording, logs, analytics, monitoring, whispering, barging, role controls, and higher-tier reporting or supervisor functions.',
+    },
+    {
+      title: 'Messaging and CRM connections',
+      description:
+        'CallHippo documents SMS/MMS, WhatsApp options, webhooks, and plan-dependent integrations including HubSpot, Salesforce, Pipedrive, Zoho, Zendesk, Slack, and Zapier.',
+    },
+    {
+      title: 'Outbound dialing',
+      description:
+        'The wider product catalog includes power, predictive, and parallel dialing tracks. Buyers should not assume those workflows are included in a Core Calling plan.',
+    },
+    {
+      title: 'AI and conversation intelligence',
+      description:
+        'Selected plans or add-ons list transcription, voicemail transcription, call summaries, sentiment, topic analysis, talk ratio, AI Copilot, and separate AI voice-agent products.',
+    },
+  ],
+  pricing: [
+    {
+      plan: 'Basic — Core Calling',
+      basis: '$0 per user/month on the yearly-selected pricing view',
+      allowance:
+        'Core calling and messaging functions; the page says users pay for numbers',
+      note: 'The fair-use section says Basic is free for the first six months, after which an upgrade to Starter is required. Confirm number and usage charges.',
+    },
+    {
+      plan: 'Starter — Core Calling',
+      basis:
+        '$18 per user/month on the yearly-selected view; two-user minimum shown',
+      allowance:
+        '1,000 US/Canada calling minutes, 100 SMS, basic analytics, one-month call logs, and selected integrations',
+      note: 'A July 2026 billing guide separately uses $25 per seat as its US/Canada monthly example. Treat billing frequency, region, and the checkout or quote as controlling.',
+    },
+    {
+      plan: 'Professional — Core Calling',
+      basis: '$30 per user/month on the yearly-selected view',
+      allowance:
+        'Published US/Canada calling allowance, recording, multilingual IVR, analytics, lifetime logs, transcription, and broader integrations',
+      note: '“Unlimited” calling remains subject to destination exclusions, domestic scope, fair-use terms, number type, and additional charges.',
+    },
+    {
+      plan: 'Ultimate — Core Calling',
+      basis: '$42 per user/month on the yearly-selected view',
+      allowance:
+        'Higher-tier routing, 1,000 SMS, call summaries, SSO, custom integrations, onboarding, and support features',
+      note: 'Verify the selected region, included usage, support entitlement, recording scope, and any separately billed AI or communications services.',
+    },
+    {
+      plan: 'Enterprise and other product tracks',
+      basis: 'Custom or separately published pricing',
+      allowance:
+        'Enterprise, high-volume calling, omnichannel, dialer, AI, and add-on options are scoped separately',
+      note: 'Do not compare another CallHippo suite as though it were included in Core Calling. Obtain a written product, plan, user, usage, and add-on schedule.',
+    },
+  ],
+  sections: [
+    {
+      id: 'product-scope',
+      code: 'S1',
+      title: 'What CallHippo is—and which product is being compared',
+      description:
+        'The brand covers more than one communications product, so the purchasing scope must be explicit.',
+      paragraphs: [
+        'Provider fact: CallHippo’s current pricing page separates Core Calling for business teams from scaled calling, high-volume outbound calling, an omnichannel inbox, AI Copilot, AI voice-agent products, and other offers. This review centers on the cloud business phone and Core Calling decision; it does not imply that every adjacent product is included in that subscription.',
+        'Racklio analysis: start with the operating problem. A team replacing a business phone system should define users, countries, numbers, inbound paths, outbound destinations, transfers, business hours, voicemail, SMS, recordings, integrations, reporting, and supervisor requirements before comparing plan names.',
+      ],
+      evidence:
+        'Use the exact suite and plan named in the order form. Similar feature labels across CallHippo product tracks do not establish shared entitlements or equivalent pricing.',
+    },
+    {
+      id: 'numbers-calling',
+      code: 'C1',
+      title: 'Numbers, calling, and regional readiness',
+      description:
+        'A cloud phone purchase depends on number eligibility and carrier conditions as much as interface features.',
+      paragraphs: [
+        'Provider fact: CallHippo’s number guide describes local, mobile, and toll-free numbers. It says most numbers require address or document verification, availability and activation timing vary, and SMS capability depends on the selected number. A number must be active before calling or SMS can work.',
+        'Provider fact: the Core Calling table lists one standard number per user on paid tiers, while the billing guide says extra standard numbers, premium numbers, and number replacement within a billing cycle can create separate charges. Calling credits cover use outside plan allowances, uncovered countries, premium numbers, and some forwarding scenarios.',
+        'Racklio analysis: validate each destination and number type in writing. Country availability, local-address rules, porting, caller ID, emergency calling, SMS enablement, verification, and carrier inventory can determine whether the platform fits before advanced routing is considered.',
+      ],
+      evidence:
+        'A global product page is not proof that a particular number type, SMS capability, port, or regulatory configuration is available for a specific account.',
+    },
+    {
+      id: 'routing-workflow',
+      code: 'W1',
+      title: 'Routing, messaging, integrations, and team workflow',
+      description:
+        'Plan-level workflow coverage should be tested against real inbound and outbound paths.',
+      paragraphs: [
+        'Provider fact: published plan and feature pages list business hours, forwarding, device ringing, IVR, call distribution, smart routing, queues, transfers, voicemail, recordings, analytics, monitoring, role controls, SMS, and selected integrations. Availability differs by plan and product track.',
+        'Provider fact: the current HubSpot integration guide documents click-to-call, call and SMS activity logging, contact synchronization, deal-related logging, connected-number selection, and configuration controls. The pricing table also names integrations including Salesforce, Pipedrive, Zoho, Zendesk, Slack, Zapier, and webhooks on selected tiers.',
+        'Racklio analysis: test the exact workflow rather than counting integration logos. Confirm object mapping, contact ownership, call disposition, notes, recordings, SMS writeback, permissions, API limits, failure handling, and the effect of changing modules or connected numbers.',
+      ],
+      evidence:
+        'An integration name does not prove that every data object, trigger, writeback, permission, or historical-sync requirement is supported.',
+    },
+    {
+      id: 'ai-scope',
+      code: 'A1',
+      title: 'AI and outbound-dialing scope',
+      description:
+        'AI analysis and automated dialing appear across plans, add-ons, and separate product tracks.',
+      paragraphs: [
+        'Provider fact: the Core Calling table lists plan-dependent transcription, voicemail transcription, call summaries, and related intelligence. The pricing page separately presents AI Copilot at $10 per user/month and describes transcription, summaries, topic analysis, sentiment, talk ratio, and a smart dashboard.',
+        'Provider fact: power, predictive, and parallel dialing appear in CallHippo’s wider catalog. The Core Calling fair-use terms restrict auto-dialing and predictive dialing within the Office Phone System, reinforcing that high-volume outbound workflows require the appropriate product track and commercial scope.',
+        'Racklio analysis: do not buy a Core Calling plan on the assumption that an AI agent, advanced conversation intelligence, or high-volume dialer is included. Ask for a feature-by-feature entitlement and usage schedule.',
+      ],
+      evidence:
+        'Racklio has not tested CallHippo AI output, dialing accuracy, call quality, or productivity outcomes. Provider marketing claims are not treated as measured results.',
+    },
+    {
+      id: 'security-compliance',
+      code: 'G1',
+      title: 'Security, recording, and messaging compliance',
+      description:
+        'Provider controls support a compliance program but do not replace the buyer’s legal and operational duties.',
+      paragraphs: [
+        'Provider fact: CallHippo states that it is SOC 2 Type II compliant and publishes statements concerning HIPAA, GDPR, and ISO. The pricing table also lists controls such as 2FA, audit logs, role-based access, SSO, and IP restrictions on selected tiers.',
+        'Provider fact: CallHippo documents country-specific recording settings and consent prompts. Its US/Canada SMS guidance describes A2P registration, fees, approval steps, and number-level SMS support.',
+        'Racklio analysis: request the current audit report or certification scope, DPA, subprocessors, retention and deletion controls, encryption details, incident terms, access model, recording configuration, and the contracted support level. Buyers remain responsible for recording consent, messaging registration, content, opt-out handling, and local telecom rules.',
+      ],
+      evidence:
+        'A provider compliance statement is not a legal conclusion about a buyer’s deployment. Match each control and contractual commitment to the actual plan and jurisdiction.',
+    },
+    {
+      id: 'pricing-analysis',
+      code: 'P1',
+      title: 'How to model the real cost',
+      description:
+        'Seat price, billing frequency, regional eligibility, and communications usage belong in one cost model.',
+      paragraphs: [
+        'Provider fact: the current pricing page exposes monthly/yearly, region, team-size, and currency controls. Its yearly-selected Core Calling view shows Basic at $0, Starter at $18, Professional at $30, and Ultimate at $42 per user/month. The page also uses custom-pricing labels and publishes separate product suites and add-ons.',
+        'Provider fact: CallHippo’s July 1, 2026 billing guide uses Starter at $25 per seat for a US/Canada monthly example. It also states that seats remain billable until the seat count is changed, extra or premium numbers can be charged, add-ons are separate, and credits cover certain out-of-plan calls and messages.',
+        'Racklio analysis: the two official price contexts are not equivalent. Use the current selected billing toggle and region, then obtain a written quote covering users, minimums, included numbers, number rental, inbound and outbound calls, destinations, SMS/MMS, A2P costs, recording, storage, AI, add-ons, taxes, contract term, overages, and fair-use consequences.',
+      ],
+      evidence:
+        'Source conflict resolved transparently: $18 is the current yearly-selected Starter display; $25 is the Help Center’s monthly per-seat example. Racklio does not collapse them into one universal price.',
+    },
+    {
+      id: 'comparison-context',
+      code: 'C2',
+      title: 'Comparison context: CallHippo and KrispCall',
+      description:
+        'Both cover cloud telephony, but their published packaging and cost boundaries differ.',
+      paragraphs: [
+        'CallHippo is relevant when its selected Core Calling or scaled-calling plan, included usage, routing, analytics, and supervisor functions align with the proposed operation. KrispCall is relevant when a smaller team prefers its compact Essential and Standard structure and can model calls, SMS, numbers, and add-ons separately.',
+        'The decision is not a universal winner. Compare the exact country and number coverage, user minimums, included use, routing depth, recordings, integrations, administration, fair-use terms, and written total cost.',
+      ],
+      bullets: [
+        'Read the KrispCall vs CallHippo comparison for the side-by-side decision path.',
+        'Read the KrispCall review when its compact phone-system model is also on the shortlist.',
+      ],
+      evidence:
+        'Comparison content uses official provider documentation and conditional fit analysis; Racklio has not benchmarked either platform.',
+    },
+  ],
+  scenarios: [
+    {
+      scenario: 'Small team with moderate US/Canada business calling',
+      fit: 'Consider the Core Calling tiers',
+      why: 'Match the team size, included minutes, numbers, SMS, routing, and required integrations to the selected billing view.',
+    },
+    {
+      scenario: 'Sales or support team needing supervision and routing depth',
+      fit: 'Compare Professional, Ultimate, or the scaled-calling track',
+      why: 'Recording, monitoring, IVR, analytics, permissions, and supervisor capabilities vary by tier and suite.',
+    },
+    {
+      scenario: 'International number deployment',
+      fit: 'Verify before shortlisting',
+      why: 'Number inventory, documents, activation, porting, SMS, rates, and local rules vary by country and number type.',
+    },
+    {
+      scenario: 'High-volume automated outbound operation',
+      fit: 'Scope a separate dialer product',
+      why: 'Core Calling fair-use terms restrict auto-dialing and predictive dialing; outbound products have separate pricing and conditions.',
+    },
+    {
+      scenario: 'Buyer needs a CRM or help desk first',
+      fit: 'Look elsewhere or pair systems',
+      why: 'CallHippo can connect communications to supported tools, but it is not positioned here as a replacement for a full CRM or service platform.',
+    },
+  ],
+  alternatives: [
+    {
+      title: 'KrispCall Review',
+      description:
+        'Consider KrispCall when a compact cloud-phone plan structure and separately modeled communication usage suit the team.',
+      href: '/reviews/krispcall',
+    },
+    {
+      title: 'KrispCall vs CallHippo',
+      description:
+        'Compare the two phone-system approaches across seats, numbers, usage, routing, integrations, and fair-use conditions.',
+      href: '/comparisons/krispcall-vs-callhippo',
+    },
+    {
+      title: 'Salesmsg Review',
+      description:
+        'Consider Salesmsg when CRM-connected business texting and shared message ownership matter more than a general cloud-phone system.',
+      href: '/reviews/salesmsg',
+    },
+  ],
+  relatedComparisons: [
+    {
+      title: 'Compare KrispCall vs CallHippo',
+      href: '/comparisons/krispcall-vs-callhippo',
+    },
+    {
+      title: 'Explore Business Phone & Voice AI software',
+      href: '/categories/business-phone-voice-ai',
+    },
+  ],
+  faqs: [
+    {
+      question: 'What is CallHippo?',
+      answer:
+        'CallHippo is a cloud business communications platform. This review focuses on its business phone and Core Calling scope: numbers, calling, messaging, routing, analytics, integrations, and plan-dependent administration.',
+    },
+    {
+      question: 'How much does CallHippo cost?',
+      answer:
+        'The current yearly-selected Core Calling view shows Basic at $0, Starter at $18, Professional at $30, and Ultimate at $42 per user/month. A July 2026 billing guide uses $25 per seat as its US/Canada monthly Starter example. Region, billing period, users, numbers, usage, add-ons, taxes, and suite selection can change total cost.',
+    },
+    {
+      question: 'Does CallHippo include unlimited calling?',
+      answer:
+        'Selected plans publish unlimited US/Canada calling, but the pricing page limits eligible destinations, excludes premium and toll-free numbers, applies domestic and fair-use conditions, and publishes additional usage charges. Confirm the written rate and exemption schedule.',
+    },
+    {
+      question: 'Does CallHippo provide business phone numbers?',
+      answer:
+        'CallHippo documents local, mobile, and toll-free numbers. Availability, price, documents, activation timing, portability, and SMS support vary by country and number type.',
+    },
+    {
+      question: 'Does CallHippo support SMS?',
+      answer:
+        'CallHippo documents SMS/MMS on supported numbers and selected plans. Destination rates, message length, number capability, included allowances, A2P registration, setup fees, and monthly campaign fees can apply.',
+    },
+    {
+      question: 'Is CallHippo or KrispCall the better fit?',
+      answer:
+        'Fit depends on country coverage, numbers, billing model, included usage, routing, integrations, supervision, and total cost. Use Racklio’s KrispCall vs CallHippo comparison for the conditional side-by-side analysis.',
+    },
+    {
+      question: 'Has Racklio tested CallHippo call quality or AI performance?',
+      answer:
+        'No. This review is based on official documentation and independent editorial analysis. Racklio does not present provider marketing claims as measured performance results.',
+    },
+  ],
+  sources: [
+    { title: 'CallHippo', href: 'https://callhippo.com/' },
+    { title: 'CallHippo Pricing', href: 'https://callhippo.com/pricing/' },
+    { title: 'CallHippo Features', href: 'https://callhippo.com/features/' },
+    {
+      title: 'CallHippo Billing and Pricing Guide',
+      href: 'https://help.callhippo.com/how-pricing-works/',
+    },
+    {
+      title: 'CallHippo Number Purchase Guide',
+      href: 'https://help.callhippo.com/buy-a-number/',
+    },
+    {
+      title: 'CallHippo SMS Services Guide',
+      href: 'https://help.callhippo.com/sms-services-guide/',
+    },
+    {
+      title: 'CallHippo HubSpot Integration Guide',
+      href: 'https://help.callhippo.com/hubspot/',
+    },
+    {
+      title: 'CallHippo Security and Compliance',
+      href: 'https://callhippo.com/security/',
+    },
+    {
+      title: 'CallHippo Compliance Call Recording Guide',
+      href: 'https://help.callhippo.com/compliance-call-recording/',
+    },
+    {
+      title: 'CallHippo A2P Verification Guide',
+      href: 'https://help.callhippo.com/a2p-verification-outgoing-sms/',
+    },
+    {
+      title: 'CallHippo Terms and Conditions',
+      href: 'https://callhippo.com/terms/',
+    },
+  ],
+};

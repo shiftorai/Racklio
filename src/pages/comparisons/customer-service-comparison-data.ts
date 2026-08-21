@@ -491,6 +491,7 @@ export const krispcallVsCallHippo: ComparisonData = {
   slug: 'krispcall-vs-callhippo',
   b: 'CallHippo',
   bUrl: 'https://callhippo.com/pricing/',
+  bReview: '/reviews/callhippo',
   headline: 'KrispCall vs CallHippo: which cloud phone model fits your team?',
   dek: 'Both platforms publish virtual-number, calling, SMS, routing, and team features. KrispCall uses compact Essential and Standard tiers with usage charges; CallHippo publishes several calling suites with included-minute and fair-use conditions.',
   metaTitle: 'KrispCall vs CallHippo (2026): Pricing, Calls & SMS | Racklio',

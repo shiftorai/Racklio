@@ -379,6 +379,14 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/callhippo',
+        lazy: async () => {
+          const { CallHippoReview } =
+            await import('@/pages/reviews/callhippo-review');
+          return { Component: CallHippoReview };
+        },
+      },
+      {
         path: 'reviews/tidio',
         lazy: async () => {
           const { TidioReview } = await import('@/pages/reviews/tidio-review');

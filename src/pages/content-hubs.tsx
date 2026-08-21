@@ -96,6 +96,22 @@ const reviewEntries: Entry[] = [
     href: '/reviews/krispcall',
   },
   {
+    title: 'CallHippo Review',
+    description:
+      'Cloud business calling, virtual numbers, routing, messaging, integrations, plan allowances, and usage-cost boundaries.',
+    href: '/reviews/callhippo',
+    relatedLinks: [
+      {
+        title: 'Compare with KrispCall',
+        href: '/comparisons/krispcall-vs-callhippo',
+      },
+      {
+        title: 'Business Phone & Voice AI',
+        href: '/categories/business-phone-voice-ai',
+      },
+    ],
+  },
+  {
     title: 'Salesmsg Review',
     description:
       'Business texting, calling, CRM workflows, AI agents, credits, carrier fees, and messaging-compliance cost boundaries.',
