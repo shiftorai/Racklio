@@ -32,6 +32,8 @@ export const typewiseData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based Typewise review covering outcome pricing, AI customer service automation, integrations, security claims, deployment needs, and business fit.',
   officialUrl: 'https://www.typewise.app/',
+  idealUser:
+    'Established service operations with repeatable inquiries, historical communications, and integration resources.',
   summary: [
     {
       label: 'What it is',
@@ -190,6 +192,8 @@ export const krispcallData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based KrispCall review covering per-user pricing, virtual numbers, calling, SMS, workspace features, usage charges, integrations, and fit.',
   officialUrl: 'https://krispcall.com/',
+  idealUser:
+    'Small and midsize teams that need business numbers and shared cloud telephony without a traditional PBX.',
   relatedComparisons: [
     {
       title: 'Compare KrispCall vs CallHippo',
@@ -376,6 +380,8 @@ export const tidioData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based Tidio review covering live chat, help desk, Lyro AI, pricing, conversation limits, automation, integrations, and support-team fit.',
   officialUrl: 'https://www.tidio.com/',
+  idealUser:
+    'Small and growing teams that want chat, tickets, and entry-level automation in one platform.',
   relatedComparisons: [
     {
       title: 'Compare Tidio vs Gorgias',
@@ -565,6 +571,8 @@ export const respondIoData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based respond.io review covering omnichannel messaging, WhatsApp, AI agents, workflows, users, active-contact pricing, security, and fit.',
   officialUrl: 'https://respond.io/',
+  idealUser:
+    'B2C teams managing high-value conversations across WhatsApp and other messaging channels.',
   relatedComparisons: [
     {
       title: 'Compare respond.io vs Tidio',
@@ -753,6 +761,8 @@ export const gorgiasData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based Gorgias review covering ecommerce help desk features, Shopify, ticket pricing, AI Agent charges, channels, overages, and tradeoffs.',
   officialUrl: 'https://www.gorgias.com/',
+  idealUser:
+    'Shopify and other supported commerce teams that want support agents to work with customer and order data.',
   relatedComparisons: [
     {
       title: 'Compare Tidio vs Gorgias',
