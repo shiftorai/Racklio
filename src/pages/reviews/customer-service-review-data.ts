@@ -170,11 +170,6 @@ export const typewiseData: SoftwareReviewData = {
       href: 'https://www.typewise.app/',
     },
     { title: 'Typewise Security', href: 'https://www.typewise.app/security' },
-    { title: 'Typewise AI Agent', href: 'https://www.typewise.app/ai-agent' },
-    {
-      title: 'Typewise Integrations',
-      href: 'https://www.typewise.app/integrations',
-    },
   ],
 };
 
@@ -348,7 +343,7 @@ export const krispcallData: SoftwareReviewData = {
       title: 'KrispCall Subscription Plans',
       href: 'https://help.krispcall.com/en/article/what-are-different-subscription-plans-available-with-krispcall-1hp42ym/',
     },
-    { title: 'KrispCall Features', href: 'https://krispcall.com/features/' },
+    { title: 'KrispCall Features', href: 'https://krispcall.com/feature/' },
     {
       title: 'KrispCall Integrations',
       href: 'https://krispcall.com/integration/',

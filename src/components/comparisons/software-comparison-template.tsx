@@ -27,6 +27,7 @@ export type ComparisonData = {
   aReview?: string;
   bReview?: string;
   verificationDate?: string;
+  schemaDate?: string;
   related?: { title: string; href: string }[];
   summary: { label: string; text: string }[];
   factors: { factor: string; a: string; b: string; relevance: string }[];
@@ -61,8 +62,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
       '@type': 'Article',
       headline: data.headline,
       description: data.metaDescription,
-      datePublished: data.verificationDate ? '2026-08-14' : '2026-08-13',
-      dateModified: data.verificationDate ? '2026-08-14' : '2026-08-13',
+      datePublished:
+        data.schemaDate ??
+        (data.verificationDate ? '2026-08-14' : '2026-08-13'),
+      dateModified:
+        data.schemaDate ??
+        (data.verificationDate ? '2026-08-14' : '2026-08-13'),
       mainEntityOfPage: canonical,
       isAccessibleForFree: true,
       author: {

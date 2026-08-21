@@ -517,7 +517,7 @@ export const softwareCategories: SoftwareCategoryData[] = [
     verificationDate: 'August 21, 2026',
     sources: [
       { title: 'KrispCall pricing', href: 'https://krispcall.com/pricing/' },
-      { title: 'KrispCall features', href: 'https://krispcall.com/features/' },
+      { title: 'KrispCall features', href: 'https://krispcall.com/feature/' },
       { title: 'Aircall pricing', href: 'https://aircall.io/pricing/' },
       { title: 'CallHippo pricing', href: 'https://callhippo.com/pricing/' },
       {

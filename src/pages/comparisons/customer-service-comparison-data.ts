@@ -219,7 +219,7 @@ export const tidioVsGorgias: ComparisonData = {
     { title: 'Tidio Pricing', href: 'https://www.tidio.com/pricing/' },
     {
       title: 'Tidio Lyro limits',
-      href: 'https://help.tidio.com/hc/en-us/articles/11310308830108-Lyro-AI-Agent-conversation-limits',
+      href: 'https://help.tidio.com/hc/en-us/articles/13924459295900-The-Lyro-AI-agent-limit',
     },
     { title: 'Tidio Features', href: 'https://www.tidio.com/features/' },
     {
@@ -230,15 +230,15 @@ export const tidioVsGorgias: ComparisonData = {
     { title: 'Gorgias Pricing', href: 'https://www.gorgias.com/pricing' },
     {
       title: 'Gorgias Billing and tickets',
-      href: 'https://docs.gorgias.com/en-US/understand-your-gorgias-bill-81808',
+      href: 'https://docs.gorgias.com/en-US/how-youre-billed-for-using-gorgias-199385',
     },
     {
       title: 'Gorgias AI Agent billing',
-      href: 'https://docs.gorgias.com/en-US/ai-agent-billing-1737481',
+      href: 'https://docs.gorgias.com/en-US/set-up-and-use-ai-agent-on-chat-828220',
     },
     {
       title: 'Gorgias AI Agent handover',
-      href: 'https://docs.gorgias.com/en-US/ai-agent-handover-criteria-500445',
+      href: 'https://docs.gorgias.com/en-US/customize-how-ai-agent-hands-over-to-your-team-6008591',
     },
     {
       title: 'Gorgias Integrations',
@@ -448,7 +448,7 @@ export const respondIoVsTidio: ComparisonData = {
     { title: 'respond.io Pricing', href: 'https://respond.io/pricing' },
     {
       title: 'respond.io Monthly Active Contacts',
-      href: 'https://respond.io/help/organization-settings/monthly-active-contacts',
+      href: 'https://respond.io/help/organization-settings/billing-usage',
     },
     {
       title: 'respond.io AI Agents',
@@ -462,7 +462,7 @@ export const respondIoVsTidio: ComparisonData = {
     { title: 'Tidio Pricing', href: 'https://www.tidio.com/pricing/' },
     {
       title: 'Tidio Lyro limits',
-      href: 'https://help.tidio.com/hc/en-us/articles/11310308830108-Lyro-AI-Agent-conversation-limits',
+      href: 'https://help.tidio.com/hc/en-us/articles/13924459295900-The-Lyro-AI-agent-limit',
     },
     { title: 'Tidio Features', href: 'https://www.tidio.com/features/' },
     {
@@ -665,7 +665,7 @@ export const krispcallVsCallHippo: ComparisonData = {
       title: 'KrispCall Subscription Plans',
       href: 'https://help.krispcall.com/en/article/what-are-different-subscription-plans-available-with-krispcall-1hp42ym/',
     },
-    { title: 'KrispCall Features', href: 'https://krispcall.com/features/' },
+    { title: 'KrispCall Features', href: 'https://krispcall.com/feature/' },
     {
       title: 'KrispCall Integrations',
       href: 'https://krispcall.com/integration/',
@@ -875,7 +875,7 @@ export const krispcallVsAircall: ComparisonData = {
       title: 'KrispCall Subscription Plans',
       href: 'https://help.krispcall.com/en/article/what-are-different-subscription-plans-available-with-krispcall-1hp42ym/',
     },
-    { title: 'KrispCall Features', href: 'https://krispcall.com/features/' },
+    { title: 'KrispCall Features', href: 'https://krispcall.com/feature/' },
     {
       title: 'KrispCall Integrations',
       href: 'https://krispcall.com/integration/',

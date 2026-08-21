@@ -23,6 +23,7 @@ const data: ComparisonData = {
   aReview: '/reviews/campaign-monitor',
   bReview: '/reviews/aweber',
   verificationDate: 'August 21, 2026',
+  schemaDate: '2026-08-21',
   related: [
     {
       title: 'Campaign Monitor pricing',

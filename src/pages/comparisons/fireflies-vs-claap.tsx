@@ -17,15 +17,21 @@ const firefliesVsClaap: ComparisonData = {
   dek: 'Fireflies.ai and Claap both capture and analyze customer conversations, but they organize the buying decision differently. Fireflies spans meeting intelligence across sales and internal workflows with separately modeled AI credits; Claap’s published Business scope centers sales conversation enrichment, coaching, and deal intelligence.',
   metaTitle: 'Fireflies.ai vs Claap (2026): Workflow & Pricing | Racklio',
   metaDescription:
-    'Evidence-first Fireflies.ai vs Claap comparison covering capture, summaries, CRM automation, coaching, deal intelligence, analytics, integrations, AI credits, and fit.',
+    'Compare Fireflies.ai vs Claap on meeting capture, CRM workflows, coaching, AI credits, pricing, and fit for sales and revenue teams.',
   aUrl: 'https://fireflies.ai/',
   bUrl: 'https://www.claap.io/',
   aReview: '/reviews/fireflies',
   bReview: '/reviews/claap',
   verificationDate: 'August 21, 2026',
+  schemaDate: '2026-08-21',
   related: [
-    { title: 'Read the Fireflies.ai review', href: '/reviews/fireflies' },
-    { title: 'Read the Claap review', href: '/reviews/claap' },
+    { title: 'Fireflies.ai pricing guide', href: '/guides/fireflies-pricing' },
+    { title: 'Claap pricing guide', href: '/guides/claap-pricing' },
+    {
+      title: 'Fireflies.ai alternatives',
+      href: '/alternatives/fireflies-alternatives',
+    },
+    { title: 'Claap alternatives', href: '/alternatives/claap-alternatives' },
     {
       title: 'CRM & Customer Engagement',
       href: '/categories/crm-customer-engagement',

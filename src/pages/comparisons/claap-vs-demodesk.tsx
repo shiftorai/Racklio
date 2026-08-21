@@ -17,15 +17,21 @@ const claapVsDemodesk: ComparisonData = {
   dek: 'Claap and Demodesk both use customer conversations for sales coaching, CRM workflows, and deal intelligence. The useful choice depends on capture methods, plan and usage model, CRM operating process, autonomous-workflow needs, integration scope, and governance—not a universal feature-count winner.',
   metaTitle: 'Claap vs Demodesk (2026): Sales Workflow Fit | Racklio',
   metaDescription:
-    'Evidence-first Claap vs Demodesk comparison covering meeting capture, transcription, coaching, CRM automation, deal intelligence, AI workflows, integrations, pricing, and revenue-team fit.',
+    'Compare Claap vs Demodesk on capture, coaching, CRM automation, AI workflows, pricing, and fit for sales and revenue teams.',
   aUrl: 'https://www.claap.io/',
   bUrl: 'https://demodesk.com/',
   aReview: '/reviews/claap',
   bReview: '/reviews/demodesk',
   verificationDate: 'August 21, 2026',
+  schemaDate: '2026-08-21',
   related: [
-    { title: 'Read the Claap review', href: '/reviews/claap' },
-    { title: 'Read the Demodesk review', href: '/reviews/demodesk' },
+    { title: 'Claap pricing guide', href: '/guides/claap-pricing' },
+    { title: 'Demodesk pricing guide', href: '/guides/demodesk-pricing' },
+    { title: 'Claap alternatives', href: '/alternatives/claap-alternatives' },
+    {
+      title: 'Demodesk alternatives',
+      href: '/alternatives/demodesk-alternatives',
+    },
     {
       title: 'CRM & Customer Engagement',
       href: '/categories/crm-customer-engagement',
