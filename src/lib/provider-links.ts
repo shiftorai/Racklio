@@ -75,10 +75,17 @@ export const providerLinks = {
   tidio: { official: 'https://www.tidio.com/', affiliate: null },
   respondIo: { official: 'https://respond.io/', affiliate: null },
   gorgias: { official: 'https://www.gorgias.com/', affiliate: null },
-  engageBay: { official: 'https://www.engagebay.com/', affiliate: null },
+  engageBay: {
+    official: 'https://www.engagebay.com/',
+    affiliate:
+      'https://www.awin1.com/cread.php?awinmid=127075&awinaffid=3032289&ued=https%3A%2F%2Fwww.engagebay.com%2F',
+  },
   eazyChat: { official: 'https://eazychat.io/', affiliate: null },
   aircall: { official: 'https://aircall.io/', affiliate: null },
-  callHippo: { official: 'https://callhippo.com/', affiliate: null },
+  callHippo: {
+    official: 'https://callhippo.com/',
+    affiliate: 'https://join.callhippo.com/jq1tp40dwnka',
+  },
   salesmsg: { official: 'https://www.salesmessage.com/', affiliate: null },
   vida: { official: 'https://vida.io/', affiliate: null },
   demodesk: { official: 'https://demodesk.com/', affiliate: null },
@@ -109,7 +116,7 @@ export function getExternalLinkRel(
 
   if (provider) {
     return provider.affiliate === href
-      ? 'sponsored nofollow noopener'
+      ? 'sponsored noopener noreferrer'
       : opensNewTab
         ? 'noopener noreferrer'
         : undefined;

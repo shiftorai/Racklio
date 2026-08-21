@@ -36,6 +36,7 @@ export const engageBayPricingData: CommercialPageData = {
     'EngageBay pricing guide covering current All-in-One plans, annual per-user rates, contact limits, feature differences, cost drivers, and buyer fit.',
   verificationDate,
   provider: 'EngageBay',
+  providerKey: 'engageBay',
   officialUrl: 'https://www.engagebay.com/pricing/all-in-one',
   categoryLinks: [
     {
@@ -366,6 +367,7 @@ export const engageBayAlternativesData: CommercialPageData = {
     'Compare meaningful EngageBay alternatives by CRM scope, support depth, messaging workflow, pricing model, complexity, and practical business fit.',
   verificationDate,
   provider: 'EngageBay',
+  providerKey: 'engageBay',
   officialUrl: 'https://www.engagebay.com/',
   categoryLinks: [
     {

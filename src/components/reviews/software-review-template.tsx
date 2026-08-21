@@ -11,6 +11,7 @@ import {
   Link,
   Section,
 } from '@/components/ui';
+import { getProviderUrl, type CoreProvider } from '@/lib/provider-links';
 
 export type SoftwareReviewData = {
   slug: string;
@@ -22,6 +23,7 @@ export type SoftwareReviewData = {
   metaTitle: string;
   metaDescription: string;
   officialUrl: string;
+  providerKey?: CoreProvider;
   summary: { label: string; text: string }[];
   fit: string[];
   notFit: string[];
@@ -53,6 +55,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
   const canonical = `https://racklio.com/reviews/${data.slug}`;
   const verificationDate = data.verificationDate ?? 'August 13, 2026';
   const primaryCategory = data.categoryLinks?.[0];
+  const commercialUrl = data.providerKey
+    ? getProviderUrl(data.providerKey)
+    : data.officialUrl;
+  const usesAffiliateLink = commercialUrl !== data.officialUrl;
   const quickDecision = [
     {
       label: 'Best for',
@@ -231,19 +237,26 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink
-                  href={data.officialUrl}
-                  rel="noopener noreferrer"
+                  href={commercialUrl}
+                  rel={
+                    usesAffiliateLink
+                      ? 'sponsored noopener noreferrer'
+                      : 'noopener noreferrer'
+                  }
                   target="_blank"
                 >
-                  Visit {data.name} Official Website
+                  {usesAffiliateLink
+                    ? `Visit ${data.name}`
+                    : `Visit ${data.name} Official Website`}
                 </ButtonLink>
                 <ButtonLink href="#decision" variant="secondary">
                   Decision Guidance
                 </ButtonLink>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                Official link. No paid ranking or score. Racklio may earn from
-                eligible links in the future.
+                {usesAffiliateLink
+                  ? 'Affiliate disclosure: Racklio may earn a commission if you use this commercial link, at no additional cost to you. Affiliate status does not influence this review.'
+                  : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
               </p>
               <p className="mt-3 text-xs font-medium text-muted-foreground">
                 Facts verified {verificationDate}

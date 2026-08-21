@@ -444,17 +444,18 @@ export function PrivacyPage() {
         <p className="mt-3">
           Provider and source links lead to third-party websites governed by
           their own privacy and tracking practices. Those sites control their
-          own checkout, accounts, cookies, and service terms. Racklio&apos;s
-          frontend does not currently contain verified affiliate tracking URLs.
+          own checkout, accounts, cookies, and service terms. Some commercial
+          provider links use verified affiliate tracking destinations; evidence
+          and source citations continue to use direct provider URLs.
         </p>
       </section>
       <section>
         <h2 className="text-2xl font-semibold">Future tracking changes</h2>
         <p className="mt-3">
-          Analytics, advertising measurement, Microsoft UET, affiliate tracking,
-          or other non-essential browser technologies must not be activated
-          until this notice is updated and applicable consent requirements have
-          been reassessed.
+          Analytics, advertising measurement, Microsoft UET, or other
+          non-essential browser technologies must not be activated until this
+          notice is updated and applicable consent requirements have been
+          reassessed.
         </p>
       </section>
       <p>

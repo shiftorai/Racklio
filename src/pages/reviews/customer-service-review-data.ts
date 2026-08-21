@@ -3515,6 +3515,7 @@ export const callHippoData: SoftwareReviewData = {
   metaDescription:
     'Evidence-based CallHippo review covering business phone pricing, numbers, calling allowances, routing, SMS, integrations, add-ons, and buyer fit.',
   officialUrl: 'https://callhippo.com/',
+  providerKey: 'callHippo',
   verificationDate: 'August 21, 2026',
   schemaDate: '2026-08-21',
   idealUser:

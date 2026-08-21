@@ -11,6 +11,7 @@ import {
   Link,
   Section,
 } from '@/components/ui';
+import { getProviderUrl, type CoreProvider } from '@/lib/provider-links';
 
 export type CommercialPageData = {
   path: string;
@@ -24,6 +25,7 @@ export type CommercialPageData = {
   verificationDate: string;
   schemaDate?: string;
   provider: string;
+  providerKey?: CoreProvider;
   officialUrl: string;
   categoryLinks: { title: string; href: string }[];
   summary: { label: string; text: string }[];
@@ -48,6 +50,10 @@ export type CommercialPageData = {
 
 export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
   const canonical = `https://racklio.com${data.path}`;
+  const commercialUrl = data.providerKey
+    ? getProviderUrl(data.providerKey)
+    : data.officialUrl;
+  const usesAffiliateLink = commercialUrl !== data.officialUrl;
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -394,8 +400,12 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 </ol>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <ButtonLink
-                    href={data.officialUrl}
-                    rel="noopener noreferrer"
+                    href={commercialUrl}
+                    rel={
+                      usesAffiliateLink
+                        ? 'sponsored noopener noreferrer'
+                        : 'noopener noreferrer'
+                    }
                     target="_blank"
                   >
                     Visit {data.provider}
@@ -411,7 +421,9 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   ))}
                 </div>
                 <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                  The provider link is not an affiliate link at publication.
+                  {usesAffiliateLink
+                    ? 'Affiliate disclosure: Racklio may earn a commission if you use this commercial link, at no additional cost to you. Editorial conclusions remain independent.'
+                    : 'The provider link is not an affiliate link at publication.'}{' '}
                   Read Racklio's{' '}
                   <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
                   .

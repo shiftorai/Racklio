@@ -19,6 +19,7 @@ export const engageBayData: SoftwareReviewData = {
   metaDescription:
     'Evidence-first EngageBay review covering CRM, marketing, sales, help desk, pricing limits, integrations, strengths, limitations, and small-business fit.',
   officialUrl: 'https://www.engagebay.com/',
+  providerKey: 'engageBay',
   relatedComparisons: [
     { title: 'EngageBay pricing guide', href: '/guides/engagebay-pricing' },
     {
