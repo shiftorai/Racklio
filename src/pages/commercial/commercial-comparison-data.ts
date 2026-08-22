@@ -17,6 +17,13 @@ export const engageBayVsHubSpotData: ComparisonData = {
   metaTitle: 'EngageBay vs HubSpot (2026): Pricing, Scope & Fit | Racklio',
   metaDescription:
     'Evidence-first EngageBay vs HubSpot comparison covering pricing structure, CRM and service scope, automation, ecosystem, complexity, limitations, and business fit.',
+  video: {
+    embedUrl: 'https://www.youtube-nocookie.com/embed/yZOo0UuKpLs',
+    title: 'EngageBay vs HubSpot 2026 comparison by Racklio',
+    heading: 'Watch the EngageBay vs HubSpot comparison',
+    description:
+      'Prefer video? This walkthrough covers the key differences in pricing structure, platform scope, buyer fit, and trade-offs between EngageBay and HubSpot.',
+  },
   aUrl: 'https://www.engagebay.com/',
   bUrl: 'https://www.hubspot.com/',
   aReview: '/reviews/engagebay',
