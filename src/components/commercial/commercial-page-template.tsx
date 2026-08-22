@@ -41,6 +41,7 @@ export type CommercialPageData = {
     description: string;
     paragraphs: string[];
     evidence?: string;
+    contextualLink?: { title: string; href: string };
   }[];
   scenarios: { scenario: string; guidance: string; why: string }[];
   faqs: { question: string; answer: string }[];
@@ -308,6 +309,13 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                     <div className="mt-6">
                       <EvidenceNote>{section.evidence}</EvidenceNote>
                     </div>
+                  ) : null}
+                  {section.contextualLink ? (
+                    <p className="mt-5 text-sm leading-6">
+                      <Link href={section.contextualLink.href}>
+                        {section.contextualLink.title} →
+                      </Link>
+                    </p>
                   ) : null}
                 </ReviewSection>
               ))}

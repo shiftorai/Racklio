@@ -124,6 +124,10 @@ export const engageBayData: SoftwareReviewData = {
       ],
       evidence:
         'Verified against EngageBay’s official All-in-One pricing, product, support, integration, and API pages. No hands-on product testing is claimed.',
+      contextualLink: {
+        title: 'Compare EngageBay and HubSpot',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
     },
     {
       id: 'pricing-limits',
@@ -135,6 +139,10 @@ export const engageBayData: SoftwareReviewData = {
         'The official pricing interface displays different effective rates for annual and longer commitments. The table above uses the annual All-in-One prices shown during verification rather than presenting the lowest advertised rate without its commitment context.',
         'Plan progression changes more than contact capacity. Lists, forms, automation workflows, workflow nodes, reporting, file storage, service views, macros, and other functions have tier-specific availability or limits.',
       ],
+      contextualLink: {
+        title: 'See EngageBay’s pricing and plan structure',
+        href: '/guides/engagebay-pricing',
+      },
     },
     {
       id: 'integrations',
@@ -146,6 +154,10 @@ export const engageBayData: SoftwareReviewData = {
         'EngageBay publishes connections for services including Zapier, Shopify, SendGrid, Stripe, Outlook, Salesforce, Aircall, and other tools, alongside APIs and webhooks.',
         'Buyers should verify the exact objects, sync direction, update frequency, permissions, and plan access required for their workflow. Racklio does not infer those details from the presence of an integration listing.',
       ],
+      contextualLink: {
+        title: 'Explore EngageBay alternatives',
+        href: '/alternatives/engagebay-alternatives',
+      },
     },
   ],
   strengths: [

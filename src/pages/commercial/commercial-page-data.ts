@@ -105,6 +105,10 @@ export const engageBayPricingData: CommercialPageData = {
       ],
       evidence:
         'The official page displays lower effective rates for longer commitments. Because commitment labels and checkout terms can change, Racklio does not present those lower figures as the default price.',
+      contextualLink: {
+        title: 'Read the full EngageBay review',
+        href: '/reviews/engagebay',
+      },
     },
     {
       id: 'plans',
@@ -127,6 +131,10 @@ export const engageBayPricingData: CommercialPageData = {
         'A team may need Growth or Pro because of contacts, workflow depth, reporting, storage, governance, or service controls even when it has few users. Conversely, a larger team with simple requirements still multiplies the per-user subscription across every required seat.',
         'Taxes, implementation work, data cleanup, external email or telephony services, and connected applications are not established by the plan headline. Ask which services are included, which have their own contracts, and how data moves between them.',
       ],
+      contextualLink: {
+        title: 'Compare EngageBay and HubSpot',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
     },
     {
       id: 'value',
@@ -138,6 +146,10 @@ export const engageBayPricingData: CommercialPageData = {
         'Racklio analysis: EngageBay is more compelling when a smaller business wants shared contacts across CRM, marketing, sales, live chat, and service workflows and can operate within one documented tier. Consolidation can reduce tool switching, but only if the included modules meet the actual requirements.',
         'A specialist product may make more sense when one department needs deeper case management, advanced contact-center operations, or a channel-specific workflow. Do not pay for suite breadth if the organization will retain separate core systems anyway.',
       ],
+      contextualLink: {
+        title: 'Explore EngageBay alternatives by workflow',
+        href: '/alternatives/engagebay-alternatives',
+      },
     },
   ],
   scenarios: [
@@ -433,6 +445,10 @@ export const engageBayAlternativesData: CommercialPageData = {
         'Verified fact: EngageBay combines CRM, marketing, sales, live chat, and Service Bay functions, with contact and capability limits that change by tier. A buyer may look elsewhere when one department needs deeper tooling, governance, integration, or channel coverage than the selected tier documents.',
         'Racklio analysis: changing products is not automatically an upgrade. It is justified when a specific workflow gap matters more than the cost and disruption of operating another platform.',
       ],
+      contextualLink: {
+        title: 'Read the baseline EngageBay review',
+        href: '/reviews/engagebay',
+      },
     },
     {
       id: 'hubspot',
@@ -444,6 +460,10 @@ export const engageBayAlternativesData: CommercialPageData = {
         'HubSpot officially packages Marketing, Sales, Service, Content, Data, Commerce, and Smart CRM capabilities across free and paid editions. Its pricing can combine seats, editions, credits, add-ons, and annual commitments, so it should not be reduced to a single headline rate.',
         'Choose HubSpot when the organization can govern a broader platform and needs its documented ecosystem or advanced hub capabilities. Stay with EngageBay when a smaller connected suite is sufficient and the required features fit a published plan.',
       ],
+      contextualLink: {
+        title: 'See the EngageBay vs HubSpot comparison',
+        href: '/comparisons/engagebay-vs-hubspot',
+      },
     },
     {
       id: 'specialists',
@@ -466,6 +486,10 @@ export const engageBayAlternativesData: CommercialPageData = {
         'Document the system of record, customer channels, workflow owners, automation boundaries, reporting, governance, integrations, and forecast usage. Then compare the smallest configuration that satisfies those requirements.',
         'The defensible choice may still be EngageBay. Its broader bundle can reduce handoffs for a smaller team when specialist depth is not required.',
       ],
+      contextualLink: {
+        title: 'Review EngageBay pricing and plan limits',
+        href: '/guides/engagebay-pricing',
+      },
     },
   ],
   scenarios: [

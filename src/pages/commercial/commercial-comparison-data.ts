@@ -133,6 +133,10 @@ export const engageBayVsHubSpotData: ComparisonData = {
         'Verified fact: EngageBay offers All-in-One, Marketing, CRM & Sales, and Service Bay products. HubSpot describes a customer platform spanning Marketing, Sales, Service, Content, Data, Commerce, and Smart CRM. Both connect customer-facing functions, but HubSpot packages a broader set of hubs and editions.',
         'Racklio analysis: EngageBay is easier to shortlist when a smaller organization wants broad connected basics. HubSpot becomes more relevant when a team has requirements that justify its larger platform and can manage the resulting configuration, governance, and commercial complexity.',
       ],
+      contextualLink: {
+        title: 'Read the full EngageBay review',
+        href: '/reviews/engagebay',
+      },
     },
     {
       id: 'pricing',
@@ -145,6 +149,10 @@ export const engageBayVsHubSpotData: ComparisonData = {
       ],
       evidence:
         'Pricing verified August 14, 2026. HubSpot’s public page explicitly identifies special Starter pricing; Racklio does not generalize it into a permanent base rate.',
+      contextualLink: {
+        title: 'See EngageBay’s pricing and plan structure',
+        href: '/guides/engagebay-pricing',
+      },
     },
     {
       id: 'scope',
@@ -188,6 +196,10 @@ export const engageBayVsHubSpotData: ComparisonData = {
         'EngageBay may not fit when a department needs specialist depth or governance beyond the selected tier. HubSpot may not fit when its platform breadth, commercial model, and implementation needs exceed the buyer’s actual requirements.',
         'A broad feature inventory should not substitute for a requirements map. The decision should follow required workflows, integration constraints, administrative capacity, and a total-cost model over the expected term.',
       ],
+      contextualLink: {
+        title: 'Explore EngageBay alternatives',
+        href: '/alternatives/engagebay-alternatives',
+      },
     },
     {
       id: 'verdict',

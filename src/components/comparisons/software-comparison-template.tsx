@@ -44,6 +44,7 @@ export type ComparisonData = {
     description: string;
     paragraphs: string[];
     evidence?: string;
+    contextualLink?: { title: string; href: string };
   }[];
   scenarios: { scenario: string; lean: string; why: string }[];
   faqs: { question: string; answer: string }[];
@@ -351,6 +352,13 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     <div className="mt-6">
                       <EvidenceNote>{s.evidence}</EvidenceNote>
                     </div>
+                  ) : null}
+                  {s.contextualLink ? (
+                    <p className="mt-5 text-sm leading-6">
+                      <Link href={s.contextualLink.href}>
+                        {s.contextualLink.title} →
+                      </Link>
+                    </p>
                   ) : null}
                 </ReviewSection>
               ))}

@@ -36,6 +36,7 @@ export type SoftwareReviewData = {
     paragraphs: string[];
     bullets?: string[];
     evidence?: string;
+    contextualLink?: { title: string; href: string };
   }[];
   scenarios: { scenario: string; fit: string; why: string }[];
   faqs: { question: string; answer: string }[];
@@ -464,6 +465,13 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     <div className="mt-6">
                       <EvidenceNote>{s.evidence}</EvidenceNote>
                     </div>
+                  ) : null}
+                  {s.contextualLink ? (
+                    <p className="mt-5 text-sm leading-6">
+                      <Link href={s.contextualLink.href}>
+                        {s.contextualLink.title} →
+                      </Link>
+                    </p>
                   ) : null}
                 </ReviewSection>
               ))}
