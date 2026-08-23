@@ -27,6 +27,7 @@ const groups = [
     title: 'Racklio',
     links: [
       ['About', '/about'],
+      ['Partner / Media Kit', '/partner-media-kit'],
       ['Contact', '/contact'],
     ],
   },

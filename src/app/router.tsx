@@ -288,6 +288,7 @@ export const router = createBrowserRouter([
       },
       ...[
         ['about', 'AboutPage'],
+        ['partner-media-kit', 'PartnerMediaKitPage'],
         ['methodology', 'MethodologyPage'],
         ['editorial-standards', 'EditorialStandardsPage'],
         ['affiliate-disclosure', 'AffiliateDisclosurePage'],

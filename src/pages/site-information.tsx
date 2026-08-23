@@ -8,6 +8,7 @@ function InformationPage({
   code,
   title,
   description,
+  metaDescription,
   canonical,
   children,
   noindex = false,
@@ -15,6 +16,7 @@ function InformationPage({
   code: string;
   title: string;
   description: string;
+  metaDescription?: string;
   canonical: string;
   children: ReactNode;
   noindex?: boolean;
@@ -24,11 +26,11 @@ function InformationPage({
       'meta[name="description"]',
     );
     const previous = meta?.content;
-    if (meta) meta.content = description;
+    if (meta) meta.content = metaDescription ?? description;
     return () => {
       if (meta && previous) meta.content = previous;
     };
-  }, [description]);
+  }, [description, metaDescription]);
 
   return (
     <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
@@ -204,6 +206,117 @@ export function AboutPage() {
           <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>, or
           readers can review the <Link href="/contact">Contact page</Link> for
           Racklio&apos;s support boundaries.
+        </p>
+      </section>
+    </InformationPage>
+  );
+}
+
+export function PartnerMediaKitPage() {
+  return (
+    <InformationPage
+      code="PM"
+      title="Partner & Media Kit"
+      description="Racklio is an independent B2B software comparison and buying-guidance publication operated by Keleva LLC. We help SMBs evaluate and choose software through research-based reviews, comparisons, alternatives, pricing guides, and decision-focused content."
+      metaDescription="Learn about Racklio's audience, B2B software coverage, editorial approach, promotional channels, and affiliate partnership model."
+      canonical="https://racklio.com/partner-media-kit"
+    >
+      <section>
+        <h2 className="text-2xl font-semibold">What Racklio Covers</h2>
+        <p className="mt-3">Racklio&apos;s primary coverage areas are:</p>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>AI Customer Support</li>
+          <li>Business Phone &amp; Voice AI</li>
+          <li>Live Chat &amp; Messaging</li>
+          <li>CRM &amp; Customer Engagement</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Audience</h2>
+        <p className="mt-3">
+          Racklio primarily serves small and midsize businesses evaluating B2B
+          software. Its geographic focus is North America, with a current
+          emphasis on the United States. The publication is designed for readers
+          with commercial research and software-selection intent.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Content Formats</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>In-depth software reviews</li>
+          <li>Head-to-head comparisons</li>
+          <li>Alternatives guides</li>
+          <li>Pricing and value guides</li>
+          <li>Category and buying guides</li>
+          <li>Decision-focused YouTube content</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">
+          How Racklio Evaluates Software
+        </h2>
+        <p className="mt-3">
+          Racklio uses a research-based process grounded in official provider
+          information, source verification, and a documented editorial
+          methodology. Provider facts and claims remain distinct from
+          Racklio&apos;s analysis so readers can understand both the available
+          evidence and its practical decision relevance.
+        </p>
+        <p className="mt-3">
+          Read the <Link href="/methodology">Editorial Methodology</Link> and{' '}
+          <Link href="/editorial-standards">Editorial Standards</Link>.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Partnership Model</h2>
+        <p className="mt-3">
+          Racklio may work with software providers through affiliate
+          partnerships, editorially relevant product inclusion, access to
+          accurate product information and approved brand assets, and partner
+          updates used for factual verification.
+        </p>
+        <p className="mt-3">
+          A commercial relationship does not guarantee favorable coverage, a
+          ranking position, a recommendation, or inclusion in Racklio content.
+          Editorial conclusions remain independent.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Promotional Channels</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>Racklio.com editorial content</li>
+          <li>Organic search</li>
+          <li>Racklio YouTube content</li>
+          <li>Racklio&apos;s LinkedIn company presence</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Editorial Independence</h2>
+        <p className="mt-3">
+          Recommendations are editorial decisions. Compensation does not
+          determine rankings or conclusions, commercial relationships are
+          disclosed where appropriate, and material provider claims are checked
+          against available official sources.
+        </p>
+        <p className="mt-3">
+          See the <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>{' '}
+          and <Link href="/editorial-standards">Editorial Standards</Link> for
+          more information.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-2xl font-semibold">Work with Racklio</h2>
+        <p className="mt-3">
+          For partnership, affiliate, media, or factual product-update
+          inquiries, contact{' '}
+          <Link href="mailto:contact@racklio.com">contact@racklio.com</Link>.
         </p>
       </section>
     </InformationPage>
