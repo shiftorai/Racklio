@@ -3516,6 +3516,13 @@ export const callHippoData: SoftwareReviewData = {
     'Evidence-based CallHippo review covering business phone pricing, numbers, calling allowances, routing, SMS, integrations, add-ons, and buyer fit.',
   officialUrl: 'https://callhippo.com/',
   providerKey: 'callHippo',
+  video: {
+    embedUrl: 'https://www.youtube.com/embed/nace7Lj6yLY',
+    title: 'CallHippo Review 2026 video overview by Racklio',
+    heading: 'CallHippo Review 2026: Video Overview',
+    description:
+      'Watch the video overview for a concise breakdown of CallHippo’s pricing structure, key features, limitations, and who it makes the most sense for.',
+  },
   verificationDate: 'August 21, 2026',
   schemaDate: '2026-08-21',
   idealUser:
