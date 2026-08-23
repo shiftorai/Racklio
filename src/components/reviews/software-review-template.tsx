@@ -24,6 +24,12 @@ export type SoftwareReviewData = {
   metaDescription: string;
   officialUrl: string;
   providerKey?: CoreProvider;
+  video?: {
+    embedUrl: string;
+    title: string;
+    heading: string;
+    description: string;
+  };
   summary: { label: string; text: string }[];
   fit: string[];
   notFit: string[];
@@ -283,6 +289,36 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
           </div>
         </Container>
       </Section>
+      {data.video ? (
+        <Section className="border-b border-border" spacing="sm">
+          <Container>
+            <section
+              aria-labelledby="review-video-heading"
+              className="mx-auto max-w-4xl"
+            >
+              <h2
+                className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
+                id="review-video-heading"
+              >
+                {data.video.heading}
+              </h2>
+              <p className="mt-3 max-w-3xl leading-7 text-muted-foreground">
+                {data.video.description}
+              </p>
+              <div className="mt-6 aspect-video w-full overflow-hidden rounded-xl border border-brand/20 bg-navy shadow-card">
+                <iframe
+                  allow="encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  src={data.video.embedUrl}
+                  title={data.video.title}
+                />
+              </div>
+            </section>
+          </Container>
+        </Section>
+      ) : null}
       <Section spacing="md">
         <Container>
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">

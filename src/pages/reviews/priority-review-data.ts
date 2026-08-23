@@ -20,6 +20,14 @@ export const engageBayData: SoftwareReviewData = {
     'Evidence-first EngageBay review covering CRM, marketing, sales, help desk, pricing limits, integrations, strengths, limitations, and small-business fit.',
   officialUrl: 'https://www.engagebay.com/',
   providerKey: 'engageBay',
+  video: {
+    embedUrl: 'https://www.youtube-nocookie.com/embed/Z2_30q90dHc',
+    title:
+      'EngageBay Review 2026: Is It Worth It for Small Businesses? by Racklio',
+    heading: 'Watch: EngageBay Review 2026',
+    description:
+      'This video summarizes who EngageBay fits, its main trade-offs, and the factors small businesses should evaluate before choosing it.',
+  },
   relatedComparisons: [
     { title: 'EngageBay pricing guide', href: '/guides/engagebay-pricing' },
     {
