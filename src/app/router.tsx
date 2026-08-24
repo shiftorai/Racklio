@@ -66,6 +66,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/calilio',
+        lazy: async () => {
+          const { CalilioReview } =
+            await import('@/pages/reviews/calilio-review');
+          return { Component: CalilioReview };
+        },
+      },
+      {
+        path: 'guides/calilio-pricing',
+        lazy: async () => {
+          const { CalilioPricing } =
+            await import('@/pages/guides/calilio-pricing');
+          return { Component: CalilioPricing };
+        },
+      },
+      {
+        path: 'alternatives/calilio-alternatives',
+        lazy: async () => {
+          const { CalilioAlternatives } =
+            await import('@/pages/alternatives/calilio-alternatives');
+          return { Component: CalilioAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/calilio-vs-callhippo',
+        lazy: async () => {
+          const { CalilioVsCallHippo } =
+            await import('@/pages/comparisons/calilio-vs-callhippo');
+          return { Component: CalilioVsCallHippo };
+        },
+      },
+      {
         path: 'guides/quo-pricing',
         lazy: async () => {
           const { QuoPricing } = await import('@/pages/guides/quo-pricing');

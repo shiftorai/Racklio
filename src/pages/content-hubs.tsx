@@ -16,6 +16,20 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Calilio Review',
+    description:
+      'SMB cloud phone coverage spanning virtual numbers, calling, messaging, included bundles, wallet usage, routing, monitoring, AI reporting, and commercial limits.',
+    href: '/reviews/calilio',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/calilio-pricing' },
+      { title: 'Alternatives', href: '/alternatives/calilio-alternatives' },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/calilio-vs-callhippo',
+      },
+    ],
+  },
+  {
     title: 'Aircall Review',
     description:
       'Structured cloud calling covering plan minimums, shared workflows, routing, messaging, integrations, analytics, AI packaging, usage economics, and commercial limits.',
@@ -281,6 +295,20 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Calilio Pricing',
+    description:
+      'Separate monthly and annual seat pricing from included US/Canada bundles, wallet-funded overage, number charges, international rates, and AI usage.',
+    href: '/guides/calilio-pricing',
+    relatedLinks: [
+      { title: 'Calilio review', href: '/reviews/calilio' },
+      { title: 'Alternatives', href: '/alternatives/calilio-alternatives' },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/calilio-vs-callhippo',
+      },
+    ],
+  },
+  {
     title: 'Quo Pricing',
     description:
       'Model Starter, Business, and Scale seats alongside billing cycle, numbers, Sona credit tiers, overage, international use, messaging compliance, and other charges.',
@@ -460,6 +488,20 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Calilio Alternatives',
+    description:
+      'Compare CallHippo, KrispCall, Quo, and Aircall through number geography, usage economics, routing, supervision, AI, and integrations.',
+    href: '/alternatives/calilio-alternatives',
+    relatedLinks: [
+      { title: 'Calilio review', href: '/reviews/calilio' },
+      { title: 'Calilio pricing', href: '/guides/calilio-pricing' },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/calilio-vs-callhippo',
+      },
+    ],
+  },
   {
     title: 'Quo Alternatives',
     description:
@@ -709,6 +751,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Calilio vs CallHippo',
+    description:
+      'SMB cloud-phone plans compared across numbers, calling, SMS, routing, dialers, monitoring, AI, bundles, and overage.',
+    href: '/comparisons/calilio-vs-callhippo',
+    relatedLinks: [
+      { title: 'Calilio review', href: '/reviews/calilio' },
+      { title: 'Calilio pricing', href: '/guides/calilio-pricing' },
+    ],
+  },
   {
     title: 'Quo vs KrispCall',
     description:
