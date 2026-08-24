@@ -13,10 +13,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Start with the support workflow and required human oversight. An AI feature does not establish that a product can replace a help desk, knowledge process, or service team.',
     quickDecision: [
       {
-        label: 'Published bundles plus wallet usage',
-        text: 'Consider Calilio when an SMB needs virtual numbers, defined US/Canada allowances, and Premium routing, monitoring, or AI reporting under a subscription-plus-usage model.',
-      },
-      {
         label: 'Outcome-oriented service automation',
         text: 'Consider Typewise when an established service operation can define resolved outcomes and support an integration-led deployment.',
       },
@@ -38,11 +34,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     scenarios: [
-      {
-        scenario: 'SMB wants explicit call/SMS bundles and wallet overage',
-        consider: 'Consider Calilio',
-        why: 'Its current pricing publishes direction-specific US/Canada allowances and wallet-funded usage after the bundle.',
-      },
       {
         scenario: 'Established service team automating repeatable outcomes',
         consider: 'Typewise',
@@ -80,12 +71,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Explore evidence-based AI customer support software reviews, comparisons, buying factors, and practical guidance from Racklio.',
     startPaths: [
       {
-        title: 'Model subscription, bundles, and wallet usage',
-        description:
-          'Evaluate users, numbers, included calls and SMS, overage, destinations, AI, and advanced call controls.',
-        href: '/reviews/calilio',
-      },
-      {
         title: 'Automate support with AI',
         description:
           'Assess resolution scope, knowledge inputs, escalation, review, and pricing units.',
@@ -122,18 +107,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Shared inbox, Docs, Beacon, AI Answers, workflows, reporting, permissions, and support-team cost boundaries.',
         href: '/reviews/help-scout',
-      },
-      {
-        title: 'Capsule CRM Review',
-        description:
-          'Contact and pipeline CRM covering opportunities, tasks, workflows, reporting, integrations, plan limits, and per-user pricing.',
-        href: '/reviews/capsule-crm',
-      },
-      {
-        title: 'Calilio Review',
-        description:
-          'Virtual numbers, calling, messaging, shared numbers, bundles, wallet usage, routing, monitoring, and AI reporting.',
-        href: '/reviews/calilio',
       },
       {
         title: 'Typewise Review',
@@ -174,12 +147,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
-        title: 'Calilio vs CallHippo',
-        description:
-          'SMB cloud-phone models compared across plans, usage, numbers, routing, monitoring, AI, and integrations.',
-        href: '/comparisons/calilio-vs-callhippo',
-      },
-      {
         title: 'Tidio vs Gorgias',
         description:
           'Live chat and AI support compared with an ecommerce-oriented help-desk workflow.',
@@ -199,12 +166,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     alternativeGuides: [
-      {
-        title: 'Calilio Alternatives',
-        description:
-          'Compare CallHippo, KrispCall, Quo, and Aircall through operating fit and configured cost.',
-        href: '/alternatives/calilio-alternatives',
-      },
       {
         title: 'Tidio Alternatives',
         description:
@@ -231,12 +192,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
-      {
-        title: 'Calilio Pricing',
-        description:
-          'Separate seat pricing, included US/Canada bundles, wallet overage, numbers, international use, and AI costs.',
-        href: '/guides/calilio-pricing',
-      },
       {
         title: 'EazyChat.io Pricing',
         description:
@@ -315,11 +270,6 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     verificationDate: 'August 21, 2026',
     sources: [
-      {
-        title: 'Calilio pricing',
-        href: 'https://www.calilio.com/calilio-pricing',
-      },
-      { title: 'Calilio features', href: 'https://www.calilio.com/features' },
       { title: 'Tidio pricing', href: 'https://www.tidio.com/pricing/' },
       { title: 'Gorgias pricing', href: 'https://www.gorgias.com/pricing' },
       { title: 'respond.io pricing', href: 'https://respond.io/pricing' },
