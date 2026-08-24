@@ -336,7 +336,7 @@ function HeroComparisonCard() {
   const current = heroComparisons[selected] ?? heroComparisons[0];
 
   return (
-    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-4 sm:px-5 sm:py-6 lg:-translate-y-4">
+    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-4 sm:px-5 sm:py-6 lg:-translate-y-6">
       <div
         aria-hidden="true"
         className="absolute top-1 right-0 hidden w-52 rotate-3 rounded-2xl border border-brand/10 bg-white/55 p-5 shadow-card sm:block"
