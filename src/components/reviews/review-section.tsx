@@ -9,6 +9,7 @@ export interface ReviewSectionProps {
   code: string;
   description?: string;
   id: string;
+  label?: string;
   title: string;
 }
 
@@ -18,15 +19,16 @@ export function ReviewSection({
   code,
   description,
   id,
+  label = 'Editorial analysis',
   title,
 }: ReviewSectionProps) {
   return (
     <section
       aria-labelledby={`${id}-heading`}
-      className={cn('scroll-mt-6 border-t border-border pt-10', className)}
+      className={cn('scroll-mt-28 border-t border-border pt-9', className)}
       id={id}
     >
-      <ResearchMarker code={code} label="Review analysis" />
+      <ResearchMarker code={code} label={label} />
       <h2
         className="mt-4 text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
         id={`${id}-heading`}

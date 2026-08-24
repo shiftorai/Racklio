@@ -1,5 +1,15 @@
 import { useEffect } from 'react';
 import { ResearchMarker } from '@/components/brand';
+import {
+  DecisionSummary,
+  deriveTrueCostFactors,
+  EvidenceBlock,
+  ProductIdentity,
+  RelatedDecisionLinks,
+  SectionNavigation,
+  TrueCostFactors,
+  VerificationStrip,
+} from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote } from '@/components/reviews/evidence-note';
 import { ReviewSection } from '@/components/reviews/review-section';
@@ -55,6 +65,24 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
     ? getProviderUrl(data.providerKey)
     : data.officialUrl;
   const usesAffiliateLink = commercialUrl !== data.officialUrl;
+  const isPricingGuide = data.path.startsWith('/guides/');
+  const isAlternativesGuide = data.path.startsWith('/alternatives/');
+  const contentType = isPricingGuide
+    ? 'Pricing guide'
+    : isAlternativesGuide
+      ? 'Alternatives guide'
+      : data.eyebrow;
+  const commercialText = [
+    ...data.table.rows.flat(),
+    ...data.summary.flatMap((item) => [item.label, item.text]),
+  ]
+    .join(' ')
+    .toLowerCase();
+  const trueCostFactors = deriveTrueCostFactors(commercialText);
+  const summaryItems = [
+    ...data.summary.slice(0, 4),
+    { label: 'Last verified', text: data.verificationDate },
+  ];
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -162,13 +190,17 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))]"
-        spacing="md"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
+        spacing="none"
       >
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.85fr)] lg:gap-12">
             <div>
-              <ResearchMarker code={data.code} label={data.eyebrow} />
+              <ProductIdentity
+                category={data.categoryLinks[0]?.title ?? 'Business software'}
+                contentType={contentType}
+                name={data.provider}
+              />
               <nav
                 aria-label="Related software categories"
                 className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
@@ -179,13 +211,16 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </Link>
                 ))}
               </nav>
-              <h1 className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.045em] sm:text-5xl">
+              <div className="mt-5">
+                <ResearchMarker code={data.code} label={data.eyebrow} />
+              </div>
+              <h1 className="mt-5 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 <ButtonLink href="#overview">Review the evidence</ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
                   See decision scenarios
@@ -196,23 +231,19 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 Pricing verified {data.verificationDate}.
               </p>
             </div>
-            <Card className="relative overflow-hidden border-brand/30 bg-white/90 shadow-panel before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-brand">
-              <CardContent>
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  Decision summary
-                </p>
-                <dl className="mt-5 space-y-5">
-                  {data.summary.map((item) => (
-                    <div key={item.label}>
-                      <dt className="text-xs font-semibold text-muted-foreground uppercase">
-                        {item.label}
-                      </dt>
-                      <dd className="mt-2 text-sm leading-6">{item.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </CardContent>
-            </Card>
+            <DecisionSummary
+              items={summaryItems}
+              title={
+                isPricingGuide
+                  ? 'Pricing decision'
+                  : isAlternativesGuide
+                    ? 'When alternatives matter'
+                    : 'Decision summary'
+              }
+            />
+          </div>
+          <div className="mt-8">
+            <VerificationStrip date={data.verificationDate} />
           </div>
         </Container>
       </Section>
@@ -220,23 +251,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
             <aside>
-              <nav aria-label="Page sections" className="lg:sticky lg:top-6">
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  On this page
-                </p>
-                <ol className="mt-4 space-y-2 text-sm">
-                  {toc.map(([id, title]) => (
-                    <li key={id}>
-                      <a
-                        className="text-muted-foreground hover:text-foreground"
-                        href={`#${id}`}
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
+              <SectionNavigation items={toc} label="Page sections" />
             </aside>
             <article className="min-w-0 space-y-10">
               <ReviewSection
@@ -245,45 +260,81 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 id="overview"
                 title="Decision snapshot"
               >
-                <div
-                  aria-label={`${data.provider} decision table`}
-                  className="overflow-x-auto rounded-xl border border-brand/20 bg-white"
-                  role="region"
-                  tabIndex={0}
-                >
-                  <table className="w-full min-w-[46rem] text-left text-sm">
-                    <caption className="sr-only">{data.table.caption}</caption>
-                    <thead className="bg-accent-subtle">
-                      <tr>
-                        {data.table.columns.map((column) => (
-                          <th className="p-4" key={column} scope="col">
-                            {column}
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data.table.rows.map((row) => (
-                        <tr className="border-t border-border" key={row[0]}>
-                          {row.map((cell, index) =>
-                            index === 0 ? (
-                              <th className="p-4" key={cell} scope="row">
-                                {cell}
-                              </th>
-                            ) : (
-                              <td
-                                className="p-4 text-muted-foreground"
-                                key={`${row[0]}-${index}`}
-                              >
-                                {cell}
-                              </td>
-                            ),
-                          )}
+                {isPricingGuide ? (
+                  <div className="mb-6">
+                    <TrueCostFactors factors={trueCostFactors} />
+                  </div>
+                ) : null}
+                {isAlternativesGuide ? (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {data.table.rows.map((row) => (
+                      <article
+                        className="rounded-2xl border border-brand/20 bg-white p-5 shadow-card"
+                        key={row[0]}
+                      >
+                        <p className="text-[0.68rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
+                          Alternative path
+                        </p>
+                        <h3 className="mt-3 text-lg font-semibold">{row[0]}</h3>
+                        <dl className="mt-4 space-y-3 text-sm">
+                          {row.slice(1).map((cell, index) => (
+                            <div
+                              className="border-t border-border pt-3"
+                              key={`${row[0]}-${data.table.columns[index + 1]}`}
+                            >
+                              <dt className="text-xs font-semibold text-muted-foreground">
+                                {data.table.columns[index + 1]}
+                              </dt>
+                              <dd className="mt-1.5 leading-6">{cell}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </article>
+                    ))}
+                  </div>
+                ) : (
+                  <div
+                    aria-label={`${data.provider} decision table`}
+                    className="overflow-x-auto rounded-xl border border-brand/20 bg-white"
+                    role="region"
+                    tabIndex={0}
+                  >
+                    <table className="w-full min-w-[46rem] text-left text-sm">
+                      <caption className="sr-only">
+                        {data.table.caption}
+                      </caption>
+                      <thead className="bg-accent-subtle">
+                        <tr>
+                          {data.table.columns.map((column) => (
+                            <th className="p-4" key={column} scope="col">
+                              {column}
+                            </th>
+                          ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                      </thead>
+                      <tbody>
+                        {data.table.rows.map((row) => (
+                          <tr className="border-t border-border" key={row[0]}>
+                            {row.map((cell, index) =>
+                              index === 0 ? (
+                                <th className="p-4" key={cell} scope="row">
+                                  {cell}
+                                </th>
+                              ) : (
+                                <td
+                                  className="p-4 text-muted-foreground"
+                                  key={`${row[0]}-${index}`}
+                                >
+                                  {cell}
+                                </td>
+                              ),
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
                 <div className="mt-5">
                   <EvidenceNote>
                     Current provider documentation is the factual basis.
@@ -327,7 +378,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               >
                 <div
                   aria-label="Scenario decision table"
-                  className="overflow-x-auto rounded-xl border border-brand/20 bg-white"
+                  className="hidden overflow-x-auto rounded-xl border border-brand/20 bg-white sm:block"
                   role="region"
                   tabIndex={0}
                 >
@@ -361,6 +412,21 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       ))}
                     </tbody>
                   </table>
+                </div>
+                <div className="grid gap-4 sm:hidden">
+                  {data.scenarios.map((item) => (
+                    <Card key={item.scenario}>
+                      <CardContent>
+                        <h3 className="font-semibold">{item.scenario}</h3>
+                        <p className="mt-2 text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
+                          {item.guidance}
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {item.why}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </ReviewSection>
               <ReviewSection
@@ -407,17 +473,15 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   ))}
                 </ol>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <ButtonLink
-                    href={commercialUrl}
-                    rel={
-                      usesAffiliateLink
-                        ? 'sponsored noopener noreferrer'
-                        : 'noopener noreferrer'
-                    }
-                    target="_blank"
-                  >
-                    Visit {data.provider}
-                  </ButtonLink>
+                  {usesAffiliateLink ? (
+                    <ButtonLink
+                      href={commercialUrl}
+                      rel="sponsored noopener noreferrer"
+                      target="_blank"
+                    >
+                      Visit {data.provider}
+                    </ButtonLink>
+                  ) : null}
                   {data.related.slice(0, 2).map((link) => (
                     <ButtonLink
                       href={link.href}
@@ -436,15 +500,15 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
                   .
                 </p>
-                <div className="mt-8 border-t border-border pt-6">
-                  <h3 className="font-semibold">Continue your research</h3>
-                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                    {data.related.map((link) => (
-                      <Link href={link.href} key={link.href}>
-                        {link.title}
-                      </Link>
-                    ))}
-                  </div>
+                <div className="mt-8">
+                  <EvidenceBlock label="Decision takeaway" tone="takeaway">
+                    Use the documented product scope and cost model to decide
+                    whether {data.provider} fits the operating requirement.
+                    Verify material terms before purchase.
+                  </EvidenceBlock>
+                </div>
+                <div className="mt-8">
+                  <RelatedDecisionLinks links={data.related} />
                 </div>
               </ReviewSection>
             </article>

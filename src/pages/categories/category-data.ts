@@ -1488,3 +1488,47 @@ export function getSoftwareCategory(slug: string) {
   if (!category) throw new Error(`Unknown software category: ${slug}`);
   return category;
 }
+
+/**
+ * Full category membership for hub summaries. This mirrors the explicit
+ * categoryLinks published on each review, rather than broader category-page
+ * references such as comparisons, alternatives, or buyer paths.
+ */
+export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
+  'ai-customer-support': [
+    '/reviews/typewise',
+    '/reviews/tidio',
+    '/reviews/respond-io',
+    '/reviews/gorgias',
+    '/reviews/eazychat',
+    '/reviews/vida',
+  ],
+  'business-phone-voice-ai': [
+    '/reviews/calilio',
+    '/reviews/aircall',
+    '/reviews/quo',
+    '/reviews/krispcall',
+    '/reviews/callhippo',
+    '/reviews/salesmsg',
+    '/reviews/vida',
+    '/reviews/fireflies',
+  ],
+  'live-chat-messaging': [
+    '/reviews/landbot',
+    '/reviews/tidio',
+    '/reviews/respond-io',
+    '/reviews/gorgias',
+  ],
+  'crm-customer-engagement': [
+    '/reviews/pipedrive',
+    '/reviews/engagebay',
+    '/reviews/salesmsg',
+    '/reviews/vida',
+    '/reviews/demodesk',
+    '/reviews/claap',
+    '/reviews/fireflies',
+    '/reviews/campaign-monitor',
+    '/reviews/aweber',
+    '/reviews/bookyourdata',
+  ],
+};

@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ResearchMarker } from '@/components/brand';
 import { CategoryHubTemplate } from '@/components/categories';
+import { ComparisonIdentity } from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { Card, CardContent, Container, Link, Section } from '@/components/ui';
+import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
 import { softwareCategories } from './categories/category-data';
 
@@ -878,6 +880,11 @@ function HubPage({
   structuredData?: boolean;
 }) {
   useDescription(description);
+  const isComparisonHub = code === 'CP';
+  const isReviewsHub = code === 'RV';
+  const featuredComparison =
+    entries.find((entry) => entry.title === 'Tidio vs Gorgias') ?? entries[0];
+  const featuredNames = featuredComparison?.title.split(' vs ') ?? [];
   return (
     <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
       <title>{`${title} | Racklio`}</title>
@@ -933,20 +940,96 @@ function HubPage({
       ) : null}
       <>
         <Section
-          className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-14 sm:py-16 lg:py-14"
+          className={`border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] ${isReviewsHub ? 'py-10 sm:py-12' : 'py-14 sm:py-16 lg:py-14'}`}
           spacing="none"
         >
           <Container>
-            <ResearchMarker code={code} label={eyebrow} />
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
-              {title}
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-              {description}
-            </p>
+            <div
+              className={
+                isComparisonHub || isReviewsHub
+                  ? 'grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1fr)] lg:gap-14'
+                  : ''
+              }
+            >
+              <div>
+                <ResearchMarker code={code} label={eyebrow} />
+                <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
+                  {title}
+                </h1>
+                <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+                  {description}
+                </p>
+              </div>
+              {isComparisonHub &&
+              featuredComparison &&
+              featuredNames.length === 2 ? (
+                <aside className="rounded-2xl border border-brand/20 bg-white/90 p-6 shadow-panel">
+                  <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
+                    Start with a live decision
+                  </p>
+                  <div className="mt-5">
+                    <ComparisonIdentity
+                      a={featuredNames[0] ?? ''}
+                      b={featuredNames[1] ?? ''}
+                    />
+                  </div>
+                  <p className="mt-5 border-t border-border pt-4 text-sm leading-6 text-muted-foreground">
+                    {featuredComparison.description}
+                  </p>
+                  <Link
+                    className="mt-4 inline-block text-sm font-semibold"
+                    href={featuredComparison.href}
+                  >
+                    Open comparison →
+                  </Link>
+                </aside>
+              ) : null}
+              {isReviewsHub ? (
+                <aside className="rounded-2xl border border-brand/20 bg-white/90 p-5 shadow-panel sm:p-6">
+                  <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
+                    Published review coverage
+                  </p>
+                  <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
+                    {[
+                      [
+                        String(editorialCoverageCounts.reviews),
+                        'Published reviews',
+                      ],
+                      [
+                        String(editorialCoverageCounts.categories),
+                        'Focused categories',
+                      ],
+                    ].map(([value, label]) => (
+                      <div className="bg-white p-4" key={label}>
+                        <dt className="text-2xl font-semibold tracking-[-0.04em] text-brand">
+                          {value}
+                        </dt>
+                        <dd className="mt-1 text-xs leading-5 text-muted-foreground">
+                          {label}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                    <li>Official sources verified</li>
+                    <li>No paid rankings</li>
+                  </ul>
+                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
+                    <Link href="/comparisons">Browse comparisons</Link>
+                    <Link href="/guides">Pricing guides</Link>
+                    <Link href="/#categories">Categories</Link>
+                  </div>
+                </aside>
+              ) : null}
+            </div>
           </Container>
         </Section>
-        <Section className="py-14 sm:py-16 lg:py-12" spacing="none">
+        <Section
+          className={
+            isReviewsHub ? 'py-10 sm:py-12' : 'py-14 sm:py-16 lg:py-12'
+          }
+          spacing="none"
+        >
           <Container>
             {categoryEntries?.length ? (
               <div className="mb-12 border-b border-border pb-12">
@@ -981,52 +1064,73 @@ function HubPage({
               <h2 className="mb-7 text-2xl font-semibold">{sectionTitle}</h2>
             ) : null}
             <div className="grid gap-4 md:grid-cols-2">
-              {entries.map((entry, index) => (
-                <Card key={entry.title}>
-                  <CardContent>
-                    <p className="font-mono text-[0.625rem] text-accent-strong">
-                      {String(index + 1).padStart(2, '0')}
-                    </p>
-                    {sectionTitle ? (
-                      <h3 className="mt-4 text-xl font-semibold tracking-tight">
-                        {entry.suppressLink ? (
-                          entry.title
-                        ) : (
-                          <Link href={entry.href}>{entry.title}</Link>
-                        )}
-                      </h3>
-                    ) : (
-                      <h2 className="mt-4 text-xl font-semibold tracking-tight">
-                        {entry.suppressLink ? (
-                          entry.title
-                        ) : (
-                          <Link href={entry.href}>{entry.title}</Link>
-                        )}
-                      </h2>
-                    )}
-                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                      {entry.description}
-                    </p>
-                    {!entry.suppressLink ? (
-                      <Link
-                        className="mt-5 inline-block text-sm font-semibold"
-                        href={entry.href}
-                      >
-                        Open decision page →
-                      </Link>
-                    ) : null}
-                    {entry.relatedLinks?.length ? (
-                      <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
-                        {entry.relatedLinks.map((link) => (
-                          <Link href={link.href} key={link.href}>
-                            {link.title}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : null}
-                  </CardContent>
-                </Card>
-              ))}
+              {entries.map((entry, index) => {
+                const comparedNames = entry.title.split(' vs ');
+                return (
+                  <Card key={entry.title}>
+                    <CardContent>
+                      {isComparisonHub && comparedNames.length === 2 ? (
+                        <ComparisonIdentity
+                          a={comparedNames[0] ?? ''}
+                          b={comparedNames[1] ?? ''}
+                        />
+                      ) : (
+                        <p className="font-mono text-[0.625rem] text-accent-strong">
+                          {String(index + 1).padStart(2, '0')}
+                        </p>
+                      )}
+                      {sectionTitle ? (
+                        <h3
+                          className={
+                            isComparisonHub
+                              ? 'sr-only'
+                              : 'mt-4 text-xl font-semibold tracking-tight'
+                          }
+                        >
+                          {entry.suppressLink ? (
+                            entry.title
+                          ) : (
+                            <Link href={entry.href}>{entry.title}</Link>
+                          )}
+                        </h3>
+                      ) : (
+                        <h2 className="mt-4 text-xl font-semibold tracking-tight">
+                          {entry.suppressLink ? (
+                            entry.title
+                          ) : (
+                            <Link href={entry.href}>{entry.title}</Link>
+                          )}
+                        </h2>
+                      )}
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        {entry.description}
+                      </p>
+                      {isComparisonHub ? (
+                        <p className="mt-4 border-t border-border pt-4 text-xs font-semibold tracking-[0.08em] text-mint-deep uppercase">
+                          Decision lens: operating fit and documented trade-offs
+                        </p>
+                      ) : null}
+                      {!entry.suppressLink ? (
+                        <Link
+                          className="mt-5 inline-block text-sm font-semibold"
+                          href={entry.href}
+                        >
+                          Open decision page →
+                        </Link>
+                      ) : null}
+                      {entry.relatedLinks?.length ? (
+                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
+                          {entry.relatedLinks.map((link) => (
+                            <Link href={link.href} key={link.href}>
+                              {link.title}
+                            </Link>
+                          ))}
+                        </div>
+                      ) : null}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
             {showReviewMethodology ? (
               <div className="mt-14 grid gap-4 border-t border-border pt-10 md:grid-cols-2">

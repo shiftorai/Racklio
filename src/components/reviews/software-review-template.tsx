@@ -1,5 +1,14 @@
 import { useEffect } from 'react';
-import { ResearchMarker } from '@/components/brand';
+import {
+  DecisionSummary,
+  deriveTrueCostFactors,
+  EvidenceBlock,
+  ProductIdentity,
+  RelatedDecisionLinks,
+  SectionNavigation,
+  TrueCostFactors,
+  VerificationStrip,
+} from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote } from './evidence-note';
 import { ReviewSection } from './review-section';
@@ -68,25 +77,40 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
   const usesAffiliateLink = commercialUrl !== data.officialUrl;
   const quickDecision = [
     {
-      label: 'Best for',
-      text: data.idealUser ?? data.fit[0],
-    },
-    { label: 'Consider if', text: data.fit[0] },
-    { label: 'Look elsewhere if', text: data.notFit[0] },
-    {
-      label: 'Main strength',
-      text: data.strengths?.[0] ?? data.summary[0]?.text,
+      label: 'Best suited for',
+      text:
+        data.idealUser ?? data.fit[0] ?? 'Verify the documented business fit',
     },
     {
-      label: 'Main limitation',
+      label: 'Consider another option if',
+      text:
+        data.notFit[0] ?? 'Your requirements fall outside the documented scope',
+    },
+    {
+      label: 'Main trade-off',
       text:
         data.limitations?.[0] ??
         data.summary.find((item) =>
           /tradeoff|limitation|verify/i.test(item.label),
         )?.text ??
-        data.notFit[0],
+        data.notFit[0] ??
+        'Confirm material limits before purchase',
     },
+    {
+      label: 'Pricing model',
+      text:
+        data.pricingModel ?? data.pricing[0]?.basis ?? 'Verify current terms',
+    },
+    { label: 'Last verified', text: verificationDate },
   ];
+  const pricingText = [
+    ...data.pricing.flatMap((item) => [item.basis, item.allowance, item.note]),
+    data.pricingModel ?? '',
+    ...data.summary.map((item) => item.text),
+  ]
+    .join(' ')
+    .toLowerCase();
+  const pricingFactors = deriveTrueCostFactors(pricingText);
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -217,13 +241,17 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))]"
-        spacing="md"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
+        spacing="none"
       >
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.85fr)] lg:gap-12">
             <div>
-              <ResearchMarker code="RV" label={`${data.category} review`} />
+              <ProductIdentity
+                category={data.category}
+                contentType="Evidence-first review"
+                name={data.name}
+              />
               {data.categoryLinks?.length ? (
                 <nav
                   aria-label="Related software categories"
@@ -236,26 +264,24 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-6 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink
-                  href={commercialUrl}
-                  rel={
-                    usesAffiliateLink
-                      ? 'sponsored noopener noreferrer'
-                      : 'noopener noreferrer'
-                  }
-                  target="_blank"
-                >
-                  {usesAffiliateLink
-                    ? `Visit ${data.name}`
-                    : `Visit ${data.name} Official Website`}
-                </ButtonLink>
+              <div className="mt-7 flex flex-wrap gap-3">
+                {usesAffiliateLink ? (
+                  <ButtonLink
+                    href={commercialUrl}
+                    rel="sponsored noopener noreferrer"
+                    target="_blank"
+                  >
+                    Visit {data.name}
+                  </ButtonLink>
+                ) : (
+                  <ButtonLink href="#overview">Review the evidence</ButtonLink>
+                )}
                 <ButtonLink href="#decision" variant="secondary">
                   Decision Guidance
                 </ButtonLink>
@@ -265,27 +291,11 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ? 'Affiliate disclosure: Racklio may earn a commission if you use this commercial link, at no additional cost to you. Affiliate status does not influence this review.'
                   : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
               </p>
-              <p className="mt-3 text-xs font-medium text-muted-foreground">
-                Facts verified {verificationDate}
-              </p>
             </div>
-            <Card className="relative overflow-hidden border-brand/25 bg-white/90 shadow-panel before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-brand">
-              <CardContent>
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  Decision summary
-                </p>
-                <dl className="mt-5 space-y-5">
-                  {quickDecision.map((x) => (
-                    <div key={x.label}>
-                      <dt className="text-xs font-semibold text-muted-foreground uppercase">
-                        {x.label}
-                      </dt>
-                      <dd className="mt-2 text-sm leading-6">{x.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </CardContent>
-            </Card>
+            <DecisionSummary items={quickDecision} />
+          </div>
+          <div className="mt-8">
+            <VerificationStrip date={verificationDate} />
           </div>
         </Container>
       </Section>
@@ -323,23 +333,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
             <aside>
-              <nav aria-label="Review sections" className="lg:sticky lg:top-6">
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  On this page
-                </p>
-                <ol className="mt-4 space-y-2 text-sm">
-                  {toc.map(([id, title]) => (
-                    <li key={id}>
-                      <a
-                        className="text-muted-foreground hover:text-foreground"
-                        href={`#${id}`}
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
+              <SectionNavigation items={toc} label="Review sections" />
             </aside>
             <article className="min-w-0 space-y-10">
               <ReviewSection
@@ -370,15 +364,6 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     </CardContent>
                   </Card>
                 </div>
-                {data.relatedComparisons?.length ? (
-                  <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
-                    {data.relatedComparisons.map((comparison) => (
-                      <Link href={comparison.href} key={comparison.href}>
-                        {comparison.title}
-                      </Link>
-                    ))}
-                  </div>
-                ) : null}
               </ReviewSection>
               {data.capabilities?.length ? (
                 <ReviewSection
@@ -407,6 +392,9 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 title="Pricing and billing"
                 description={`Pricing verified: ${verificationDate}. Review the billing unit, not only the headline price.`}
               >
+                <div className="mb-6">
+                  <TrueCostFactors factors={pricingFactors} />
+                </div>
                 <div className="hidden overflow-x-auto rounded-xl border border-border bg-white sm:block">
                   <table className="w-full min-w-[42rem] text-left text-sm">
                     <caption className="sr-only">{data.name} pricing</caption>
@@ -470,7 +458,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </div>
                 <div className="mt-5">
-                  <EvidenceNote>
+                  <EvidenceNote label="Provider fact">
                     Confirm current currency, taxes, billing frequency, usage
                     definitions, add-ons, and contract terms directly with{' '}
                     {data.name}.
@@ -569,29 +557,27 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title="Strengths and limitations"
                   description="Racklio analysis of where the documented product model helps and where it introduces trade-offs."
                 >
-                  <div className="grid gap-5 md:grid-cols-2 [&>div:first-child]:border-mint-deep/20 [&>div:last-child]:border-brand/20">
-                    <Card>
-                      <CardContent>
-                        <h3 className="font-semibold">Analytical strengths</h3>
-                        <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
-                          {data.strengths?.map((item) => (
-                            <li key={item}>— {item}</li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                    <Card>
-                      <CardContent>
-                        <h3 className="font-semibold">
-                          Meaningful limitations
-                        </h3>
-                        <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
-                          {data.limitations?.map((item) => (
-                            <li key={item}>— {item}</li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <EvidenceBlock label="Strength" tone="fact">
+                      <h3 className="font-semibold text-foreground">
+                        Analytical strengths
+                      </h3>
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                        {data.strengths?.map((item) => (
+                          <li key={item}>— {item}</li>
+                        ))}
+                      </ul>
+                    </EvidenceBlock>
+                    <EvidenceBlock label="Limitation" tone="limitation">
+                      <h3 className="font-semibold text-foreground">
+                        Meaningful limitations
+                      </h3>
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                        {data.limitations?.map((item) => (
+                          <li key={item}>— {item}</li>
+                        ))}
+                      </ul>
+                    </EvidenceBlock>
                   </div>
                 </ReviewSection>
               ) : null}
@@ -667,14 +653,17 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     </li>
                   ))}
                 </ol>
-                <p className="mt-7 border-l-2 border-accent pl-5 text-sm leading-6 text-muted-foreground">
+                <EvidenceBlock label="Racklio analysis" tone="analysis">
                   Racklio has not represented this review as hands-on testing.
                   Read the <Link href="/methodology">Methodology</Link>,{' '}
                   <Link href="/editorial-standards">Editorial Standards</Link>,
                   and{' '}
                   <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
                   .
-                </p>
+                </EvidenceBlock>
+                <div className="mt-8">
+                  <RelatedDecisionLinks links={data.relatedComparisons ?? []} />
+                </div>
               </ReviewSection>
             </article>
           </div>

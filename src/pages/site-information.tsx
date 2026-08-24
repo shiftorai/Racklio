@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 
 import { ResearchMarker } from '@/components/brand';
+import { EvidenceBlock } from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { Container, Link, Section } from '@/components/ui';
 
@@ -12,6 +13,8 @@ function InformationPage({
   canonical,
   children,
   noindex = false,
+  heroExtra,
+  wideContent = false,
 }: {
   code: string;
   title: string;
@@ -20,6 +23,8 @@ function InformationPage({
   canonical: string;
   children: ReactNode;
   noindex?: boolean;
+  heroExtra?: ReactNode;
+  wideContent?: boolean;
 }) {
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
@@ -37,7 +42,13 @@ function InformationPage({
       <title>{`${title} | Racklio`}</title>
       <link rel="canonical" href={canonical} />
       {noindex ? <meta name="robots" content="noindex,follow" /> : null}
-      <Section className="border-b border-border bg-surface-subtle py-16 sm:py-20">
+      <Section
+        className={
+          heroExtra
+            ? 'border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-12'
+            : 'border-b border-border bg-surface-subtle py-16 sm:py-20'
+        }
+      >
         <Container>
           <ResearchMarker code={code} label="Racklio information" />
           <h1 className="mt-6 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
@@ -46,11 +57,14 @@ function InformationPage({
           <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
             {description}
           </p>
+          {heroExtra}
         </Container>
       </Section>
-      <Section>
+      <Section spacing={heroExtra ? 'sm' : 'md'}>
         <Container>
-          <article className="max-w-3xl space-y-8 leading-7">
+          <article
+            className={`${wideContent ? 'max-w-5xl' : 'max-w-3xl'} space-y-8 leading-7`}
+          >
             {children}
           </article>
         </Container>
@@ -330,8 +344,59 @@ export function MethodologyPage() {
       title="Editorial Methodology"
       description="How Racklio evaluates business software and turns official documentation into conditional buying guidance."
       canonical="https://racklio.com/methodology"
+      wideContent
+      heroExtra={
+        <div className="mt-8 grid overflow-hidden rounded-2xl border border-brand/20 bg-white/85 shadow-panel sm:grid-cols-5">
+          {[
+            ['01', 'Research', 'Official provider sources'],
+            ['02', 'Verify', 'Material facts and limits'],
+            ['03', 'Compare', 'Operating-model differences'],
+            ['04', 'Explain', 'Buyer-facing trade-offs'],
+            ['05', 'Update', 'Dated source review'],
+          ].map(([number, label, detail], index) => (
+            <div
+              className={`${index ? 'border-t border-border sm:border-t-0 sm:border-l' : ''} p-4`}
+              key={number}
+            >
+              <span className="font-mono text-xs font-bold text-mint-deep">
+                {number}
+              </span>
+              <p className="mt-2 text-sm font-semibold">{label}</p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                {detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      }
     >
       <PolicyDate />
+      <section aria-labelledby="evidence-system-heading">
+        <h2 className="text-2xl font-semibold" id="evidence-system-heading">
+          The Racklio evidence system
+        </h2>
+        <p className="mt-3 max-w-3xl text-muted-foreground">
+          Repeated editorial labels make the basis and limits of each decision
+          visible.
+        </p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <EvidenceBlock label="Verified fact" tone="fact">
+            A detail confirmed in current official provider documentation.
+          </EvidenceBlock>
+          <EvidenceBlock label="Racklio analysis" tone="analysis">
+            Racklio&apos;s interpretation of what documented facts mean for a
+            buyer.
+          </EvidenceBlock>
+          <EvidenceBlock label="Limitation" tone="limitation">
+            A documented boundary, unresolved condition, or reason to verify
+            before purchase.
+          </EvidenceBlock>
+          <EvidenceBlock label="Decision takeaway" tone="takeaway">
+            Conditional guidance tied to a stated workflow or operating
+            requirement.
+          </EvidenceBlock>
+        </div>
+      </section>
       <section>
         <h2 className="text-2xl font-semibold">
           Evidence before recommendation

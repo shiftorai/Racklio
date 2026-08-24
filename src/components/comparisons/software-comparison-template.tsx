@@ -1,5 +1,14 @@
 import { useEffect } from 'react';
 import { ResearchMarker } from '@/components/brand';
+import {
+  ComparisonIdentity,
+  DecisionSummary,
+  EvidenceBlock,
+  KeyDifference,
+  RelatedDecisionLinks,
+  SectionNavigation,
+  VerificationStrip,
+} from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote } from '@/components/reviews/evidence-note';
 import { ReviewSection } from '@/components/reviews/review-section';
@@ -176,13 +185,13 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))]"
-        spacing="md"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
+        spacing="none"
       >
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.85fr)] lg:gap-12">
             <div>
-              <ResearchMarker code="CP" label={`${data.category} comparison`} />
+              <ComparisonIdentity a={data.a} b={data.b} />
               {data.categoryLinks?.length ? (
                 <nav
                   aria-label="Related software categories"
@@ -195,10 +204,16 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-6 text-4xl leading-tight font-semibold tracking-[-0.045em] sm:text-5xl">
+              <div className="mt-5">
+                <ResearchMarker
+                  code="CP"
+                  label={`${data.category} comparison`}
+                />
+              </div>
+              <h1 className="mt-5 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -212,23 +227,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 Outbound provider links are not affiliate links at publication.
               </p>
             </div>
-            <Card className="relative overflow-hidden border-brand/30 bg-white/90 shadow-panel before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-brand">
-              <CardContent>
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  Decision summary
-                </p>
-                <dl className="mt-5 space-y-5">
-                  {data.summary.map((x) => (
-                    <div key={x.label}>
-                      <dt className="text-xs font-semibold text-muted-foreground uppercase">
-                        {x.label}
-                      </dt>
-                      <dd className="mt-2 text-sm leading-6">{x.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </CardContent>
-            </Card>
+            <DecisionSummary items={data.summary} title="Comparison brief" />
+          </div>
+          <div className="mt-8">
+            <VerificationStrip date={data.verificationDate ?? 'August 2026'} />
           </div>
         </Container>
       </Section>
@@ -266,26 +268,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
             <aside>
-              <nav
-                aria-label="Comparison sections"
-                className="lg:sticky lg:top-6"
-              >
-                <p className="text-xs font-semibold tracking-[0.14em] text-accent-strong uppercase">
-                  On this page
-                </p>
-                <ol className="mt-4 space-y-2 text-sm">
-                  {toc.map(([id, title]) => (
-                    <li key={id}>
-                      <a
-                        className="text-muted-foreground hover:text-foreground"
-                        href={`#${id}`}
-                      >
-                        {title}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
+              <SectionNavigation items={toc} label="Comparison sections" />
             </aside>
             <article className="min-w-0 space-y-10">
               <ReviewSection
@@ -294,6 +277,17 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 title="Decision snapshot"
                 description={`The documented differences between ${data.a} and ${data.b} that matter most.`}
               >
+                {data.factors[0] ? (
+                  <div className="mb-6">
+                    <KeyDifference
+                      a={data.a}
+                      aText={data.factors[0].a}
+                      b={data.b}
+                      bText={data.factors[0].b}
+                      meaning={data.factors[0].relevance}
+                    />
+                  </div>
+                ) : null}
                 <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
                   <table className="w-full min-w-[50rem] text-left text-sm">
                     <caption className="sr-only">
@@ -311,8 +305,15 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.factors.map((x) => (
-                        <tr className="border-t border-border" key={x.factor}>
+                      {data.factors.map((x, index) => (
+                        <tr
+                          className={
+                            index % 2
+                              ? 'border-t border-border bg-surface-subtle/70'
+                              : 'border-t border-border'
+                          }
+                          key={x.factor}
+                        >
                           <th className="p-4" scope="row">
                             {x.factor}
                           </th>
@@ -368,7 +369,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 title="Scenario-based decision matrix"
                 description="Conditional guidance based on documented product scope, billing, and workflow."
               >
-                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
+                <div className="hidden overflow-x-auto rounded-xl border border-brand/20 bg-white sm:block">
                   <table className="w-full min-w-[38rem] text-left text-sm">
                     <caption className="sr-only">Decision scenarios</caption>
                     <thead className="bg-accent-subtle">
@@ -392,6 +393,21 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       ))}
                     </tbody>
                   </table>
+                </div>
+                <div className="grid gap-4 sm:hidden">
+                  {data.scenarios.map((scenario) => (
+                    <Card key={scenario.scenario}>
+                      <CardContent>
+                        <h3 className="font-semibold">{scenario.scenario}</h3>
+                        <p className="mt-2 text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
+                          Lean: {scenario.lean}
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          {scenario.why}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </ReviewSection>
               <ReviewSection
@@ -467,26 +483,22 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     </ButtonLink>
                   )}
                 </div>
-                <p className="mt-7 border-l-2 border-accent pl-5 text-sm leading-6 text-muted-foreground">
-                  Racklio has not represented this comparison as hands-on
-                  testing. Read the <Link href="/methodology">Methodology</Link>
-                  , <Link href="/editorial-standards">Editorial Standards</Link>
-                  , and{' '}
-                  <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
-                  .
-                </p>
-                {data.related?.length ? (
-                  <div className="mt-8 border-t border-border pt-6">
-                    <h3 className="font-semibold">Continue your research</h3>
-                    <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3">
-                      {data.related.map((link) => (
-                        <Link href={link.href} key={link.href}>
-                          {link.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
+                <div className="mt-8">
+                  <EvidenceBlock label="Racklio analysis" tone="analysis">
+                    Racklio has not represented this comparison as hands-on
+                    testing. Read the{' '}
+                    <Link href="/methodology">Methodology</Link>,{' '}
+                    <Link href="/editorial-standards">Editorial Standards</Link>
+                    , and{' '}
+                    <Link href="/affiliate-disclosure">
+                      Affiliate Disclosure
+                    </Link>
+                    .
+                  </EvidenceBlock>
+                </div>
+                <div className="mt-8">
+                  <RelatedDecisionLinks links={data.related ?? []} />
+                </div>
               </ReviewSection>
             </article>
           </div>

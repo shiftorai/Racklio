@@ -4,6 +4,7 @@ import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { ButtonLink, Container, Link } from '@/components/ui';
 
 import { categoryPath } from './category-path';
+import { fullCategoryReviewMembership } from '@/pages/categories/category-data';
 
 function useMetaDescription(description: string) {
   useEffect(() => {
@@ -555,6 +556,17 @@ export function CategoryHubTemplate({
       url: `https://racklio.com${categoryPath(category.slug)}`,
     })),
   };
+  const productCatalog = new Map(
+    categories.flatMap((category) =>
+      category.products.map((product) => [product.href, product] as const),
+    ),
+  );
+  const categoryMembership = categories.map((category) => ({
+    category,
+    products: (fullCategoryReviewMembership[category.slug] ?? [])
+      .map((href) => productCatalog.get(href))
+      .filter((product): product is CategoryLink => Boolean(product)),
+  }));
 
   return (
     <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
@@ -573,23 +585,54 @@ export function CategoryHubTemplate({
         type="application/ld+json"
       />
 
-      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-14 lg:py-16">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_85%_10%,rgba(124,58,237,.1),transparent_34%)]"
-        />
+      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-12">
         <Container className="relative" size="wide">
-          <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
-            Software category map
-          </p>
-          <h1 className="mt-5 max-w-4xl text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl lg:text-6xl">
-            Customer Service Software Categories
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-            Start with the customer workflow your business needs to improve,
-            then move into relevant product reviews, direct comparisons, and
-            evidence-based buying guidance.
-          </p>
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(28rem,1fr)] lg:gap-14">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
+                Software category map
+              </p>
+              <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl">
+                Customer Service Software Categories
+              </h1>
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+                Start with the customer workflow your business needs to improve,
+                then move into relevant product reviews, direct comparisons, and
+                evidence-based buying guidance.
+              </p>
+            </div>
+            <aside className="rounded-2xl border border-brand/20 bg-white/90 p-5 shadow-panel sm:p-6">
+              <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
+                Category decision map
+              </p>
+              <ol className="mt-4 divide-y divide-border">
+                {categoryMembership.map(({ category, products }, index) => (
+                  <li
+                    className="grid grid-cols-[auto_1fr_auto] items-center gap-3 py-3"
+                    key={category.slug}
+                  >
+                    <span className="font-mono text-xs font-bold text-brand">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold">
+                        {category.shortTitle}
+                      </p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {products
+                          .slice(0, 3)
+                          .map((product) => product.title)
+                          .join(' · ')}
+                      </p>
+                    </div>
+                    <span className="text-xs font-semibold text-mint-deep">
+                      {products.length} tools
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </aside>
+          </div>
         </Container>
       </section>
 
@@ -615,9 +658,9 @@ export function CategoryHubTemplate({
               </p>
             </div>
             <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {categories.map((category) => (
+              {categoryMembership.map(({ category, products }) => (
                 <article
-                  className="flex min-h-64 flex-col rounded-lg border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
+                  className="flex min-h-80 flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
                   key={category.slug}
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -633,6 +676,21 @@ export function CategoryHubTemplate({
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {category.definition}
+                  </p>
+                  <div className="mt-5 border-t border-border pt-4">
+                    <p className="text-[0.68rem] font-bold tracking-[0.1em] text-accent-strong uppercase">
+                      Buyer starting point
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {category.startPaths[0]?.description}
+                    </p>
+                  </div>
+                  <p className="mt-4 text-xs font-medium text-muted-foreground">
+                    {products.length} documented products ·{' '}
+                    {products
+                      .slice(0, 3)
+                      .map((product) => product.title)
+                      .join(', ')}
                   </p>
                   <Link
                     className="mt-auto pt-6"
