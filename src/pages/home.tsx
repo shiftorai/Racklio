@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { ButtonLink, Container, CountUp, Link, Reveal } from '@/components/ui';
-import { currentSoftwareProviders } from '@/lib/provider-links';
+import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
 const categories = [
   [
@@ -316,7 +316,6 @@ export function Home() {
   const title = 'Racklio — Compare AI Customer Support Software';
   const description =
     'Evidence-based reviews and comparisons of AI customer support, business communications, CRM, and customer engagement software.';
-  const toolCount = currentSoftwareProviders.length;
   const schemas = [
     {
       '@context': 'https://schema.org',
@@ -372,9 +371,10 @@ export function Home() {
                 Choose customer software with evidence, not noise.
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">
-                Racklio turns official product facts, pricing limits, and
-                meaningful trade-offs into clearer software decisions for
-                customer-facing teams.
+                Compare AI customer support, business phone and voice AI, live
+                chat and messaging, and CRM and customer engagement software
+                through official-source research built for practical buying
+                decisions.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink className="cta-halo" href="/#categories" size="lg">
@@ -404,10 +404,11 @@ export function Home() {
         <Container size="wide">
           <dl className="grid grid-cols-2 lg:grid-cols-5">
             {[
-              [toolCount, 'Software tools'],
-              [reviews.length, 'Featured reviews'],
-              [comparisons.length, 'Featured comparisons'],
-              [categories.length, 'Active categories'],
+              [editorialCoverageCounts.reviews, 'Published reviews'],
+              [editorialCoverageCounts.comparisons, 'Comparisons'],
+              [editorialCoverageCounts.pricingGuides, 'Pricing guides'],
+              [editorialCoverageCounts.alternativesGuides, 'Alternatives'],
+              [editorialCoverageCounts.categories, 'Software categories'],
             ].map(([value, label]) => (
               <div
                 className="border-b border-border p-5 last:border-b-0 even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0"
@@ -421,12 +422,6 @@ export function Home() {
                 </dt>
               </div>
             ))}
-            <div className="col-span-2 p-5 lg:col-span-1 lg:border-l">
-              <dd className="text-lg font-semibold">August 2026</dd>
-              <dt className="mt-1 text-xs font-semibold text-muted-foreground">
-                Latest editorial update
-              </dt>
-            </div>
           </dl>
         </Container>
       </section>
