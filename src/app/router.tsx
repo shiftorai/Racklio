@@ -43,6 +43,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/capsule-crm',
+        lazy: async () => {
+          const { CapsuleCrmReview } =
+            await import('@/pages/reviews/capsule-crm-review');
+          return { Component: CapsuleCrmReview };
+        },
+      },
+      {
+        path: 'comparisons/capsule-crm-vs-pipedrive',
+        lazy: async () => {
+          const { CapsuleCrmVsPipedrive } =
+            await import('@/pages/comparisons/capsule-crm-vs-pipedrive');
+          return { Component: CapsuleCrmVsPipedrive };
+        },
+      },
+      {
+        path: 'guides/capsule-crm-pricing',
+        lazy: async () => {
+          const { CapsuleCrmPricing } =
+            await import('@/pages/guides/capsule-crm-pricing');
+          return { Component: CapsuleCrmPricing };
+        },
+      },
+      {
+        path: 'alternatives/capsule-crm-alternatives',
+        lazy: async () => {
+          const { CapsuleCrmAlternatives } =
+            await import('@/pages/alternatives/capsule-crm-alternatives');
+          return { Component: CapsuleCrmAlternatives };
+        },
+      },
+      {
         path: 'reviews/landbot',
         lazy: async () => {
           const { LandbotReview } =

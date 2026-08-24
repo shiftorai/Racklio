@@ -8,6 +8,8 @@ export {
   SectionNavigation,
   TrueCostFactors,
   VerificationStrip,
+} from './decision-system';
+export {
   deriveTrueCostFactors,
   type DecisionItem,
-} from './decision-system';
+} from './decision-system-logic';

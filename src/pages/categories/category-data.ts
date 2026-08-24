@@ -118,6 +118,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Capsule CRM Review',
+        description:
+          'Contact and pipeline CRM covering opportunities, tasks, workflows, reporting, integrations, plan limits, and per-user pricing.',
+        href: '/reviews/capsule-crm',
+      },
+      {
         title: 'Calilio Review',
         description:
           'Virtual numbers, calling, messaging, shared numbers, bundles, wallet usage, routing, monitoring, and AI reporting.',
@@ -1520,6 +1526,7 @@ export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
     '/reviews/gorgias',
   ],
   'crm-customer-engagement': [
+    '/reviews/capsule-crm',
     '/reviews/pipedrive',
     '/reviews/engagebay',
     '/reviews/salesmsg',

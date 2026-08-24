@@ -18,6 +18,16 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Capsule CRM Review',
+    description:
+      'CRM coverage for contacts, opportunities, pipeline stages, tasks, workflows, reporting, integrations, plan limits, and per-user pricing.',
+    href: '/reviews/capsule-crm',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/capsule-crm-pricing' },
+      { title: 'Alternatives', href: '/alternatives/capsule-crm-alternatives' },
+    ],
+  },
+  {
     title: 'Calilio Review',
     description:
       'SMB cloud phone coverage spanning virtual numbers, calling, messaging, included bundles, wallet usage, routing, monitoring, AI reporting, and commercial limits.',
@@ -297,6 +307,16 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Capsule CRM Pricing',
+    description:
+      'Free and per-user CRM plan economics, annual versus monthly billing, contacts, storage, workflows, and upgrade boundaries.',
+    href: '/guides/capsule-crm-pricing',
+    relatedLinks: [
+      { title: 'Capsule CRM review', href: '/reviews/capsule-crm' },
+      { title: 'Alternatives', href: '/alternatives/capsule-crm-alternatives' },
+    ],
+  },
+  {
     title: 'Calilio Pricing',
     description:
       'Separate monthly and annual seat pricing from included US/Canada bundles, wallet-funded overage, number charges, international rates, and AI usage.',
@@ -490,6 +510,16 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Capsule CRM Alternatives',
+    description:
+      'Conditional CRM alternatives for teams weighing pipeline specialization, connected suite scope, or a broader platform.',
+    href: '/alternatives/capsule-crm-alternatives',
+    relatedLinks: [
+      { title: 'Capsule CRM review', href: '/reviews/capsule-crm' },
+      { title: 'Pricing guide', href: '/guides/capsule-crm-pricing' },
+    ],
+  },
   {
     title: 'Calilio Alternatives',
     description:
@@ -753,6 +783,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Capsule CRM vs Pipedrive',
+    description:
+      'A scoped contact-and-workflow CRM compared with a more explicitly pipeline-first sales CRM.',
+    href: '/comparisons/capsule-crm-vs-pipedrive',
+    relatedLinks: [
+      { title: 'Capsule CRM review', href: '/reviews/capsule-crm' },
+      { title: 'Pipedrive review', href: '/reviews/pipedrive' },
+    ],
+  },
   {
     title: 'Calilio vs CallHippo',
     description:

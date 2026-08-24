@@ -25,7 +25,8 @@ export type CoreProvider =
   | 'pipedrive'
   | 'landbot'
   | 'quo'
-  | 'calilio';
+  | 'calilio'
+  | 'capsuleCrm';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -50,6 +51,7 @@ export const currentSoftwareProviders = [
   'landbot',
   'quo',
   'calilio',
+  'capsuleCrm',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -110,6 +112,7 @@ export const providerLinks = {
   landbot: { official: 'https://landbot.io/', affiliate: null },
   quo: { official: 'https://www.quo.com/', affiliate: null },
   calilio: { official: 'https://www.calilio.com/', affiliate: null },
+  capsuleCrm: { official: 'https://capsulecrm.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {

@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { useLocation, useNavigationType } from 'react-router';
+import { NavigationType, useLocation, useNavigationType } from 'react-router';
 
 const homepageRouteHashes = new Set([
   'best',
@@ -40,7 +40,7 @@ export function RouteScrollManager() {
     if (isHomepageRouteHash) return;
 
     if (!hash) {
-      if (navigationType !== 'POP') scrollToTop();
+      if (navigationType !== NavigationType.Pop) scrollToTop();
       return;
     }
 
