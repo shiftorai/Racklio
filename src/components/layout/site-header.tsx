@@ -31,7 +31,7 @@ function NavigationLinks({ mobile = false }: { mobile?: boolean }) {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-surface/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/75 bg-surface/88 shadow-[0_1px_0_rgb(255_255_255/.7)] backdrop-blur-xl">
       <Container size="wide">
         <div className="flex min-h-16 items-center justify-between gap-5">
           <Link
@@ -45,7 +45,7 @@ export function SiteHeader() {
 
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-6 lg:flex"
+            className="hidden items-center gap-7 lg:flex"
           >
             <NavigationLinks />
           </nav>
@@ -54,7 +54,7 @@ export function SiteHeader() {
             <Link
               aria-label="Search Racklio"
               className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground hover:text-foreground"
-              href="/search"
+              href="/#software-search"
               variant="unstyled"
             >
               <span aria-hidden="true" className="search-icon" />
@@ -63,7 +63,7 @@ export function SiteHeader() {
               className="bg-brand hover:bg-accent-hover"
               href="/#categories"
             >
-              Find software →
+              Explore software →
             </ButtonLink>
           </div>
 
@@ -87,7 +87,7 @@ export function SiteHeader() {
                 <Link
                   aria-label="Search Racklio"
                   className="inline-flex min-h-11 items-center justify-center rounded-md border border-border"
-                  href="/search"
+                  href="/#software-search"
                   variant="unstyled"
                 >
                   <span aria-hidden="true" className="search-icon" />
@@ -96,7 +96,7 @@ export function SiteHeader() {
                   className="bg-brand hover:bg-accent-hover"
                   href="/#categories"
                 >
-                  Find the Right Software
+                  Explore software
                 </ButtonLink>
               </div>
             </div>

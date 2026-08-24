@@ -36,6 +36,8 @@
   --ds-danger-foreground: #ffffff;
   --ds-success: #157347;
   --ds-success-subtle: #dcfce7;
+  --ds-surface-soft: #f7f1ec;
+  --ds-surface-mint: #f1faf7;
 }
 
 @theme inline {
@@ -63,6 +65,8 @@
   --color-danger-foreground: var(--ds-danger-foreground);
   --color-success: var(--ds-success);
   --color-success-subtle: var(--ds-success-subtle);
+  --color-surface-soft: var(--ds-surface-soft);
+  --color-surface-mint: var(--ds-surface-mint);
 
   /* Typography */
   --font-sans:
@@ -230,6 +234,194 @@
     box-shadow: var(--shadow-panel);
   }
 
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 750;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .homepage-hero {
+    background:
+      radial-gradient(
+        circle at 82% 24%,
+        rgb(46 202 166 / 0.14),
+        transparent 27rem
+      ),
+      linear-gradient(
+        118deg,
+        #fff 0%,
+        var(--color-surface-soft) 62%,
+        #f9f5f1 100%
+      );
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(rgb(142 29 79 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(142 29 79 / 0.04) 1px, transparent 1px);
+    background-position: center;
+    background-size: 42px 42px;
+    mask-image: linear-gradient(
+      to right,
+      transparent 4%,
+      black 54%,
+      black 100%
+    );
+  }
+
+  .hero-comparison-stage {
+    transition: translate 220ms ease;
+  }
+
+  @media (hover: hover) {
+    .hero-comparison-stage:hover {
+      translate: 0 -0.2rem;
+    }
+  }
+
+  .racklio-vs-badge {
+    background: linear-gradient(
+      135deg,
+      var(--color-brand) 22%,
+      #a82861 58%,
+      var(--color-mint) 160%
+    );
+    transition:
+      translate 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .hero-comparison-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-comparison-tabs {
+    scrollbar-width: none;
+  }
+
+  .hero-comparison-tabs button {
+    border: 1px solid transparent;
+    color: var(--color-muted-foreground);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .hero-comparison-tabs button:hover {
+    background: var(--color-surface-soft);
+    color: var(--color-foreground);
+  }
+
+  .hero-comparison-tabs button.is-selected {
+    border-color: rgb(142 29 79 / 0.18);
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-strong);
+  }
+
+  .hero-comparison-content {
+    animation: hero-comparison-in 210ms ease both;
+  }
+
+  .hero-intent-chip {
+    display: inline-flex;
+    min-height: 2.5rem;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid rgb(142 29 79 / 0.14);
+    border-radius: 9999px;
+    background: color-mix(
+      in srgb,
+      var(--color-surface-raised) 78%,
+      var(--color-mint-subtle)
+    );
+    padding: 0.35rem 0.7rem;
+    color: var(--color-foreground);
+    font-size: 0.75rem;
+    font-weight: 650;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      translate 180ms ease;
+  }
+
+  .hero-intent-chip:hover {
+    translate: 0 -1px;
+    border-color: rgb(142 29 79 / 0.25);
+    background: color-mix(
+      in srgb,
+      var(--color-accent-subtle) 68%,
+      var(--color-mint-subtle)
+    );
+  }
+
+  .comparison-card-v2,
+  .category-territory,
+  .standard-content-card {
+    transition:
+      translate 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .comparison-card-v2:hover,
+  .standard-content-card:hover {
+    translate: 0 -0.2rem;
+    border-color: rgb(142 29 79 / 0.28);
+    box-shadow: var(--shadow-panel);
+  }
+
+  .comparison-card-v2:hover .racklio-vs-badge {
+    translate: 0 -0.12rem;
+    box-shadow: 0 10px 25px rgb(142 29 79 / 0.2);
+  }
+
+  .category-territory:hover {
+    background: var(--color-surface-mint);
+  }
+
+  .decision-filter {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .decision-filter.is-selected {
+    border-color: rgb(142 29 79 / 0.45);
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-strong);
+    box-shadow: inset 3px 0 0 var(--color-brand);
+  }
+
+  .decision-result {
+    animation: decision-in 240ms ease both;
+  }
+
+  .search-example {
+    border-bottom: 1px solid
+      color-mix(in srgb, var(--color-brand) 35%, transparent);
+    color: var(--color-accent-strong);
+    cursor: pointer;
+  }
+
+  .search-example:hover {
+    border-color: var(--color-brand);
+  }
+
+  .final-decision-panel::after {
+    position: absolute;
+    top: -7rem;
+    right: -7rem;
+    width: 22rem;
+    height: 22rem;
+    border: 4rem solid rgb(46 202 166 / 0.11);
+    border-radius: 9999px;
+    content: '';
+  }
+
   .dot-field {
     background-image: radial-gradient(
       circle,
@@ -241,6 +433,28 @@
 
   .cta-halo {
     animation: cta-halo 4s ease-in-out infinite;
+  }
+}
+
+@keyframes decision-in {
+  from {
+    opacity: 0.55;
+    translate: 0 0.35rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@keyframes hero-comparison-in {
+  from {
+    opacity: 0.45;
+    translate: 0 0.3rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
   }
 }
 
@@ -273,6 +487,11 @@
   }
 
   .cta-halo {
+    animation: none;
+  }
+
+  .hero-comparison-content,
+  .decision-result {
     animation: none;
   }
 }

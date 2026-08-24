@@ -1,152 +1,260 @@
 import { useState, type ReactNode } from 'react';
 
+import {
+  CategoryPill,
+  EvidenceLabel,
+  HomepageSearch,
+  ProductLogo,
+  RacklioVsBadge,
+} from '@/components/home';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { ButtonLink, Container, CountUp, Link, Reveal } from '@/components/ui';
+import { ButtonLink, Container, Link, Reveal } from '@/components/ui';
 import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
 const categories = [
-  [
-    'AI',
-    'AI Customer Support',
-    '/categories/ai-customer-support',
-    'AI agents, help desks, automation, and human handoff.',
-  ],
-  [
-    'VO',
-    'Business Phone & Voice AI',
-    '/categories/business-phone-voice-ai',
-    'Cloud calling, virtual numbers, routing, and voice automation.',
-  ],
-  [
-    'CH',
-    'Live Chat & Messaging',
-    '/categories/live-chat-messaging',
-    'Website chat, WhatsApp, shared inboxes, and omnichannel workflows.',
-  ],
-  [
-    'CRM',
-    'CRM & Customer Engagement',
-    '/categories/crm-customer-engagement',
-    'Customer records, communication, lifecycle activity, and engagement.',
-  ],
+  {
+    code: 'AI',
+    name: 'AI Customer Support',
+    shortName: 'AI Support',
+    href: '/categories/ai-customer-support',
+    description:
+      'AI agents, help desks, automation, and accountable human handoff.',
+    start:
+      'Start with resolution scope, knowledge quality, and escalation controls.',
+    products: ['Typewise', 'Tidio', 'Gorgias'],
+  },
+  {
+    code: 'VO',
+    name: 'Business Phone & Voice AI',
+    shortName: 'Business Phone',
+    href: '/categories/business-phone-voice-ai',
+    description:
+      'Cloud calling, virtual numbers, routing, messaging, and voice automation.',
+    start:
+      'Start with number coverage, usage economics, routing, and integrations.',
+    products: ['KrispCall', 'Aircall', 'Calilio'],
+  },
+  {
+    code: 'CH',
+    name: 'Live Chat & Messaging',
+    shortName: 'Live Chat',
+    href: '/categories/live-chat-messaging',
+    description:
+      'Website chat, WhatsApp, shared inboxes, and omnichannel workflows.',
+    start:
+      'Start with channel coverage, ownership, automation, and human support.',
+    products: ['Tidio', 'respond.io', 'Landbot'],
+  },
+  {
+    code: 'CRM',
+    name: 'CRM & Customer Engagement',
+    shortName: 'CRM',
+    href: '/categories/crm-customer-engagement',
+    description:
+      'Customer records, lifecycle activity, communication, and engagement.',
+    start:
+      'Start with pipeline depth, record ownership, automation, and suite breadth.',
+    products: ['Pipedrive', 'EngageBay', 'Campaign Monitor'],
+  },
 ] as const;
 
 const reviews = [
-  [
-    'Tidio',
-    'Live Chat & Messaging',
-    'Web chat, help-desk workflow, and Lyro AI with documented usage limits.',
-    '/reviews/tidio',
-    '/comparisons/tidio-vs-gorgias',
-  ],
-  [
-    'respond.io',
-    'Live Chat & Messaging',
-    'Omnichannel messaging teams working across WhatsApp and other channels.',
-    '/reviews/respond-io',
-    '/comparisons/respond-io-vs-tidio',
-  ],
-  [
-    'KrispCall',
-    'Business Phone & Voice AI',
-    'Teams evaluating virtual numbers, cloud calling, and usage-based costs.',
-    '/reviews/krispcall',
-    '/comparisons/krispcall-vs-aircall',
-  ],
-  [
-    'Typewise',
-    'AI Customer Support',
-    'Established service teams evaluating outcome-priced AI automation.',
-    '/reviews/typewise',
-    '',
-  ],
-  [
-    'Gorgias',
-    'AI Customer Support',
-    'Ecommerce support teams evaluating ticket-based help-desk and AI workflows.',
-    '/reviews/gorgias',
-    '/comparisons/tidio-vs-gorgias',
-  ],
-  [
-    'EngageBay',
-    'CRM & Customer Engagement',
-    'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',
-    '/reviews/engagebay',
-    '',
-  ],
-  [
-    'EazyChat.io',
-    'AI Customer Support',
-    'Small teams evaluating AI website chat with human handoff.',
-    '/reviews/eazychat',
-    '',
-  ],
+  {
+    name: 'Tidio',
+    category: 'Live Chat & Messaging',
+    fit: 'Teams evaluating web chat, help-desk workflows, and Lyro AI with documented usage limits.',
+    cue: 'Inspect how conversations, AI usage, and support workflows are packaged.',
+    review: '/reviews/tidio',
+    compare: '/comparisons/tidio-vs-gorgias',
+    alternatives: '/alternatives/tidio-alternatives',
+  },
+  {
+    name: 'respond.io',
+    category: 'Live Chat & Messaging',
+    fit: 'Omnichannel messaging teams working across WhatsApp and other channels.',
+    cue: 'Compare channel operations, active-contact economics, and workflow control.',
+    review: '/reviews/respond-io',
+    compare: '/comparisons/respond-io-vs-tidio',
+    alternatives: '/alternatives/respond-io-alternatives',
+  },
+  {
+    name: 'KrispCall',
+    category: 'Business Phone & Voice AI',
+    fit: 'Teams evaluating virtual numbers, cloud calling, and usage-based costs.',
+    cue: 'Separate seat pricing from numbers, calling, messaging, and usage charges.',
+    review: '/reviews/krispcall',
+    compare: '/comparisons/krispcall-vs-aircall',
+  },
+  {
+    name: 'Pipedrive',
+    category: 'CRM & Customer Engagement',
+    fit: 'Sales teams that want a pipeline-first CRM rather than a broader customer suite.',
+    cue: 'Map plan scope, add-ons, automation, and configured annual cost.',
+    review: '/reviews/pipedrive',
+    pricing: '/guides/pipedrive-pricing',
+    compare: '/comparisons/pipedrive-vs-engagebay',
+    alternatives: '/alternatives/pipedrive-alternatives',
+  },
+  {
+    name: 'Gorgias',
+    category: 'AI Customer Support',
+    fit: 'Ecommerce support teams evaluating ticket-based help-desk and AI workflows.',
+    cue: 'Assess ecommerce depth, ticket economics, automation, and operating fit.',
+    review: '/reviews/gorgias',
+    compare: '/comparisons/tidio-vs-gorgias',
+    alternatives: '/alternatives/gorgias-alternatives',
+  },
+  {
+    name: 'EngageBay',
+    category: 'CRM & Customer Engagement',
+    fit: 'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',
+    cue: 'Decide whether suite breadth or specialist depth matters more.',
+    review: '/reviews/engagebay',
+    pricing: '/guides/engagebay-pricing',
+    compare: '/comparisons/engagebay-vs-hubspot',
+    alternatives: '/alternatives/engagebay-alternatives',
+  },
 ] as const;
 
 const comparisons = [
-  [
-    'Tidio',
-    'Gorgias',
-    'Web chat and AI support or an ecommerce-centered help desk?',
-    '/comparisons/tidio-vs-gorgias',
-  ],
-  [
-    'respond.io',
-    'Tidio',
-    'Omnichannel messaging workflows or web chat and ticket support?',
-    '/comparisons/respond-io-vs-tidio',
-  ],
-  [
-    'KrispCall',
-    'Aircall',
-    'Compact cloud calling or a structured team communications platform?',
-    '/comparisons/krispcall-vs-aircall',
-  ],
-  [
-    'KrispCall',
-    'CallHippo',
-    'How do plans, numbers, usage, SMS, and routing differ?',
-    '/comparisons/krispcall-vs-callhippo',
-  ],
+  {
+    a: 'Tidio',
+    b: 'Gorgias',
+    question: 'Web chat and AI support or an ecommerce-centered help desk?',
+    distinction:
+      'Compare the operating model before comparing individual features.',
+    href: '/comparisons/tidio-vs-gorgias',
+  },
+  {
+    a: 'respond.io',
+    b: 'Tidio',
+    question:
+      'Omnichannel messaging operations or web chat and ticket support?',
+    distinction: 'Start with channel breadth, ownership, and support workflow.',
+    href: '/comparisons/respond-io-vs-tidio',
+  },
+  {
+    a: 'Pipedrive',
+    b: 'EngageBay',
+    question: 'Pipeline-first CRM or a broader connected customer suite?',
+    distinction:
+      'Evaluate specialist sales depth against cross-team suite scope.',
+    href: '/comparisons/pipedrive-vs-engagebay',
+  },
+  {
+    a: 'Calilio',
+    b: 'CallHippo',
+    question:
+      'How do cloud-phone bundles, usage, routing, and AI scope differ?',
+    distinction:
+      'Model the configured service, not only the headline subscription.',
+    href: '/comparisons/calilio-vs-callhippo',
+  },
 ] as const;
 
-const problems = [
-  [
-    'I need faster customer replies',
-    'AI Customer Support',
-    'Assess automation scope, knowledge inputs, escalation, and human oversight.',
-    '/categories/ai-customer-support',
-  ],
-  [
-    'I need website live chat',
-    'Live Chat & Messaging',
-    'Start with web-chat deployment, inbox ownership, automation, and pricing units.',
-    '/categories/live-chat-messaging',
-  ],
-  [
-    'I need omnichannel messaging',
-    'Live Chat & Messaging',
-    'Compare supported channels, shared context, routing, and active-contact models.',
-    '/categories/live-chat-messaging',
-  ],
-  [
-    'I need a business phone system',
-    'Business Phone & Voice AI',
-    'Evaluate numbers, countries, routing, included usage, SMS, and integrations.',
-    '/categories/business-phone-voice-ai',
-  ],
-  [
-    'I need CRM + customer communication',
-    'CRM & Customer Engagement',
-    'Map records, ownership, lifecycle activity, communication, and automation.',
-    '/categories/crm-customer-engagement',
-  ],
-  [
-    'I want AI handling more conversations',
-    'AI Customer Support',
-    'Define what AI may resolve, how it escalates, and how usage is charged.',
-    '/categories/ai-customer-support',
-  ],
+const heroComparisons = [
+  {
+    label: 'Tidio vs Gorgias',
+    a: 'Tidio',
+    b: 'Gorgias',
+    href: '/comparisons/tidio-vs-gorgias',
+    rows: [
+      ['Best for', 'Web chat and AI support vs ecommerce-centered help desk'],
+      [
+        'Core lens',
+        'Broader chat workflow vs ticket-centered support operations',
+      ],
+      [
+        'Pricing lens',
+        'Inspect usage units and the configured support workflow',
+      ],
+    ],
+  },
+  {
+    label: 'Pipedrive vs EngageBay',
+    a: 'Pipedrive',
+    b: 'EngageBay',
+    href: '/comparisons/pipedrive-vs-engagebay',
+    rows: [
+      [
+        'Best for',
+        'Pipeline-first sales CRM vs broader CRM, marketing, and service suite',
+      ],
+      ['Core lens', 'Deals and activities vs connected cross-team workflows'],
+      [
+        'Pricing lens',
+        'Map seats and add-ons against broader suite requirements',
+      ],
+    ],
+  },
+  {
+    label: 'Calilio vs CallHippo',
+    a: 'Calilio',
+    b: 'CallHippo',
+    href: '/comparisons/calilio-vs-callhippo',
+    rows: [
+      [
+        'Best for',
+        'Configured calling bundles and usage vs an alternative SMB cloud-phone model',
+      ],
+      ['Core lens', 'Numbers, routing, wallet use, and usage economics'],
+      [
+        'Pricing lens',
+        'Separate subscription, included bundles, and variable charges',
+      ],
+    ],
+  },
+] as const;
+
+const decisionPaths = [
+  {
+    label: 'Reduce support workload',
+    title: 'AI Customer Support',
+    description:
+      'Evaluate resolution scope, knowledge inputs, escalation, oversight, and usage economics.',
+    href: '/categories/ai-customer-support',
+    suggestions: [
+      ['Typewise review', '/reviews/typewise'],
+      ['Tidio vs Gorgias', '/comparisons/tidio-vs-gorgias'],
+      ['EazyChat.io alternatives', '/alternatives/eazychat-alternatives'],
+    ],
+  },
+  {
+    label: 'Improve sales follow-up',
+    title: 'CRM & Customer Engagement',
+    description:
+      'Compare pipeline ownership, communication, automation, reporting, and broader suite requirements.',
+    href: '/categories/crm-customer-engagement',
+    suggestions: [
+      ['Pipedrive review', '/reviews/pipedrive'],
+      ['Pipedrive vs EngageBay', '/comparisons/pipedrive-vs-engagebay'],
+      ['EngageBay pricing', '/guides/engagebay-pricing'],
+    ],
+  },
+  {
+    label: 'Upgrade business calling',
+    title: 'Business Phone & Voice AI',
+    description:
+      'Evaluate numbers, country coverage, routing, included usage, messaging, AI scope, and integrations.',
+    href: '/categories/business-phone-voice-ai',
+    suggestions: [
+      ['Calilio review', '/reviews/calilio'],
+      ['KrispCall vs Aircall', '/comparisons/krispcall-vs-aircall'],
+      ['Quo alternatives', '/alternatives/quo-alternatives'],
+    ],
+  },
+  {
+    label: 'Manage customer conversations',
+    title: 'Live Chat & Messaging',
+    description:
+      'Compare channel coverage, shared context, routing, automation, and human ownership.',
+    href: '/categories/live-chat-messaging',
+    suggestions: [
+      ['respond.io review', '/reviews/respond-io'],
+      ['Landbot vs Tidio', '/comparisons/landbot-vs-tidio'],
+      ['Tidio alternatives', '/alternatives/tidio-alternatives'],
+    ],
+  },
 ] as const;
 
 const steps = [
@@ -160,13 +268,16 @@ const steps = [
     'Verify',
     'Important facts, plan limits, capabilities, and conditions are checked.',
   ],
-  ['03', 'Compare', 'Provider statements stay separate from Racklio analysis.'],
+  [
+    '03',
+    'Compare',
+    'Provider statements remain separate from Racklio analysis.',
+  ],
   [
     '04',
     'Explain',
-    'Trade-offs are translated into practical buyer scenarios.',
+    'Trade-offs become practical buyer scenarios and conditional guidance.',
   ],
-  ['05', 'Update', 'Verification dates make changing product facts visible.'],
 ] as const;
 
 function Arrow() {
@@ -185,27 +296,32 @@ function SectionIntro({
   title,
   text,
   action,
+  headingId,
   tone = 'light',
 }: {
   eyebrow: string;
   title: string;
   text: string;
   action?: ReactNode;
+  headingId?: string;
   tone?: 'light' | 'dark';
 }) {
   return (
     <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
         <p
-          className={`text-xs font-bold tracking-[0.16em] uppercase ${tone === 'dark' ? 'text-mint' : 'text-accent-strong'}`}
+          className={`section-eyebrow ${tone === 'dark' ? 'text-mint' : 'text-accent-strong'}`}
         >
           {eyebrow}
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
+        <h2
+          className="mt-3 text-3xl leading-tight font-semibold tracking-[-0.045em] sm:text-4xl"
+          id={headingId}
+        >
           {title}
         </h2>
         <p
-          className={`mt-4 leading-7 ${tone === 'dark' ? 'text-stone-200' : 'text-muted-foreground'}`}
+          className={`mt-4 max-w-xl leading-7 ${tone === 'dark' ? 'text-stone-200' : 'text-muted-foreground'}`}
         >
           {text}
         </p>
@@ -215,97 +331,151 @@ function SectionIntro({
   );
 }
 
-function DecisionOrbit() {
-  const tiles = [
-    'Customer Support',
-    'Live Chat',
-    'CRM',
-    'Business Phone',
-    'Omnichannel',
-    'AI Service',
-  ];
+function HeroComparisonCard() {
+  const [selected, setSelected] = useState(0);
+  const current = heroComparisons[selected] ?? heroComparisons[0];
+
   return (
-    <div className="dot-field relative mx-auto min-h-[26rem] w-full max-w-xl overflow-hidden rounded-[2rem] border border-border bg-white/80 p-6 shadow-panel sm:min-h-[31rem] sm:p-8">
-      <div className="absolute inset-10 rounded-full border border-dashed border-brand/25" />
-      <div className="absolute inset-[28%] rounded-full border border-mint-deep/20 bg-mint-subtle shadow-card" />
-      <div className="absolute inset-[36%] grid place-items-center rounded-[38%] bg-foreground text-center text-sm font-bold text-white shadow-panel">
-        <span>
-          <img
-            alt=""
-            aria-hidden="true"
-            className="mx-auto mb-2 size-6"
-            src="/racklio-mark-v2.svg"
-          />
-          Racklio
-          <br />
-          <span className="font-normal text-mint">decision lab</span>
-        </span>
+    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-4 sm:px-5 sm:py-6 lg:-translate-y-4">
+      <div
+        aria-hidden="true"
+        className="absolute top-1 right-0 hidden w-52 rotate-3 rounded-2xl border border-brand/10 bg-white/55 p-5 shadow-card sm:block"
+      >
+        <span className="block h-2 w-20 rounded-full bg-accent-subtle" />
+        <span className="mt-3 block h-2 w-28 rounded-full bg-muted" />
       </div>
-      {tiles.map((tile, index) => {
-        const positions = [
-          'top-8 left-8',
-          'top-12 right-5',
-          'top-[43%] right-3',
-          'bottom-10 right-8',
-          'bottom-7 left-8',
-          'top-[43%] left-3',
-        ];
-        return (
-          <div
-            className={`absolute ${positions[index]} max-w-36 rounded-xl border border-border bg-white px-3 py-2.5 text-xs font-semibold shadow-card transition-transform duration-300 hover:-translate-y-1 hover:rotate-1`}
-            key={tile}
-          >
-            <span className="mb-2 block size-2 rounded-full bg-mint" />
-            {tile}
+      <article className="primary-decision-card relative z-10 overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/92 p-5 shadow-panel backdrop-blur-md sm:p-6">
+        <div className="flex items-center justify-between gap-3">
+          <EvidenceLabel tone="verified">
+            Official sources verified
+          </EvidenceLabel>
+          <span className="text-xs font-semibold text-muted-foreground">
+            Decision brief
+          </span>
+        </div>
+        <div
+          aria-label="Choose a comparison"
+          className="hero-comparison-tabs mt-4 flex gap-1 overflow-x-auto pb-1"
+          role="tablist"
+        >
+          {heroComparisons.map((comparison, index) => (
+            <button
+              aria-controls="hero-comparison-panel"
+              aria-selected={selected === index}
+              className={`min-h-10 shrink-0 rounded-lg px-2.5 text-xs font-semibold ${selected === index ? 'is-selected' : ''}`}
+              id={`hero-comparison-tab-${index}`}
+              key={comparison.href}
+              onClick={() => setSelected(index)}
+              role="tab"
+              type="button"
+            >
+              {comparison.label}
+            </button>
+          ))}
+        </div>
+        <div
+          aria-labelledby={`hero-comparison-tab-${selected}`}
+          className="hero-comparison-content"
+          id="hero-comparison-panel"
+          key={current.href}
+          role="tabpanel"
+        >
+          <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+            <div className="flex flex-col items-center text-center">
+              <ProductLogo name={current.a} size="lg" />
+              <h2 className="mt-3 text-lg font-semibold">{current.a}</h2>
+            </div>
+            <RacklioVsBadge />
+            <div className="flex flex-col items-center text-center">
+              <ProductLogo name={current.b} size="lg" />
+              <h2 className="mt-3 text-lg font-semibold">{current.b}</h2>
+            </div>
           </div>
-        );
-      })}
-      <span className="absolute top-[27%] left-[39%] rounded-full bg-accent-subtle px-3 py-1 text-[0.65rem] font-bold text-accent-strong">
-        VERIFIED
-      </span>
-      <span className="absolute right-[26%] bottom-[26%] rounded-full bg-mint-subtle px-3 py-1 text-[0.65rem] font-bold text-mint-deep">
-        BEST FIT
-      </span>
+          <dl className="mt-5 divide-y divide-border border-y border-border text-sm">
+            {current.rows.map(([label, value]) => (
+              <div
+                className="grid grid-cols-[5.25rem_1fr] gap-3 py-2.5"
+                key={label}
+              >
+                <dt className="font-semibold text-muted-foreground">{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link
+            className="group mt-4 inline-flex items-center gap-2 font-semibold text-accent-strong"
+            href={current.href}
+          >
+            View full comparison <Arrow />
+          </Link>
+        </div>
+      </article>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 hidden w-44 -rotate-3 rounded-2xl border border-mint-deep/10 bg-mint-subtle/65 p-4 shadow-card sm:block"
+      >
+        <span className="text-[0.65rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
+          Decision takeaway
+        </span>
+        <span className="mt-2 block h-2 w-24 rounded-full bg-mint/25" />
+      </div>
     </div>
   );
 }
 
-function ProblemExplorer() {
+function DecisionExplorer() {
   const [selected, setSelected] = useState(0);
-  const current = problems[selected] ?? problems[0];
+  const current = decisionPaths[selected] ?? decisionPaths[0];
   return (
-    <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="grid gap-2 sm:grid-cols-2">
-        {problems.map((problem, index) => (
+    <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+        {decisionPaths.map((path, index) => (
           <button
+            aria-controls="decision-result"
             aria-pressed={selected === index}
-            className={`min-h-16 rounded-xl border p-4 text-left text-sm font-semibold transition-all ${selected === index ? 'border-brand bg-accent-subtle text-accent-strong shadow-card ring-1 ring-brand/15' : 'border-border bg-white hover:border-brand/35 hover:bg-accent-subtle/45'}`}
-            key={problem[0]}
+            className={`decision-filter min-h-14 rounded-xl border px-4 py-3 text-left text-sm font-semibold ${selected === index ? 'is-selected' : 'border-border bg-white hover:border-brand/30'}`}
+            key={path.label}
             onClick={() => setSelected(index)}
             type="button"
           >
-            {problem[0]}
+            <span className="flex items-center justify-between gap-3">
+              {path.label}
+              <span aria-hidden="true">{selected === index ? '✓' : '→'}</span>
+            </span>
           </button>
         ))}
       </div>
-      <div className="relative overflow-hidden rounded-[1.5rem] bg-foreground p-7 text-white shadow-panel sm:p-9">
-        <div
-          aria-hidden="true"
-          className="absolute -right-10 -bottom-10 size-44 rounded-full border-[2rem] border-mint/15"
-        />
-        <p className="text-xs font-bold tracking-[0.14em] text-mint uppercase">
-          Suggested starting point
+      <div
+        className="decision-result rounded-[1.5rem] bg-foreground p-6 text-white shadow-panel sm:p-8"
+        id="decision-result"
+        key={current.label}
+      >
+        <p className="section-eyebrow text-mint">Suggested research path</p>
+        <h3 className="mt-4 text-2xl font-semibold">{current.title}</h3>
+        <p className="mt-3 max-w-xl text-sm leading-6 text-stone-300">
+          {current.description}
         </p>
-        <h3 className="mt-5 text-2xl font-semibold">{current[1]}</h3>
-        <p className="mt-4 max-w-md text-sm leading-6 text-stone-300">
-          {current[2]}
-        </p>
-        <ButtonLink
-          className="mt-7 bg-mint text-foreground hover:bg-mint-hover"
-          href={current[3]}
+        <ul className="mt-6 grid gap-2 sm:grid-cols-3">
+          {current.suggestions.map(([label, href]) => (
+            <li key={href}>
+              <Link
+                className="group flex min-h-12 items-center justify-between rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white hover:bg-white/10"
+                href={href}
+                variant="unstyled"
+              >
+                {label}
+                <Arrow />
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link
+          className="group mt-6 inline-flex items-center gap-2 font-semibold text-mint"
+          href={current.href}
+          variant="unstyled"
         >
-          Explore this path <Arrow />
-        </ButtonLink>
+          Explore category <Arrow />
+        </Link>
       </div>
     </div>
   );
@@ -356,50 +526,128 @@ export function Home() {
         />
       ))}
 
-      <section className="relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20">
+      <section className="homepage-hero relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20">
         <div
           aria-hidden="true"
-          className="absolute top-0 right-0 h-full w-1/2 bg-[radial-gradient(circle_at_50%_30%,rgba(98,230,196,.23),transparent_48%)]"
+          className="hero-grid absolute inset-0 opacity-70"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12">
             <div>
-              <p className="inline-flex rounded-full border border-mint-deep/15 bg-mint-subtle px-3 py-1.5 text-xs font-bold tracking-[0.13em] text-mint-deep uppercase">
-                Compare. Choose. Grow.
-              </p>
-              <h1 className="mt-6 max-w-3xl text-[clamp(2.8rem,5.2vw,4.8rem)] leading-[0.98] font-semibold tracking-[-0.06em]">
+              <p className="section-eyebrow text-accent-strong">
                 Choose customer software with evidence, not noise.
+              </p>
+              <h1 className="mt-5 max-w-3xl text-[clamp(2.55rem,4.3vw,4rem)] leading-[1.01] font-semibold tracking-[-0.058em]">
+                Compare Customer Software.
+                <span className="block text-accent-strong">
+                  Choose With Evidence.
+                </span>
               </h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">
-                Compare AI customer support, business phone and voice AI, live
-                chat and messaging, and CRM and customer engagement software
-                through official-source research built for practical buying
-                decisions.
+              <p className="mt-6 max-w-lg text-lg leading-[1.85] text-muted-foreground">
+                Independent reviews, pricing guides, alternatives, and
+                head-to-head comparisons for growing teams.
+              </p>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                AI customer support <span aria-hidden="true">·</span> Business
+                phone &amp; voice AI <span aria-hidden="true">·</span> Live chat
+                &amp; messaging <span aria-hidden="true">·</span> CRM &amp;
+                customer engagement
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink className="cta-halo" href="/#categories" size="lg">
-                  Explore software <Arrow />
+                <ButtonLink
+                  className="bg-brand hover:bg-accent-hover"
+                  href="/#categories"
+                  size="lg"
+                >
+                  Explore Software <Arrow />
                 </ButtonLink>
                 <ButtonLink href="/#comparisons" size="lg" variant="secondary">
-                  Compare tools <Arrow />
+                  Browse Comparisons <Arrow />
                 </ButtonLink>
               </div>
-              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-muted-foreground">
-                <span>Official-source research</span>
-                <span>•</span>
-                <span>No paid rankings</span>
-                <span>•</span>
-                <span>Conditional guidance</span>
+              <div id="software-search">
+                <HomepageSearch />
+              </div>
+              <div
+                className="mt-4 flex flex-wrap gap-2"
+                aria-label="Quick discovery links"
+              >
+                <Link
+                  className="hero-intent-chip"
+                  href="/comparisons"
+                  variant="unstyled"
+                >
+                  Compare tools <Arrow />
+                </Link>
+                <Link
+                  className="hero-intent-chip"
+                  href="/guides"
+                  variant="unstyled"
+                >
+                  Check pricing <Arrow />
+                </Link>
+                <Link
+                  className="hero-intent-chip"
+                  href="/alternatives"
+                  variant="unstyled"
+                >
+                  Browse alternatives <Arrow />
+                </Link>
               </div>
             </div>
-            <DecisionOrbit />
+            <HeroComparisonCard />
           </div>
         </Container>
       </section>
 
       <section
-        aria-label="Racklio coverage"
-        className="border-b border-border bg-white/65"
+        aria-label="Why buyers can trust Racklio"
+        className="border-b border-border bg-white"
+      >
+        <Container size="wide">
+          <ul className="grid sm:grid-cols-3">
+            {[
+              [
+                '✓',
+                'Official sources verified',
+                'Provider-controlled documentation',
+              ],
+              [
+                '—',
+                'No paid rankings',
+                'Commercial relationships do not set conclusions',
+              ],
+              [
+                '↳',
+                'Recommendations depend on fit',
+                'Workload and trade-offs come first',
+              ],
+            ].map(([icon, label, detail], index) => (
+              <li
+                className={`flex min-h-24 items-center gap-3 py-5 sm:px-6 ${index ? 'border-t border-border sm:border-t-0 sm:border-l' : ''}`}
+                key={label}
+              >
+                <span
+                  aria-hidden="true"
+                  className="grid size-9 shrink-0 place-items-center rounded-full bg-mint-subtle font-bold text-mint-deep"
+                >
+                  {icon}
+                </span>
+                <span>
+                  <strong className="block text-sm">{label}</strong>
+                  <span className="mt-1 block text-xs leading-5 text-muted-foreground">
+                    {detail}
+                  </span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section
+        aria-label="Racklio published coverage"
+        className="border-b border-border bg-surface-raised/50"
       >
         <Container size="wide">
           <dl className="grid grid-cols-2 lg:grid-cols-5">
@@ -411,11 +659,11 @@ export function Home() {
               [editorialCoverageCounts.categories, 'Software categories'],
             ].map(([value, label]) => (
               <div
-                className="border-b border-border p-5 last:border-b-0 even:border-l lg:border-b-0 lg:border-l lg:first:border-l-0"
+                className="border-b border-border p-5 even:border-l last:border-b-0 lg:border-b-0 lg:border-l lg:first:border-l-0"
                 key={label}
               >
                 <dd className="text-3xl font-semibold tracking-tight text-accent-strong">
-                  <CountUp value={Number(value)} />
+                  {value}
                 </dd>
                 <dt className="mt-1 text-xs font-semibold text-muted-foreground">
                   {label}
@@ -428,26 +676,26 @@ export function Home() {
 
       <Container className="space-y-20 py-16 sm:py-20" size="wide">
         <Reveal>
-          <section id="categories" aria-labelledby="problem-heading">
+          <section aria-labelledby="problem-heading">
             <SectionIntro
-              eyebrow="Start with your problem"
+              eyebrow="Decision paths"
+              headingId="problem-heading"
               title="What are you trying to improve?"
-              text="Choose a real business need. Racklio will take you to relevant research—not pretend to calculate a universal answer."
+              text="Choose the operational problem first. Racklio will surface relevant research without pretending to calculate a universal answer."
             />
-            <div className="mt-8">
-              <ProblemExplorer />
-            </div>
+            <DecisionExplorer />
           </section>
         </Reveal>
 
         <Reveal>
-          <section aria-labelledby="software-heading">
+          <section id="reviews" aria-labelledby="software-heading">
             <SectionIntro
-              eyebrow="Decision cards"
-              title="Featured software research"
-              text="Concise starting points built from current provider documentation and explicit product limits."
+              eyebrow="Featured research"
+              headingId="software-heading"
+              title="Software decisions, framed for buyer fit"
+              text="Start with the operating requirement, then inspect provider facts, limitations, pricing, and alternatives."
               action={
-                <Link className="group" href="/#reviews">
+                <Link className="group" href="/reviews">
                   All reviews <Arrow />
                 </Link>
               }
@@ -455,32 +703,41 @@ export function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {reviews.map((item) => (
                 <article
-                  className="decision-card flex min-h-52 flex-col overflow-hidden rounded-xl border border-border bg-white p-5 shadow-card"
-                  key={item[0]}
+                  className="standard-content-card decision-card flex min-h-72 flex-col rounded-2xl border border-border bg-white p-5 shadow-card"
+                  key={item.name}
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <span className="rounded-full bg-accent-subtle px-3 py-1 text-[0.65rem] font-bold text-accent-strong uppercase">
-                      {item[1]}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="size-3 rounded-full bg-brand/70"
-                    />
+                    <ProductLogo name={item.name} />
+                    <CategoryPill>{item.category}</CategoryPill>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold">{item[0]}</h3>
+                  <h3 className="mt-5 text-xl font-semibold">{item.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     <strong className="text-foreground">
                       Best suited for:{' '}
                     </strong>
-                    {item[2]}
+                    {item.fit}
                   </p>
-                  <div className="mt-auto flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4">
-                    <Link className="group" href={item[3]}>
-                      Read review <Arrow />
+                  <p className="mt-3 border-l-2 border-mint pl-3 text-xs leading-5 text-muted-foreground">
+                    <strong className="text-foreground">Decision cue: </strong>
+                    {item.cue}
+                  </p>
+                  <div className="mt-auto flex flex-wrap gap-x-4 gap-y-2 border-t border-border pt-4 text-sm">
+                    <Link className="group" href={item.review}>
+                      Review <Arrow />
                     </Link>
-                    {item[4] ? (
-                      <Link className="group" href={item[4]} variant="subtle">
-                        Compare <Arrow />
+                    {'pricing' in item ? (
+                      <Link href={item.pricing} variant="subtle">
+                        Pricing
+                      </Link>
+                    ) : null}
+                    {'compare' in item ? (
+                      <Link href={item.compare} variant="subtle">
+                        Compare
+                      </Link>
+                    ) : null}
+                    {'alternatives' in item ? (
+                      <Link href={item.alternatives} variant="subtle">
+                        Alternatives
                       </Link>
                     ) : null}
                   </div>
@@ -494,10 +751,11 @@ export function Home() {
           <section id="comparisons" aria-labelledby="comparison-heading">
             <SectionIntro
               eyebrow="Comparison explorer"
-              title="Put the operating models side by side"
-              text="Comparison is not a winner badge. It is a structured way to understand which trade-offs matter for your workflow."
+              headingId="comparison-heading"
+              title="Put operating models side by side"
+              text="No winner badge. Each comparison clarifies which differences matter for a specific workflow and buyer."
               action={
-                <Link className="group" href="/#comparisons">
+                <Link className="group" href="/comparisons">
                   All comparisons <Arrow />
                 </Link>
               }
@@ -505,25 +763,30 @@ export function Home() {
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {comparisons.map((item) => (
                 <Link
-                  className="group decision-card relative block overflow-hidden rounded-xl border border-brand/20 bg-white p-6 shadow-card"
-                  href={item[3]}
-                  key={item[3]}
+                  className="comparison-card-v2 group block rounded-2xl border border-brand/15 bg-white p-6 shadow-card"
+                  href={item.href}
+                  key={item.href}
                   variant="unstyled"
                 >
-                  <div className="relative flex items-center justify-between gap-3 text-xl font-semibold before:absolute before:top-1/2 before:right-10 before:left-10 before:h-px before:bg-brand/20">
-                    <span>{item[0]}</span>
-                    <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full bg-brand text-sm text-white shadow-card transition-transform group-hover:scale-105">
-                      ⇄
+                  <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                    <span className="flex items-center gap-2 text-lg font-semibold">
+                      <ProductLogo name={item.a} size="sm" />
+                      {item.a}
                     </span>
-                    <span className="relative z-10 bg-white pl-2">
-                      {item[1]}
+                    <RacklioVsBadge className="size-10" />
+                    <span className="flex items-center justify-end gap-2 text-right text-lg font-semibold">
+                      {item.b}
+                      <ProductLogo name={item.b} size="sm" />
                     </span>
                   </div>
-                  <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                    {item[2]}
+                  <h3 className="mt-6 text-base font-semibold">
+                    {item.question}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {item.distinction}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 font-semibold text-accent-strong">
-                    See comparison <Arrow />
+                  <span className="mt-5 inline-flex items-center gap-2 font-semibold text-accent-strong">
+                    Open comparison <Arrow />
                   </span>
                 </Link>
               ))}
@@ -532,35 +795,48 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section aria-labelledby="territories-heading">
+          <section id="categories" aria-labelledby="territories-heading">
             <SectionIntro
-              eyebrow="Category territories"
+              eyebrow="Four focused verticals"
+              headingId="territories-heading"
               title="Explore the customer software landscape"
-              text="Each territory starts with a distinct operational problem and a focused set of evaluation criteria."
+              text="Each category begins with a distinct operational problem and a focused set of evaluation criteria."
             />
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2">
               {categories.map((item, index) => (
                 <article
-                  className="decision-card relative overflow-hidden border-t border-border bg-transparent px-1 py-7"
-                  key={item[0]}
+                  className="category-territory relative bg-surface-raised p-6 sm:p-8"
+                  key={item.code}
                 >
-                  <span className="font-mono text-xs font-bold text-accent-strong">
-                    0{index + 1} / {item[0]}
-                  </span>
-                  <h3 className="mt-8 text-2xl font-semibold">{item[1]}</h3>
-                  <p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
-                    {item[3]}
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-xs font-bold text-accent-strong">
+                      0{index + 1} / {item.code}
+                    </span>
+                    <CategoryPill>{item.shortName}</CategoryPill>
+                  </div>
+                  <h3 className="mt-7 text-2xl font-semibold">{item.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {item.description}
                   </p>
+                  <p className="mt-4 text-sm leading-6">
+                    <strong>Buyer starting point:</strong> {item.start}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {item.products.map((product) => (
+                      <span
+                        className="rounded-lg border border-border bg-surface px-2.5 py-1 text-xs font-semibold"
+                        key={product}
+                      >
+                        {product}
+                      </span>
+                    ))}
+                  </div>
                   <Link
                     className="group mt-6 inline-flex items-center gap-2"
-                    href={item[2]}
+                    href={item.href}
                   >
                     Enter category <Arrow />
                   </Link>
-                  <span
-                    aria-hidden="true"
-                    className={`absolute top-7 right-3 h-14 w-24 opacity-50 ${index === 0 ? 'dot-field rounded-full' : index === 1 ? 'border-y-2 border-brand/30 before:absolute before:inset-x-3 before:top-1/2 before:h-0.5 before:bg-brand/20' : index === 2 ? 'rounded-full border border-mint-deep/30 before:absolute before:inset-3 before:rounded-full before:border before:border-brand/25' : 'bg-[linear-gradient(135deg,transparent_45%,var(--color-brand)_46%,var(--color-brand)_48%,transparent_49%)]'}`}
-                  />
                 </article>
               ))}
             </div>
@@ -570,34 +846,44 @@ export function Home() {
         <Reveal>
           <section
             className="overflow-hidden rounded-[2rem] bg-foreground p-7 text-white shadow-panel sm:p-10"
+            id="methodology"
             aria-labelledby="process-heading"
           >
-            <SectionIntro
-              eyebrow="How Racklio decides"
-              title="Research made inspectable"
-              text="A transparent editorial process keeps provider statements, verified facts, and Racklio analysis distinct."
-              tone="dark"
-            />
-            <ol className="mt-10 grid gap-7 md:grid-cols-5">
-              {steps.map((step, index) => (
-                <li className="relative" key={step[0]}>
-                  <span className="grid size-10 place-items-center rounded-full bg-mint font-bold text-foreground">
-                    {step[0]}
-                  </span>
-                  {index < steps.length - 1 ? (
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-5 left-12 hidden h-px w-[calc(100%-2.25rem)] bg-[linear-gradient(90deg,var(--color-mint),var(--color-brand))] opacity-60 md:block"
-                    />
-                  ) : null}
-                  <h3 className="mt-5 font-semibold">{step[1]}</h3>
-                  <p className="mt-2 text-xs leading-5 text-stone-200">
-                    {step[2]}
-                  </p>
-                </li>
-              ))}
-            </ol>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+              <div>
+                <SectionIntro
+                  eyebrow="How Racklio decides"
+                  headingId="process-heading"
+                  title="Research made inspectable"
+                  text="Provider statements, verified facts, limitations, and Racklio analysis remain visibly distinct."
+                  tone="dark"
+                />
+                <div className="mt-7 flex flex-wrap gap-2">
+                  <EvidenceLabel tone="fact">Provider fact</EvidenceLabel>
+                  <EvidenceLabel tone="analysis">
+                    Racklio analysis
+                  </EvidenceLabel>
+                  <EvidenceLabel tone="limit">Limitation</EvidenceLabel>
+                </div>
+              </div>
+              <ol className="grid gap-5 sm:grid-cols-2">
+                {steps.map((step) => (
+                  <li
+                    className="compact-utility-card rounded-xl border border-white/12 bg-white/5 p-5"
+                    key={step[0]}
+                  >
+                    <span className="grid size-9 place-items-center rounded-full bg-mint font-bold text-foreground">
+                      {step[0]}
+                    </span>
+                    <h3 className="mt-4 font-semibold">{step[1]}</h3>
+                    <p className="mt-2 text-xs leading-5 text-stone-300">
+                      {step[2]}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink
                 className="bg-mint text-foreground hover:bg-mint-hover"
                 href="/methodology"
@@ -616,9 +902,9 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section className="relative overflow-hidden rounded-[2rem] border border-brand/20 bg-[linear-gradient(120deg,var(--color-accent-subtle),var(--color-mint-subtle))] p-8 sm:p-12">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
+          <section className="final-decision-panel relative overflow-hidden rounded-[2rem] border border-brand/20 bg-white p-8 shadow-card sm:p-12">
+            <div className="relative z-10 max-w-2xl">
+              <p className="section-eyebrow text-accent-strong">
                 Make the next decision clearer
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
@@ -632,15 +918,11 @@ export function Home() {
                 <ButtonLink href="/#categories">
                   Explore categories <Arrow />
                 </ButtonLink>
-                <ButtonLink href="/#comparisons" variant="secondary">
+                <ButtonLink href="/comparisons" variant="secondary">
                   Browse comparisons
                 </ButtonLink>
               </div>
             </div>
-            <div
-              aria-hidden="true"
-              className="dot-field absolute top-0 right-0 h-full w-1/3 opacity-60"
-            />
           </section>
         </Reveal>
       </Container>
