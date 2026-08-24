@@ -301,6 +301,10 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Separate the phone-system requirement from AI voice automation. Number availability, routing, included usage, integrations, and geographic coverage can shape the decision before advanced features do.',
     quickDecision: [
       {
+        label: 'Collaborative business phone workspace',
+        text: 'Consider Quo when shared numbers, calling, texting, team conversation history, modern routing, integrations, and optional Sona AI belong in one workspace.',
+      },
+      {
         label: 'Compact cloud phone system',
         text: 'Consider KrispCall when a smaller team needs virtual numbers, calling, SMS, and shared administration with separately modeled usage.',
       },
@@ -322,6 +326,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     scenarios: [
+      {
+        scenario:
+          'SMB team needing shared phone context and optional AI call handling',
+        consider: 'Consider Quo',
+        why: 'Quo documents shared numbers and inboxes, calling, texting, routing, integrations, and credit-metered Sona workflows.',
+      },
       {
         scenario: 'Small distributed team needing business numbers',
         consider: 'KrispCall',
@@ -352,6 +362,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     metaDescription:
       'Explore business phone and voice AI software reviews, comparisons, pricing factors, calling workflows, and practical buying guidance.',
     startPaths: [
+      {
+        title: 'Evaluate a collaborative phone workspace',
+        description:
+          'Review shared numbers, team history, routing, plan access, Sona credits, international use, and total cost.',
+        href: '/reviews/quo',
+      },
       {
         title: 'Choose a business phone system',
         description:
@@ -385,6 +401,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Quo Review',
+        description:
+          'Shared business numbers, calling, texting, collaborative history, call handling, integrations, Sona AI, and resource-model boundaries.',
+        href: '/reviews/quo',
+      },
+      {
         title: 'KrispCall Review',
         description:
           'Cloud calling, virtual numbers, SMS, per-user plans, and separate usage charges.',
@@ -417,6 +439,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
+        title: 'Quo vs KrispCall',
+        description:
+          'Collaborative phone workspace compared with a virtual-number-centered cloud phone model.',
+        href: '/comparisons/quo-vs-krispcall',
+      },
+      {
         title: 'KrispCall vs Aircall',
         description:
           'A compact business-phone model compared with structured team communication workflows.',
@@ -431,6 +459,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     alternativeGuides: [
       {
+        title: 'Quo Alternatives',
+        description:
+          'Compare collaborative business phone, virtual-number, cloud-calling, and broader communications operating models.',
+        href: '/alternatives/quo-alternatives',
+      },
+      {
         title: 'Salesmsg Alternatives',
         description:
           'Compare phone-system, omnichannel messaging, and broader CRM-suite paths.',
@@ -444,6 +478,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
+      {
+        title: 'Quo Pricing',
+        description:
+          'Model seats, billing cycle, numbers, Sona credits and overage, international activity, messaging compliance, and other cost layers.',
+        href: '/guides/quo-pricing',
+      },
       {
         title: 'Salesmsg Pricing',
         description:
@@ -520,8 +560,14 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Ticket-based service operations may need an AI Customer Support platform.',
       'Teams seeking contact records and lifecycle automation may need CRM & Customer Engagement.',
     ],
-    verificationDate: 'August 21, 2026',
+    verificationDate: 'August 24, 2026',
     sources: [
+      { title: 'Quo pricing', href: 'https://www.quo.com/pricing' },
+      { title: 'Quo features', href: 'https://www.quo.com/features' },
+      {
+        title: 'Sona pricing',
+        href: 'https://support.quo.com/core-concepts/ai-automations/sona/sona-pricing',
+      },
       { title: 'KrispCall pricing', href: 'https://krispcall.com/pricing/' },
       { title: 'KrispCall features', href: 'https://krispcall.com/feature/' },
       { title: 'Aircall pricing', href: 'https://aircall.io/pricing/' },

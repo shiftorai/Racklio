@@ -51,6 +51,36 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/quo',
+        lazy: async () => {
+          const { QuoReview } = await import('@/pages/reviews/quo-review');
+          return { Component: QuoReview };
+        },
+      },
+      {
+        path: 'guides/quo-pricing',
+        lazy: async () => {
+          const { QuoPricing } = await import('@/pages/guides/quo-pricing');
+          return { Component: QuoPricing };
+        },
+      },
+      {
+        path: 'alternatives/quo-alternatives',
+        lazy: async () => {
+          const { QuoAlternatives } =
+            await import('@/pages/alternatives/quo-alternatives');
+          return { Component: QuoAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/quo-vs-krispcall',
+        lazy: async () => {
+          const { QuoVsKrispCall } =
+            await import('@/pages/comparisons/quo-vs-krispcall');
+          return { Component: QuoVsKrispCall };
+        },
+      },
+      {
         path: 'guides/landbot-pricing',
         lazy: async () => {
           const { LandbotPricing } =

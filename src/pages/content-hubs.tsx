@@ -16,6 +16,20 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Quo Review',
+    description:
+      'Business phone workspace covering shared numbers, calling, texting, routing, Sona AI, integrations, pricing, usage limits, and the former OpenPhone identity.',
+    href: '/reviews/quo',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/quo-pricing' },
+      { title: 'Alternatives', href: '/alternatives/quo-alternatives' },
+      {
+        title: 'Compare with KrispCall',
+        href: '/comparisons/quo-vs-krispcall',
+      },
+    ],
+  },
+  {
     title: 'Landbot Review',
     description:
       'Conversational automation covering web and WhatsApp chatbots, AI Agents, flow design, human handoff, integrations, usage limits, and message economics.',
@@ -251,6 +265,20 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Quo Pricing',
+    description:
+      'Model Starter, Business, and Scale seats alongside billing cycle, numbers, Sona credit tiers, overage, international use, messaging compliance, and other charges.',
+    href: '/guides/quo-pricing',
+    relatedLinks: [
+      { title: 'Quo review', href: '/reviews/quo' },
+      { title: 'Alternatives', href: '/alternatives/quo-alternatives' },
+      {
+        title: 'Compare with KrispCall',
+        href: '/comparisons/quo-vs-krispcall',
+      },
+    ],
+  },
+  {
     title: 'Landbot Pricing',
     description:
       'Plans, monthly and annual billing, standard chats, AI chats, seats, overage, WhatsApp access, message fees, and Meta costs.',
@@ -416,6 +444,20 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Quo Alternatives',
+    description:
+      'Compare collaborative business-phone, virtual-number, cloud-calling, contact-center, and broader communications operating models.',
+    href: '/alternatives/quo-alternatives',
+    relatedLinks: [
+      { title: 'Quo review', href: '/reviews/quo' },
+      { title: 'Quo pricing', href: '/guides/quo-pricing' },
+      {
+        title: 'Compare with KrispCall',
+        href: '/comparisons/quo-vs-krispcall',
+      },
+    ],
+  },
   {
     title: 'Landbot Alternatives',
     description:
@@ -651,6 +693,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Quo vs KrispCall',
+    description:
+      'Collaborative phone workspace, virtual numbers, calling, messaging, routing, AI, integrations, usage, and conditional business fit.',
+    href: '/comparisons/quo-vs-krispcall',
+    relatedLinks: [
+      { title: 'Quo review', href: '/reviews/quo' },
+      { title: 'Quo pricing', href: '/guides/quo-pricing' },
+    ],
+  },
   {
     title: 'Landbot vs Tidio',
     description:

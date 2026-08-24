@@ -23,7 +23,8 @@ export type CoreProvider =
   | 'bookyourdata'
   | 'ninjaOne'
   | 'pipedrive'
-  | 'landbot';
+  | 'landbot'
+  | 'quo';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -46,6 +47,7 @@ export const currentSoftwareProviders = [
   'ninjaOne',
   'pipedrive',
   'landbot',
+  'quo',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -104,6 +106,7 @@ export const providerLinks = {
   ninjaOne: { official: 'https://www.ninjaone.com/', affiliate: null },
   pipedrive: { official: 'https://www.pipedrive.com/', affiliate: null },
   landbot: { official: 'https://landbot.io/', affiliate: null },
+  quo: { official: 'https://www.quo.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {
