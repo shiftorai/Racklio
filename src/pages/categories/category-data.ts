@@ -567,6 +567,10 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Begin with the channels customers actually use, then compare inbox workflow, ownership, automation, conversation history, and the pricing unit applied to contacts, users, or conversations.',
     quickDecision: [
       {
+        label: 'Custom conversational automation',
+        text: 'Consider Landbot when visual flow design, qualification, structured data capture, AI and rule blending, and web or WhatsApp journeys define the requirement.',
+      },
+      {
         label: 'Website chat and support stack',
         text: 'Consider Tidio when live chat, tickets, Flows automation, and separately metered Lyro AI belong in one web-support workspace.',
       },
@@ -584,6 +588,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     scenarios: [
+      {
+        scenario:
+          'Team designing qualification, booking, or guided conversation flows',
+        consider: 'Landbot',
+        why: 'Its documented model centers no-code conversational journeys, structured fields, integrations, AI Agents, and controlled human handoff.',
+      },
       {
         scenario: 'Small team adding website chat and tickets',
         consider: 'Tidio',
@@ -609,6 +619,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     metaDescription:
       'Explore live chat and messaging software reviews, WhatsApp and omnichannel comparisons, buying factors, and practical guidance.',
     startPaths: [
+      {
+        title: 'Design a conversational automation journey',
+        description:
+          'Map fields, branches, AI steps, integrations, handoff, channels, usage, and governance.',
+        href: '/reviews/landbot',
+      },
       {
         title: 'Add website live chat',
         description:
@@ -636,6 +652,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Landbot Review',
+        description:
+          'Conversational flows, web and WhatsApp chatbots, AI Agents, human handoff, integrations, pricing layers, and usage limits.',
+        href: '/reviews/landbot',
+      },
+      {
         title: 'Tidio Review',
         description:
           'Live chat, help-desk workflows, Lyro AI, automation, and conversation limits.',
@@ -662,6 +684,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
+        title: 'Landbot vs Tidio',
+        description:
+          'A custom conversational automation builder compared with a broader live-chat and support workspace.',
+        href: '/comparisons/landbot-vs-tidio',
+      },
+      {
         title: 'respond.io vs Tidio',
         description:
           'Omnichannel messaging workflows compared with web chat and ticket support.',
@@ -681,6 +709,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     alternativeGuides: [
+      {
+        title: 'Landbot Alternatives',
+        description:
+          'Compare custom conversational flows with live-chat support, omnichannel messaging, and ecommerce help-desk models.',
+        href: '/alternatives/landbot-alternatives',
+      },
       {
         title: 'Tidio Alternatives',
         description:
@@ -707,6 +741,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
+      {
+        title: 'Landbot Pricing',
+        description:
+          'Model plan, billing cycle, standard chats, AI chats, seats, WhatsApp access, message fees, and Meta costs.',
+        href: '/guides/landbot-pricing',
+      },
       {
         title: 'EazyChat.io Pricing',
         description:
@@ -777,8 +817,10 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Teams centered on ticketing and service automation may need AI Customer Support.',
       'Businesses requiring relationship records and lifecycle management may need CRM & Customer Engagement.',
     ],
-    verificationDate: 'August 15, 2026',
+    verificationDate: 'August 24, 2026',
     sources: [
+      { title: 'Landbot pricing', href: 'https://landbot.io/pricing' },
+      { title: 'Landbot product overview', href: 'https://landbot.io/' },
       { title: 'Tidio pricing', href: 'https://www.tidio.com/pricing/' },
       { title: 'respond.io pricing', href: 'https://respond.io/pricing' },
       { title: 'Gorgias pricing', href: 'https://www.gorgias.com/pricing' },

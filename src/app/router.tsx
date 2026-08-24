@@ -43,6 +43,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/landbot',
+        lazy: async () => {
+          const { LandbotReview } =
+            await import('@/pages/reviews/landbot-review');
+          return { Component: LandbotReview };
+        },
+      },
+      {
+        path: 'guides/landbot-pricing',
+        lazy: async () => {
+          const { LandbotPricing } =
+            await import('@/pages/guides/landbot-pricing');
+          return { Component: LandbotPricing };
+        },
+      },
+      {
+        path: 'alternatives/landbot-alternatives',
+        lazy: async () => {
+          const { LandbotAlternatives } =
+            await import('@/pages/alternatives/landbot-alternatives');
+          return { Component: LandbotAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/landbot-vs-tidio',
+        lazy: async () => {
+          const { LandbotVsTidio } =
+            await import('@/pages/comparisons/landbot-vs-tidio');
+          return { Component: LandbotVsTidio };
+        },
+      },
+      {
         path: 'guides/pipedrive-pricing',
         lazy: async () => {
           const { PipedrivePricing } =

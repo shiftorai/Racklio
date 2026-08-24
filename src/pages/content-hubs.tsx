@@ -16,6 +16,17 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Landbot Review',
+    description:
+      'Conversational automation covering web and WhatsApp chatbots, AI Agents, flow design, human handoff, integrations, usage limits, and message economics.',
+    href: '/reviews/landbot',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/landbot-pricing' },
+      { title: 'Alternatives', href: '/alternatives/landbot-alternatives' },
+      { title: 'Compare with Tidio', href: '/comparisons/landbot-vs-tidio' },
+    ],
+  },
+  {
     title: 'Pipedrive Review',
     description:
       'Sales-pipeline CRM covering deals, activities, email, automation, forecasting, reporting, plan limits, and add-on economics.',
@@ -240,6 +251,17 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Landbot Pricing',
+    description:
+      'Plans, monthly and annual billing, standard chats, AI chats, seats, overage, WhatsApp access, message fees, and Meta costs.',
+    href: '/guides/landbot-pricing',
+    relatedLinks: [
+      { title: 'Landbot review', href: '/reviews/landbot' },
+      { title: 'Alternatives', href: '/alternatives/landbot-alternatives' },
+      { title: 'Compare with Tidio', href: '/comparisons/landbot-vs-tidio' },
+    ],
+  },
+  {
     title: 'Pipedrive Pricing',
     description:
       'Per-seat plans, annual versus monthly billing, usage limits, included products, add-ons, top-ups, and configured-cost decisions.',
@@ -394,6 +416,17 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Landbot Alternatives',
+    description:
+      'Choose between custom conversational automation, live-chat support, omnichannel messaging operations, and ecommerce help-desk workflows.',
+    href: '/alternatives/landbot-alternatives',
+    relatedLinks: [
+      { title: 'Landbot review', href: '/reviews/landbot' },
+      { title: 'Landbot pricing', href: '/guides/landbot-pricing' },
+      { title: 'Compare with Tidio', href: '/comparisons/landbot-vs-tidio' },
+    ],
+  },
   {
     title: 'Pipedrive Alternatives',
     description:
@@ -618,6 +651,12 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Landbot vs Tidio',
+    description:
+      'A conversational automation builder compared with a broader live-chat and customer-support workspace.',
+    href: '/comparisons/landbot-vs-tidio',
+  },
   {
     title: 'Pipedrive vs EngageBay',
     description:
