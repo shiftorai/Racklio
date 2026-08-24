@@ -401,6 +401,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Aircall Review',
+        description:
+          'Structured cloud calling, routing, integrations, analytics, plan minimums, messaging economics, and separately scoped AI capabilities.',
+        href: '/reviews/aircall',
+      },
+      {
         title: 'Quo Review',
         description:
           'Shared business numbers, calling, texting, collaborative history, call handling, integrations, Sona AI, and resource-model boundaries.',

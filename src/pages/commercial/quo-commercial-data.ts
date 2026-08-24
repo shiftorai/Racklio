@@ -289,8 +289,8 @@ export const quoReviewData: SoftwareReviewData = {
     {
       title: 'Aircall',
       description:
-        'Consider when a more call-center-oriented workflow and integration model is required; Racklio currently covers Aircall through comparisons rather than a standalone review.',
-      href: '/comparisons/krispcall-vs-aircall',
+        'Consider when a more call-center-oriented workflow and integration model is required.',
+      href: '/reviews/aircall',
     },
   ],
   relatedComparisons: [
@@ -618,7 +618,7 @@ export const quoAlternativesData: CommercialPageData = {
       description: 'Aircall can fit a larger call collaboration decision.',
       paragraphs: [
         'Provider fact: Racklio’s existing comparisons describe Aircall as a structured team communications platform with calling, routing, collaboration, analytics, and integrations under its own commercial model.',
-        'Racklio analysis: consider Aircall when call-center-oriented workflow and connected operations justify additional scope and cost. Racklio does not currently publish a standalone Aircall review.',
+        'Racklio analysis: consider Aircall when call-center-oriented workflow and connected operations justify additional scope and cost.',
       ],
       contextualLink: {
         title: 'Compare KrispCall vs Aircall',
@@ -667,9 +667,9 @@ export const quoAlternativesData: CommercialPageData = {
         'No. Choose according to countries, numbers, calling and messaging economics, shared workflow, routing, AI, integrations, and support.',
     },
     {
-      question: 'Why is Aircall linked through a comparison?',
+      question: 'Where can I research Aircall on Racklio?',
       answer:
-        'Racklio currently covers Aircall through comparison content rather than a standalone evidence-first review.',
+        'Racklio publishes a standalone Aircall review and a direct KrispCall comparison so buyers can examine both product fit and relative operating models.',
     },
     {
       question: 'Are these alternatives ranked?',

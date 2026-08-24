@@ -16,6 +16,22 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Aircall Review',
+    description:
+      'Structured cloud calling covering plan minimums, shared workflows, routing, messaging, integrations, analytics, AI packaging, usage economics, and commercial limits.',
+    href: '/reviews/aircall',
+    relatedLinks: [
+      {
+        title: 'Compare with KrispCall',
+        href: '/comparisons/krispcall-vs-aircall',
+      },
+      {
+        title: 'Business Phone & Voice AI',
+        href: '/categories/business-phone-voice-ai',
+      },
+    ],
+  },
+  {
     title: 'Quo Review',
     description:
       'Business phone workspace covering shared numbers, calling, texting, routing, Sona AI, integrations, pricing, usage limits, and the former OpenPhone identity.',

@@ -3,7 +3,7 @@
  * Keep this snapshot aligned with the corresponding arrays in content-hubs.tsx.
  */
 export const editorialCoverageCounts = {
-  reviews: 20,
+  reviews: 21,
   comparisons: 12,
   pricingGuides: 14,
   alternativesGuides: 18,

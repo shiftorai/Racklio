@@ -58,6 +58,14 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/aircall',
+        lazy: async () => {
+          const { AircallReview } =
+            await import('@/pages/reviews/aircall-review');
+          return { Component: AircallReview };
+        },
+      },
+      {
         path: 'guides/quo-pricing',
         lazy: async () => {
           const { QuoPricing } = await import('@/pages/guides/quo-pricing');
