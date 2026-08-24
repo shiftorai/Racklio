@@ -35,6 +35,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/pipedrive',
+        lazy: async () => {
+          const { PipedriveReview } =
+            await import('@/pages/reviews/pipedrive-review');
+          return { Component: PipedriveReview };
+        },
+      },
+      {
+        path: 'guides/pipedrive-pricing',
+        lazy: async () => {
+          const { PipedrivePricing } =
+            await import('@/pages/guides/pipedrive-pricing');
+          return { Component: PipedrivePricing };
+        },
+      },
+      {
+        path: 'alternatives/pipedrive-alternatives',
+        lazy: async () => {
+          const { PipedriveAlternatives } =
+            await import('@/pages/alternatives/pipedrive-alternatives');
+          return { Component: PipedriveAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/pipedrive-vs-engagebay',
+        lazy: async () => {
+          const { PipedriveVsEngageBay } =
+            await import('@/pages/comparisons/pipedrive-vs-engagebay');
+          return { Component: PipedriveVsEngageBay };
+        },
+      },
+      {
         path: 'guides/engagebay-pricing',
         lazy: async () => {
           const { EngageBayPricing } =

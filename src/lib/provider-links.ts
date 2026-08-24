@@ -21,7 +21,8 @@ export type CoreProvider =
   | 'campaignMonitor'
   | 'aweber'
   | 'bookyourdata'
-  | 'ninjaOne';
+  | 'ninjaOne'
+  | 'pipedrive';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -42,6 +43,7 @@ export const currentSoftwareProviders = [
   'aweber',
   'bookyourdata',
   'ninjaOne',
+  'pipedrive',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -98,6 +100,7 @@ export const providerLinks = {
   aweber: { official: 'https://www.aweber.com/', affiliate: null },
   bookyourdata: { official: 'https://www.bookyourdata.com/', affiliate: null },
   ninjaOne: { official: 'https://www.ninjaone.com/', affiliate: null },
+  pipedrive: { official: 'https://www.pipedrive.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {

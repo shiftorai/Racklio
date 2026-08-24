@@ -16,6 +16,20 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Pipedrive Review',
+    description:
+      'Sales-pipeline CRM covering deals, activities, email, automation, forecasting, reporting, plan limits, and add-on economics.',
+    href: '/reviews/pipedrive',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/pipedrive-pricing' },
+      { title: 'Alternatives', href: '/alternatives/pipedrive-alternatives' },
+      {
+        title: 'Compare with EngageBay',
+        href: '/comparisons/pipedrive-vs-engagebay',
+      },
+    ],
+  },
+  {
     title: 'NinjaOne Review',
     description:
       'Adjacent IT support and endpoint management covering RMM, patching, remote access, MDM, assets, ticketing, automation, modules, and quote pricing.',
@@ -226,6 +240,20 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Pipedrive Pricing',
+    description:
+      'Per-seat plans, annual versus monthly billing, usage limits, included products, add-ons, top-ups, and configured-cost decisions.',
+    href: '/guides/pipedrive-pricing',
+    relatedLinks: [
+      { title: 'Pipedrive review', href: '/reviews/pipedrive' },
+      { title: 'Alternatives', href: '/alternatives/pipedrive-alternatives' },
+      {
+        title: 'Compare with EngageBay',
+        href: '/comparisons/pipedrive-vs-engagebay',
+      },
+    ],
+  },
+  {
     title: 'NinjaOne Pricing',
     description:
       'Per-device guidance, volume behavior, module scope, regional differences, commercial-instance limits, incentives, and personalized quotes.',
@@ -366,6 +394,20 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Pipedrive Alternatives',
+    description:
+      'Choose by pipeline specialization, broader CRM and customer-suite scope, support operations, automation, ecosystem, and configured cost.',
+    href: '/alternatives/pipedrive-alternatives',
+    relatedLinks: [
+      { title: 'Pipedrive review', href: '/reviews/pipedrive' },
+      { title: 'Pipedrive pricing', href: '/guides/pipedrive-pricing' },
+      {
+        title: 'Compare with EngageBay',
+        href: '/comparisons/pipedrive-vs-engagebay',
+      },
+    ],
+  },
   {
     title: 'NinjaOne Alternatives',
     description:
@@ -576,6 +618,12 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Pipedrive vs EngageBay',
+    description:
+      'Pipeline-first sales CRM compared with a broader connected CRM, marketing, sales, live chat, and service suite.',
+    href: '/comparisons/pipedrive-vs-engagebay',
+  },
   {
     title: 'Campaign Monitor vs AWeber',
     description:

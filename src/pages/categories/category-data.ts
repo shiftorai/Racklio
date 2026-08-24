@@ -846,6 +846,10 @@ export const softwareCategories: SoftwareCategoryData[] = [
         text: 'Consider Campaign Monitor when branded email, segmentation, automated journeys, transactional messages, analytics, and plan-supported AI are the primary workflow rather than full CRM operations.',
       },
       {
+        label: 'Sales-pipeline-first CRM',
+        text: 'Consider Pipedrive when visual deal progression, activity ownership, synchronized sales email, automation, forecasting, and sales reporting define the core requirement.',
+      },
+      {
         label: 'Creator and small-business email automation',
         text: 'Consider AWeber when explicit subscriber and send tiers, landing pages, straightforward automation, and light ecommerce tools fit better than a broad CRM platform.',
       },
@@ -859,6 +863,11 @@ export const softwareCategories: SoftwareCategoryData[] = [
         scenario: 'Small business consolidating contacts and engagement',
         consider: 'EngageBay',
         why: 'Its documented All-in-One scope connects CRM, marketing, sales, live chat, and service functions.',
+      },
+      {
+        scenario: 'Sales team standardizing pipeline stages and deal activity',
+        consider: 'Consider Pipedrive',
+        why: 'Pipedrive documents visual pipelines, customizable stages, deals, activities, email workflow, automation, forecasting, and sales reporting.',
       },
       {
         scenario: 'Organization standardizing on a broad customer platform',
@@ -913,6 +922,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
         description:
           'Define records, ownership, activity history, lifecycle stages, permissions, and reporting.',
         href: '/categories/crm-customer-engagement',
+      },
+      {
+        title: 'Structure a sales pipeline',
+        description:
+          'Evaluate stages, deal ownership, activities, email sync, automations, forecasts, reports, limits, and add-on economics.',
+        href: '/reviews/pipedrive',
       },
       {
         title: 'Combine CRM with communication',
@@ -971,6 +986,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Pipedrive Review',
+        description:
+          'Pipeline-first sales CRM covering deals, activities, email, automation, forecasts, reporting, plan limits, and add-on economics.',
+        href: '/reviews/pipedrive',
+      },
+      {
         title: 'EngageBay Review',
         description:
           'CRM, marketing, sales, service workflows, plan limits, integrations, and small-business fit.',
@@ -1027,6 +1048,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
+        title: 'Pipedrive vs EngageBay',
+        description:
+          'Pipeline-first sales CRM compared with a broader connected CRM, marketing, sales, live chat, and service suite.',
+        href: '/comparisons/pipedrive-vs-engagebay',
+      },
+      {
         title: 'Campaign Monitor vs AWeber',
         description:
           'Dedicated team-oriented email engagement compared with creator and small-business email automation and explicit subscriber tiers.',
@@ -1040,6 +1067,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     alternativeGuides: [
+      {
+        title: 'Pipedrive Alternatives',
+        description:
+          'Choose by pipeline specialization, broader platform scope, support operations, automation, ecosystem, and configured cost.',
+        href: '/alternatives/pipedrive-alternatives',
+      },
       {
         title: 'EngageBay Alternatives',
         description:
@@ -1102,6 +1135,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
+      {
+        title: 'Pipedrive Pricing',
+        description:
+          'Review per-seat plans, billing cycles, usage limits, included products, add-ons, top-ups, and configured cost.',
+        href: '/guides/pipedrive-pricing',
+      },
       {
         title: 'EngageBay Pricing',
         description:
@@ -1220,8 +1259,16 @@ export const softwareCategories: SoftwareCategoryData[] = [
       'Service teams focused on tickets and AI resolution may need AI Customer Support.',
       'Voice-first operations may need Business Phone & Voice AI.',
     ],
-    verificationDate: 'August 21, 2026',
+    verificationDate: 'August 24, 2026',
     sources: [
+      {
+        title: 'Pipedrive pricing',
+        href: 'https://www.pipedrive.com/en/pricing',
+      },
+      {
+        title: 'Pipedrive plan features',
+        href: 'https://support.pipedrive.com/en/article/what-features-do-the-pipedrive-plans-have',
+      },
       {
         title: 'EngageBay All-in-One pricing',
         href: 'https://www.engagebay.com/pricing/all-in-one',
