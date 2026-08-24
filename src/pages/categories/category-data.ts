@@ -118,6 +118,12 @@ export const softwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'Help Scout Review',
+        description:
+          'Shared inbox, Docs, Beacon, AI Answers, workflows, reporting, permissions, and support-team cost boundaries.',
+        href: '/reviews/help-scout',
+      },
+      {
         title: 'Capsule CRM Review',
         description:
           'Contact and pipeline CRM covering opportunities, tasks, workflows, reporting, integrations, plan limits, and per-user pricing.',
@@ -1502,6 +1508,7 @@ export function getSoftwareCategory(slug: string) {
  */
 export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
   'ai-customer-support': [
+    '/reviews/help-scout',
     '/reviews/typewise',
     '/reviews/tidio',
     '/reviews/respond-io',

@@ -26,7 +26,8 @@ export type CoreProvider =
   | 'landbot'
   | 'quo'
   | 'calilio'
-  | 'capsuleCrm';
+  | 'capsuleCrm'
+  | 'helpScout';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -52,6 +53,7 @@ export const currentSoftwareProviders = [
   'quo',
   'calilio',
   'capsuleCrm',
+  'helpScout',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -113,6 +115,7 @@ export const providerLinks = {
   quo: { official: 'https://www.quo.com/', affiliate: null },
   calilio: { official: 'https://www.calilio.com/', affiliate: null },
   capsuleCrm: { official: 'https://capsulecrm.com/', affiliate: null },
+  helpScout: { official: 'https://www.helpscout.com/', affiliate: null },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {

@@ -18,6 +18,20 @@ type Entry = {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'Help Scout Review',
+    description:
+      'Shared inbox, Docs, Beacon, automation, reporting, permissions, and AI Answers economics for customer-support teams.',
+    href: '/reviews/help-scout',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/help-scout-pricing' },
+      { title: 'Alternatives', href: '/alternatives/help-scout-alternatives' },
+      {
+        title: 'Compare with Gorgias',
+        href: '/comparisons/help-scout-vs-gorgias',
+      },
+    ],
+  },
+  {
     title: 'Capsule CRM Review',
     description:
       'CRM coverage for contacts, opportunities, pipeline stages, tasks, workflows, reporting, integrations, plan limits, and per-user pricing.',
@@ -307,6 +321,16 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'Help Scout Pricing',
+    description:
+      'User billing, additional inboxes, Docs sites, AI Answer resolutions, spending limits, and support-team cost.',
+    href: '/guides/help-scout-pricing',
+    relatedLinks: [
+      { title: 'Help Scout review', href: '/reviews/help-scout' },
+      { title: 'Alternatives', href: '/alternatives/help-scout-alternatives' },
+    ],
+  },
+  {
     title: 'Capsule CRM Pricing',
     description:
       'Free and per-user CRM plan economics, annual versus monthly billing, contacts, storage, workflows, and upgrade boundaries.',
@@ -510,6 +534,16 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'Help Scout Alternatives',
+    description:
+      'Conditional support alternatives for ecommerce help desk, chat-led, or messaging-led customer operations.',
+    href: '/alternatives/help-scout-alternatives',
+    relatedLinks: [
+      { title: 'Help Scout review', href: '/reviews/help-scout' },
+      { title: 'Pricing guide', href: '/guides/help-scout-pricing' },
+    ],
+  },
   {
     title: 'Capsule CRM Alternatives',
     description:
@@ -783,6 +817,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'Help Scout vs Gorgias',
+    description:
+      'Shared inbox, Docs, and Beacon support compared with ecommerce-centered help desk workflow.',
+    href: '/comparisons/help-scout-vs-gorgias',
+    relatedLinks: [
+      { title: 'Help Scout review', href: '/reviews/help-scout' },
+      { title: 'Gorgias review', href: '/reviews/gorgias' },
+    ],
+  },
   {
     title: 'Capsule CRM vs Pipedrive',
     description:

@@ -51,6 +51,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/help-scout',
+        lazy: async () => {
+          const { HelpScoutReview } =
+            await import('@/pages/reviews/help-scout-review');
+          return { Component: HelpScoutReview };
+        },
+      },
+      {
+        path: 'guides/help-scout-pricing',
+        lazy: async () => {
+          const { HelpScoutPricing } =
+            await import('@/pages/guides/help-scout-pricing');
+          return { Component: HelpScoutPricing };
+        },
+      },
+      {
+        path: 'alternatives/help-scout-alternatives',
+        lazy: async () => {
+          const { HelpScoutAlternatives } =
+            await import('@/pages/alternatives/help-scout-alternatives');
+          return { Component: HelpScoutAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/help-scout-vs-gorgias',
+        lazy: async () => {
+          const { HelpScoutVsGorgias } =
+            await import('@/pages/comparisons/help-scout-vs-gorgias');
+          return { Component: HelpScoutVsGorgias };
+        },
+      },
+      {
         path: 'comparisons/capsule-crm-vs-pipedrive',
         lazy: async () => {
           const { CapsuleCrmVsPipedrive } =
