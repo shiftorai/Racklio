@@ -362,7 +362,7 @@ function HeroComparisonCard() {
             <button
               aria-controls="hero-comparison-panel"
               aria-selected={selected === index}
-              className={`min-h-10 shrink-0 rounded-lg px-2.5 text-xs font-semibold ${selected === index ? 'is-selected' : ''}`}
+              className={`min-h-10 shrink-0 rounded-lg px-2 text-xs font-semibold sm:px-2.5 ${selected === index ? 'is-selected' : ''}`}
               id={`hero-comparison-tab-${index}`}
               key={comparison.href}
               onClick={() => setSelected(index)}
@@ -526,7 +526,7 @@ export function Home() {
         />
       ))}
 
-      <section className="homepage-hero relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20">
+      <section className="homepage-hero relative overflow-hidden border-b border-border py-10 sm:py-16 lg:py-20">
         <div
           aria-hidden="true"
           className="hero-grid absolute inset-0 opacity-70"
@@ -537,62 +537,71 @@ export function Home() {
               <p className="section-eyebrow text-accent-strong">
                 Choose customer software with evidence, not noise.
               </p>
-              <h1 className="mt-5 max-w-3xl text-[clamp(2.55rem,4.3vw,4rem)] leading-[1.01] font-semibold tracking-[-0.058em]">
+              <h1 className="mt-4 max-w-3xl text-[2.25rem] leading-[1.03] font-semibold tracking-[-0.058em] sm:mt-5 sm:text-[clamp(2.55rem,4.3vw,4rem)] sm:leading-[1.01]">
                 Compare Customer Software.
                 <span className="block text-accent-strong">
                   Choose With Evidence.
                 </span>
               </h1>
-              <p className="mt-6 max-w-lg text-lg leading-[1.85] text-muted-foreground">
+              <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-[1.85]">
                 Independent reviews, pricing guides, alternatives, and
                 head-to-head comparisons for growing teams.
               </p>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+              <p className="mt-2 max-w-2xl text-xs leading-5 text-muted-foreground sm:mt-3 sm:text-sm sm:leading-6">
                 AI customer support <span aria-hidden="true">·</span> Business
                 phone &amp; voice AI <span aria-hidden="true">·</span> Live chat
                 &amp; messaging <span aria-hidden="true">·</span> CRM &amp;
                 customer engagement
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink
-                  className="bg-brand hover:bg-accent-hover"
-                  href="/#categories"
-                  size="lg"
+              <div className="hero-conversion-flow flex flex-col">
+                <div className="hero-actions order-3 mt-5 flex flex-col gap-3 sm:order-1 sm:mt-8 sm:flex-row">
+                  <ButtonLink
+                    className="bg-brand hover:bg-accent-hover"
+                    href="/#categories"
+                    size="lg"
+                  >
+                    Explore Software <Arrow />
+                  </ButtonLink>
+                  <ButtonLink
+                    href="/#comparisons"
+                    size="lg"
+                    variant="secondary"
+                  >
+                    Browse Comparisons <Arrow />
+                  </ButtonLink>
+                </div>
+                <div
+                  className="hero-search order-1 sm:order-2"
+                  id="software-search"
                 >
-                  Explore Software <Arrow />
-                </ButtonLink>
-                <ButtonLink href="/#comparisons" size="lg" variant="secondary">
-                  Browse Comparisons <Arrow />
-                </ButtonLink>
-              </div>
-              <div id="software-search">
-                <HomepageSearch />
-              </div>
-              <div
-                className="mt-4 flex flex-wrap gap-2"
-                aria-label="Quick discovery links"
-              >
-                <Link
-                  className="hero-intent-chip"
-                  href="/comparisons"
-                  variant="unstyled"
+                  <HomepageSearch />
+                </div>
+                <div
+                  className="hero-intents order-2 mt-3 flex flex-wrap gap-2 sm:order-3 sm:mt-4"
+                  aria-label="Quick discovery links"
                 >
-                  Compare tools <Arrow />
-                </Link>
-                <Link
-                  className="hero-intent-chip"
-                  href="/guides"
-                  variant="unstyled"
-                >
-                  Check pricing <Arrow />
-                </Link>
-                <Link
-                  className="hero-intent-chip"
-                  href="/alternatives"
-                  variant="unstyled"
-                >
-                  Browse alternatives <Arrow />
-                </Link>
+                  <Link
+                    className="hero-intent-chip"
+                    href="/comparisons"
+                    variant="unstyled"
+                  >
+                    Compare tools <Arrow />
+                  </Link>
+                  <Link
+                    className="hero-intent-chip"
+                    href="/guides"
+                    variant="unstyled"
+                  >
+                    Check pricing <Arrow />
+                  </Link>
+                  <Link
+                    className="hero-intent-chip"
+                    href="/alternatives"
+                    variant="unstyled"
+                  >
+                    Browse alternatives <Arrow />
+                  </Link>
+                </div>
               </div>
             </div>
             <HeroComparisonCard />

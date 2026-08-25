@@ -297,7 +297,22 @@
   }
 
   .hero-comparison-tabs {
+    padding-right: 1rem;
     scrollbar-width: none;
+  }
+
+  .hero-search > div {
+    margin-top: 1.15rem;
+  }
+
+  @media (min-width: 40rem) {
+    .hero-comparison-tabs {
+      padding-right: 0;
+    }
+
+    .hero-search > div {
+      margin-top: 1.75rem;
+    }
   }
 
   .hero-comparison-tabs button {
