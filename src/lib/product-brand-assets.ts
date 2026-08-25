@@ -22,6 +22,7 @@ const productBrandAssets = {
   Calilio: '/brands/calilio.ico',
   'Capsule CRM': '/brands/capsule-crm.png',
   'Help Scout': '/brands/help-scout.svg',
+  HubSpot: '/brands/hubspot.png',
   Quo: '/brands/quo.png',
 } as const;
 

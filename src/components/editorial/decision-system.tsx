@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import { ProductLogo, RacklioVsBadge } from '@/components/home';
 import { Link } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import {
@@ -37,7 +38,15 @@ export function ProductIdentity({
   );
 }
 
-export function ComparisonIdentity({ a, b }: { a: string; b: string }) {
+export function ComparisonIdentity({
+  a,
+  b,
+  useProductLogos = false,
+}: {
+  a: string;
+  b: string;
+  useProductLogos?: boolean;
+}) {
   const identity = (name: string, alignRight = false) => (
     <div
       className={cn(
@@ -45,12 +54,16 @@ export function ComparisonIdentity({ a, b }: { a: string; b: string }) {
         alignRight && 'flex-row-reverse text-right',
       )}
     >
-      <span
-        aria-hidden="true"
-        className="grid size-11 shrink-0 place-items-center rounded-xl border border-brand/15 bg-accent-subtle font-mono text-xs font-bold text-brand"
-      >
-        {getDecisionInitials(name)}
-      </span>
+      {useProductLogos ? (
+        <ProductLogo name={name} size="sm" />
+      ) : (
+        <span
+          aria-hidden="true"
+          className="grid size-11 shrink-0 place-items-center rounded-xl border border-brand/15 bg-accent-subtle font-mono text-xs font-bold text-brand"
+        >
+          {getDecisionInitials(name)}
+        </span>
+      )}
       <span className="min-w-0 text-sm font-semibold sm:text-base">{name}</span>
     </div>
   );
@@ -58,9 +71,13 @@ export function ComparisonIdentity({ a, b }: { a: string; b: string }) {
   return (
     <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
       {identity(a)}
-      <span className="grid size-10 place-items-center rounded-full bg-brand text-xs font-bold tracking-[0.08em] text-white shadow-card">
-        VS
-      </span>
+      {useProductLogos ? (
+        <RacklioVsBadge className="size-10" />
+      ) : (
+        <span className="grid size-10 place-items-center rounded-full bg-brand text-xs font-bold tracking-[0.08em] text-white shadow-card">
+          VS
+        </span>
+      )}
       {identity(b, true)}
     </div>
   );

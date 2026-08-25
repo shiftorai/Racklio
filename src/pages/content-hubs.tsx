@@ -1069,6 +1069,7 @@ function HubPage({
                     <ComparisonIdentity
                       a={featuredNames[0] ?? ''}
                       b={featuredNames[1] ?? ''}
+                      useProductLogos
                     />
                   </div>
                   <p className="mt-5 border-t border-border pt-4 text-sm leading-6 text-muted-foreground">
@@ -1175,6 +1176,7 @@ function HubPage({
                         <ComparisonIdentity
                           a={comparedNames[0] ?? ''}
                           b={comparedNames[1] ?? ''}
+                          useProductLogos
                         />
                       ) : hasProductMarks &&
                         isCurrentProductBrand(productName) ? (
