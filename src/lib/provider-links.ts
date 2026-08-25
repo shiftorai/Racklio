@@ -92,7 +92,11 @@ export const providerLinks = {
     affiliate:
       'https://www.awin1.com/cread.php?awinmid=127075&awinaffid=3032289&ued=https%3A%2F%2Fwww.engagebay.com%2F',
   },
-  eazyChat: { official: 'https://eazychat.io/', affiliate: null },
+  eazyChat: {
+    official: 'https://eazychat.io/',
+    affiliate:
+      'http://www.awin1.com/cread.php?awinmid=127785&awinaffid=3032289',
+  },
   aircall: { official: 'https://aircall.io/', affiliate: null },
   callHippo: {
     official: 'https://callhippo.com/',
@@ -102,7 +106,10 @@ export const providerLinks = {
   vida: { official: 'https://vida.io/', affiliate: null },
   demodesk: { official: 'https://demodesk.com/', affiliate: null },
   claap: { official: 'https://www.claap.io/', affiliate: null },
-  fireflies: { official: 'https://fireflies.ai/', affiliate: null },
+  fireflies: {
+    official: 'https://fireflies.ai/',
+    affiliate: 'https://fireflies.ai/?fpr=racklio',
+  },
   campaignMonitor: {
     official: 'https://www.campaignmonitor.com/',
     affiliate: null,

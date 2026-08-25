@@ -212,6 +212,7 @@ export const eazyChatPricingData: CommercialPageData = {
     'EazyChat.io pricing guide covering monthly and annual rates, AI conversation allowances, sites, EazyDesk, add-ons, and practical cost scenarios.',
   verificationDate,
   provider: 'EazyChat.io',
+  providerKey: 'eazyChat',
   officialUrl: 'https://eazychat.io/pricing',
   categoryLinks: [
     { title: 'AI Customer Support', href: '/categories/ai-customer-support' },
@@ -566,6 +567,7 @@ export const eazyChatAlternativesData: CommercialPageData = {
     'Compare EazyChat.io alternatives by AI chat, help desk, ecommerce context, messaging channels, pricing model, documentation, and business fit.',
   verificationDate,
   provider: 'EazyChat.io',
+  providerKey: 'eazyChat',
   officialUrl: 'https://eazychat.io/',
   categoryLinks: [
     { title: 'AI Customer Support', href: '/categories/ai-customer-support' },

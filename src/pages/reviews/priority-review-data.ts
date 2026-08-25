@@ -261,6 +261,7 @@ export const eazyChatData: SoftwareReviewData = {
   metaDescription:
     'Evidence-first EazyChat.io review covering AI chat, knowledge inputs, human handoff, help desk, integrations, pricing limits, strengths, and limitations.',
   officialUrl: 'https://eazychat.io/',
+  providerKey: 'eazyChat',
   relatedComparisons: [
     { title: 'EazyChat.io pricing guide', href: '/guides/eazychat-pricing' },
     {

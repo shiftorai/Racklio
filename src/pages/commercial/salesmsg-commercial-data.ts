@@ -1521,6 +1521,7 @@ export const firefliesPricingData: CommercialPageData = {
   verificationDate: 'August 21, 2026',
   schemaDate: '2026-08-21',
   provider: 'Fireflies.ai',
+  providerKey: 'fireflies',
   officialUrl: 'https://fireflies.ai/pricing',
   categoryLinks: [
     {
@@ -1678,6 +1679,7 @@ export const firefliesAlternativesData: CommercialPageData = {
   verificationDate: 'August 21, 2026',
   schemaDate: '2026-08-21',
   provider: 'Fireflies.ai',
+  providerKey: 'fireflies',
   officialUrl: 'https://fireflies.ai/',
   categoryLinks: [
     {

@@ -2104,6 +2104,7 @@ export const firefliesData: SoftwareReviewData = {
   metaDescription:
     'Evidence-first Fireflies.ai review covering meeting capture, summaries, AskFred, AI Skills, Voice Agents, integrations, pricing, AI credits, security claims, and workflow fit.',
   officialUrl: 'https://fireflies.ai/',
+  providerKey: 'fireflies',
   verificationDate: 'August 21, 2026',
   schemaDate: '2026-08-21',
   idealUser:
