@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { ResearchMarker } from '@/components/brand';
+import { ProductLogo } from '@/components/home';
 import {
   ComparisonIdentity,
   DecisionSummary,
@@ -185,13 +186,15 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
         <Container>
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.85fr)] lg:gap-12">
+          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
             <div>
-              <ComparisonIdentity a={data.a} b={data.b} />
+              <div className="rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:p-4">
+                <ComparisonIdentity a={data.a} b={data.b} useProductLogos />
+              </div>
               {data.categoryLinks?.length ? (
                 <nav
                   aria-label="Related software categories"
@@ -204,19 +207,19 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   ))}
                 </nav>
               ) : null}
-              <div className="mt-5">
+              <div className="mt-4">
                 <ResearchMarker
                   code="CP"
                   label={`${data.category} comparison`}
                 />
               </div>
-              <h1 className="mt-5 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-4 max-w-3xl text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink href="#overview">Compare the evidence</ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
                   See scenario guidance
@@ -227,7 +230,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 Outbound provider links are not affiliate links at publication.
               </p>
             </div>
-            <DecisionSummary items={data.summary} title="Comparison brief" />
+            <DecisionSummary items={data.summary} title="Quick decision" />
           </div>
           <div className="mt-8">
             <VerificationStrip date={data.verificationDate ?? 'August 2026'} />
@@ -270,7 +273,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
             <aside>
               <SectionNavigation items={toc} label="Comparison sections" />
             </aside>
-            <article className="min-w-0 space-y-10">
+            <article className="min-w-0 space-y-9 sm:space-y-10">
               <ReviewSection
                 code="D0"
                 id="overview"
@@ -288,20 +291,27 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     />
                   </div>
                 ) : null}
-                <div className="overflow-x-auto rounded-xl border border-brand/20 bg-white">
+                <div className="hidden overflow-x-auto rounded-xl border border-brand/20 bg-white sm:block">
                   <table className="w-full min-w-[50rem] text-left text-sm">
                     <caption className="sr-only">
                       {data.a} and {data.b} decision factors
                     </caption>
                     <thead className="bg-accent-subtle">
                       <tr>
-                        {['Factor', data.a, data.b, 'Decision relevance'].map(
-                          (x) => (
-                            <th className="p-4" key={x} scope="col">
-                              {x}
-                            </th>
-                          ),
-                        )}
+                        <th className="p-4" scope="col">
+                          Factor
+                        </th>
+                        {[data.a, data.b].map((name) => (
+                          <th className="p-4" key={name} scope="col">
+                            <span className="flex items-center gap-2">
+                              <ProductLogo name={name} size="sm" />
+                              {name}
+                            </span>
+                          </th>
+                        ))}
+                        <th className="p-4" scope="col">
+                          Decision relevance
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -326,6 +336,42 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       ))}
                     </tbody>
                   </table>
+                </div>
+                <div className="grid gap-3 sm:hidden">
+                  {data.factors.map((factor) => (
+                    <Card className="border-brand/15" key={factor.factor}>
+                      <CardContent className="p-4">
+                        <h3 className="font-semibold">{factor.factor}</h3>
+                        <dl className="mt-4 space-y-3 text-sm">
+                          {[
+                            { name: data.a, text: factor.a },
+                            { name: data.b, text: factor.b },
+                          ].map(({ name, text }) => (
+                            <div
+                              className="border-t border-border pt-3"
+                              key={name}
+                            >
+                              <dt className="flex items-center gap-2 font-semibold">
+                                <ProductLogo name={name} size="sm" />
+                                {name}
+                              </dt>
+                              <dd className="mt-1.5 leading-6 text-muted-foreground">
+                                {text}
+                              </dd>
+                            </div>
+                          ))}
+                          <div className="border-t border-border pt-3">
+                            <dt className="text-[0.68rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
+                              Decision relevance
+                            </dt>
+                            <dd className="mt-1.5 leading-6 text-muted-foreground">
+                              {factor.relevance}
+                            </dd>
+                          </div>
+                        </dl>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
                 <div className="mt-5">
                   <EvidenceNote>
@@ -387,7 +433,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                           <th className="p-4" scope="row">
                             {x.scenario}
                           </th>
-                          <td className="p-4">{x.lean}</td>
+                          <td className="p-4">
+                            <span className="inline-flex items-center gap-2">
+                              <ProductLogo name={x.lean} size="sm" />
+                              {x.lean}
+                            </span>
+                          </td>
                           <td className="p-4 text-muted-foreground">{x.why}</td>
                         </tr>
                       ))}
@@ -399,8 +450,9 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     <Card key={scenario.scenario}>
                       <CardContent>
                         <h3 className="font-semibold">{scenario.scenario}</h3>
-                        <p className="mt-2 text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
-                          Lean: {scenario.lean}
+                        <p className="mt-3 flex items-center gap-2 text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
+                          <ProductLogo name={scenario.lean} size="sm" /> Lean:{' '}
+                          {scenario.lean}
                         </p>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">
                           {scenario.why}

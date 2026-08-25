@@ -236,7 +236,10 @@ export function KeyDifference({
           { name: b, text: bText },
         ].map((item) => (
           <div className="rounded-xl bg-surface-subtle p-4" key={item.name}>
-            <h3 className="font-semibold">{item.name}</h3>
+            <h3 className="flex items-center gap-2 font-semibold">
+              <ProductLogo name={item.name} size="sm" />
+              {item.name}
+            </h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               {item.text}
             </p>

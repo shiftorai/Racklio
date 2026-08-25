@@ -342,26 +342,12 @@ function HeroComparisonCard() {
   const current = heroComparisons[selected] ?? heroComparisons[0];
 
   return (
-    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-4 sm:px-5 sm:py-6 lg:-translate-y-6">
-      <div
-        aria-hidden="true"
-        className="absolute top-1 right-0 hidden w-52 rotate-3 rounded-2xl border border-brand/10 bg-white/55 p-5 shadow-card sm:block"
-      >
-        <span className="block h-2 w-20 rounded-full bg-accent-subtle" />
-        <span className="mt-3 block h-2 w-28 rounded-full bg-muted" />
-      </div>
-      <article className="primary-decision-card relative z-10 overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/92 p-5 shadow-panel backdrop-blur-md sm:p-6">
-        <div className="flex items-center justify-between gap-3">
-          <EvidenceLabel tone="verified">
-            Official sources verified
-          </EvidenceLabel>
-          <span className="text-xs font-semibold text-muted-foreground">
-            Decision brief
-          </span>
-        </div>
+    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-3 sm:px-5 sm:py-4 lg:-translate-y-6">
+      <article className="primary-decision-card relative overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/92 p-5 shadow-panel sm:p-6">
+        <EvidenceLabel tone="verified">Official sources verified</EvidenceLabel>
         <div
           aria-label="Choose a comparison"
-          className="hero-comparison-tabs mt-4 flex gap-1 overflow-x-auto pb-1"
+          className="hero-comparison-tabs mt-3 flex gap-1 overflow-x-auto pb-1"
           role="tablist"
         >
           {heroComparisons.map((comparison, index) => (
@@ -386,7 +372,7 @@ function HeroComparisonCard() {
           key={current.href}
           role="tabpanel"
         >
-          <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <div className="flex flex-col items-center text-center">
               <ProductLogo loading="eager" name={current.a} size="lg" />
               <h2 className="mt-3 text-lg font-semibold">{current.a}</h2>
@@ -397,10 +383,10 @@ function HeroComparisonCard() {
               <h2 className="mt-3 text-lg font-semibold">{current.b}</h2>
             </div>
           </div>
-          <dl className="mt-5 divide-y divide-border border-y border-border text-sm">
+          <dl className="mt-4 divide-y divide-border border-y border-border text-sm">
             {current.rows.map(([label, value]) => (
               <div
-                className="grid grid-cols-[5.25rem_1fr] gap-3 py-2.5"
+                className="grid grid-cols-[5.25rem_1fr] gap-3 py-2"
                 key={label}
               >
                 <dt className="font-semibold text-muted-foreground">{label}</dt>
@@ -409,22 +395,14 @@ function HeroComparisonCard() {
             ))}
           </dl>
           <Link
-            className="group mt-4 inline-flex items-center gap-2 font-semibold text-accent-strong"
+            className="group -mx-5 mt-4 flex min-h-12 items-center justify-between border-t border-border px-5 pt-4 font-semibold text-accent-strong sm:-mx-6 sm:px-6"
             href={current.href}
           >
-            View full comparison <Arrow />
+            <span>View full comparison</span>
+            <Arrow />
           </Link>
         </div>
       </article>
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 hidden w-44 -rotate-3 rounded-2xl border border-mint-deep/10 bg-mint-subtle/65 p-4 shadow-card sm:block"
-      >
-        <span className="text-[0.65rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
-          Decision takeaway
-        </span>
-        <span className="mt-2 block h-2 w-24 rounded-full bg-mint/25" />
-      </div>
     </div>
   );
 }
