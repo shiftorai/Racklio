@@ -7,7 +7,13 @@ export {
   type ButtonSize,
   type ButtonVariant,
 } from './button';
-export { Card, CardContent, CardFooter, CardHeader } from './card';
+export {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  ClickableCard,
+} from './card';
 export { Container, type ContainerProps } from './container';
 export { Divider } from './divider';
 export { Link, type LinkProps } from './link';

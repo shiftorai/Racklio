@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { ButtonLink, Container, Link } from '@/components/ui';
+import { ButtonLink, ClickableCard, Container, Link } from '@/components/ui';
 
 import { categoryPath } from './category-path';
 import { fullCategoryReviewMembership } from '@/pages/categories/category-data';
@@ -169,9 +169,11 @@ function LinkCards({ items }: { items: CategoryLink[] }) {
   return (
     <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => (
-        <article
+        <ClickableCard
           className="decision-card flex min-h-48 flex-col rounded-xl border border-border bg-white p-5 shadow-card hover:border-brand/30"
+          href={item.href}
           key={item.title}
+          label={`Explore ${item.title}`}
         >
           <h3 className="text-lg font-semibold tracking-[-0.025em]">
             {item.title}
@@ -179,10 +181,8 @@ function LinkCards({ items }: { items: CategoryLink[] }) {
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             {item.description}
           </p>
-          <Link className="mt-auto pt-5" href={item.href}>
-            Explore &rarr;
-          </Link>
-        </article>
+          <span className="mt-auto pt-5 font-semibold">Explore &rarr;</span>
+        </ClickableCard>
       ))}
     </div>
   );
@@ -659,9 +659,11 @@ export function CategoryHubTemplate({
             </div>
             <div className="mt-5 grid gap-4 md:grid-cols-2">
               {categoryMembership.map(({ category, products }) => (
-                <article
+                <ClickableCard
                   className="flex min-h-80 flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
+                  href={categoryPath(category.slug)}
                   key={category.slug}
+                  label={`Explore the ${category.shortTitle} category`}
                 >
                   <div className="flex items-center justify-between gap-4">
                     <span className="grid size-10 place-items-center rounded-lg bg-accent-subtle text-xs font-bold text-brand">
@@ -692,13 +694,10 @@ export function CategoryHubTemplate({
                       .map((product) => product.title)
                       .join(', ')}
                   </p>
-                  <Link
-                    className="mt-auto pt-6"
-                    href={categoryPath(category.slug)}
-                  >
+                  <span className="mt-auto pt-6 font-semibold">
                     Explore category &rarr;
-                  </Link>
-                </article>
+                  </span>
+                </ClickableCard>
               ))}
             </div>
           </section>

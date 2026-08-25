@@ -8,7 +8,13 @@ import {
   RacklioVsBadge,
 } from '@/components/home';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { ButtonLink, Container, Link, Reveal } from '@/components/ui';
+import {
+  ButtonLink,
+  ClickableCard,
+  Container,
+  Link,
+  Reveal,
+} from '@/components/ui';
 import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
 const categories = [
@@ -382,12 +388,12 @@ function HeroComparisonCard() {
         >
           <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <div className="flex flex-col items-center text-center">
-              <ProductLogo name={current.a} size="lg" />
+              <ProductLogo loading="eager" name={current.a} size="lg" />
               <h2 className="mt-3 text-lg font-semibold">{current.a}</h2>
             </div>
             <RacklioVsBadge />
             <div className="flex flex-col items-center text-center">
-              <ProductLogo name={current.b} size="lg" />
+              <ProductLogo loading="eager" name={current.b} size="lg" />
               <h2 className="mt-3 text-lg font-semibold">{current.b}</h2>
             </div>
           </div>
@@ -711,9 +717,11 @@ export function Home() {
             />
             <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {reviews.map((item) => (
-                <article
+                <ClickableCard
                   className="standard-content-card decision-card flex min-h-72 flex-col rounded-2xl border border-border bg-white p-5 shadow-card"
+                  href={item.review}
                   key={item.name}
+                  label={`Read the ${item.name} review`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <ProductLogo name={item.name} />
@@ -731,26 +739,38 @@ export function Home() {
                     {item.cue}
                   </p>
                   <div className="mt-auto flex flex-wrap gap-x-4 gap-y-2 border-t border-border pt-4 text-sm">
-                    <Link className="group" href={item.review}>
+                    <span className="group inline-flex items-center gap-2 font-semibold">
                       Review <Arrow />
-                    </Link>
+                    </span>
                     {'pricing' in item ? (
-                      <Link href={item.pricing} variant="subtle">
+                      <Link
+                        className="relative z-20"
+                        href={item.pricing}
+                        variant="subtle"
+                      >
                         Pricing
                       </Link>
                     ) : null}
                     {'compare' in item ? (
-                      <Link href={item.compare} variant="subtle">
+                      <Link
+                        className="relative z-20"
+                        href={item.compare}
+                        variant="subtle"
+                      >
                         Compare
                       </Link>
                     ) : null}
                     {'alternatives' in item ? (
-                      <Link href={item.alternatives} variant="subtle">
+                      <Link
+                        className="relative z-20"
+                        href={item.alternatives}
+                        variant="subtle"
+                      >
                         Alternatives
                       </Link>
                     ) : null}
                   </div>
-                </article>
+                </ClickableCard>
               ))}
             </div>
           </section>
@@ -813,9 +833,11 @@ export function Home() {
             />
             <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2">
               {categories.map((item, index) => (
-                <article
-                  className="category-territory relative bg-surface-raised p-6 sm:p-8"
+                <ClickableCard
+                  className="category-territory rounded-none border-0 bg-surface-raised p-6 sm:p-8"
+                  href={item.href}
                   key={item.code}
+                  label={`Explore the ${item.name} category`}
                 >
                   <div className="flex items-center justify-between gap-4">
                     <span className="font-mono text-xs font-bold text-accent-strong">
@@ -840,13 +862,10 @@ export function Home() {
                       </span>
                     ))}
                   </div>
-                  <Link
-                    className="group mt-6 inline-flex items-center gap-2"
-                    href={item.href}
-                  >
+                  <span className="group mt-6 inline-flex items-center gap-2 font-semibold">
                     Enter category <Arrow />
-                  </Link>
-                </article>
+                  </span>
+                </ClickableCard>
               ))}
             </div>
           </section>

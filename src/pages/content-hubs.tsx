@@ -2,8 +2,17 @@ import { useEffect, useMemo, useState } from 'react';
 import { ResearchMarker } from '@/components/brand';
 import { CategoryHubTemplate } from '@/components/categories';
 import { ComparisonIdentity } from '@/components/editorial';
+import { ProductLogo } from '@/components/home';
+import { isCurrentProductBrand } from '@/lib/product-brand-assets';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
-import { Card, CardContent, Container, Link, Section } from '@/components/ui';
+import {
+  Card,
+  CardContent,
+  ClickableCard,
+  Container,
+  Link,
+  Section,
+} from '@/components/ui';
 import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
 import { softwareCategories } from './categories/category-data';
@@ -15,6 +24,10 @@ type Entry = {
   relatedLinks?: { title: string; href: string }[];
   suppressLink?: boolean;
 };
+
+function getEntryProductName(title: string) {
+  return title.replace(/\s+(alternatives|pricing|review)$/i, '');
+}
 
 const reviewEntries: Entry[] = [
   {
@@ -966,6 +979,7 @@ function HubPage({
   useDescription(description);
   const isComparisonHub = code === 'CP';
   const isReviewsHub = code === 'RV';
+  const hasProductMarks = isReviewsHub || code === 'BG' || code === 'AL';
   const featuredComparison =
     entries.find((entry) => entry.title === 'Tidio vs Gorgias') ?? entries[0];
   const featuredNames = featuredComparison?.title.split(' vs ') ?? [];
@@ -1124,22 +1138,21 @@ function HubPage({
                 </p>
                 <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {categoryEntries.map((entry) => (
-                    <Card key={entry.href}>
+                    <ClickableCard
+                      href={entry.href}
+                      key={entry.href}
+                      label={`Explore ${entry.title}`}
+                    >
                       <CardContent className="flex h-full flex-col">
-                        <h3 className="font-semibold">
-                          <Link href={entry.href}>{entry.title}</Link>
-                        </h3>
+                        <h3 className="font-semibold">{entry.title}</h3>
                         <p className="mt-3 text-sm leading-6 text-muted-foreground">
                           {entry.description}
                         </p>
-                        <Link
-                          className="mt-auto pt-5 text-sm"
-                          href={entry.href}
-                        >
+                        <span className="mt-auto pt-5 text-sm font-semibold">
                           Explore category →
-                        </Link>
+                        </span>
                       </CardContent>
-                    </Card>
+                    </ClickableCard>
                   ))}
                 </div>
               </div>
@@ -1150,14 +1163,22 @@ function HubPage({
             <div className="grid gap-4 md:grid-cols-2">
               {entries.map((entry, index) => {
                 const comparedNames = entry.title.split(' vs ');
+                const productName = getEntryProductName(entry.title);
                 return (
-                  <Card key={entry.title}>
+                  <ClickableCard
+                    href={entry.href}
+                    key={entry.title}
+                    label={`Open ${entry.title}`}
+                  >
                     <CardContent>
                       {isComparisonHub && comparedNames.length === 2 ? (
                         <ComparisonIdentity
                           a={comparedNames[0] ?? ''}
                           b={comparedNames[1] ?? ''}
                         />
+                      ) : hasProductMarks &&
+                        isCurrentProductBrand(productName) ? (
+                        <ProductLogo name={productName} size="sm" />
                       ) : (
                         <p className="font-mono text-[0.625rem] text-accent-strong">
                           {String(index + 1).padStart(2, '0')}
@@ -1171,19 +1192,11 @@ function HubPage({
                               : 'mt-4 text-xl font-semibold tracking-tight'
                           }
                         >
-                          {entry.suppressLink ? (
-                            entry.title
-                          ) : (
-                            <Link href={entry.href}>{entry.title}</Link>
-                          )}
+                          {entry.suppressLink ? entry.title : entry.title}
                         </h3>
                       ) : (
                         <h2 className="mt-4 text-xl font-semibold tracking-tight">
-                          {entry.suppressLink ? (
-                            entry.title
-                          ) : (
-                            <Link href={entry.href}>{entry.title}</Link>
-                          )}
+                          {entry.suppressLink ? entry.title : entry.title}
                         </h2>
                       )}
                       <p className="mt-3 text-sm leading-6 text-muted-foreground">
@@ -1195,24 +1208,25 @@ function HubPage({
                         </p>
                       ) : null}
                       {!entry.suppressLink ? (
-                        <Link
-                          className="mt-5 inline-block text-sm font-semibold"
-                          href={entry.href}
-                        >
+                        <span className="mt-5 inline-block text-sm font-semibold">
                           Open decision page →
-                        </Link>
+                        </span>
                       ) : null}
                       {entry.relatedLinks?.length ? (
                         <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
                           {entry.relatedLinks.map((link) => (
-                            <Link href={link.href} key={link.href}>
+                            <Link
+                              className="relative z-20"
+                              href={link.href}
+                              key={link.href}
+                            >
                               {link.title}
                             </Link>
                           ))}
                         </div>
                       ) : null}
                     </CardContent>
-                  </Card>
+                  </ClickableCard>
                 );
               })}
             </div>
@@ -1431,18 +1445,27 @@ export function SearchPage() {
             {results.length} {results.length === 1 ? 'result' : 'results'}
           </p>
           <div className="mt-8 grid gap-3 md:grid-cols-2">
-            {results.map((entry) => (
-              <Link
-                className="border border-border p-5"
-                href={entry.href}
-                key={entry.href}
-              >
-                <span className="font-semibold">{entry.title}</span>
-                <span className="mt-2 block text-sm text-muted-foreground">
-                  {entry.description}
-                </span>
-              </Link>
-            ))}
+            {results.map((entry) => {
+              const productName = getEntryProductName(entry.title);
+              const showProductLogo = isCurrentProductBrand(productName);
+              return (
+                <Link
+                  className="flex items-start gap-3 border border-border p-5"
+                  href={entry.href}
+                  key={entry.href}
+                >
+                  {showProductLogo ? (
+                    <ProductLogo name={productName} size="sm" />
+                  ) : null}
+                  <span>
+                    <span className="font-semibold">{entry.title}</span>
+                    <span className="mt-2 block text-sm text-muted-foreground">
+                      {entry.description}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </Container>
       </Section>

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router';
 
 import { Link } from '@/components/ui';
 
+import { ProductLogo } from './visual-primitives';
+
 type SearchKind =
   | 'Alternative'
   | 'Category'
@@ -274,7 +276,13 @@ export function HomepageSearch() {
                   onMouseEnter={() => setActiveIndex(index)}
                   variant="unstyled"
                 >
-                  <span className="font-semibold">{entry.label}</span>
+                  <span className="flex min-w-0 items-center gap-3">
+                    {entry.kind !== 'Category' &&
+                    entry.kind !== 'Comparison' ? (
+                      <ProductLogo name={entry.product} size="sm" />
+                    ) : null}
+                    <span className="font-semibold">{entry.label}</span>
+                  </span>
                   <span className="shrink-0 text-xs text-muted-foreground">
                     {entry.kind}
                   </span>

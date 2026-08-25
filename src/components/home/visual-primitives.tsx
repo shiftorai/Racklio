@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/cn';
+import { getProductBrandAsset } from '@/lib/product-brand-assets';
 
 export function CategoryPill({
   children,
@@ -21,9 +22,11 @@ export function CategoryPill({
 export function ProductLogo({
   name,
   size = 'md',
+  loading = 'lazy',
 }: {
   name: string;
   size?: 'sm' | 'md' | 'lg';
+  loading?: 'eager' | 'lazy';
 }) {
   const initials = name
     .split(/[ .]/)
@@ -37,15 +40,26 @@ export function ProductLogo({
       : size === 'sm'
         ? 'size-9 text-xs'
         : 'size-11 text-sm';
+  const asset = getProductBrandAsset(name);
   return (
     <span
-      aria-hidden="true"
       className={cn(
         'grid shrink-0 place-items-center rounded-xl border border-border bg-surface-raised font-bold text-accent-strong shadow-subtle',
         dimensions,
       )}
     >
-      {initials}
+      {asset ? (
+        <img
+          alt={`${name} logo`}
+          className="size-[70%] object-contain"
+          height={size === 'lg' ? 40 : size === 'sm' ? 24 : 32}
+          loading={loading}
+          src={asset}
+          width={size === 'lg' ? 40 : size === 'sm' ? 24 : 32}
+        />
+      ) : (
+        <span aria-label={`${name} initials`}>{initials}</span>
+      )}
     </span>
   );
 }

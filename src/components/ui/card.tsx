@@ -2,6 +2,8 @@ import type { HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/cn';
 
+import { Link } from './link';
+
 export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
@@ -42,5 +44,36 @@ export function CardFooter({
       )}
       {...props}
     />
+  );
+}
+
+type ClickableCardProps = HTMLAttributes<HTMLElement> & {
+  href: string;
+  label: string;
+};
+
+export function ClickableCard({
+  children,
+  className,
+  href,
+  label,
+  ...props
+}: ClickableCardProps) {
+  return (
+    <article
+      className={cn(
+        'group isolate relative cursor-pointer rounded-xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-panel active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none',
+        className,
+      )}
+      {...props}
+    >
+      <Link
+        aria-label={label}
+        className="absolute inset-0 z-10 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+        href={href}
+        variant="unstyled"
+      />
+      {children}
+    </article>
   );
 }
