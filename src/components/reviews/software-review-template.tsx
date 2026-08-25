@@ -3,12 +3,12 @@ import {
   DecisionSummary,
   deriveTrueCostFactors,
   EvidenceBlock,
-  ProductIdentity,
   RelatedDecisionLinks,
   SectionNavigation,
   TrueCostFactors,
   VerificationStrip,
 } from '@/components/editorial';
+import { ProductLogo } from '@/components/home';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { EvidenceNote } from './evidence-note';
 import { ReviewSection } from './review-section';
@@ -111,6 +111,11 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
     .join(' ')
     .toLowerCase();
   const pricingFactors = deriveTrueCostFactors(pricingText);
+  const tradeoffsId = data.sections.some(
+    (section) => section.id === 'tradeoffs',
+  )
+    ? 'review-tradeoffs'
+    : 'tradeoffs';
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -189,7 +194,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
     ...data.sections.map((s) => [s.id, s.title]),
     ['decision', 'Decision guidance'],
     ...(data.strengths?.length || data.limitations?.length
-      ? [['tradeoffs', 'Strengths and limitations']]
+      ? [[tradeoffsId, 'Strengths and limitations']]
       : []),
     ...(data.alternatives?.length ? [['alternatives', 'Alternatives']] : []),
     ['faq', 'Frequently asked questions'],
@@ -241,17 +246,28 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
         <Container>
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.85fr)] lg:gap-12">
+          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
             <div>
-              <ProductIdentity
-                category={data.category}
-                contentType="Evidence-first review"
-                name={data.name}
-              />
+              <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:gap-4 sm:p-4">
+                <ProductLogo loading="eager" name={data.name} size="lg" />
+                <div className="min-w-0">
+                  <p className="font-semibold tracking-[-0.02em]">
+                    {data.name}
+                  </p>
+                  <div className="mt-1.5 flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold tracking-[0.1em] uppercase">
+                    <span className="rounded-full bg-accent-subtle px-2.5 py-1 text-brand">
+                      {data.category}
+                    </span>
+                    <span className="text-muted-foreground">
+                      Evidence-first review
+                    </span>
+                  </div>
+                </div>
+              </div>
               {data.categoryLinks?.length ? (
                 <nav
                   aria-label="Related software categories"
@@ -264,13 +280,13 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-6 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-5 max-w-3xl text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 {usesAffiliateLink ? (
                   <ButtonLink
                     href={commercialUrl}
@@ -292,7 +308,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
               </p>
             </div>
-            <DecisionSummary items={quickDecision} />
+            <DecisionSummary items={quickDecision} title="Review decision" />
           </div>
           <div className="mt-8">
             <VerificationStrip date={verificationDate} />
@@ -335,7 +351,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
             <aside>
               <SectionNavigation items={toc} label="Review sections" />
             </aside>
-            <article className="min-w-0 space-y-10">
+            <article className="min-w-0 space-y-9 sm:space-y-10">
               <ReviewSection
                 code="A0"
                 id="overview"
@@ -343,9 +359,12 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 description={`Who should consider ${data.name}, and when another category may fit better.`}
               >
                 <div className="grid gap-5 md:grid-cols-2">
-                  <Card>
+                  <Card className="border-mint-deep/20 bg-mint-subtle/30">
                     <CardContent>
-                      <h3 className="font-semibold">Consider it when</h3>
+                      <p className="text-[0.68rem] font-bold tracking-[0.12em] text-mint-deep uppercase">
+                        Best fit
+                      </p>
+                      <h3 className="mt-2 font-semibold">Consider it when</h3>
                       <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                         {data.fit.map((x) => (
                           <li key={x}>— {x}</li>
@@ -353,9 +372,14 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                       </ul>
                     </CardContent>
                   </Card>
-                  <Card>
+                  <Card className="border-brand/15 bg-surface-raised">
                     <CardContent>
-                      <h3 className="font-semibold">Look elsewhere when</h3>
+                      <p className="text-[0.68rem] font-bold tracking-[0.12em] text-muted-foreground uppercase">
+                        Watch out
+                      </p>
+                      <h3 className="mt-2 font-semibold">
+                        Look elsewhere when
+                      </h3>
                       <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                         {data.notFit.map((x) => (
                           <li key={x}>— {x}</li>
@@ -553,7 +577,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               {data.strengths?.length || data.limitations?.length ? (
                 <ReviewSection
                   code="T0"
-                  id="tradeoffs"
+                  id={tradeoffsId}
                   title="Strengths and limitations"
                   description="Racklio analysis of where the documented product model helps and where it introduces trade-offs."
                 >
