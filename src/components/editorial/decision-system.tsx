@@ -91,7 +91,7 @@ export function DecisionSummary({
   title?: string;
 }) {
   return (
-    <aside className="primary-decision-card relative overflow-hidden rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
+    <aside className="primary-decision-card relative min-w-0 overflow-hidden rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
       <div
         aria-hidden="true"
         className="absolute inset-y-0 left-0 w-1 bg-brand"
@@ -99,13 +99,15 @@ export function DecisionSummary({
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         {title}
       </p>
-      <dl className="mt-5 grid gap-x-5 gap-y-4 sm:grid-cols-2">
+      <dl className="mt-5 grid min-w-0 gap-x-5 gap-y-4 sm:grid-cols-2">
         {items.map((item) => (
-          <div className="border-t border-border pt-3" key={item.label}>
+          <div className="min-w-0 border-t border-border pt-3" key={item.label}>
             <dt className="text-[0.68rem] font-bold tracking-[0.08em] text-muted-foreground uppercase">
               {item.label}
             </dt>
-            <dd className="mt-1.5 text-sm leading-6">{item.text}</dd>
+            <dd className="mt-1.5 break-words text-sm leading-6">
+              {item.text}
+            </dd>
           </div>
         ))}
       </dl>
@@ -124,7 +126,7 @@ export function VerificationStrip({ date }: { date: string }) {
       ].map(([symbol, label], index) => (
         <li
           className={cn(
-            'flex min-h-12 items-center gap-2.5 px-4 py-3',
+            'flex min-h-12 min-w-0 items-center gap-2.5 px-4 py-3',
             index ? 'border-t border-border sm:border-t-0 sm:border-l' : '',
           )}
           key={label}
@@ -132,7 +134,9 @@ export function VerificationStrip({ date }: { date: string }) {
           <span aria-hidden="true" className="font-bold text-mint-deep">
             {symbol}
           </span>
-          <span className="font-medium leading-5">{label}</span>
+          <span className="min-w-0 break-words font-medium leading-5">
+            {label}
+          </span>
         </li>
       ))}
     </ul>
@@ -147,11 +151,11 @@ export function SectionNavigation({
   label: string;
 }) {
   return (
-    <nav aria-label={label} className="lg:sticky lg:top-6">
+    <nav aria-label={label} className="min-w-0 max-w-full lg:sticky lg:top-6">
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         On this page
       </p>
-      <div className="-mx-1 mt-3 overflow-x-auto px-1 pb-2">
+      <div className="mt-3 w-full max-w-full overflow-x-auto pb-2">
         <ol className="flex min-w-max gap-2 lg:min-w-0 lg:flex-col lg:gap-1">
           {items.map(([id, title]) => (
             <li key={id}>
@@ -269,7 +273,7 @@ export function TrueCostFactors({ factors }: { factors: string[] }) {
       <ul className="mt-4 flex flex-wrap gap-2">
         {factors.map((factor) => (
           <li
-            className="rounded-full border border-brand/20 bg-white px-3 py-2 text-xs font-semibold text-foreground shadow-sm"
+            className="max-w-full break-words rounded-full border border-brand/20 bg-white px-3 py-2 text-xs font-semibold text-foreground shadow-sm"
             key={factor}
           >
             {factor}

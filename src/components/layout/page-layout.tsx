@@ -20,13 +20,17 @@ export function PageLayout({
   return (
     <div
       className={cn(
-        'flex min-h-dvh flex-col bg-surface text-foreground',
+        'flex min-h-dvh min-w-0 max-w-full flex-col bg-surface text-foreground',
         className,
       )}
       {...props}
     >
       {header}
-      <main id="main-content" className="flex-1" tabIndex={-1}>
+      <main
+        id="main-content"
+        className="min-w-0 max-w-full flex-1"
+        tabIndex={-1}
+      >
         {children}
       </main>
       {footer}

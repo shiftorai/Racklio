@@ -18,7 +18,7 @@ export function ResearchMarker({
   return (
     <div
       className={cn(
-        'grid grid-cols-[auto_2.25rem_1fr] items-center gap-3 text-[0.6875rem] font-semibold tracking-[0.15em] uppercase',
+        'grid min-w-0 max-w-full grid-cols-[auto_2.25rem_minmax(0,1fr)] items-center gap-3 text-[0.6875rem] font-semibold tracking-[0.15em] uppercase',
         tone === 'dark' ? 'text-mint' : 'text-accent-strong',
         className,
       )}
@@ -34,7 +34,7 @@ export function ResearchMarker({
             : 'bg-border after:bg-accent',
         )}
       />
-      <span>{label}</span>
+      <span className="min-w-0 break-words">{label}</span>
     </div>
   );
 }

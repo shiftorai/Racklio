@@ -8,7 +8,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        'rounded-xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200',
+        'min-w-0 max-w-full rounded-xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200',
         className,
       )}
       {...props}
@@ -29,7 +29,12 @@ export function CardContent({
   className,
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('p-5 sm:p-6', className)} {...props} />;
+  return (
+    <div
+      className={cn('min-w-0 max-w-full p-5 sm:p-6', className)}
+      {...props}
+    />
+  );
 }
 
 export function CardFooter({

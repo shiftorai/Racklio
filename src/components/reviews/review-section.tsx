@@ -25,7 +25,10 @@ export function ReviewSection({
   return (
     <section
       aria-labelledby={`${id}-heading`}
-      className={cn('scroll-mt-28 border-t border-border pt-9', className)}
+      className={cn(
+        'min-w-0 max-w-full scroll-mt-28 border-t border-border pt-9',
+        className,
+      )}
       id={id}
     >
       <ResearchMarker code={code} label={label} />
@@ -40,7 +43,7 @@ export function ReviewSection({
           {description}
         </p>
       ) : null}
-      <div className="mt-7">{children}</div>
+      <div className="mt-7 min-w-0 max-w-full">{children}</div>
     </section>
   );
 }
