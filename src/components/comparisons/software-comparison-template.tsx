@@ -189,9 +189,9 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
-        <Container>
-          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
-            <div>
+        <Container className="min-w-0 max-w-full">
+          <div className="grid min-w-0 max-w-full items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
+            <div className="min-w-0 max-w-full">
               <div className="rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:p-4">
                 <ComparisonIdentity a={data.a} b={data.b} useProductLogos />
               </div>
@@ -213,10 +213,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   label={`${data.category} comparison`}
                 />
               </div>
-              <h1 className="mt-4 max-w-3xl text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-4 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -225,7 +225,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   See scenario guidance
                 </ButtonLink>
               </div>
-              <p className="mt-4 text-xs leading-5 text-muted-foreground">
+              <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
                 Independent editorial comparison. No paid ranking or score.
                 Outbound provider links are not affiliate links at publication.
               </p>
@@ -269,11 +269,11 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
       ) : null}
       <Section spacing="md">
         <Container>
-          <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
-            <aside>
+          <div className="grid min-w-0 max-w-full gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
+            <aside className="min-w-0 max-w-full">
               <SectionNavigation items={toc} label="Comparison sections" />
             </aside>
-            <article className="min-w-0 space-y-9 sm:space-y-10">
+            <article className="min-w-0 max-w-full space-y-9 sm:space-y-10">
               <ReviewSection
                 code="D0"
                 id="overview"
@@ -337,34 +337,38 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="grid gap-3 sm:hidden">
+                <div className="grid min-w-0 max-w-full gap-3 sm:hidden">
                   {data.factors.map((factor) => (
                     <Card className="border-brand/15" key={factor.factor}>
                       <CardContent className="p-4">
-                        <h3 className="font-semibold">{factor.factor}</h3>
+                        <h3 className="break-words font-semibold">
+                          {factor.factor}
+                        </h3>
                         <dl className="mt-4 space-y-3 text-sm">
                           {[
                             { name: data.a, text: factor.a },
                             { name: data.b, text: factor.b },
                           ].map(({ name, text }) => (
                             <div
-                              className="border-t border-border pt-3"
+                              className="min-w-0 max-w-full border-t border-border pt-3"
                               key={name}
                             >
-                              <dt className="flex items-center gap-2 font-semibold">
+                              <dt className="flex min-w-0 items-center gap-2 font-semibold">
                                 <ProductLogo name={name} size="sm" />
-                                {name}
+                                <span className="min-w-0 break-words">
+                                  {name}
+                                </span>
                               </dt>
-                              <dd className="mt-1.5 leading-6 text-muted-foreground">
+                              <dd className="mt-1.5 break-words leading-6 text-muted-foreground">
                                 {text}
                               </dd>
                             </div>
                           ))}
-                          <div className="border-t border-border pt-3">
+                          <div className="min-w-0 max-w-full border-t border-border pt-3">
                             <dt className="text-[0.68rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
                               Decision relevance
                             </dt>
-                            <dd className="mt-1.5 leading-6 text-muted-foreground">
+                            <dd className="mt-1.5 break-words leading-6 text-muted-foreground">
                               {factor.relevance}
                             </dd>
                           </div>
@@ -391,7 +395,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   title={s.title}
                 >
                   {s.paragraphs.map((p) => (
-                    <p className="mt-4 first:mt-0 leading-7" key={p}>
+                    <p
+                      className="mt-4 break-words first:mt-0 leading-7"
+                      key={p}
+                    >
                       {p}
                     </p>
                   ))}
@@ -445,16 +452,20 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="grid gap-4 sm:hidden">
+                <div className="grid min-w-0 max-w-full gap-4 sm:hidden">
                   {data.scenarios.map((scenario) => (
                     <Card key={scenario.scenario}>
                       <CardContent>
-                        <h3 className="font-semibold">{scenario.scenario}</h3>
-                        <p className="mt-3 flex items-center gap-2 text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
-                          <ProductLogo name={scenario.lean} size="sm" /> Lean:{' '}
-                          {scenario.lean}
+                        <h3 className="break-words font-semibold">
+                          {scenario.scenario}
+                        </h3>
+                        <p className="mt-3 flex min-w-0 items-center gap-2 break-words text-xs font-bold tracking-[0.1em] text-accent-strong uppercase">
+                          <ProductLogo name={scenario.lean} size="sm" />
+                          <span className="min-w-0 break-words">
+                            Lean: {scenario.lean}
+                          </span>
                         </p>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                           {scenario.why}
                         </p>
                       </CardContent>
@@ -470,9 +481,14 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               >
                 <div className="divide-y divide-border border-y border-border">
                   {data.faqs.map((x) => (
-                    <section className="py-6" key={x.question}>
-                      <h3 className="font-semibold">{x.question}</h3>
-                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    <section
+                      className="min-w-0 max-w-full py-6"
+                      key={x.question}
+                    >
+                      <h3 className="break-words font-semibold">
+                        {x.question}
+                      </h3>
+                      <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                         {x.answer}
                       </p>
                     </section>
@@ -485,17 +501,21 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 title="Sources and methodology"
                 description="Provider-primary research, not fabricated product testing."
               >
-                <p className="leading-7">
+                <p className="break-words leading-7">
                   Sources accessed {data.verificationDate ?? 'August 2026'}.
                   Provider statements are identified as provider facts; decision
                   guidance is Racklio analysis.
                 </p>
-                <ol className="mt-6 space-y-3 text-sm">
+                <ol className="mt-6 min-w-0 max-w-full space-y-3 break-words text-sm">
                   {data.sources.map((x, i) => (
-                    <li id={`source-${i + 1}`} key={x.href}>
+                    <li
+                      className="min-w-0 max-w-full"
+                      id={`source-${i + 1}`}
+                      key={x.href}
+                    >
                       [{i + 1}]{' '}
                       <a
-                        className="underline underline-offset-4"
+                        className="break-words underline underline-offset-4"
                         href={x.href}
                         rel="noopener noreferrer"
                         target="_blank"

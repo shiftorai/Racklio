@@ -33,17 +33,17 @@ export function ReviewSection({
     >
       <ResearchMarker code={code} label={label} />
       <h2
-        className="mt-4 text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
+        className="mt-4 break-words text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
         id={`${id}-heading`}
       >
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
+        <p className="mt-4 max-w-3xl break-words text-base leading-7 text-muted-foreground">
           {description}
         </p>
       ) : null}
-      <div className="mt-7 min-w-0 max-w-full">{children}</div>
+      <div className="mt-7 min-w-0 max-w-full break-words">{children}</div>
     </section>
   );
 }

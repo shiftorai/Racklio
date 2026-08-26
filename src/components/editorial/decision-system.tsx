@@ -64,12 +64,14 @@ export function ComparisonIdentity({
           {getDecisionInitials(name)}
         </span>
       )}
-      <span className="min-w-0 text-sm font-semibold sm:text-base">{name}</span>
+      <span className="min-w-0 break-words text-sm font-semibold sm:text-base">
+        {name}
+      </span>
     </div>
   );
 
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+    <div className="grid min-w-0 max-w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3">
       {identity(a)}
       {useProductLogos ? (
         <RacklioVsBadge className="size-10" />
@@ -185,7 +187,7 @@ export function EvidenceBlock({
   return (
     <aside
       className={cn(
-        'rounded-xl border p-5',
+        'min-w-0 max-w-full rounded-xl border p-5',
         tone === 'fact' && 'border-mint-deep/20 bg-mint-subtle/55',
         tone === 'analysis' && 'border-brand/20 bg-accent-subtle/55',
         tone === 'limitation' && 'border-border bg-surface-subtle',
@@ -205,7 +207,7 @@ export function EvidenceBlock({
       </p>
       <div
         className={cn(
-          'mt-2 text-sm leading-6',
+          'mt-2 min-w-0 break-words text-sm leading-6',
           tone !== 'takeaway' && 'text-muted-foreground',
           tone === 'takeaway' && 'text-white',
         )}
@@ -230,21 +232,24 @@ export function KeyDifference({
   meaning: string;
 }) {
   return (
-    <section className="rounded-2xl border border-brand/20 bg-white p-5 shadow-card sm:p-6">
+    <section className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-white p-5 shadow-card sm:p-6">
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         Key difference
       </p>
-      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+      <div className="mt-5 grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
         {[
           { name: a, text: aText },
           { name: b, text: bText },
         ].map((item) => (
-          <div className="rounded-xl bg-surface-subtle p-4" key={item.name}>
-            <h3 className="flex items-center gap-2 font-semibold">
+          <div
+            className="min-w-0 max-w-full rounded-xl bg-surface-subtle p-4"
+            key={item.name}
+          >
+            <h3 className="flex min-w-0 items-center gap-2 break-words font-semibold">
               <ProductLogo name={item.name} size="sm" />
-              {item.name}
+              <span className="min-w-0 break-words">{item.name}</span>
             </h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            <p className="mt-2 break-words text-sm leading-6 text-muted-foreground">
               {item.text}
             </p>
           </div>
@@ -254,7 +259,7 @@ export function KeyDifference({
         <p className="text-[0.68rem] font-bold tracking-[0.1em] text-mint-deep uppercase">
           What it means
         </p>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+        <p className="mt-2 break-words text-sm leading-6 text-muted-foreground">
           {meaning}
         </p>
       </div>
@@ -266,7 +271,7 @@ export function TrueCostFactors({ factors }: { factors: string[] }) {
   if (!factors.length) return null;
 
   return (
-    <aside className="rounded-2xl border border-brand/20 bg-accent-subtle/70 p-5 shadow-card sm:p-6">
+    <aside className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-accent-subtle/70 p-5 shadow-card sm:p-6">
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-mint-deep uppercase">
         What changes the real cost?
       </p>
@@ -292,11 +297,11 @@ export function RelatedDecisionLinks({
   if (!links.length) return null;
 
   return (
-    <div className="border-t border-border pt-6">
+    <div className="min-w-0 max-w-full border-t border-border pt-6">
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         Continue your research
       </p>
-      <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+      <div className="mt-4 flex min-w-0 flex-wrap gap-x-6 gap-y-3 break-words text-sm">
         {links.map((link) => (
           <Link href={link.href} key={link.href}>
             {link.title}

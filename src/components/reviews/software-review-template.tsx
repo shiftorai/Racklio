@@ -249,9 +249,9 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
-        <Container>
-          <div className="grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
-            <div>
+        <Container className="min-w-0 max-w-full">
+          <div className="grid min-w-0 max-w-full items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
+            <div className="min-w-0 max-w-full">
               <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:gap-4 sm:p-4">
                 <ProductLogo loading="eager" name={data.name} size="lg" />
                 <div className="min-w-0">
@@ -280,10 +280,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-5 max-w-3xl text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-5 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -302,7 +302,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   Decision Guidance
                 </ButtonLink>
               </div>
-              <p className="mt-4 text-xs leading-5 text-muted-foreground">
+              <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
                 {usesAffiliateLink
                   ? 'Affiliate disclosure: Racklio may earn a commission if you use this commercial link, at no additional cost to you. Affiliate status does not influence this review.'
                   : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
@@ -347,25 +347,25 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
       ) : null}
       <Section spacing="md">
         <Container>
-          <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
-            <aside>
+          <div className="grid min-w-0 max-w-full gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-14">
+            <aside className="min-w-0 max-w-full">
               <SectionNavigation items={toc} label="Review sections" />
             </aside>
-            <article className="min-w-0 space-y-9 sm:space-y-10">
+            <article className="min-w-0 max-w-full space-y-9 sm:space-y-10">
               <ReviewSection
                 code="A0"
                 id="overview"
                 title="At a glance"
                 description={`Who should consider ${data.name}, and when another category may fit better.`}
               >
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid min-w-0 max-w-full gap-5 md:grid-cols-2">
                   <Card className="border-mint-deep/20 bg-mint-subtle/30">
                     <CardContent>
                       <p className="text-[0.68rem] font-bold tracking-[0.12em] text-mint-deep uppercase">
                         Best fit
                       </p>
                       <h3 className="mt-2 font-semibold">Consider it when</h3>
-                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                      <ul className="mt-4 min-w-0 space-y-3 break-words text-sm leading-6 text-muted-foreground">
                         {data.fit.map((x) => (
                           <li key={x}>— {x}</li>
                         ))}
@@ -380,7 +380,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                       <h3 className="mt-2 font-semibold">
                         Look elsewhere when
                       </h3>
-                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                      <ul className="mt-4 min-w-0 space-y-3 break-words text-sm leading-6 text-muted-foreground">
                         {data.notFit.map((x) => (
                           <li key={x}>— {x}</li>
                         ))}
@@ -396,12 +396,14 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title="Key capabilities"
                   description="Buyer-oriented capability groups documented by the provider."
                 >
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
                     {data.capabilities.map((capability) => (
                       <Card key={capability.title}>
                         <CardContent>
-                          <h3 className="font-semibold">{capability.title}</h3>
-                          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          <h3 className="break-words font-semibold">
+                            {capability.title}
+                          </h3>
+                          <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                             {capability.description}
                           </p>
                         </CardContent>
@@ -452,27 +454,29 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="grid gap-4 sm:hidden">
+                <div className="grid min-w-0 max-w-full gap-4 sm:hidden">
                   {data.pricing.map((item) => (
                     <Card key={item.plan}>
                       <CardContent>
-                        <h3 className="font-semibold">{item.plan}</h3>
+                        <h3 className="break-words font-semibold">
+                          {item.plan}
+                        </h3>
                         <dl className="mt-4 space-y-3 text-sm">
                           <div>
                             <dt className="font-medium">Billing basis</dt>
-                            <dd className="mt-1 text-muted-foreground">
+                            <dd className="mt-1 break-words text-muted-foreground">
                               {item.basis}
                             </dd>
                           </div>
                           <div>
                             <dt className="font-medium">Allowance</dt>
-                            <dd className="mt-1 text-muted-foreground">
+                            <dd className="mt-1 break-words text-muted-foreground">
                               {item.allowance}
                             </dd>
                           </div>
                           <div>
                             <dt className="font-medium">Important note</dt>
-                            <dd className="mt-1 text-muted-foreground">
+                            <dd className="mt-1 break-words text-muted-foreground">
                               {item.note}
                             </dd>
                           </div>
@@ -498,12 +502,15 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title={s.title}
                 >
                   {s.paragraphs.map((p) => (
-                    <p className="mt-4 first:mt-0 leading-7" key={p}>
+                    <p
+                      className="mt-4 break-words first:mt-0 leading-7"
+                      key={p}
+                    >
                       {p}
                     </p>
                   ))}
                   {s.bullets ? (
-                    <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                    <ul className="mt-5 min-w-0 space-y-3 break-words text-sm leading-6 text-muted-foreground">
                       {s.bullets.map((x) => (
                         <li key={x}>— {x}</li>
                       ))}
@@ -558,15 +565,17 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     </tbody>
                   </table>
                 </div>
-                <div className="grid gap-4 sm:hidden">
+                <div className="grid min-w-0 max-w-full gap-4 sm:hidden">
                   {data.scenarios.map((scenario) => (
                     <Card key={scenario.scenario}>
                       <CardContent>
-                        <h3 className="font-semibold">{scenario.scenario}</h3>
-                        <p className="mt-2 text-xs font-semibold tracking-wide text-accent-strong uppercase">
+                        <h3 className="break-words font-semibold">
+                          {scenario.scenario}
+                        </h3>
+                        <p className="mt-2 break-words text-xs font-semibold tracking-wide text-accent-strong uppercase">
                           {scenario.fit}
                         </p>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                        <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                           {scenario.why}
                         </p>
                       </CardContent>
@@ -581,12 +590,12 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title="Strengths and limitations"
                   description="Racklio analysis of where the documented product model helps and where it introduces trade-offs."
                 >
-                  <div className="grid gap-5 md:grid-cols-2">
+                  <div className="grid min-w-0 max-w-full gap-5 md:grid-cols-2">
                     <EvidenceBlock label="Strength" tone="fact">
                       <h3 className="font-semibold text-foreground">
                         Analytical strengths
                       </h3>
-                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                      <ul className="mt-4 min-w-0 space-y-3 break-words text-sm leading-6 text-muted-foreground">
                         {data.strengths?.map((item) => (
                           <li key={item}>— {item}</li>
                         ))}
@@ -596,7 +605,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                       <h3 className="font-semibold text-foreground">
                         Meaningful limitations
                       </h3>
-                      <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
+                      <ul className="mt-4 min-w-0 space-y-3 break-words text-sm leading-6 text-muted-foreground">
                         {data.limitations?.map((item) => (
                           <li key={item}>— {item}</li>
                         ))}
@@ -612,11 +621,11 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   title="Alternatives to consider"
                   description="Category overlap does not make products interchangeable; start with the workflow difference."
                 >
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
                     {data.alternatives.map((alternative) => (
                       <Card key={alternative.title}>
                         <CardContent>
-                          <h3 className="font-semibold">
+                          <h3 className="break-words font-semibold">
                             {alternative.href ? (
                               <Link href={alternative.href}>
                                 {alternative.title}
@@ -625,7 +634,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                               alternative.title
                             )}
                           </h3>
-                          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                          <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                             {alternative.description}
                           </p>
                         </CardContent>
@@ -642,9 +651,14 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               >
                 <div className="divide-y divide-border border-y border-border">
                   {data.faqs.map((x) => (
-                    <section className="py-6" key={x.question}>
-                      <h3 className="font-semibold">{x.question}</h3>
-                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    <section
+                      className="min-w-0 max-w-full py-6"
+                      key={x.question}
+                    >
+                      <h3 className="break-words font-semibold">
+                        {x.question}
+                      </h3>
+                      <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                         {x.answer}
                       </p>
                     </section>
@@ -657,17 +671,21 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 title="Sources and methodology"
                 description="Provider-primary research, not fabricated product testing."
               >
-                <p className="leading-7">
+                <p className="break-words leading-7">
                   Sources accessed {verificationDate}. Provider statements
                   remain attributed; Racklio analysis is conditional on the
                   documented facts.
                 </p>
-                <ol className="mt-6 space-y-3 text-sm">
+                <ol className="mt-6 min-w-0 max-w-full space-y-3 break-words text-sm">
                   {data.sources.map((x, i) => (
-                    <li id={`source-${i + 1}`} key={x.href}>
+                    <li
+                      className="min-w-0 max-w-full"
+                      id={`source-${i + 1}`}
+                      key={x.href}
+                    >
                       [{i + 1}]{' '}
                       <a
-                        className="underline underline-offset-4"
+                        className="break-words underline underline-offset-4"
                         href={x.href}
                         rel="noopener noreferrer"
                         target="_blank"
