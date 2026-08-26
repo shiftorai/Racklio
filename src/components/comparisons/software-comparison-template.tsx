@@ -186,7 +186,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface)_0%,var(--color-surface-mint)_52%,var(--color-surface-soft)_100%)] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
         <Container className="min-w-0 max-w-full">
@@ -220,7 +220,9 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <ButtonLink href="#overview">Compare the evidence</ButtonLink>
+                <ButtonLink href="#overview" variant="secondary">
+                  Compare the evidence
+                </ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
                   See scenario guidance
                 </ButtonLink>
@@ -511,6 +513,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       href={data.aUrl}
                       rel="noopener noreferrer"
                       target="_blank"
+                      variant="secondary"
                     >
                       Explore {data.a} <span aria-hidden="true">↗</span>
                     </ButtonLink>

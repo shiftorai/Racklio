@@ -587,14 +587,7 @@ export function Home() {
                 customer engagement
               </p>
               <div className="hero-conversion-flow flex flex-col">
-                <div className="hero-actions order-3 mt-5 flex flex-col gap-3 sm:order-1 sm:mt-5 sm:flex-row">
-                  <ButtonLink
-                    className="bg-brand hover:bg-accent-hover sm:min-h-10 sm:px-4 sm:text-sm"
-                    href="/#categories"
-                    size="lg"
-                  >
-                    Explore Software <Arrow />
-                  </ButtonLink>
+                <div className="hero-actions order-3 mt-4 flex flex-col gap-3 sm:order-1 sm:mt-4 sm:flex-row">
                   <ButtonLink
                     href="/#comparisons"
                     className="sm:min-h-10 sm:px-4 sm:text-sm"
@@ -965,7 +958,7 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section className="final-decision-panel relative overflow-hidden rounded-[2rem] border border-brand/20 bg-surface-peach/55 p-8 shadow-card sm:p-12">
+          <section className="final-decision-panel relative overflow-hidden rounded-[2rem] border border-brand/20 bg-surface-mint/55 p-8 shadow-card sm:p-12">
             <div className="relative z-10 max-w-2xl">
               <p className="section-eyebrow text-accent-strong">
                 Make the next decision clearer

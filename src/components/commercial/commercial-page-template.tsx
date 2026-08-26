@@ -193,7 +193,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface)_0%,var(--color-surface-mint)_52%,var(--color-surface-soft)_100%)] py-7 sm:py-10 lg:py-12"
         spacing="none"
       >
         <Container>
@@ -233,7 +233,9 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <ButtonLink href="#overview">Review the evidence</ButtonLink>
+                <ButtonLink href="#overview" variant="secondary">
+                  Review the evidence
+                </ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
                   See decision scenarios
                 </ButtonLink>

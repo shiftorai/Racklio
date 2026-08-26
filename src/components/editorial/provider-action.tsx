@@ -25,7 +25,7 @@ export function ProviderAction({
     return (
       <div className="min-w-0 max-w-full">
         <p className="text-sm font-semibold">If this fits your team:</p>
-        <div className="mt-3 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="mt-2.5 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
           <ButtonLink
             className="w-full sm:w-auto"
             data-cta-kind="provider-action-early"
@@ -50,7 +50,7 @@ export function ProviderAction({
             </Link>
           ) : null}
         </div>
-        <p className="mt-3 break-words text-xs leading-5 text-muted-foreground">
+        <p className="mt-2.5 break-words text-xs leading-5 text-muted-foreground">
           {affiliate
             ? 'Affiliate link. Racklio may earn a commission at no additional cost to you; this does not influence the review.'
             : 'Opens the provider’s official website. Confirm current plans and terms before purchase.'}

@@ -1,5 +1,5 @@
 import { RacklioLogo } from '@/components/brand';
-import { ButtonLink, Container, Link } from '@/components/ui';
+import { Container, Link } from '@/components/ui';
 
 const navigation = [
   ['Categories', '/#categories'],
@@ -50,22 +50,14 @@ export function SiteHeader() {
             <NavigationLinks />
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <Link
-              aria-label="Search Racklio"
-              className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground hover:text-foreground"
-              href="/#software-search"
-              variant="unstyled"
-            >
-              <span aria-hidden="true" className="search-icon" />
-            </Link>
-            <ButtonLink
-              className="bg-brand hover:bg-accent-hover"
-              href="/#categories"
-            >
-              Explore software →
-            </ButtonLink>
-          </div>
+          <Link
+            aria-label="Search Racklio"
+            className="hidden size-10 items-center justify-center rounded-md border border-border text-muted-foreground hover:text-foreground lg:inline-flex"
+            href="/#software-search"
+            variant="unstyled"
+          >
+            <span aria-hidden="true" className="search-icon" />
+          </Link>
 
           <details className="group relative lg:hidden">
             <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-surface-raised px-3 text-sm font-semibold marker:content-none">
@@ -83,21 +75,15 @@ export function SiteHeader() {
               <nav aria-label="Mobile primary" className="grid">
                 <NavigationLinks mobile />
               </nav>
-              <div className="mt-4 grid grid-cols-[2.75rem_1fr] gap-2">
+              <div className="mt-4">
                 <Link
                   aria-label="Search Racklio"
-                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-border"
+                  className="inline-flex size-11 items-center justify-center rounded-md border border-border"
                   href="/#software-search"
                   variant="unstyled"
                 >
                   <span aria-hidden="true" className="search-icon" />
                 </Link>
-                <ButtonLink
-                  className="bg-brand hover:bg-accent-hover"
-                  href="/#categories"
-                >
-                  Explore software
-                </ButtonLink>
               </div>
             </div>
           </details>

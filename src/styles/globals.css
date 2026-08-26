@@ -15,38 +15,37 @@
 :root {
   color-scheme: light;
 
-  --ds-brand-primary: #8e1d4f;
-  --ds-brand-primary-hover: #6f143c;
-  --ds-brand-primary-surface: #fbe9ef;
-  --ds-evidence-accent: #2ecaa6;
+  --ds-brand-primary: #0f4c4c;
+  --ds-brand-primary-hover: #0b3f3f;
+  --ds-brand-primary-surface: #e8efe8;
+  --ds-evidence-accent: #5f857c;
   --ds-canvas: #fdfcf8;
   --ds-ink: #292524;
   --ds-surface: var(--ds-canvas);
   --ds-surface-raised: #ffffff;
   --ds-foreground: var(--ds-ink);
-  --ds-muted: #f3f0ea;
+  --ds-muted: #f4f1eb;
   --ds-muted-foreground: #78716c;
-  --ds-border: #e5dfd6;
+  --ds-border: #e8e1d8;
   --ds-navy-muted: #b9b6ae;
-  --ds-accent: var(--ds-brand-primary);
-  --ds-accent-hover: var(--ds-brand-primary-hover);
-  --ds-accent-strong: var(--ds-brand-primary-hover);
-  --ds-accent-foreground: #ffffff;
-  --ds-accent-subtle: var(--ds-brand-primary-surface);
+  --ds-accent: #0f4c4c;
+  --ds-accent-hover: #0b3f3f;
+  --ds-accent-strong: #0f4c4c;
+  --ds-accent-foreground: #fdfcf8;
+  --ds-accent-subtle: #e8efe8;
   --ds-brand: var(--ds-brand-primary);
   --ds-mint: var(--ds-evidence-accent);
-  --ds-mint-hover: #25b894;
-  --ds-mint-deep: #087d67;
-  --ds-mint-subtle: #e2f8f2;
-  --ds-coral: #ef7c68;
-  --ds-danger: #dc2626;
-  --ds-danger-hover: #b91c1c;
-  --ds-danger-foreground: #ffffff;
-  --ds-success: #157347;
-  --ds-success-subtle: #dcfce7;
-  --ds-surface-soft: #efedf4;
+  --ds-mint-hover: #4c756c;
+  --ds-mint-deep: #416a62;
+  --ds-mint-subtle: #e8efe8;
+  --ds-danger: #0f4c4c;
+  --ds-danger-hover: #0b3f3f;
+  --ds-danger-foreground: #fdfcf8;
+  --ds-success: #416a62;
+  --ds-success-subtle: #e8efe8;
+  --ds-surface-soft: #f5f3ed;
   --ds-surface-mint: #e8efe8;
-  --ds-surface-peach: #fff0ed;
+  --ds-surface-neutral: #f5f3ed;
 }
 
 @theme inline {
@@ -68,7 +67,6 @@
   --color-mint-hover: var(--ds-mint-hover);
   --color-mint-deep: var(--ds-mint-deep);
   --color-mint-subtle: var(--ds-mint-subtle);
-  --color-coral: var(--ds-coral);
   --color-danger: var(--ds-danger);
   --color-danger-hover: var(--ds-danger-hover);
   --color-danger-foreground: var(--ds-danger-foreground);
@@ -76,7 +74,7 @@
   --color-success-subtle: var(--ds-success-subtle);
   --color-surface-soft: var(--ds-surface-soft);
   --color-surface-mint: var(--ds-surface-mint);
-  --color-surface-peach: var(--ds-surface-peach);
+  --color-surface-neutral: var(--ds-surface-neutral);
 
   /* Typography */
   --font-sans:
@@ -139,7 +137,12 @@
     min-width: 0;
     min-height: 100dvh;
     margin: 0;
-    background: var(--color-surface);
+    background-color: var(--color-surface);
+    background-image: radial-gradient(
+      rgb(41 37 36 / 0.035) 0.5px,
+      transparent 0.7px
+    );
+    background-size: 10px 10px;
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
@@ -162,6 +165,7 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgb(253 252 248 / 0.95);
   }
 
   ::selection {
@@ -213,10 +217,10 @@
 
   .reveal {
     opacity: 0;
-    translate: 0 1rem;
+    translate: 0 1.875rem;
     transition:
-      opacity 650ms ease,
-      translate 650ms ease;
+      opacity 800ms ease,
+      translate 800ms ease;
   }
 
   .reveal-visible {
@@ -251,6 +255,7 @@
   }
 
   .homepage-hero {
+    isolation: isolate;
     background:
       radial-gradient(
         circle at 82% 18%,
@@ -259,15 +264,30 @@
       ),
       radial-gradient(
         circle at 10% 92%,
-        rgb(239 237 244 / 0.94),
+        rgb(232 239 232 / 0.64),
         transparent 29rem
       ),
       radial-gradient(
         circle at 74% 82%,
-        rgb(255 183 178 / 0.18),
+        rgb(15 76 76 / 0.06),
         transparent 21rem
       ),
       linear-gradient(118deg, #fdfcf8 0%, #fdfcf8 48%, #f7f5f0 100%);
+  }
+
+  .homepage-hero::before {
+    position: absolute;
+    top: 7%;
+    right: 7%;
+    z-index: 0;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 9999px;
+    background: rgb(232 239 232 / 0.52);
+    content: '';
+    filter: blur(14px);
+    pointer-events: none;
+    animation: hero-blob-drift 6s ease-in-out infinite;
   }
 
   .homepage-hero::after {
@@ -290,8 +310,8 @@
 
   .hero-grid {
     background-image:
-      linear-gradient(rgb(142 29 79 / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(142 29 79 / 0.04) 1px, transparent 1px);
+      linear-gradient(rgb(15 76 76 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(15 76 76 / 0.05) 1px, transparent 1px);
     background-position: center;
     background-size: 42px 42px;
     mask-image: linear-gradient(
@@ -313,12 +333,7 @@
   }
 
   .racklio-vs-badge {
-    background: linear-gradient(
-      135deg,
-      var(--color-brand) 22%,
-      #a82861 58%,
-      var(--color-mint) 160%
-    );
+    background: var(--color-foreground);
     transition:
       translate 180ms ease,
       box-shadow 180ms ease;
@@ -362,7 +377,7 @@
   }
 
   .hero-comparison-tabs button.is-selected {
-    border-color: rgb(142 29 79 / 0.18);
+    border-color: rgb(15 76 76 / 0.2);
     background: var(--color-accent-subtle);
     color: var(--color-accent-strong);
   }
@@ -376,7 +391,7 @@
     inset: 1rem 0 0.55rem;
     z-index: -1;
     border-radius: 2rem;
-    background: rgb(255 183 178 / 0.25);
+    background: rgb(232 239 232 / 0.8);
     content: '';
     rotate: -1.25deg;
   }
@@ -402,7 +417,7 @@
     min-height: 2.5rem;
     align-items: center;
     gap: 0.4rem;
-    border: 1px solid rgb(142 29 79 / 0.14);
+    border: 1px solid rgb(15 76 76 / 0.14);
     border-radius: 9999px;
     background: color-mix(
       in srgb,
@@ -421,7 +436,7 @@
 
   .hero-intent-chip:hover {
     translate: 0 -1px;
-    border-color: rgb(142 29 79 / 0.25);
+    border-color: rgb(15 76 76 / 0.28);
     background: color-mix(
       in srgb,
       var(--color-accent-subtle) 68%,
@@ -448,13 +463,13 @@
   .comparison-card-v2:hover,
   .standard-content-card:hover {
     translate: 0 -0.2rem;
-    border-color: rgb(142 29 79 / 0.28);
+    border-color: rgb(15 76 76 / 0.28);
     box-shadow: var(--shadow-panel);
   }
 
   .comparison-card-v2:hover .racklio-vs-badge {
     translate: 0 -0.12rem;
-    box-shadow: 0 10px 25px rgb(142 29 79 / 0.2);
+    box-shadow: 0 10px 25px rgb(15 76 76 / 0.16);
   }
 
   .category-territory:hover {
@@ -470,7 +485,7 @@
   }
 
   .decision-filter.is-selected {
-    border-color: rgb(142 29 79 / 0.45);
+    border-color: rgb(15 76 76 / 0.45);
     background: var(--color-accent-subtle);
     color: var(--color-accent-strong);
     box-shadow: inset 3px 0 0 var(--color-brand);
@@ -512,7 +527,7 @@
     right: -7rem;
     width: 22rem;
     height: 22rem;
-    border: 4rem solid rgb(46 202 166 / 0.11);
+    border: 4rem solid rgb(15 76 76 / 0.1);
     border-radius: 9999px;
     content: '';
   }
@@ -520,7 +535,7 @@
   .dot-field {
     background-image: radial-gradient(
       circle,
-      rgb(142 29 79 / 0.2) 1px,
+      rgb(15 76 76 / 0.16) 1px,
       transparent 1px
     );
     background-size: 18px 18px;
@@ -553,6 +568,16 @@
   }
 }
 
+@keyframes hero-blob-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -0.75rem 0.6rem;
+  }
+}
+
 @keyframes hero-progress {
   from {
     scale: 0 1;
@@ -572,7 +597,7 @@
   }
   84% {
     box-shadow:
-      0 0 0 7px rgb(142 29 79 / 0.1),
+      0 0 0 7px rgb(15 76 76 / 0.12),
       var(--shadow-card);
   }
 }

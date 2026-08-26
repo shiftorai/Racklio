@@ -95,7 +95,7 @@ export function DecisionSummary({
   title?: string;
 }) {
   return (
-    <aside className="primary-decision-card relative min-w-0 overflow-hidden rounded-[1.75rem] border border-brand/20 bg-white/92 p-6 shadow-panel sm:p-7">
+    <aside className="primary-decision-card relative min-w-0 overflow-hidden rounded-[1.75rem] border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
       <div
         aria-hidden="true"
         className="absolute inset-y-0 left-0 w-1 bg-brand"
@@ -103,20 +103,21 @@ export function DecisionSummary({
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         {title}
       </p>
-      <dl className="mt-5 grid min-w-0 gap-x-5 gap-y-4 sm:grid-cols-2">
+      <dl className="mt-4 grid min-w-0 gap-x-5 gap-y-3 sm:grid-cols-2">
         {items.map((item) => (
-          <div className="min-w-0 border-t border-border pt-3" key={item.label}>
+          <div
+            className="min-w-0 border-t border-border pt-2.5"
+            key={item.label}
+          >
             <dt className="text-[0.68rem] font-bold tracking-[0.08em] text-muted-foreground uppercase">
               {item.label}
             </dt>
-            <dd className="mt-1.5 break-words text-sm leading-6">
-              {item.text}
-            </dd>
+            <dd className="mt-1 break-words text-sm leading-5">{item.text}</dd>
           </div>
         ))}
       </dl>
       {footer ? (
-        <div className="mt-5 min-w-0 border-t border-brand/15 pt-5">
+        <div className="mt-4 min-w-0 border-t border-brand/15 pt-3.5">
           {footer}
         </div>
       ) : null}

@@ -224,7 +224,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         <Container>
           <nav
             aria-label="Breadcrumb"
-            className="py-3 text-xs text-muted-foreground"
+            className="py-2 text-xs text-muted-foreground"
           >
             <ol className="flex flex-wrap gap-2">
               <li>
@@ -247,20 +247,20 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
         </Container>
       </div>
       <Section
-        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-7 sm:py-10 lg:py-12"
+        className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface)_0%,var(--color-surface-mint)_52%,var(--color-surface-soft)_100%)] py-5 sm:py-7 lg:py-8"
         spacing="none"
       >
         <Container className="min-w-0 max-w-full">
-          <div className="grid min-w-0 max-w-full items-start gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(23rem,0.9fr)] lg:gap-12">
+          <div className="grid min-w-0 max-w-full items-start gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.85fr)] lg:gap-8">
             <div className="min-w-0 max-w-full">
-              <div className="flex min-w-0 items-center gap-3 rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:gap-4 sm:p-4">
-                <ProductLogo loading="eager" name={data.name} size="lg" />
+              <div className="flex min-w-0 items-center gap-2.5 rounded-2xl border border-brand/15 bg-white/75 p-2.5 shadow-card sm:gap-3 sm:p-3">
+                <ProductLogo loading="eager" name={data.name} size="md" />
                 <div className="min-w-0">
                   <p className="font-semibold tracking-[-0.02em]">
                     {data.name}
                   </p>
-                  <div className="mt-1.5 flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold tracking-[0.1em] uppercase">
-                    <span className="rounded-full bg-accent-subtle px-2.5 py-1 text-brand">
+                  <div className="mt-1 flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold tracking-[0.1em] uppercase">
+                    <span className="rounded-full bg-accent-subtle px-2.5 py-0.5 text-brand">
                       {data.category}
                     </span>
                     <span className="text-muted-foreground">
@@ -272,7 +272,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               {data.categoryLinks?.length ? (
                 <nav
                   aria-label="Related software categories"
-                  className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
+                  className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-sm"
                 >
                   {data.categoryLinks.map((category) => (
                     <Link href={category.href} key={category.href}>
@@ -281,13 +281,13 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-5 max-w-4xl break-words text-4xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(3.25rem,5vw,4.75rem)] sm:leading-[0.98]">
+              <h1 className="mt-4 max-w-3xl break-words text-[clamp(2.25rem,9vw,2.75rem)] leading-[1.05] font-semibold tracking-[-0.04em] sm:text-[clamp(2.625rem,3.75vw,3.5rem)] sm:leading-[1.03]">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground sm:text-xl">
+              <p className="mt-4 max-w-xl break-words text-base leading-7 text-muted-foreground sm:text-lg sm:leading-7">
                 {data.dek}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-5 flex flex-wrap gap-3">
                 {usesAffiliateLink ? (
                   <ButtonLink
                     href={commercialUrl}
@@ -297,13 +297,15 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     Visit {data.name}
                   </ButtonLink>
                 ) : (
-                  <ButtonLink href="#overview">Review the evidence</ButtonLink>
+                  <ButtonLink href="#overview" variant="secondary">
+                    Review the evidence
+                  </ButtonLink>
                 )}
                 <ButtonLink href="#decision" variant="secondary">
                   Decision Guidance
                 </ButtonLink>
               </div>
-              <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
+              <p className="mt-3 break-words text-xs leading-5 text-muted-foreground">
                 {usesAffiliateLink
                   ? 'Affiliate disclosure: Racklio may earn a commission if you use this commercial link, at no additional cost to you. Affiliate status does not influence this review.'
                   : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
@@ -324,7 +326,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               title="Review decision"
             />
           </div>
-          <div className="mt-8">
+          <div className="mt-5">
             <VerificationStrip date={verificationDate} />
           </div>
         </Container>
@@ -365,7 +367,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
             <aside className="min-w-0 max-w-full">
               <SectionNavigation items={toc} label="Review sections" />
             </aside>
-            <article className="min-w-0 max-w-full space-y-9 sm:space-y-10">
+            <article className="min-w-0 max-w-full space-y-8 sm:space-y-9">
               <ReviewSection
                 code="A0"
                 id="overview"
