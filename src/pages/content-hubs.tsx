@@ -956,6 +956,8 @@ function HubPage({
   eyebrow,
   title,
   description,
+  displayTitle,
+  displayDescription,
   canonical,
   entries,
   sectionTitle,
@@ -968,6 +970,8 @@ function HubPage({
   eyebrow: string;
   title: string;
   description: string;
+  displayTitle?: string;
+  displayDescription?: string;
   canonical: string;
   entries: Entry[];
   sectionTitle?: string;
@@ -980,6 +984,15 @@ function HubPage({
   const isComparisonHub = code === 'CP';
   const isReviewsHub = code === 'RV';
   const hasProductMarks = isReviewsHub || code === 'BG' || code === 'AL';
+  const cardActionLabel = isComparisonHub
+    ? 'See which fits →'
+    : isReviewsHub
+      ? 'See who it fits →'
+      : code === 'BG'
+        ? 'See the real cost →'
+        : code === 'AL'
+          ? 'See the replacement paths →'
+          : 'See the decision →';
   const featuredComparison =
     entries.find((entry) => entry.title === 'Tidio vs Gorgias') ?? entries[0];
   const featuredNames = featuredComparison?.title.split(' vs ') ?? [];
@@ -1052,10 +1065,10 @@ function HubPage({
               <div className="min-w-0">
                 <ResearchMarker code={code} label={eyebrow} />
                 <h1 className="mt-5 max-w-4xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
-                  {title}
+                  {displayTitle ?? title}
                 </h1>
                 <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
-                  {description}
+                  {displayDescription ?? description}
                 </p>
               </div>
               {isComparisonHub &&
@@ -1079,14 +1092,14 @@ function HubPage({
                     className="mt-4 inline-block text-sm font-semibold"
                     href={featuredComparison.href}
                   >
-                    Open comparison →
+                    See which fits →
                   </Link>
                 </aside>
               ) : null}
               {isReviewsHub ? (
                 <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
                   <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
-                    Published review coverage
+                    Coverage you can inspect
                   </p>
                   <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
                     {[
@@ -1129,8 +1142,9 @@ function HubPage({
               <div className="mb-10 border-b border-border pb-10 sm:mb-12 sm:pb-12">
                 <h2 className="text-2xl font-semibold">Browse by category</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-                  Start with the customer workflow, then evaluate the products
-                  and trade-offs inside that category.
+                  Pick the workflow that is failing first. Then compare the
+                  products, pricing mechanics, and trade-offs inside that
+                  category.
                 </p>
                 <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {categoryEntries.map((entry) => (
@@ -1210,7 +1224,7 @@ function HubPage({
                       ) : null}
                       {!entry.suppressLink ? (
                         <span className="mt-auto inline-block pt-5 text-sm font-semibold">
-                          Open decision page →
+                          {cardActionLabel}
                         </span>
                       ) : null}
                       {entry.relatedLinks?.length ? (
@@ -1284,7 +1298,7 @@ function HubPage({
           spacing="md"
         >
           <Container>
-            <h2 className="text-2xl font-semibold">Continue your decision</h2>
+            <h2 className="text-2xl font-semibold">What should you do next?</h2>
             <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
               {related.map((entry) => (
                 <Link href={entry.href} key={entry.href}>
@@ -1303,9 +1317,11 @@ export function ReviewsHub() {
   return (
     <HubPage
       code="RV"
-      eyebrow="Provider investigation"
+      eyebrow="See the fit before the demo"
       title="Software Reviews for Customer-Facing Teams"
       description="Racklio reviews software used to support customers, manage conversations, improve business communication, and organize customer relationships—using official evidence, explicit limitations, and conditional decision guidance."
+      displayTitle="Customer Software Reviews That Show Where the Fit Breaks"
+      displayDescription="Start with who the product is for, what changes the real cost, and when to walk away. Every conclusion is tied to official evidence and explicit limitations."
       canonical="https://racklio.com/reviews"
       entries={reviewEntries}
       sectionTitle="Customer service software"
@@ -1322,9 +1338,11 @@ export function ComparisonsHub() {
   return (
     <HubPage
       code="CP"
-      eyebrow="Direct provider comparison"
+      eyebrow="No winner badge"
       title="Customer Service Software Comparisons"
       description="Evidence-first comparisons of AI customer support and business communication software, focused on pricing, capabilities, limitations, and practical business fit."
+      displayTitle="Customer Service Software Comparisons Without the Guesswork"
+      displayDescription="Put two operating models side by side, find the differences that can change your decision, and choose by workflow—not a manufactured score."
       canonical="https://racklio.com/comparisons"
       entries={comparisonEntries}
       sectionTitle="Customer service software"
@@ -1339,9 +1357,11 @@ export function BestSoftwareHub() {
   return (
     <HubPage
       code="BS"
-      eyebrow="Outcome-based software decisions"
+      eyebrow="Best depends on the problem"
       title="Best Software for Your Business Need"
       description="Start with the outcome your team needs, then evaluate software around verified capabilities, limits, and operating fit."
+      displayTitle="Best Software for Your Business Need—Not Everyone’s"
+      displayDescription="Choose the outcome your team needs first. Then narrow the field using verified capabilities, limits, cost drivers, and operating fit."
       canonical="https://racklio.com/#best"
       entries={softwareDecisionEntries}
       related={[
@@ -1362,9 +1382,11 @@ export function GuidesHub() {
   return (
     <HubPage
       code="BG"
-      eyebrow="Workload-based decisions"
+      eyebrow="The headline price is not the real cost"
       title="Customer Service Software Guides"
       description="Start with the customer workflow your team needs to improve, then evaluate software around relevant capabilities, limits, and operating fit."
+      displayTitle="Customer Software Pricing Guides That Expose the Cost Drivers"
+      displayDescription="See the billing unit, usage limits, seat requirements, add-ons, and contract conditions that can change what your team actually pays."
       canonical="https://racklio.com/guides"
       entries={commercialGuideEntries}
       sectionTitle="Pricing and product decisions"
@@ -1381,9 +1403,11 @@ export function AlternativesHub() {
   return (
     <HubPage
       code="AL"
-      eyebrow="Scenario-led replacement paths"
+      eyebrow="Start with why the fit failed"
       title="Software Alternatives by Business Need"
       description="Alternative guides begin with the reason a product may not fit, then connect buyers to products with a meaningfully different workflow, scope, pricing model, or operating requirement. No universal replacements or paid rankings."
+      displayTitle="Software Alternatives Built Around the Reason You’re Switching"
+      displayDescription="Name the workflow, scope, or pricing condition that no longer fits. Then compare replacement paths that solve that specific problem—without universal rankings."
       canonical="https://racklio.com/alternatives"
       entries={alternativeEntries}
       sectionTitle="Current alternative guides"

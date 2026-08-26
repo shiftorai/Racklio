@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 
 import {
   CategoryPill,
@@ -70,6 +70,8 @@ const reviews = [
     category: 'Live Chat & Messaging',
     fit: 'Teams evaluating web chat, help-desk workflows, and Lyro AI with documented usage limits.',
     cue: 'Inspect how conversations, AI usage, and support workflows are packaged.',
+    notFor:
+      'You need an ecommerce-centered ticket workflow to be the starting point.',
     review: '/reviews/tidio',
     compare: '/comparisons/tidio-vs-gorgias',
     alternatives: '/alternatives/tidio-alternatives',
@@ -79,6 +81,7 @@ const reviews = [
     category: 'Live Chat & Messaging',
     fit: 'Omnichannel messaging teams working across WhatsApp and other channels.',
     cue: 'Compare channel operations, active-contact economics, and workflow control.',
+    notFor: 'Your main requirement is a conventional website-chat workflow.',
     review: '/reviews/respond-io',
     compare: '/comparisons/respond-io-vs-tidio',
     alternatives: '/alternatives/respond-io-alternatives',
@@ -88,6 +91,7 @@ const reviews = [
     category: 'Business Phone & Voice AI',
     fit: 'Teams evaluating virtual numbers, cloud calling, and usage-based costs.',
     cue: 'Separate seat pricing from numbers, calling, messaging, and usage charges.',
+    notFor: 'You want a customer-support help desk rather than a phone system.',
     review: '/reviews/krispcall',
     compare: '/comparisons/krispcall-vs-aircall',
   },
@@ -96,6 +100,7 @@ const reviews = [
     category: 'CRM & Customer Engagement',
     fit: 'Sales teams that want a pipeline-first CRM rather than a broader customer suite.',
     cue: 'Map plan scope, add-ons, automation, and configured annual cost.',
+    notFor: 'You need a broad marketing and service suite in the same product.',
     review: '/reviews/pipedrive',
     pricing: '/guides/pipedrive-pricing',
     compare: '/comparisons/pipedrive-vs-engagebay',
@@ -106,6 +111,7 @@ const reviews = [
     category: 'AI Customer Support',
     fit: 'Ecommerce support teams evaluating ticket-based help-desk and AI workflows.',
     cue: 'Assess ecommerce depth, ticket economics, automation, and operating fit.',
+    notFor: 'Ecommerce support is not central to your operating model.',
     review: '/reviews/gorgias',
     compare: '/comparisons/tidio-vs-gorgias',
     alternatives: '/alternatives/gorgias-alternatives',
@@ -115,6 +121,7 @@ const reviews = [
     category: 'CRM & Customer Engagement',
     fit: 'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',
     cue: 'Decide whether suite breadth or specialist depth matters more.',
+    notFor: 'Your priority is specialist, pipeline-first sales CRM depth.',
     review: '/reviews/engagebay',
     pricing: '/guides/engagebay-pricing',
     compare: '/comparisons/engagebay-vs-hubspot',
@@ -155,60 +162,6 @@ const comparisons = [
     distinction:
       'Model the configured service, not only the headline subscription.',
     href: '/comparisons/calilio-vs-callhippo',
-  },
-] as const;
-
-const heroComparisons = [
-  {
-    label: 'Tidio vs Gorgias',
-    a: 'Tidio',
-    b: 'Gorgias',
-    href: '/comparisons/tidio-vs-gorgias',
-    rows: [
-      ['Best for', 'Web chat and AI support vs ecommerce-centered help desk'],
-      [
-        'Core lens',
-        'Broader chat workflow vs ticket-centered support operations',
-      ],
-      [
-        'Pricing lens',
-        'Inspect usage units and the configured support workflow',
-      ],
-    ],
-  },
-  {
-    label: 'Pipedrive vs EngageBay',
-    a: 'Pipedrive',
-    b: 'EngageBay',
-    href: '/comparisons/pipedrive-vs-engagebay',
-    rows: [
-      [
-        'Best for',
-        'Pipeline-first sales CRM vs broader CRM, marketing, and service suite',
-      ],
-      ['Core lens', 'Deals and activities vs connected cross-team workflows'],
-      [
-        'Pricing lens',
-        'Map seats and add-ons against broader suite requirements',
-      ],
-    ],
-  },
-  {
-    label: 'Calilio vs CallHippo',
-    a: 'Calilio',
-    b: 'CallHippo',
-    href: '/comparisons/calilio-vs-callhippo',
-    rows: [
-      [
-        'Best for',
-        'Configured calling bundles and usage vs an alternative SMB cloud-phone model',
-      ],
-      ['Core lens', 'Numbers, routing, wallet use, and usage economics'],
-      [
-        'Pricing lens',
-        'Separate subscription, included bundles, and variable charges',
-      ],
-    ],
   },
 ] as const;
 
@@ -272,17 +225,17 @@ const steps = [
   [
     '02',
     'Verify',
-    'Important facts, plan limits, capabilities, and conditions are checked.',
+    'Plan limits, seat minimums, usage units, and capability claims are checked against documentation.',
   ],
   [
     '03',
     'Compare',
-    'Provider statements remain separate from Racklio analysis.',
+    'Provider statements stay visibly separate from Racklio analysis. You can see which is which.',
   ],
   [
     '04',
     'Explain',
-    'Trade-offs become practical buyer scenarios and conditional guidance.',
+    "Trade-offs become buyer scenarios: who this fits, who it doesn't, and what may limit the fit.",
   ],
 ] as const;
 
@@ -337,131 +290,12 @@ function SectionIntro({
   );
 }
 
-function HeroComparisonCard() {
-  const [selected, setSelected] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-  const [manualSelection, setManualSelection] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const current = heroComparisons[selected] ?? heroComparisons[0];
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setReducedMotion(media.matches);
-    update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
-  }, []);
-
-  useEffect(() => {
-    if (isHovering || manualSelection || reducedMotion) return;
-
-    const timer = window.setInterval(() => {
-      setSelected(
-        (currentIndex) => (currentIndex + 1) % heroComparisons.length,
-      );
-    }, 6000);
-
-    return () => window.clearInterval(timer);
-  }, [isHovering, manualSelection, reducedMotion]);
-
-  const selectComparison = (index: number) => {
-    setManualSelection(true);
-    setSelected(index);
-  };
-
-  return (
-    <div className="hero-comparison-stage relative isolate mx-auto w-full max-w-lg py-2 sm:px-4 sm:py-3 lg:-translate-y-6">
-      <article
-        className="primary-decision-card relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/88 p-4 shadow-panel sm:p-6"
-        onFocusCapture={() => setManualSelection(true)}
-        onPointerEnter={() => setIsHovering(true)}
-        onPointerLeave={() => setIsHovering(false)}
-        onTouchStart={() => setManualSelection(true)}
-      >
-        <EvidenceLabel tone="verified">Official sources verified</EvidenceLabel>
-        <div
-          aria-label="Choose a comparison"
-          className="hero-comparison-tabs mt-2 flex gap-1 overflow-x-auto pb-1"
-          role="tablist"
-        >
-          {heroComparisons.map((comparison, index) => (
-            <button
-              aria-controls="hero-comparison-panel"
-              aria-selected={selected === index}
-              className={`min-h-10 shrink-0 rounded-lg px-2 text-xs font-semibold sm:min-h-9 ${selected === index ? 'is-selected' : ''}`}
-              id={`hero-comparison-tab-${index}`}
-              key={comparison.href}
-              onClick={() => selectComparison(index)}
-              role="tab"
-              type="button"
-            >
-              {comparison.label}
-            </button>
-          ))}
-        </div>
-        <div
-          aria-labelledby={`hero-comparison-tab-${selected}`}
-          aria-live="off"
-          className="hero-comparison-content relative"
-          id="hero-comparison-panel"
-          key={current.href}
-          role="tabpanel"
-        >
-          {!reducedMotion && !manualSelection ? (
-            <span
-              aria-hidden="true"
-              className="absolute top-0 left-0 h-0.5 bg-mint motion-safe:animate-[hero-progress_6s_linear_forwards]"
-              key={current.href}
-              style={{ width: '100%' }}
-            />
-          ) : null}
-          <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
-            <div className="flex flex-col items-center text-center">
-              <ProductLogo loading="eager" name={current.a} size="md" />
-              <h2 className="mt-2 text-sm font-semibold tracking-[-0.025em] sm:text-base">
-                {current.a}
-              </h2>
-            </div>
-            <RacklioVsBadge className="size-10" />
-            <div className="flex flex-col items-center text-center">
-              <ProductLogo loading="eager" name={current.b} size="md" />
-              <h2 className="mt-2 text-sm font-semibold tracking-[-0.025em] sm:text-base">
-                {current.b}
-              </h2>
-            </div>
-          </div>
-          <dl className="mt-4 space-y-1.5 text-sm">
-            {current.rows.map(([label, value]) => (
-              <div
-                className="grid grid-cols-[5.25rem_minmax(0,1fr)] gap-3 py-2"
-                key={label}
-              >
-                <dt className="text-[0.68rem] font-bold tracking-[0.08em] text-muted-foreground uppercase">
-                  {label}
-                </dt>
-                <dd className="leading-5">{value}</dd>
-              </div>
-            ))}
-          </dl>
-          <Link
-            className="group mt-4 flex min-h-11 items-center justify-between rounded-xl bg-accent-subtle px-3 font-semibold text-accent-strong"
-            href={current.href}
-          >
-            <span>View full comparison</span>
-            <Arrow />
-          </Link>
-        </div>
-      </article>
-    </div>
-  );
-}
-
 function DecisionExplorer() {
   const [selected, setSelected] = useState(0);
   const current = decisionPaths[selected] ?? decisionPaths[0];
   return (
-    <div className="mt-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+    <div className="grid min-w-0 gap-4">
+      <div className="grid min-w-0 gap-2 sm:grid-cols-2">
         {decisionPaths.map((path, index) => (
           <button
             aria-controls="decision-result"
@@ -559,79 +393,97 @@ export function Home() {
         />
       ))}
 
-      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-14 lg:py-14">
+      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-14 lg:py-16">
         <div
           aria-hidden="true"
           className="hero-grid absolute inset-0 opacity-70"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-10">
-            <div>
+          <div className="grid items-start gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
+            <div className="lg:pt-3">
               <p className="section-eyebrow text-accent-strong">
-                Choose customer software with evidence, not noise.
+                No vendor pays for placement or rankings.
               </p>
-              <h1 className="mt-3 max-w-[35rem] text-[clamp(2.5rem,10vw,3rem)] leading-[1.05] font-semibold tracking-[-0.045em] sm:mt-4 sm:text-[clamp(3rem,4.3vw,3.75rem)] sm:leading-[1.04]">
-                Compare Customer Software.
+              <h1 className="mt-3 max-w-[35rem] text-[clamp(2.75rem,11vw,3.25rem)] leading-[1.02] font-semibold tracking-[-0.05em] sm:mt-4 sm:text-[clamp(3.25rem,5vw,4.25rem)]">
+                Stop demoing.
                 <span className="block text-accent-strong">
-                  Choose With Evidence.
+                  Start deciding.
                 </span>
               </h1>
               <p className="mt-4 max-w-lg text-[1.0625rem] leading-7 text-muted-foreground sm:text-lg sm:leading-7">
-                Independent reviews, pricing guides, alternatives, and
-                head-to-head comparisons for growing teams.
+                Verified pricing, documented limitations, and honest
+                alternatives—drawn from provider documentation, not vendor
+                positioning. Tell us the problem you are solving and we will
+                show you the research paths that fit.
               </p>
-              <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground sm:text-[0.8125rem] sm:leading-5">
-                AI customer support <span aria-hidden="true">·</span> Business
-                phone &amp; voice AI <span aria-hidden="true">·</span> Live chat
-                &amp; messaging <span aria-hidden="true">·</span> CRM &amp;
-                customer engagement
+              <div className="hero-search mt-7" id="software-search">
+                <HomepageSearch />
+              </div>
+              <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                Search {editorialCoverageCounts.reviews} reviews,{' '}
+                {editorialCoverageCounts.comparisons} head-to-head comparisons,
+                and {editorialCoverageCounts.pricingGuides} pricing guides{' '}
+                <span aria-hidden="true">→</span>
               </p>
-              <div className="hero-conversion-flow flex flex-col">
-                <div className="hero-actions order-3 mt-4 flex flex-col gap-3 sm:order-1 sm:mt-4 sm:flex-row">
-                  <ButtonLink
-                    href="/#comparisons"
-                    className="sm:min-h-10 sm:px-4 sm:text-sm"
-                    size="lg"
-                    variant="secondary"
-                  >
-                    Browse Comparisons <Arrow />
-                  </ButtonLink>
-                </div>
-                <div
-                  className="hero-search order-1 sm:order-2"
-                  id="software-search"
-                >
-                  <HomepageSearch />
-                </div>
-                <div
-                  className="hero-intents order-2 mt-3 flex flex-wrap gap-2 sm:order-3 sm:mt-3 sm:flex-nowrap"
-                  aria-label="Quick discovery links"
-                >
-                  <Link
-                    className="hero-intent-chip"
-                    href="/comparisons"
-                    variant="unstyled"
-                  >
-                    Compare tools <Arrow />
-                  </Link>
-                  <Link
-                    className="hero-intent-chip"
-                    href="/guides"
-                    variant="unstyled"
-                  >
-                    Check pricing <Arrow />
-                  </Link>
-                  <Link
-                    className="hero-intent-chip"
-                    href="/alternatives"
-                    variant="unstyled"
-                  >
-                    Browse alternatives <Arrow />
-                  </Link>
-                </div>
+            </div>
+            <div
+              className="rounded-[2rem] border border-border bg-white/90 p-5 shadow-panel sm:p-7"
+              id="decision-path"
+            >
+              <p className="section-eyebrow text-accent-strong">
+                Start with your problem
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
+                What are you trying to improve?
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                Choose an operating need. Racklio will surface the relevant
+                research without pretending to calculate a universal answer.
+              </p>
+              <div className="mt-5">
+                <DecisionExplorer />
               </div>
             </div>
-            <HeroComparisonCard />
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-border py-14 sm:py-20">
+        <Container size="wide">
+          <SectionIntro
+            eyebrow="The real cost of a bad pick"
+            headingId="decision-cost-heading"
+            title="The subscription is the cheap part."
+            text="The visible plan price is only one part of a software decision. Usage rules, implementation work, team adoption, and contract scope can change the real cost after a choice is made."
+          />
+          <div
+            aria-labelledby="decision-cost-heading"
+            className="mt-8 grid gap-4 md:grid-cols-3"
+          >
+            {[
+              [
+                'Hidden pricing',
+                'Usage units, seat minimums, and configured add-ons may sit outside the headline plan price. Racklio surfaces the documented conditions buyers need to model.',
+              ],
+              [
+                'Sales-led evaluation',
+                'A provider demo explains that provider’s product. Independent analysis adds the missing question: where does the operating model stop fitting?',
+              ],
+              [
+                'Switching cost',
+                'Migration, retraining, and rebuilt integrations add time and cost beyond the subscription. Fit matters before a contract is signed.',
+              ],
+            ].map(([heading, body]) => (
+              <article
+                className="rounded-2xl border border-border bg-surface-raised p-6"
+                key={heading}
+              >
+                <h3 className="text-lg font-semibold">{heading}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  {body}
+                </p>
+              </article>
+            ))}
           </div>
         </Container>
       </section>
@@ -646,21 +498,21 @@ export function Home() {
               [
                 '✓',
                 'Official sources verified',
-                'Provider-controlled documentation',
+                'Pricing, limits, and capabilities come from provider-controlled documentation.',
               ],
               [
                 '—',
                 'No paid rankings',
-                'Commercial relationships do not set conclusions',
+                'Commercial relationships never set ordering, scoring, or conclusions.',
               ],
               [
                 '↳',
                 'Recommendations depend on fit',
-                'Workload and trade-offs come first',
+                'The right choice depends on workload, team, and operating constraints.',
               ],
             ].map(([icon, label, detail], index) => (
               <li
-                className={`flex min-h-24 items-center gap-3 py-5 sm:px-6 ${index ? 'border-t border-border sm:border-t-0 sm:border-l' : ''}`}
+                className={`flex min-h-28 items-center gap-3 py-5 sm:px-6 ${index ? 'border-t border-border sm:border-t-0 sm:border-l' : ''}`}
                 key={label}
               >
                 <span
@@ -678,51 +530,82 @@ export function Home() {
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
-
-      <section
-        aria-label="Racklio published coverage"
-        className="border-b border-border bg-surface-soft/45"
-      >
-        <Container size="wide">
-          <dl className="grid grid-cols-2 lg:grid-cols-5">
-            {[
-              [editorialCoverageCounts.reviews, 'Published reviews'],
-              [editorialCoverageCounts.comparisons, 'Comparisons'],
-              [editorialCoverageCounts.pricingGuides, 'Pricing guides'],
-              [editorialCoverageCounts.alternativesGuides, 'Alternatives'],
-              [editorialCoverageCounts.categories, 'Software categories'],
-            ].map(([value, label]) => (
-              <div
-                className="border-b border-border p-5 even:border-l last:border-b-0 lg:border-b-0 lg:border-l lg:first:border-l-0"
-                key={label}
-              >
-                <dd className="text-3xl font-semibold tracking-tight text-accent-strong">
-                  {value}
-                </dd>
-                <dt className="mt-1 text-xs font-semibold text-muted-foreground">
-                  {label}
-                </dt>
-              </div>
-            ))}
-          </dl>
+          <p className="border-t border-border py-4 text-center text-xs font-semibold tracking-[0.02em] text-muted-foreground">
+            Every material product fact is traced to provider documentation. No
+            sponsored placements. No pay-to-rank.
+          </p>
         </Container>
       </section>
 
       <Container className="space-y-20 py-16 sm:py-24" size="wide">
         <Reveal>
           <section
-            aria-labelledby="problem-heading"
-            className="rounded-[2rem] bg-surface-soft/65 p-6 sm:p-10"
+            className="overflow-hidden rounded-[2rem] bg-foreground p-7 text-white shadow-panel sm:p-10"
+            id="methodology"
+            aria-labelledby="process-heading"
           >
-            <SectionIntro
-              eyebrow="Decision paths"
-              headingId="problem-heading"
-              title="What are you trying to improve?"
-              text="Choose the operational problem first. Racklio will surface relevant research without pretending to calculate a universal answer."
-            />
-            <DecisionExplorer />
+            <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+              <div>
+                <SectionIntro
+                  eyebrow="How every page here gets made"
+                  headingId="process-heading"
+                  title="Research you can inspect, not a score you have to trust."
+                  text="Most review sites give you a number and ask you to believe it. Racklio shows the work."
+                  tone="dark"
+                />
+                <div className="mt-7 flex flex-wrap gap-2">
+                  <EvidenceLabel tone="fact">Provider fact</EvidenceLabel>
+                  <EvidenceLabel tone="analysis">
+                    Racklio analysis
+                  </EvidenceLabel>
+                  <EvidenceLabel tone="limit">Limitation</EvidenceLabel>
+                </div>
+              </div>
+              <ol className="grid gap-5 sm:grid-cols-2">
+                {steps.map((step) => (
+                  <li
+                    className="compact-utility-card rounded-xl border border-white/12 bg-white/5 p-5"
+                    key={step[0]}
+                  >
+                    <span className="grid size-9 place-items-center rounded-full bg-mint font-bold text-foreground">
+                      {step[0]}
+                    </span>
+                    <h3 className="mt-4 font-semibold">{step[1]}</h3>
+                    <p className="mt-2 text-xs leading-5 text-stone-300">
+                      {step[2]}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="mt-8 border-t border-white/12 pt-6">
+              <p className="max-w-3xl text-sm leading-6 text-stone-200">
+                Racklio may earn affiliate commission on some links. It never
+                affects rankings, scoring, or which tools appear.{' '}
+                <Link
+                  className="font-semibold text-mint"
+                  href="/affiliate-disclosure"
+                  variant="unstyled"
+                >
+                  Read the disclosure <Arrow />
+                </Link>
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <ButtonLink
+                  className="bg-mint text-foreground hover:bg-mint-hover"
+                  href="/methodology"
+                >
+                  Read methodology
+                </ButtonLink>
+                <ButtonLink
+                  className="border-white/25 bg-white/5 text-white hover:bg-white/10"
+                  href="/editorial-standards"
+                  variant="secondary"
+                >
+                  Editorial standards
+                </ButtonLink>
+              </div>
+            </div>
           </section>
         </Reveal>
 
@@ -731,8 +614,8 @@ export function Home() {
             <SectionIntro
               eyebrow="Featured research"
               headingId="software-heading"
-              title="Software decisions, framed for buyer fit"
-              text="Start with the operating requirement, then inspect provider facts, limitations, pricing, and alternatives."
+              title="Start with the problem. Not the product."
+              text="Every review opens with the operating requirement, then the provider facts, then where the tool stops fitting."
               action={
                 <Link className="group" href="/reviews">
                   All reviews <Arrow />
@@ -761,6 +644,12 @@ export function Home() {
                   <p className="mt-3 border-l-2 border-mint pl-3 text-xs leading-5 text-muted-foreground">
                     <strong className="text-foreground">Decision cue: </strong>
                     {item.cue}
+                  </p>
+                  <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                    <strong className="text-foreground">
+                      Not for you if:{' '}
+                    </strong>
+                    {item.notFor}
                   </p>
                   <div className="mt-auto flex flex-wrap gap-x-4 gap-y-2 border-t border-border pt-4 text-sm">
                     <span className="group inline-flex items-center gap-2 font-semibold">
@@ -807,10 +696,10 @@ export function Home() {
             className="rounded-[2rem] bg-surface-mint/55 p-6 sm:p-10"
           >
             <SectionIntro
-              eyebrow="Comparison explorer"
+              eyebrow="Head to head"
               headingId="comparison-heading"
-              title="Put operating models side by side"
-              text="No winner badge. Each comparison clarifies which differences matter for a specific workflow and buyer."
+              title="Two tools, side by side, no winner badge."
+              text="Each comparison shows which differences matter for a specific workflow—and which are feature-list noise."
               action={
                 <Link className="group" href="/comparisons">
                   All comparisons <Arrow />
@@ -856,8 +745,8 @@ export function Home() {
             <SectionIntro
               eyebrow="Four focused verticals"
               headingId="territories-heading"
-              title="Explore the customer software landscape"
-              text="Each category begins with a distinct operational problem and a focused set of evaluation criteria."
+              title="We cover four categories properly instead of forty badly."
+              text="Each category starts with the operational problem it solves and the criteria that actually separate the options."
             />
             <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2">
               {categories.map((item, index) => (
@@ -900,59 +789,76 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section
-            className="overflow-hidden rounded-[2rem] bg-foreground p-7 text-white shadow-panel sm:p-10"
-            id="methodology"
-            aria-labelledby="process-heading"
-          >
-            <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
-              <div>
-                <SectionIntro
-                  eyebrow="How Racklio decides"
-                  headingId="process-heading"
-                  title="Research made inspectable"
-                  text="Provider statements, verified facts, limitations, and Racklio analysis remain visibly distinct."
-                  tone="dark"
-                />
-                <div className="mt-7 flex flex-wrap gap-2">
-                  <EvidenceLabel tone="fact">Provider fact</EvidenceLabel>
-                  <EvidenceLabel tone="analysis">
-                    Racklio analysis
-                  </EvidenceLabel>
-                  <EvidenceLabel tone="limit">Limitation</EvidenceLabel>
-                </div>
-              </div>
-              <ol className="grid gap-5 sm:grid-cols-2">
-                {steps.map((step) => (
-                  <li
-                    className="compact-utility-card rounded-xl border border-white/12 bg-white/5 p-5"
-                    key={step[0]}
-                  >
-                    <span className="grid size-9 place-items-center rounded-full bg-mint font-bold text-foreground">
-                      {step[0]}
+          <section aria-labelledby="review-site-questions-heading">
+            <SectionIntro
+              eyebrow="Editorial transparency"
+              headingId="review-site-questions-heading"
+              title="Questions you should ask any review site"
+              text="The business model, evidence standard, and limits of the coverage should be clear before you rely on a recommendation."
+            />
+            <div className="mt-8 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-white">
+              {[
+                {
+                  question: 'How do you make money?',
+                  answer: (
+                    <>
+                      Racklio may earn affiliate commission on some links. No
+                      vendor can pay for placement, ordering, or a more
+                      favorable conclusion. Limitations remain on the page
+                      whether a commercial relationship exists or not.{' '}
+                      <Link href="/affiliate-disclosure">
+                        Read the full disclosure <Arrow />
+                      </Link>
+                    </>
+                  ),
+                },
+                {
+                  question: 'Why is there no “best” tool?',
+                  answer:
+                    'Because the right choice depends on team size, workflow, channels, constraints, and budget. Racklio explains which operating conditions fit each tool—and which do not—instead of publishing a universal ranking.',
+                },
+                {
+                  question: 'Where does your information come from?',
+                  answer: (
+                    <>
+                      Provider pricing pages, product documentation, help
+                      centers, and other provider-controlled sources. Provider
+                      facts remain visibly separate from Racklio analysis.{' '}
+                      <Link href="/methodology">
+                        Review the methodology <Arrow />
+                      </Link>
+                    </>
+                  ),
+                },
+                {
+                  question: 'How current is this?',
+                  answer:
+                    'Reviews and pricing guides carry verification dates so buyers can see when material product information was last checked. Current terms should still be confirmed directly with the provider before purchase.',
+                },
+                {
+                  question: 'Why does Racklio focus on four categories?',
+                  answer:
+                    'Focused coverage makes it possible to examine pricing mechanics, operating models, and limitations in greater depth instead of publishing thin summaries across unrelated software markets.',
+                },
+              ].map((item) => (
+                <details
+                  className="group px-5 py-5 sm:px-7"
+                  key={item.question}
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold marker:content-none">
+                    {item.question}
+                    <span
+                      aria-hidden="true"
+                      className="text-accent-strong transition-transform group-open:rotate-45"
+                    >
+                      +
                     </span>
-                    <h3 className="mt-4 font-semibold">{step[1]}</h3>
-                    <p className="mt-2 text-xs leading-5 text-stone-300">
-                      {step[2]}
-                    </p>
-                  </li>
-                ))}
-              </ol>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink
-                className="bg-mint text-foreground hover:bg-mint-hover"
-                href="/methodology"
-              >
-                Read methodology
-              </ButtonLink>
-              <ButtonLink
-                className="border-white/25 bg-white/5 text-white hover:bg-white/10"
-                href="/editorial-standards"
-                variant="secondary"
-              >
-                Editorial standards
-              </ButtonLink>
+                  </summary>
+                  <div className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
             </div>
           </section>
         </Reveal>
@@ -964,20 +870,20 @@ export function Home() {
                 Make the next decision clearer
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">
-                Start with the software problem your team needs to solve.
+                What are you trying to fix?
               </h2>
               <p className="mt-4 leading-7 text-muted-foreground">
-                Explore focused categories or open an evidence-first comparison
-                without a score, ranking, or manufactured winner.
+                Pick the problem. We will show you the tools that fit it, the
+                ones that may not, and why.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <ButtonLink href="/#categories">
-                  Explore categories <Arrow />
-                </ButtonLink>
-                <ButtonLink href="/comparisons" variant="secondary">
-                  Browse comparisons
+              <div className="mt-7">
+                <ButtonLink href="/#decision-path">
+                  Start with your problem <Arrow />
                 </ButtonLink>
               </div>
+              <p className="mt-4 text-xs font-semibold text-muted-foreground">
+                Free. No signup. No vendor gets your details.
+              </p>
             </div>
           </section>
         </Reveal>

@@ -24,7 +24,7 @@ export function ProviderAction({
   if (variant === 'compact') {
     return (
       <div className="min-w-0 max-w-full">
-        <p className="text-sm font-semibold">If this fits your team:</p>
+        <p className="text-sm font-semibold">If the fit matches your team:</p>
         <div className="mt-2.5 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
           <ButtonLink
             className="w-full sm:w-auto"
@@ -37,7 +37,7 @@ export function ProviderAction({
             }
             target="_blank"
           >
-            {actionLabel ?? `See ${name} plans`}{' '}
+            {actionLabel ?? `Check current ${name} plans`}{' '}
             <span aria-hidden="true">↗</span>
           </ButtonLink>
           {secondaryHref && secondaryLabel ? (
@@ -61,11 +61,13 @@ export function ProviderAction({
 
   return (
     <aside className="provider-action min-w-0 max-w-full rounded-[1.75rem] border border-brand/20 bg-surface-mint/55 p-6 sm:p-7">
-      <p className="section-eyebrow text-mint-deep">Next step</p>
+      <p className="section-eyebrow text-mint-deep">
+        Make the next step concrete
+      </p>
       <div className="mt-4 grid min-w-0 gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
         <div className="min-w-0">
           <h3 className="break-words text-xl font-semibold tracking-[-0.03em]">
-            Check {name} against your team’s requirements.
+            Confirm {name} against your requirements.
           </h3>
           {fit ? (
             <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
@@ -89,7 +91,7 @@ export function ProviderAction({
             }
             target="_blank"
           >
-            {actionLabel ?? `See ${name} plans`}{' '}
+            {actionLabel ?? `Check current ${name} plans`}{' '}
             <span aria-hidden="true">↗</span>
           </ButtonLink>
           {secondaryHref && secondaryLabel ? (

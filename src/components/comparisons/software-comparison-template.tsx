@@ -221,10 +221,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink href="#overview" variant="secondary">
-                  Compare the evidence
+                  See the differences that matter
                 </ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
-                  See scenario guidance
+                  Find your scenario
                 </ButtonLink>
               </div>
               <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
@@ -232,7 +232,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 Outbound provider links are not affiliate links at publication.
               </p>
             </div>
-            <DecisionSummary items={data.summary} title="Quick decision" />
+            <DecisionSummary
+              items={data.summary}
+              title="Which operating model fits?"
+            />
           </div>
           <div className="mt-8">
             <VerificationStrip date={data.verificationDate ?? 'August 2026'} />
@@ -279,8 +282,8 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ReviewSection
                 code="D0"
                 id="overview"
-                title="Decision snapshot"
-                description={`The documented differences between ${data.a} and ${data.b} that matter most.`}
+                title="The decision in one screen"
+                description={`The differences between ${data.a} and ${data.b} that can actually change the buying decision.`}
               >
                 {data.factors[0] ? (
                   <div className="mb-6">
@@ -421,8 +424,8 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ReviewSection
                 code="M0"
                 id="scenarios"
-                title="Scenario-based decision matrix"
-                description="Conditional guidance based on documented product scope, billing, and workflow."
+                title="Which side fits your situation?"
+                description="Match your operating scenario to documented product scope, billing, and workflow—without a universal winner."
               >
                 <div className="hidden overflow-x-auto rounded-xl border border-brand/20 bg-white sm:block">
                   <table className="w-full min-w-[38rem] text-left text-sm">
@@ -478,8 +481,8 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ReviewSection
                 code="F0"
                 id="faq"
-                title="Frequently asked questions"
-                description="Direct answers to practical buyer questions."
+                title="Questions to settle before you choose"
+                description="Direct answers to the objections and purchasing conditions that can change the decision."
               >
                 <div className="divide-y divide-border border-y border-border">
                   {data.faqs.map((x) => (
@@ -499,13 +502,13 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </ReviewSection>
               <aside className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-surface-raised p-5 shadow-card sm:p-6">
                 <p className="section-eyebrow text-mint-deep">
-                  Verify your leading option
+                  Turn the comparison into a decision
                 </p>
                 <div className="mt-3 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
                   <p className="break-words text-sm leading-6 text-muted-foreground">
-                    Use the decision matrix as a starting point, then confirm
-                    current scope, pricing, and terms directly with the provider
-                    that fits your workflow.
+                    Choose the operating model that matches your workflow, then
+                    confirm current scope, pricing, and terms directly with that
+                    provider.
                   </p>
                   <div className="flex flex-wrap gap-3 md:justify-end">
                     <ButtonLink
@@ -515,7 +518,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       target="_blank"
                       variant="secondary"
                     >
-                      Explore {data.a} <span aria-hidden="true">↗</span>
+                      Check {data.a} plans <span aria-hidden="true">↗</span>
                     </ButtonLink>
                     <ButtonLink
                       data-cta-kind="comparison-provider-action"
@@ -524,7 +527,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       target="_blank"
                       variant="secondary"
                     >
-                      Explore {data.b} <span aria-hidden="true">↗</span>
+                      Check {data.b} plans <span aria-hidden="true">↗</span>
                     </ButtonLink>
                   </div>
                 </div>
@@ -532,8 +535,8 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ReviewSection
                 code="S0"
                 id="sources"
-                title="Sources and methodology"
-                description="Provider-primary research, not fabricated product testing."
+                title="Check the evidence"
+                description="Provider-primary sources, visible verification dates, and no fabricated product testing."
               >
                 <p className="break-words leading-7">
                   Sources accessed {data.verificationDate ?? 'August 2026'}.

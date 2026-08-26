@@ -294,15 +294,15 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                     rel="sponsored noopener noreferrer"
                     target="_blank"
                   >
-                    Visit {data.name}
+                    Check current {data.name} plans
                   </ButtonLink>
                 ) : (
                   <ButtonLink href="#overview" variant="secondary">
-                    Review the evidence
+                    See whether {data.name} fits
                   </ButtonLink>
                 )}
                 <ButtonLink href="#decision" variant="secondary">
-                  Decision Guidance
+                  Find your scenario
                 </ButtonLink>
               </div>
               <p className="mt-3 break-words text-xs leading-5 text-muted-foreground">
@@ -318,12 +318,12 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   href={commercialUrl}
                   name={data.name}
                   secondaryHref="#pricing"
-                  secondaryLabel="Review pricing"
+                  secondaryLabel="See the real cost"
                   variant="compact"
                 />
               }
               items={quickDecision}
-              title="Review decision"
+              title={`Should ${data.name} make your shortlist?`}
             />
           </div>
           <div className="mt-5">
@@ -371,8 +371,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               <ReviewSection
                 code="A0"
                 id="overview"
-                title="At a glance"
-                description={`Who should consider ${data.name}, and when another category may fit better.`}
+                title="The short answer"
+                description={`See who should shortlist ${data.name}, who should look elsewhere, and why.`}
               >
                 <div className="grid min-w-0 max-w-full gap-5 md:grid-cols-2">
                   <Card className="border-mint-deep/20 bg-mint-subtle/30">
@@ -409,8 +409,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 <ReviewSection
                   code="C0"
                   id="capabilities"
-                  title="Key capabilities"
-                  description="Buyer-oriented capability groups documented by the provider."
+                  title="What you are actually buying"
+                  description="The provider-documented capabilities that change the operating fit."
                 >
                   <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
                     {data.capabilities.map((capability) => (
@@ -431,8 +431,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               <ReviewSection
                 code="P0"
                 id="pricing"
-                title="Pricing and billing"
-                description={`Pricing verified: ${verificationDate}. Review the billing unit, not only the headline price.`}
+                title="What it will actually cost"
+                description={`Pricing verified: ${verificationDate}. Start with the billing unit, allowances, and conditions—not the headline price alone.`}
               >
                 <div className="mb-6">
                   <TrueCostFactors factors={pricingFactors} />
@@ -549,8 +549,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               <ReviewSection
                 code="D0"
                 id="decision"
-                title="Scenario-based decision guidance"
-                description="Use the documented operating model to decide whether this product belongs on the shortlist."
+                title={`Is ${data.name} right for your situation?`}
+                description="Find the scenario closest to your team, then use the documented operating model to decide whether the product belongs on your shortlist."
               >
                 <div className="hidden overflow-x-auto border border-border sm:block">
                   <table className="w-full min-w-[38rem] text-left text-sm">
@@ -603,8 +603,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 <ReviewSection
                   code="T0"
                   id={tradeoffsId}
-                  title="Strengths and limitations"
-                  description="Racklio analysis of where the documented product model helps and where it introduces trade-offs."
+                  title="Where the fit holds—and where it breaks"
+                  description="Racklio analysis of the documented strengths buyers gain and the trade-offs they accept."
                 >
                   <div className="grid min-w-0 max-w-full gap-5 md:grid-cols-2">
                     <EvidenceBlock label="Strength" tone="fact">
@@ -634,8 +634,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 <ReviewSection
                   code="A1"
                   id="alternatives"
-                  title="Alternatives to consider"
-                  description="Category overlap does not make products interchangeable; start with the workflow difference."
+                  title="If the fit breaks, look here"
+                  description="Category overlap does not make products interchangeable. Start with the workflow or cost condition that makes this option a poor fit."
                 >
                   <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
                     {data.alternatives.map((alternative) => (
@@ -662,8 +662,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               <ReviewSection
                 code="F0"
                 id="faq"
-                title="Frequently asked questions"
-                description="Direct answers to practical buyer questions."
+                title="Questions to settle before you choose"
+                description="Direct answers to the objections and purchasing conditions that can change the decision."
               >
                 <div className="divide-y divide-border border-y border-border">
                   {data.faqs.map((x) => (
@@ -687,14 +687,14 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 href={commercialUrl}
                 name={data.name}
                 secondaryHref="#pricing"
-                secondaryLabel="Review pricing"
+                secondaryLabel="See the real cost"
                 watchOut={data.notFit[0]}
               />
               <ReviewSection
                 code="S0"
                 id="sources"
-                title="Sources and methodology"
-                description="Provider-primary research, not fabricated product testing."
+                title="Check the evidence"
+                description="Provider-primary sources, visible verification dates, and no fabricated product testing."
               >
                 <p className="break-words leading-7">
                   Sources accessed {verificationDate}. Provider statements

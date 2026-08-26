@@ -236,7 +236,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             </div>
             <div className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
               <p className="text-xs font-semibold tracking-[0.12em] text-brand uppercase">
-                Buyer perspective
+                The decision in one sentence
               </p>
               <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                 {data.introduction}
@@ -253,9 +253,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
         >
           <section aria-labelledby="quick-decision-heading">
             <SectionHeading
-              eyebrow="Quick decision"
+              eyebrow="Start with fit"
               id="quick-decision-heading"
-              title="Match the category to the operating need"
+              title="Is this the right category for your problem?"
             />
             <dl className="mt-5 grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2">
               {data.quickDecision.map((item) => (
@@ -274,18 +274,18 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section aria-labelledby="start-heading">
             <SectionHeading
-              eyebrow="Start here"
+              eyebrow="Reduce the field"
               id="start-heading"
-              title="Choose the decision that matches your need"
+              title="Choose the problem that matches your need"
             />
             <LinkCards items={data.startPaths} />
           </section>
 
           <section aria-labelledby="scenario-heading">
             <SectionHeading
-              eyebrow="Scenario guidance"
+              eyebrow="Find your situation"
               id="scenario-heading"
-              title="Which product model fits which situation?"
+              title="Which operating model fits your situation?"
             />
             <div
               aria-label={`${data.shortTitle} scenario decision matrix`}
@@ -323,9 +323,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section aria-labelledby="software-heading">
             <SectionHeading
-              eyebrow="Current coverage"
+              eyebrow="Start with buyer fit"
               id="software-heading"
-              title="Featured software research"
+              title="See who each product is actually for"
             />
             {data.products.length ? (
               <LinkCards items={data.products} />
@@ -346,9 +346,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section aria-labelledby="comparison-heading">
             <SectionHeading
-              eyebrow="Decision comparisons"
+              eyebrow="Put the finalists side by side"
               id="comparison-heading"
-              title="Relevant comparisons"
+              title="Compare the differences that can change the decision"
             />
             {data.comparisons.length ? (
               <LinkCards items={data.comparisons} />
@@ -372,9 +372,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           {data.alternativeGuides.length ? (
             <section aria-labelledby="alternatives-heading">
               <SectionHeading
-                eyebrow="Replacement paths"
+                eyebrow="When the first fit fails"
                 id="alternatives-heading"
-                title="Relevant alternative guides"
+                title="Find a replacement for the reason you are switching"
               />
               <LinkCards items={data.alternativeGuides} />
             </section>
@@ -383,9 +383,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           {data.guides.length ? (
             <section aria-labelledby="guides-heading">
               <SectionHeading
-                eyebrow="Cost and scope"
+                eyebrow="Model the cost before you commit"
                 id="guides-heading"
-                title="Related buying guides"
+                title="See what changes the configured price"
               />
               <LinkCards items={data.guides} />
             </section>
@@ -393,9 +393,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section aria-labelledby="factors-heading">
             <SectionHeading
-              eyebrow="Evaluation framework"
+              eyebrow="Ignore the feature-list noise"
               id="factors-heading"
-              title="What to compare"
+              title="What can actually change your decision"
             />
             <div className="mt-5 grid overflow-hidden rounded-lg border border-border bg-white shadow-card sm:grid-cols-2 lg:grid-cols-3">
               {data.factors.map((factor, index) => (
@@ -418,7 +418,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           <section className="grid gap-4 lg:grid-cols-2">
             <article className="rounded-2xl border border-border bg-white p-6 shadow-card">
               <h2 className="text-xl font-semibold tracking-[-0.03em]">
-                Who this category is for
+                Shortlist this category when
               </h2>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground">
                 {data.audience.map((item) => (
@@ -430,7 +430,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             </article>
             <article className="rounded-2xl border border-border bg-white p-6 shadow-card">
               <h2 className="text-xl font-semibold tracking-[-0.03em]">
-                Who may need something else
+                Look elsewhere when
               </h2>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground">
                 {data.alternatives.map((item) => (
@@ -444,9 +444,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section aria-labelledby="tradeoffs-heading">
             <SectionHeading
-              eyebrow="Decision boundaries"
+              eyebrow="Know the trade before you buy"
               id="tradeoffs-heading"
-              title="Meaningful trade-offs"
+              title="What you gain—and what you give up"
             />
             <div className="mt-5 grid gap-4 md:grid-cols-2">
               {data.tradeoffs.map((item) => (
@@ -466,9 +466,9 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           {data.faqs.length ? (
             <section aria-labelledby="faq-heading">
               <SectionHeading
-                eyebrow="Buyer questions"
+                eyebrow="Remove the remaining doubt"
                 id="faq-heading"
-                title={`Questions about ${data.shortTitle}`}
+                title={`Questions to settle before choosing ${data.shortTitle}`}
               />
               <div className="mt-5 divide-y divide-border border-y border-border">
                 {data.faqs.map((item) => (
@@ -489,7 +489,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           >
             <div>
               <h2 className="font-semibold" id="trust-heading">
-                Evidence before recommendations
+                Check the evidence before the recommendation
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                 Racklio separates official provider facts from editorial
@@ -530,11 +530,11 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
                   className="text-2xl font-semibold tracking-[-0.04em]"
                   id="next-heading"
                 >
-                  Continue your software decision
+                  What should you do next?
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Move from category fit to product evidence and direct
-                  comparisons.
+                  Pick a product only after the category, cost model, and
+                  operating trade-offs match your team.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -610,20 +610,20 @@ export function CategoryHubTemplate({
           <div className="grid min-w-0 items-center gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(22rem,0.9fr)] lg:gap-12">
             <div className="min-w-0">
               <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
-                Software category map
+                Choose the problem first
               </p>
               <h1 className="mt-5 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.05em] sm:text-5xl">
-                Customer Service Software Categories
+                Start With the Software Problem, Not the Product
               </h1>
               <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
-                Start with the customer workflow your business needs to improve,
-                then move into relevant product reviews, direct comparisons, and
-                evidence-based buying guidance.
+                Choose the customer workflow that needs to improve. Racklio will
+                take you to the product evidence, pricing mechanics, and direct
+                comparisons that matter for that decision.
               </p>
             </div>
             <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
               <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
-                Category decision map
+                Four problems. Four starting points.
               </p>
               <ol className="mt-4 divide-y divide-border">
                 {categoryMembership.map(({ category, products }, index) => (
@@ -662,13 +662,13 @@ export function CategoryHubTemplate({
             <div className="grid gap-5 lg:grid-cols-[0.55fr_1fr] lg:items-end">
               <div>
                 <p className="text-xs font-semibold tracking-[0.14em] text-brand uppercase">
-                  Racklio taxonomy
+                  Four focused decision paths
                 </p>
                 <h2
                   className="mt-3 text-2xl font-semibold tracking-[-0.04em] sm:text-3xl"
                   id="taxonomy-heading"
                 >
-                  Explore by what you need
+                  What are you trying to improve?
                 </h2>
               </div>
               <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
@@ -715,7 +715,7 @@ export function CategoryHubTemplate({
                       .join(', ')}
                   </p>
                   <span className="mt-auto pt-6 font-semibold">
-                    Explore category &rarr;
+                    Start here &rarr;
                   </span>
                 </ClickableCard>
               ))}
@@ -758,7 +758,7 @@ export function CategoryHubTemplate({
           <section className="grid items-center gap-5 rounded-2xl border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
             <div>
               <h2 className="font-semibold">
-                Categories built around buyer decisions
+                The category map is not pay-to-play
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                 Products are included for category relevance and documented

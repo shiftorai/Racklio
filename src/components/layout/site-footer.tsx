@@ -1,4 +1,4 @@
-import { RacklioLogo, RACKLIO_TAGLINE } from '@/components/brand';
+import { RacklioLogo } from '@/components/brand';
 import { Link } from '@/components/ui';
 
 import { Footer } from './footer';
@@ -46,8 +46,6 @@ export function SiteFooter() {
       brand={<RacklioLogo tone="dark" />}
       legal={
         <>
-          Racklio &mdash; {RACKLIO_TAGLINE}
-          <br />
           Independent software research operated by Keleva LLC.
           <br />
           &copy; {new Date().getFullYear()} Keleva LLC

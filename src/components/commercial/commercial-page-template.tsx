@@ -73,6 +73,16 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
     : isAlternativesGuide
       ? 'Alternatives guide'
       : data.eyebrow;
+  const overviewTitle = isPricingGuide
+    ? 'The cost in one screen'
+    : isAlternativesGuide
+      ? 'The replacement decision in one screen'
+      : 'The decision in one screen';
+  const overviewDescription = isPricingGuide
+    ? 'See the billing model, included scope, and conditions that can change the configured cost.'
+    : isAlternativesGuide
+      ? `Start with why ${data.provider} may not fit, then compare replacement paths that solve a different constraint.`
+      : 'The published facts and decision implications that matter first.';
   const commercialText = [
     ...data.table.rows.flat(),
     ...data.summary.flatMap((item) => [item.label, item.text]),
@@ -234,10 +244,14 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <ButtonLink href="#overview" variant="secondary">
-                  Review the evidence
+                  {isPricingGuide
+                    ? 'See what changes the real cost'
+                    : isAlternativesGuide
+                      ? 'See the replacement paths'
+                      : 'See the decision first'}
                 </ButtonLink>
                 <ButtonLink href="#scenarios" variant="secondary">
-                  See decision scenarios
+                  Find your scenario
                 </ButtonLink>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
@@ -249,10 +263,10 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               items={summaryItems}
               title={
                 isPricingGuide
-                  ? 'Pricing decision'
+                  ? `What will ${data.provider} really cost?`
                   : isAlternativesGuide
-                    ? 'Alternatives decision'
-                    : 'Decision summary'
+                    ? `When should you replace ${data.provider}?`
+                    : `Should ${data.provider} make your shortlist?`
               }
             />
           </div>
@@ -270,9 +284,9 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
             <article className="min-w-0 space-y-9 sm:space-y-10">
               <ReviewSection
                 code="D0"
-                description="The published facts and decision implications that matter first."
+                description={overviewDescription}
                 id="overview"
-                title="Decision snapshot"
+                title={overviewTitle}
               >
                 {isPricingGuide ? (
                   <div className="mb-6">
@@ -433,9 +447,9 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               ))}
               <ReviewSection
                 code="M0"
-                description="Conditional guidance based on documented scope, pricing, and workflow."
+                description="Match the closest operating scenario to documented scope, pricing, and workflow before you choose."
                 id="scenarios"
-                title="Scenario-based decision guidance"
+                title="Which scenario matches your team?"
               >
                 <div
                   aria-label="Scenario decision table"
@@ -498,9 +512,9 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               </ReviewSection>
               <ReviewSection
                 code="F0"
-                description="Direct answers to practical purchasing questions."
+                description="Direct answers to the objections and purchasing conditions that can change the decision."
                 id="faq"
-                title="Questions buyers ask before choosing"
+                title="Questions to settle before you choose"
               >
                 <div className="divide-y divide-border border-y border-border">
                   {data.faqs.map((item) => (
@@ -519,21 +533,21 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 actionLabel={
                   isPricingGuide
                     ? `Check current ${data.provider} pricing`
-                    : `Explore ${data.provider}`
+                    : `Check current ${data.provider} plans`
                 }
                 affiliate={usesAffiliateLink}
                 fit={data.summary[0]?.text}
                 href={commercialUrl}
                 name={data.provider}
                 secondaryHref="#sources"
-                secondaryLabel="Review sources"
+                secondaryLabel="Check the evidence"
                 watchOut={data.summary[1]?.text}
               />
               <ReviewSection
                 code="S0"
-                description="Official provider-controlled pages used for this analysis."
+                description="Provider-controlled sources, visible verification dates, and no fabricated product testing."
                 id="sources"
-                title="Sources reviewed"
+                title="Check the evidence"
               >
                 <p className="leading-7">
                   Sources accessed {data.verificationDate}. Provider facts and
@@ -562,7 +576,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       rel="sponsored noopener noreferrer"
                       target="_blank"
                     >
-                      Visit {data.provider}
+                      Check current {data.provider} plans
                     </ButtonLink>
                   ) : null}
                   {data.related.slice(0, 2).map((link) => (
