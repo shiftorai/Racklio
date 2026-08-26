@@ -330,7 +330,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             {data.products.length ? (
               <LinkCards items={data.products} />
             ) : (
-              <div className="mt-5 rounded-lg border border-border bg-white p-6 shadow-card">
+              <div className="mt-5 rounded-2xl border border-border bg-white p-6 shadow-card">
                 <p className="font-semibold">
                   Dedicated Racklio reviews are not yet published for this
                   category.
@@ -353,7 +353,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             {data.comparisons.length ? (
               <LinkCards items={data.comparisons} />
             ) : (
-              <div className="mt-5 rounded-lg border border-border bg-white p-6 shadow-card">
+              <div className="mt-5 rounded-2xl border border-border bg-white p-6 shadow-card">
                 <p className="font-semibold">
                   No dedicated comparison is currently published for this
                   category.
@@ -416,7 +416,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           </section>
 
           <section className="grid gap-4 lg:grid-cols-2">
-            <article className="rounded-lg border border-border bg-white p-6 shadow-card">
+            <article className="rounded-2xl border border-border bg-white p-6 shadow-card">
               <h2 className="text-xl font-semibold tracking-[-0.03em]">
                 Who this category is for
               </h2>
@@ -428,7 +428,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
                 ))}
               </ul>
             </article>
-            <article className="rounded-lg border border-border bg-white p-6 shadow-card">
+            <article className="rounded-2xl border border-border bg-white p-6 shadow-card">
               <h2 className="text-xl font-semibold tracking-[-0.03em]">
                 Who may need something else
               </h2>
@@ -451,7 +451,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             <div className="mt-5 grid gap-4 md:grid-cols-2">
               {data.tradeoffs.map((item) => (
                 <article
-                  className="rounded-lg border border-border bg-white p-5 shadow-card"
+                  className="rounded-2xl border border-border bg-white p-5 shadow-card"
                   key={item.title}
                 >
                   <h3 className="font-semibold">{item.title}</h3>
@@ -485,7 +485,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section
             aria-labelledby="trust-heading"
-            className="grid items-center gap-5 rounded-lg border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]"
+            className="grid items-center gap-5 rounded-2xl border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]"
           >
             <div>
               <h2 className="font-semibold" id="trust-heading">
@@ -522,7 +522,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
 
           <section
             aria-labelledby="next-heading"
-            className="rounded-lg border border-border bg-white p-6 shadow-card sm:p-8"
+            className="rounded-2xl border border-border bg-white p-6 shadow-card sm:p-8"
           >
             <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto]">
               <div>
@@ -741,7 +741,7 @@ export function CategoryHubTemplate({
               ],
             ].map(([number, heading, copy]) => (
               <article
-                className="rounded-lg border border-border bg-white p-5 shadow-card"
+                className="rounded-2xl border border-border bg-white p-5 shadow-card"
                 key={number}
               >
                 <span className="grid size-8 place-items-center rounded-full bg-brand text-sm font-semibold text-white">
@@ -755,7 +755,7 @@ export function CategoryHubTemplate({
             ))}
           </section>
 
-          <section className="grid items-center gap-5 rounded-lg border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
+          <section className="grid items-center gap-5 rounded-2xl border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
             <div>
               <h2 className="font-semibold">
                 Categories built around buyer decisions
