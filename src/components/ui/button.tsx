@@ -33,7 +33,7 @@ function buttonStyles({
   variant?: ButtonVariant;
 } = {}) {
   return cn(
-    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border font-semibold whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 disabled:pointer-events-none disabled:opacity-50',
+    'inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border font-semibold whitespace-nowrap transition-[color,background-color,border-color,transform,box-shadow] duration-200 disabled:pointer-events-none disabled:opacity-50',
     variants[variant],
     sizes[size],
     className,

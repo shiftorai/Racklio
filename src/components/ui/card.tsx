@@ -8,7 +8,7 @@ export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className={cn(
-        'min-w-0 max-w-full rounded-xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200',
+        'min-w-0 max-w-full rounded-2xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200',
         className,
       )}
       {...props}
@@ -67,7 +67,7 @@ export function ClickableCard({
   return (
     <article
       className={cn(
-        'group isolate relative cursor-pointer rounded-xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-panel active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none',
+        'group isolate relative cursor-pointer rounded-2xl border border-border bg-surface-raised text-foreground shadow-card transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-panel active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none',
         className,
       )}
       {...props}

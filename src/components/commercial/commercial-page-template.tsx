@@ -4,6 +4,7 @@ import {
   DecisionSummary,
   deriveTrueCostFactors,
   EvidenceBlock,
+  ProviderAction,
   RelatedDecisionLinks,
   SectionNavigation,
   TrueCostFactors,
@@ -225,10 +226,10 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               <div className="mt-5">
                 <ResearchMarker code={data.code} label={data.eyebrow} />
               </div>
-              <h1 className="mt-5 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-5 max-w-4xl break-words text-4xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(3.25rem,5vw,4.75rem)] sm:leading-[0.98]">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground sm:text-xl">
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -512,6 +513,20 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   ))}
                 </div>
               </ReviewSection>
+              <ProviderAction
+                actionLabel={
+                  isPricingGuide
+                    ? `Check current ${data.provider} pricing`
+                    : `Explore ${data.provider}`
+                }
+                affiliate={usesAffiliateLink}
+                fit={data.summary[0]?.text}
+                href={commercialUrl}
+                name={data.provider}
+                secondaryHref="#sources"
+                secondaryLabel="Review sources"
+                watchOut={data.summary[1]?.text}
+              />
               <ReviewSection
                 code="S0"
                 description="Official provider-controlled pages used for this analysis."

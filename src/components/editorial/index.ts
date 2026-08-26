@@ -9,6 +9,7 @@ export {
   TrueCostFactors,
   VerificationStrip,
 } from './decision-system';
+export { ProviderAction } from './provider-action';
 export {
   deriveTrueCostFactors,
   type DecisionItem,

@@ -26,14 +26,14 @@ export function ReviewSection({
     <section
       aria-labelledby={`${id}-heading`}
       className={cn(
-        'min-w-0 max-w-full scroll-mt-28 border-t border-border pt-9',
+        'min-w-0 max-w-full scroll-mt-28 border-t border-border pt-10 sm:pt-12',
         className,
       )}
       id={id}
     >
       <ResearchMarker code={code} label={label} />
       <h2
-        className="mt-4 break-words text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
+        className="mt-4 break-words text-3xl leading-[1.02] font-semibold tracking-[-0.04em] sm:text-4xl"
         id={`${id}-heading`}
       >
         {title}

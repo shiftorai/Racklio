@@ -203,7 +203,7 @@ export function HomepageSearch() {
       <label className="sr-only" htmlFor={inputId}>
         Search Racklio software research
       </label>
-      <div className="homepage-search-shell flex items-center gap-3 rounded-2xl border border-white/70 bg-white/92 p-2 shadow-panel backdrop-blur-md">
+      <div className="homepage-search-shell flex items-center gap-3 rounded-2xl border border-white/70 bg-white/92 p-1.5 shadow-panel backdrop-blur-md sm:p-2">
         <span
           aria-hidden="true"
           className="search-icon ml-3 shrink-0 text-accent-strong"
@@ -217,7 +217,7 @@ export function HomepageSearch() {
           aria-autocomplete="list"
           aria-controls={listId}
           aria-expanded={showResults}
-          className="min-h-12 min-w-0 flex-1 bg-transparent px-1 text-sm text-foreground outline-none placeholder:text-muted-foreground sm:text-base"
+          className="min-h-12 min-w-0 flex-1 bg-transparent px-1 text-sm text-foreground outline-none placeholder:text-muted-foreground sm:min-h-11 sm:text-base"
           id={inputId}
           onChange={(event) => {
             setQuery(event.target.value);

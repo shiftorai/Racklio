@@ -33,7 +33,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/75 bg-surface/88 shadow-[0_1px_0_rgb(255_255_255/.7)] backdrop-blur-xl">
       <Container size="wide">
-        <div className="flex min-h-16 items-center justify-between gap-5">
+        <div className="flex min-h-16 items-center justify-between gap-5 lg:min-h-14">
           <Link
             aria-label="Racklio home"
             className="shrink-0"
@@ -45,7 +45,7 @@ export function SiteHeader() {
 
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-7 lg:flex"
+            className="hidden items-center gap-6 lg:flex"
           >
             <NavigationLinks />
           </nav>

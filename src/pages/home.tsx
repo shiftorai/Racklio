@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 
 import {
   CategoryPill,
@@ -321,7 +321,7 @@ function SectionIntro({
           {eyebrow}
         </p>
         <h2
-          className="mt-3 text-3xl leading-tight font-semibold tracking-[-0.045em] sm:text-4xl"
+          className="mt-3 text-3xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(2.75rem,4vw,3.75rem)]"
           id={headingId}
         >
           {title}
@@ -339,25 +339,59 @@ function SectionIntro({
 
 function HeroComparisonCard() {
   const [selected, setSelected] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [manualSelection, setManualSelection] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const current = heroComparisons[selected] ?? heroComparisons[0];
 
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (isHovering || manualSelection || reducedMotion) return;
+
+    const timer = window.setInterval(() => {
+      setSelected(
+        (currentIndex) => (currentIndex + 1) % heroComparisons.length,
+      );
+    }, 6000);
+
+    return () => window.clearInterval(timer);
+  }, [isHovering, manualSelection, reducedMotion]);
+
+  const selectComparison = (index: number) => {
+    setManualSelection(true);
+    setSelected(index);
+  };
+
   return (
-    <div className="hero-comparison-stage relative mx-auto w-full max-w-xl py-3 sm:px-5 sm:py-4 lg:-translate-y-6">
-      <article className="primary-decision-card relative overflow-hidden rounded-[1.75rem] border border-white/80 bg-white/92 p-5 shadow-panel sm:p-6">
+    <div className="hero-comparison-stage relative isolate mx-auto w-full max-w-lg py-2 sm:px-4 sm:py-3 lg:-translate-y-6">
+      <article
+        className="primary-decision-card relative overflow-hidden rounded-[2rem] border border-white/80 bg-white/88 p-4 shadow-panel sm:p-6"
+        onFocusCapture={() => setManualSelection(true)}
+        onPointerEnter={() => setIsHovering(true)}
+        onPointerLeave={() => setIsHovering(false)}
+        onTouchStart={() => setManualSelection(true)}
+      >
         <EvidenceLabel tone="verified">Official sources verified</EvidenceLabel>
         <div
           aria-label="Choose a comparison"
-          className="hero-comparison-tabs mt-3 flex gap-1 overflow-x-auto pb-1"
+          className="hero-comparison-tabs mt-2 flex gap-1 overflow-x-auto pb-1"
           role="tablist"
         >
           {heroComparisons.map((comparison, index) => (
             <button
               aria-controls="hero-comparison-panel"
               aria-selected={selected === index}
-              className={`min-h-10 shrink-0 rounded-lg px-2 text-xs font-semibold sm:px-2.5 ${selected === index ? 'is-selected' : ''}`}
+              className={`min-h-10 shrink-0 rounded-lg px-2 text-xs font-semibold sm:min-h-9 ${selected === index ? 'is-selected' : ''}`}
               id={`hero-comparison-tab-${index}`}
               key={comparison.href}
-              onClick={() => setSelected(index)}
+              onClick={() => selectComparison(index)}
               role="tab"
               type="button"
             >
@@ -367,35 +401,50 @@ function HeroComparisonCard() {
         </div>
         <div
           aria-labelledby={`hero-comparison-tab-${selected}`}
-          className="hero-comparison-content"
+          aria-live="off"
+          className="hero-comparison-content relative"
           id="hero-comparison-panel"
           key={current.href}
           role="tabpanel"
         >
-          <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+          {!reducedMotion && !manualSelection ? (
+            <span
+              aria-hidden="true"
+              className="absolute top-0 left-0 h-0.5 bg-mint motion-safe:animate-[hero-progress_6s_linear_forwards]"
+              key={current.href}
+              style={{ width: '100%' }}
+            />
+          ) : null}
+          <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
             <div className="flex flex-col items-center text-center">
-              <ProductLogo loading="eager" name={current.a} size="lg" />
-              <h2 className="mt-3 text-lg font-semibold">{current.a}</h2>
+              <ProductLogo loading="eager" name={current.a} size="md" />
+              <h2 className="mt-2 text-sm font-semibold tracking-[-0.025em] sm:text-base">
+                {current.a}
+              </h2>
             </div>
-            <RacklioVsBadge />
+            <RacklioVsBadge className="size-10" />
             <div className="flex flex-col items-center text-center">
-              <ProductLogo loading="eager" name={current.b} size="lg" />
-              <h2 className="mt-3 text-lg font-semibold">{current.b}</h2>
+              <ProductLogo loading="eager" name={current.b} size="md" />
+              <h2 className="mt-2 text-sm font-semibold tracking-[-0.025em] sm:text-base">
+                {current.b}
+              </h2>
             </div>
           </div>
-          <dl className="mt-4 divide-y divide-border border-y border-border text-sm">
+          <dl className="mt-4 space-y-1.5 text-sm">
             {current.rows.map(([label, value]) => (
               <div
-                className="grid grid-cols-[5.25rem_1fr] gap-3 py-2"
+                className="grid grid-cols-[5.25rem_minmax(0,1fr)] gap-3 py-2"
                 key={label}
               >
-                <dt className="font-semibold text-muted-foreground">{label}</dt>
-                <dd>{value}</dd>
+                <dt className="text-[0.68rem] font-bold tracking-[0.08em] text-muted-foreground uppercase">
+                  {label}
+                </dt>
+                <dd className="leading-5">{value}</dd>
               </div>
             ))}
           </dl>
           <Link
-            className="group -mx-5 mt-4 flex min-h-12 items-center justify-between border-t border-border px-5 pt-4 font-semibold text-accent-strong sm:-mx-6 sm:px-6"
+            className="group mt-4 flex min-h-11 items-center justify-between rounded-xl bg-accent-subtle px-3 font-semibold text-accent-strong"
             href={current.href}
           >
             <span>View full comparison</span>
@@ -510,37 +559,37 @@ export function Home() {
         />
       ))}
 
-      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-16 lg:py-20">
+      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-14 lg:py-14">
         <div
           aria-hidden="true"
           className="hero-grid absolute inset-0 opacity-70"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:gap-10">
             <div>
               <p className="section-eyebrow text-accent-strong">
                 Choose customer software with evidence, not noise.
               </p>
-              <h1 className="mt-4 max-w-3xl text-[2.25rem] leading-[1.03] font-semibold tracking-[-0.058em] sm:mt-5 sm:text-[clamp(2.55rem,4.3vw,4rem)] sm:leading-[1.01]">
+              <h1 className="mt-3 max-w-[35rem] text-[clamp(2.5rem,10vw,3rem)] leading-[1.05] font-semibold tracking-[-0.045em] sm:mt-4 sm:text-[clamp(3rem,4.3vw,3.75rem)] sm:leading-[1.04]">
                 Compare Customer Software.
                 <span className="block text-accent-strong">
                   Choose With Evidence.
                 </span>
               </h1>
-              <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground sm:mt-6 sm:text-lg sm:leading-[1.85]">
+              <p className="mt-4 max-w-lg text-[1.0625rem] leading-7 text-muted-foreground sm:text-lg sm:leading-7">
                 Independent reviews, pricing guides, alternatives, and
                 head-to-head comparisons for growing teams.
               </p>
-              <p className="mt-2 max-w-2xl text-xs leading-5 text-muted-foreground sm:mt-3 sm:text-sm sm:leading-6">
+              <p className="mt-2 max-w-xl text-xs leading-5 text-muted-foreground sm:text-[0.8125rem] sm:leading-5">
                 AI customer support <span aria-hidden="true">·</span> Business
                 phone &amp; voice AI <span aria-hidden="true">·</span> Live chat
                 &amp; messaging <span aria-hidden="true">·</span> CRM &amp;
                 customer engagement
               </p>
               <div className="hero-conversion-flow flex flex-col">
-                <div className="hero-actions order-3 mt-5 flex flex-col gap-3 sm:order-1 sm:mt-8 sm:flex-row">
+                <div className="hero-actions order-3 mt-5 flex flex-col gap-3 sm:order-1 sm:mt-5 sm:flex-row">
                   <ButtonLink
-                    className="bg-brand hover:bg-accent-hover"
+                    className="bg-brand hover:bg-accent-hover sm:min-h-10 sm:px-4 sm:text-sm"
                     href="/#categories"
                     size="lg"
                   >
@@ -548,6 +597,7 @@ export function Home() {
                   </ButtonLink>
                   <ButtonLink
                     href="/#comparisons"
+                    className="sm:min-h-10 sm:px-4 sm:text-sm"
                     size="lg"
                     variant="secondary"
                   >
@@ -561,7 +611,7 @@ export function Home() {
                   <HomepageSearch />
                 </div>
                 <div
-                  className="hero-intents order-2 mt-3 flex flex-wrap gap-2 sm:order-3 sm:mt-4"
+                  className="hero-intents order-2 mt-3 flex flex-wrap gap-2 sm:order-3 sm:mt-3 sm:flex-nowrap"
                   aria-label="Quick discovery links"
                 >
                   <Link
@@ -595,7 +645,7 @@ export function Home() {
 
       <section
         aria-label="Why buyers can trust Racklio"
-        className="border-b border-border bg-white"
+        className="border-b border-border bg-surface-mint/55"
       >
         <Container size="wide">
           <ul className="grid sm:grid-cols-3">
@@ -640,7 +690,7 @@ export function Home() {
 
       <section
         aria-label="Racklio published coverage"
-        className="border-b border-border bg-surface-raised/50"
+        className="border-b border-border bg-surface-soft/45"
       >
         <Container size="wide">
           <dl className="grid grid-cols-2 lg:grid-cols-5">
@@ -667,9 +717,12 @@ export function Home() {
         </Container>
       </section>
 
-      <Container className="space-y-20 py-16 sm:py-20" size="wide">
+      <Container className="space-y-20 py-16 sm:py-24" size="wide">
         <Reveal>
-          <section aria-labelledby="problem-heading">
+          <section
+            aria-labelledby="problem-heading"
+            className="rounded-[2rem] bg-surface-soft/65 p-6 sm:p-10"
+          >
             <SectionIntro
               eyebrow="Decision paths"
               headingId="problem-heading"
@@ -755,7 +808,11 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section id="comparisons" aria-labelledby="comparison-heading">
+          <section
+            id="comparisons"
+            aria-labelledby="comparison-heading"
+            className="rounded-[2rem] bg-surface-mint/55 p-6 sm:p-10"
+          >
             <SectionIntro
               eyebrow="Comparison explorer"
               headingId="comparison-heading"
@@ -908,7 +965,7 @@ export function Home() {
         </Reveal>
 
         <Reveal>
-          <section className="final-decision-panel relative overflow-hidden rounded-[2rem] border border-brand/20 bg-white p-8 shadow-card sm:p-12">
+          <section className="final-decision-panel relative overflow-hidden rounded-[2rem] border border-brand/20 bg-surface-peach/55 p-8 shadow-card sm:p-12">
             <div className="relative z-10 max-w-2xl">
               <p className="section-eyebrow text-accent-strong">
                 Make the next decision clearer

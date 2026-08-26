@@ -86,14 +86,16 @@ export function ComparisonIdentity({
 }
 
 export function DecisionSummary({
+  footer,
   items,
   title = 'Decision summary',
 }: {
+  footer?: ReactNode;
   items: DecisionItem[];
   title?: string;
 }) {
   return (
-    <aside className="primary-decision-card relative min-w-0 overflow-hidden rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
+    <aside className="primary-decision-card relative min-w-0 overflow-hidden rounded-[1.75rem] border border-brand/20 bg-white/92 p-6 shadow-panel sm:p-7">
       <div
         aria-hidden="true"
         className="absolute inset-y-0 left-0 w-1 bg-brand"
@@ -113,6 +115,11 @@ export function DecisionSummary({
           </div>
         ))}
       </dl>
+      {footer ? (
+        <div className="mt-5 min-w-0 border-t border-brand/15 pt-5">
+          {footer}
+        </div>
+      ) : null}
     </aside>
   );
 }
@@ -187,7 +194,7 @@ export function EvidenceBlock({
   return (
     <aside
       className={cn(
-        'min-w-0 max-w-full rounded-xl border p-5',
+        'min-w-0 max-w-full rounded-2xl border p-5 sm:p-6',
         tone === 'fact' && 'border-mint-deep/20 bg-mint-subtle/55',
         tone === 'analysis' && 'border-brand/20 bg-accent-subtle/55',
         tone === 'limitation' && 'border-border bg-surface-subtle',
@@ -232,7 +239,7 @@ export function KeyDifference({
   meaning: string;
 }) {
   return (
-    <section className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-white p-5 shadow-card sm:p-6">
+    <section className="min-w-0 max-w-full rounded-[1.75rem] border border-brand/20 bg-white p-6 shadow-card sm:p-7">
       <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
         Key difference
       </p>

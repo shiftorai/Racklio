@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../assets/fonts/outfit-latin.woff2') format('woff2');
+}
+
 /*
  * Semantic values stay separate from Tailwind's utilities so a future dark
  * theme can replace only this layer without changing component classes.
@@ -11,14 +19,14 @@
   --ds-brand-primary-hover: #6f143c;
   --ds-brand-primary-surface: #fbe9ef;
   --ds-evidence-accent: #2ecaa6;
-  --ds-canvas: #faf6f1;
-  --ds-ink: #111827;
+  --ds-canvas: #fdfcf8;
+  --ds-ink: #292524;
   --ds-surface: var(--ds-canvas);
   --ds-surface-raised: #ffffff;
   --ds-foreground: var(--ds-ink);
-  --ds-muted: #f0eee8;
-  --ds-muted-foreground: #65645f;
-  --ds-border: #dedbd2;
+  --ds-muted: #f3f0ea;
+  --ds-muted-foreground: #78716c;
+  --ds-border: #e5dfd6;
   --ds-navy-muted: #b9b6ae;
   --ds-accent: var(--ds-brand-primary);
   --ds-accent-hover: var(--ds-brand-primary-hover);
@@ -36,8 +44,9 @@
   --ds-danger-foreground: #ffffff;
   --ds-success: #157347;
   --ds-success-subtle: #dcfce7;
-  --ds-surface-soft: #f7f1ec;
-  --ds-surface-mint: #f1faf7;
+  --ds-surface-soft: #efedf4;
+  --ds-surface-mint: #e8efe8;
+  --ds-surface-peach: #fff0ed;
 }
 
 @theme inline {
@@ -67,10 +76,11 @@
   --color-success-subtle: var(--ds-success-subtle);
   --color-surface-soft: var(--ds-surface-soft);
   --color-surface-mint: var(--ds-surface-mint);
+  --color-surface-peach: var(--ds-surface-peach);
 
   /* Typography */
   --font-sans:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Outfit, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', sans-serif;
   --text-xs: 0.75rem;
   --text-xs--line-height: 1rem;
@@ -99,11 +109,9 @@
   --radius-xl: 1.25rem;
 
   /* Shadows */
-  --shadow-subtle: 0 1px 2px rgb(0 0 0 / 0.04);
-  --shadow-card:
-    0 1px 2px rgb(32 33 36 / 0.04), 0 12px 30px rgb(73 62 45 / 0.055);
-  --shadow-panel:
-    0 1px 2px rgb(11 23 48 / 0.06), 0 22px 60px rgb(11 23 48 / 0.1);
+  --shadow-subtle: 0 2px 10px -3px rgb(41 37 36 / 0.05);
+  --shadow-card: 0 4px 20px -2px rgb(41 37 36 / 0.05);
+  --shadow-panel: 0 12px 34px -12px rgb(41 37 36 / 0.1);
 
   /* Mobile-first breakpoints */
   --breakpoint-sm: 40rem;
@@ -139,6 +147,7 @@
   h1,
   h2,
   h3 {
+    font-weight: 600;
     text-wrap: balance;
   }
 
@@ -206,8 +215,8 @@
     opacity: 0;
     translate: 0 1rem;
     transition:
-      opacity 500ms ease,
-      translate 500ms ease;
+      opacity 650ms ease,
+      translate 650ms ease;
   }
 
   .reveal-visible {
@@ -244,16 +253,39 @@
   .homepage-hero {
     background:
       radial-gradient(
-        circle at 82% 24%,
-        rgb(46 202 166 / 0.14),
-        transparent 27rem
+        circle at 82% 18%,
+        rgb(232 239 232 / 0.96),
+        transparent 34rem
       ),
-      linear-gradient(
-        118deg,
-        #fff 0%,
-        var(--color-surface-soft) 62%,
-        #f9f5f1 100%
-      );
+      radial-gradient(
+        circle at 10% 92%,
+        rgb(239 237 244 / 0.94),
+        transparent 29rem
+      ),
+      radial-gradient(
+        circle at 74% 82%,
+        rgb(255 183 178 / 0.18),
+        transparent 21rem
+      ),
+      linear-gradient(118deg, #fdfcf8 0%, #fdfcf8 48%, #f7f5f0 100%);
+  }
+
+  .homepage-hero::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      rgb(41 37 36 / 0.11) 0.55px,
+      transparent 0.7px
+    );
+    background-size: 9px 9px;
+    content: '';
+    opacity: 0.24;
+  }
+
+  .homepage-hero > * {
+    z-index: 1;
   }
 
   .hero-grid {
@@ -302,7 +334,7 @@
   }
 
   .hero-search > div {
-    margin-top: 1.15rem;
+    margin-top: 1rem;
   }
 
   @media (min-width: 40rem) {
@@ -311,7 +343,7 @@
     }
 
     .hero-search > div {
-      margin-top: 1.75rem;
+      margin-top: 1.25rem;
     }
   }
 
@@ -336,7 +368,33 @@
   }
 
   .hero-comparison-content {
-    animation: hero-comparison-in 210ms ease both;
+    animation: hero-comparison-in 420ms ease both;
+  }
+
+  .hero-comparison-stage::before {
+    position: absolute;
+    inset: 1rem 0 0.55rem;
+    z-index: -1;
+    border-radius: 2rem;
+    background: rgb(255 183 178 / 0.25);
+    content: '';
+    rotate: -1.25deg;
+  }
+
+  .provider-action {
+    position: relative;
+    box-shadow: 0 12px 32px -18px rgb(41 37 36 / 0.2);
+  }
+
+  .provider-action::before {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 9999px;
+    background: var(--color-mint);
+    content: '';
   }
 
   .hero-intent-chip {
@@ -369,6 +427,13 @@
       var(--color-accent-subtle) 68%,
       var(--color-mint-subtle)
     );
+  }
+
+  @media (min-width: 40rem) {
+    .hero-intent-chip {
+      min-height: 2.25rem;
+      padding: 0.25rem 0.625rem;
+    }
   }
 
   .comparison-card-v2,
@@ -413,6 +478,21 @@
 
   .decision-result {
     animation: decision-in 240ms ease both;
+  }
+
+  .primary-decision-card {
+    box-shadow: 0 18px 48px -26px rgb(41 37 36 / 0.28);
+  }
+
+  .primary-decision-card .hero-comparison-content > dl {
+    border: 0;
+  }
+
+  .primary-decision-card .hero-comparison-content > dl > div {
+    border: 1px solid color-mix(in srgb, var(--color-border) 82%, transparent);
+    border-radius: 0.9rem;
+    background: rgb(253 252 248 / 0.74);
+    padding-inline: 0.75rem;
   }
 
   .search-example {
@@ -470,6 +550,17 @@
   to {
     opacity: 1;
     translate: 0;
+  }
+}
+
+@keyframes hero-progress {
+  from {
+    scale: 0 1;
+    transform-origin: left;
+  }
+  to {
+    scale: 1 1;
+    transform-origin: left;
   }
 }
 

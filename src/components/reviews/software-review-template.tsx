@@ -3,6 +3,7 @@ import {
   DecisionSummary,
   deriveTrueCostFactors,
   EvidenceBlock,
+  ProviderAction,
   RelatedDecisionLinks,
   SectionNavigation,
   TrueCostFactors,
@@ -280,10 +281,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </nav>
               ) : null}
-              <h1 className="mt-5 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-5 max-w-4xl break-words text-4xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(3.25rem,5vw,4.75rem)] sm:leading-[0.98]">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground sm:text-xl">
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -308,7 +309,20 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   : 'Official link. No paid ranking or score. Racklio may earn from eligible links in the future.'}
               </p>
             </div>
-            <DecisionSummary items={quickDecision} title="Review decision" />
+            <DecisionSummary
+              footer={
+                <ProviderAction
+                  affiliate={usesAffiliateLink}
+                  href={commercialUrl}
+                  name={data.name}
+                  secondaryHref="#pricing"
+                  secondaryLabel="Review pricing"
+                  variant="compact"
+                />
+              }
+              items={quickDecision}
+              title="Review decision"
+            />
           </div>
           <div className="mt-8">
             <VerificationStrip date={verificationDate} />
@@ -665,6 +679,15 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   ))}
                 </div>
               </ReviewSection>
+              <ProviderAction
+                affiliate={usesAffiliateLink}
+                fit={data.fit[0]}
+                href={commercialUrl}
+                name={data.name}
+                secondaryHref="#pricing"
+                secondaryLabel="Review pricing"
+                watchOut={data.notFit[0]}
+              />
               <ReviewSection
                 code="S0"
                 id="sources"

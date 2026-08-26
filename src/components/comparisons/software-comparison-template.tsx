@@ -213,10 +213,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   label={`${data.category} comparison`}
                 />
               </div>
-              <h1 className="mt-4 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
+              <h1 className="mt-4 max-w-4xl break-words text-4xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(3.25rem,5vw,4.75rem)] sm:leading-[0.98]">
                 {data.headline}
               </h1>
-              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground sm:text-xl">
                 {data.dek}
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -495,6 +495,37 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   ))}
                 </div>
               </ReviewSection>
+              <aside className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-surface-raised p-5 shadow-card sm:p-6">
+                <p className="section-eyebrow text-mint-deep">
+                  Verify your leading option
+                </p>
+                <div className="mt-3 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+                  <p className="break-words text-sm leading-6 text-muted-foreground">
+                    Use the decision matrix as a starting point, then confirm
+                    current scope, pricing, and terms directly with the provider
+                    that fits your workflow.
+                  </p>
+                  <div className="flex flex-wrap gap-3 md:justify-end">
+                    <ButtonLink
+                      data-cta-kind="comparison-provider-action"
+                      href={data.aUrl}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Explore {data.a} <span aria-hidden="true">↗</span>
+                    </ButtonLink>
+                    <ButtonLink
+                      data-cta-kind="comparison-provider-action"
+                      href={data.bUrl}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      variant="secondary"
+                    >
+                      Explore {data.b} <span aria-hidden="true">↗</span>
+                    </ButtonLink>
+                  </div>
+                </div>
+              </aside>
               <ReviewSection
                 code="S0"
                 id="sources"
