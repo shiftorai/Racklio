@@ -199,7 +199,7 @@ export function HomepageSearch() {
   const showResults = open && query.trim().length > 0;
 
   return (
-    <div className="relative mt-7 max-w-2xl" ref={rootRef}>
+    <div className="relative z-20 mt-7 max-w-2xl" ref={rootRef}>
       <label className="sr-only" htmlFor={inputId}>
         Search Racklio software research
       </label>

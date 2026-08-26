@@ -510,7 +510,7 @@ export function Home() {
         />
       ))}
 
-      <section className="homepage-hero relative overflow-hidden border-b border-border py-10 sm:py-16 lg:py-20">
+      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-16 lg:py-20">
         <div
           aria-hidden="true"
           className="hero-grid absolute inset-0 opacity-70"
