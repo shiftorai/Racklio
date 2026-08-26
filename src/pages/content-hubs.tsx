@@ -1038,30 +1038,30 @@ function HubPage({
       ) : null}
       <>
         <Section
-          className={`border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] ${isReviewsHub ? 'py-10 sm:py-12' : 'py-14 sm:py-16 lg:py-14'}`}
+          className="border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-11 lg:py-12"
           spacing="none"
         >
           <Container>
             <div
               className={
                 isComparisonHub || isReviewsHub
-                  ? 'grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(26rem,1fr)] lg:gap-14'
-                  : ''
+                  ? 'grid min-w-0 items-center gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(23rem,0.9fr)] lg:gap-12'
+                  : 'min-w-0 max-w-4xl'
               }
             >
-              <div>
+              <div className="min-w-0">
                 <ResearchMarker code={code} label={eyebrow} />
-                <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
+                <h1 className="mt-5 max-w-4xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.045em] sm:text-5xl">
                   {title}
                 </h1>
-                <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+                <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
                   {description}
                 </p>
               </div>
               {isComparisonHub &&
               featuredComparison &&
               featuredNames.length === 2 ? (
-                <aside className="rounded-2xl border border-brand/20 bg-white/90 p-6 shadow-panel">
+                <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
                   <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
                     Start with a live decision
                   </p>
@@ -1084,7 +1084,7 @@ function HubPage({
                 </aside>
               ) : null}
               {isReviewsHub ? (
-                <aside className="rounded-2xl border border-brand/20 bg-white/90 p-5 shadow-panel sm:p-6">
+                <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
                   <p className="text-[0.68rem] font-bold tracking-[0.14em] text-accent-strong uppercase">
                     Published review coverage
                   </p>
@@ -1123,15 +1123,10 @@ function HubPage({
             </div>
           </Container>
         </Section>
-        <Section
-          className={
-            isReviewsHub ? 'py-10 sm:py-12' : 'py-14 sm:py-16 lg:py-12'
-          }
-          spacing="none"
-        >
+        <Section className="py-10 sm:py-12 lg:py-14" spacing="none">
           <Container>
             {categoryEntries?.length ? (
-              <div className="mb-12 border-b border-border pb-12">
+              <div className="mb-10 border-b border-border pb-10 sm:mb-12 sm:pb-12">
                 <h2 className="text-2xl font-semibold">Browse by category</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
                   Start with the customer workflow, then evaluate the products
@@ -1140,13 +1135,16 @@ function HubPage({
                 <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {categoryEntries.map((entry) => (
                     <ClickableCard
+                      className="min-w-0"
                       href={entry.href}
                       key={entry.href}
                       label={`Explore ${entry.title}`}
                     >
-                      <CardContent className="flex h-full flex-col">
-                        <h3 className="font-semibold">{entry.title}</h3>
-                        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      <CardContent className="flex h-full min-w-0 flex-col">
+                        <h3 className="break-words font-semibold">
+                          {entry.title}
+                        </h3>
+                        <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                           {entry.description}
                         </p>
                         <span className="mt-auto pt-5 text-sm font-semibold">
@@ -1161,17 +1159,18 @@ function HubPage({
             {sectionTitle ? (
               <h2 className="mb-7 text-2xl font-semibold">{sectionTitle}</h2>
             ) : null}
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid min-w-0 gap-4 md:grid-cols-2">
               {entries.map((entry, index) => {
                 const comparedNames = entry.title.split(' vs ');
                 const productName = getEntryProductName(entry.title);
                 return (
                   <ClickableCard
+                    className="min-w-0"
                     href={entry.href}
                     key={entry.title}
                     label={`Open ${entry.title}`}
                   >
-                    <CardContent>
+                    <CardContent className="flex h-full min-w-0 flex-col">
                       {isComparisonHub && comparedNames.length === 2 ? (
                         <ComparisonIdentity
                           a={comparedNames[0] ?? ''}
@@ -1191,17 +1190,17 @@ function HubPage({
                           className={
                             isComparisonHub
                               ? 'sr-only'
-                              : 'mt-4 text-xl font-semibold tracking-tight'
+                              : 'mt-4 break-words text-xl font-semibold tracking-tight'
                           }
                         >
                           {entry.suppressLink ? entry.title : entry.title}
                         </h3>
                       ) : (
-                        <h2 className="mt-4 text-xl font-semibold tracking-tight">
+                        <h2 className="mt-4 break-words text-xl font-semibold tracking-tight">
                           {entry.suppressLink ? entry.title : entry.title}
                         </h2>
                       )}
-                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                         {entry.description}
                       </p>
                       {isComparisonHub ? (
@@ -1210,7 +1209,7 @@ function HubPage({
                         </p>
                       ) : null}
                       {!entry.suppressLink ? (
-                        <span className="mt-5 inline-block text-sm font-semibold">
+                        <span className="mt-auto inline-block pt-5 text-sm font-semibold">
                           Open decision page →
                         </span>
                       ) : null}

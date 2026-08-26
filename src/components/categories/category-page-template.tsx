@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 
+import { ProductLogo } from '@/components/home';
+import { ComparisonIdentity } from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { ButtonLink, ClickableCard, Container, Link } from '@/components/ui';
+import { isCurrentProductBrand } from '@/lib/product-brand-assets';
 
 import { categoryPath } from './category-path';
 import { fullCategoryReviewMembership } from '@/pages/categories/category-data';
@@ -167,23 +170,44 @@ function SectionHeading({
 
 function LinkCards({ items }: { items: CategoryLink[] }) {
   return (
-    <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {items.map((item) => (
-        <ClickableCard
-          className="decision-card flex min-h-48 flex-col rounded-xl border border-border bg-white p-5 shadow-card hover:border-brand/30"
-          href={item.href}
-          key={item.title}
-          label={`Explore ${item.title}`}
-        >
-          <h3 className="text-lg font-semibold tracking-[-0.025em]">
-            {item.title}
-          </h3>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            {item.description}
-          </p>
-          <span className="mt-auto pt-5 font-semibold">Explore &rarr;</span>
-        </ClickableCard>
-      ))}
+    <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {items.map((item, index) => {
+        const comparedNames = item.title.split(' vs ');
+        const productName = item.title.replace(
+          /\s+(alternatives|pricing|review)$/i,
+          '',
+        );
+
+        return (
+          <ClickableCard
+            className="decision-card flex min-w-0 min-h-48 flex-col rounded-2xl border border-border bg-white p-5 shadow-card hover:border-brand/30"
+            href={item.href}
+            key={item.title}
+            label={`Explore ${item.title}`}
+          >
+            {comparedNames.length === 2 ? (
+              <ComparisonIdentity
+                a={comparedNames[0] ?? ''}
+                b={comparedNames[1] ?? ''}
+                useProductLogos
+              />
+            ) : isCurrentProductBrand(productName) ? (
+              <ProductLogo name={productName} size="sm" />
+            ) : (
+              <span className="font-mono text-[0.625rem] text-accent-strong">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            )}
+            <h3 className="mt-4 break-words text-lg font-semibold tracking-[-0.025em]">
+              {item.title}
+            </h3>
+            <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
+              {item.description}
+            </p>
+            <span className="mt-auto pt-5 font-semibold">Explore &rarr;</span>
+          </ClickableCard>
+        );
+      })}
     </div>
   );
 }
@@ -196,29 +220,25 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
       <CategoryMetadata data={data} />
       <Breadcrumbs current={data.shortTitle} />
 
-      <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-14 lg:py-16">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(124,58,237,.1),transparent_32%)]"
-        />
+      <section className="relative border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-9 sm:py-12 lg:py-14">
         <Container className="relative" size="wide">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.5fr] lg:items-end lg:gap-16">
-            <div>
+          <div className="grid min-w-0 gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.58fr)] lg:items-end lg:gap-12">
+            <div className="min-w-0">
               <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
                 {data.eyebrow}
               </p>
-              <h1 className="mt-5 max-w-4xl text-4xl leading-tight font-semibold tracking-[-0.05em] text-balance sm:text-5xl lg:text-6xl">
+              <h1 className="mt-5 max-w-4xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.05em] text-balance sm:text-5xl lg:text-6xl">
                 {data.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-3xl break-words text-lg leading-8 text-muted-foreground">
                 {data.definition}
               </p>
             </div>
-            <div className="rounded-xl border border-mint-deep/15 bg-white/80 p-5 shadow-card">
+            <div className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
               <p className="text-xs font-semibold tracking-[0.12em] text-brand uppercase">
                 Buyer perspective
               </p>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                 {data.introduction}
               </p>
             </div>
@@ -240,11 +260,11 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             <dl className="mt-5 grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2">
               {data.quickDecision.map((item) => (
                 <div
-                  className="border-b border-border p-5 md:odd:border-r"
+                  className="min-w-0 border-b border-border p-5 md:odd:border-r"
                   key={item.label}
                 >
                   <dt className="text-sm font-semibold">{item.label}</dt>
-                  <dd className="mt-2 text-sm leading-6 text-muted-foreground">
+                  <dd className="mt-2 break-words text-sm leading-6 text-muted-foreground">
                     {item.text}
                   </dd>
                 </div>
@@ -587,38 +607,38 @@ export function CategoryHubTemplate({
 
       <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(120deg,var(--color-surface),var(--color-mint-subtle))] py-10 sm:py-12">
         <Container className="relative" size="wide">
-          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(28rem,1fr)] lg:gap-14">
-            <div>
+          <div className="grid min-w-0 items-center gap-7 lg:grid-cols-[minmax(0,0.85fr)_minmax(22rem,0.9fr)] lg:gap-12">
+            <div className="min-w-0">
               <p className="text-xs font-semibold tracking-[0.16em] text-brand uppercase">
                 Software category map
               </p>
-              <h1 className="mt-5 max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.05em] sm:text-5xl">
+              <h1 className="mt-5 max-w-3xl break-words text-3xl leading-[1.1] font-semibold tracking-[-0.05em] sm:text-5xl">
                 Customer Service Software Categories
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+              <p className="mt-5 max-w-2xl break-words text-lg leading-8 text-muted-foreground">
                 Start with the customer workflow your business needs to improve,
                 then move into relevant product reviews, direct comparisons, and
                 evidence-based buying guidance.
               </p>
             </div>
-            <aside className="rounded-2xl border border-brand/20 bg-white/90 p-5 shadow-panel sm:p-6">
+            <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
               <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
                 Category decision map
               </p>
               <ol className="mt-4 divide-y divide-border">
                 {categoryMembership.map(({ category, products }, index) => (
                   <li
-                    className="grid grid-cols-[auto_1fr_auto] items-center gap-3 py-3"
+                    className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 py-3"
                     key={category.slug}
                   >
                     <span className="font-mono text-xs font-bold text-brand">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div>
-                      <p className="text-sm font-semibold">
+                    <div className="min-w-0">
+                      <p className="break-words text-sm font-semibold">
                         {category.shortTitle}
                       </p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
+                      <p className="mt-0.5 break-words text-xs text-muted-foreground">
                         {products
                           .slice(0, 3)
                           .map((product) => product.title)
@@ -637,7 +657,7 @@ export function CategoryHubTemplate({
       </section>
 
       <div className="bg-surface py-8 sm:py-12">
-        <Container className="grid gap-8 sm:gap-10" size="wide">
+        <Container className="grid min-w-0 gap-8 sm:gap-10" size="wide">
           <section aria-labelledby="taxonomy-heading">
             <div className="grid gap-5 lg:grid-cols-[0.55fr_1fr] lg:items-end">
               <div>
@@ -657,37 +677,37 @@ export function CategoryHubTemplate({
                 customers.
               </p>
             </div>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-5 grid min-w-0 gap-4 md:grid-cols-2">
               {categoryMembership.map(({ category, products }) => (
                 <ClickableCard
-                  className="flex min-h-80 flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
+                  className="flex min-w-0 min-h-80 flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
                   href={categoryPath(category.slug)}
                   key={category.slug}
                   label={`Explore the ${category.shortTitle} category`}
                 >
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex min-w-0 items-center justify-between gap-4">
                     <span className="grid size-10 place-items-center rounded-lg bg-accent-subtle text-xs font-bold text-brand">
                       {category.code}
                     </span>
-                    <span className="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+                    <span className="min-w-0 break-words text-right text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
                       Primary category
                     </span>
                   </div>
-                  <h3 className="mt-5 text-xl font-semibold tracking-[-0.03em]">
+                  <h3 className="mt-5 break-words text-xl font-semibold tracking-[-0.03em]">
                     {category.shortTitle}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                  <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
                     {category.definition}
                   </p>
                   <div className="mt-5 border-t border-border pt-4">
                     <p className="text-[0.68rem] font-bold tracking-[0.1em] text-accent-strong uppercase">
                       Buyer starting point
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    <p className="mt-2 break-words text-sm leading-6 text-muted-foreground">
                       {category.startPaths[0]?.description}
                     </p>
                   </div>
-                  <p className="mt-4 text-xs font-medium text-muted-foreground">
+                  <p className="mt-4 break-words text-xs font-medium text-muted-foreground">
                     {products.length} documented products ·{' '}
                     {products
                       .slice(0, 3)

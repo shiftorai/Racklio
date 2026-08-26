@@ -37,7 +37,12 @@ export function RouteScrollManager() {
     const isHomepageRouteHash =
       pathname === '/' && homepageRouteHashes.has(hashName);
 
-    if (isHomepageRouteHash) return;
+    if (isHomepageRouteHash) {
+      if (navigationType === NavigationType.Pop) return;
+
+      const frame = window.requestAnimationFrame(scrollToTop);
+      return () => window.cancelAnimationFrame(frame);
+    }
 
     if (!hash) {
       if (navigationType !== NavigationType.Pop) scrollToTop();
