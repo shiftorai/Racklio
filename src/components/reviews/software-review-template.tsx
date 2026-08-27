@@ -3,6 +3,7 @@ import {
   DecisionSummary,
   deriveTrueCostFactors,
   EvidenceBlock,
+  PreferredSourceCTA,
   ProviderAction,
   RelatedDecisionLinks,
   SectionNavigation,
@@ -39,6 +40,11 @@ export type SoftwareReviewData = {
     title: string;
     heading: string;
     description: string;
+    eyebrow?: string;
+    note?: string;
+    sectionId?: string;
+    allow?: string;
+    referrerPolicy?: 'strict-origin-when-cross-origin';
   };
   summary: { label: string; text: string }[];
   fit: string[];
@@ -187,6 +193,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
     ],
   };
   const toc = [
+    ...(data.video?.sectionId ? [[data.video.sectionId, 'Video review']] : []),
     ['overview', 'At a glance'],
     ...(data.capabilities?.length
       ? [['capabilities', 'Key capabilities']]
@@ -202,7 +209,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
     ['sources', 'Sources'],
   ];
   return (
-    <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
+    <PageLayout
+      footer={<SiteFooter showPreferredSource={false} />}
+      header={<SiteHeader />}
+    >
       <title>{data.metaTitle}</title>
       <link rel="canonical" href={canonical} />
       <meta property="og:type" content="article" />
@@ -337,7 +347,13 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
             <section
               aria-labelledby="review-video-heading"
               className="mx-auto max-w-4xl"
+              id={data.video.sectionId}
             >
+              {data.video.eyebrow ? (
+                <p className="mb-3 text-[0.68rem] font-bold tracking-[0.12em] text-mint-deep uppercase">
+                  {data.video.eyebrow}
+                </p>
+              ) : null}
               <h2
                 className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl"
                 id="review-video-heading"
@@ -349,14 +365,23 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               </p>
               <div className="mt-6 aspect-video w-full overflow-hidden rounded-xl border border-brand/20 bg-navy shadow-card">
                 <iframe
-                  allow="encrypted-media; picture-in-picture; web-share"
+                  allow={
+                    data.video.allow ??
+                    'encrypted-media; picture-in-picture; web-share'
+                  }
                   allowFullScreen
                   className="h-full w-full border-0"
                   loading="lazy"
+                  referrerPolicy={data.video.referrerPolicy}
                   src={data.video.embedUrl}
                   title={data.video.title}
                 />
               </div>
+              {data.video.note ? (
+                <p className="mt-3 text-xs font-medium tracking-[0.04em] text-muted-foreground">
+                  {data.video.note}
+                </p>
+              ) : null}
             </section>
           </Container>
         </Section>
@@ -732,6 +757,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   <RelatedDecisionLinks links={data.relatedComparisons ?? []} />
                 </div>
               </ReviewSection>
+              <PreferredSourceCTA />
             </article>
           </div>
         </Container>

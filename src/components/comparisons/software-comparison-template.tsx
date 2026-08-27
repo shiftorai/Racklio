@@ -6,6 +6,7 @@ import {
   DecisionSummary,
   EvidenceBlock,
   KeyDifference,
+  PreferredSourceCTA,
   RelatedDecisionLinks,
   SectionNavigation,
   VerificationStrip,
@@ -146,7 +147,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
     ['sources', 'Sources'],
   ];
   return (
-    <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
+    <PageLayout
+      footer={<SiteFooter showPreferredSource={false} />}
+      header={<SiteHeader />}
+    >
       <title>{data.metaTitle}</title>
       <link rel="canonical" href={canonical} />
       <meta property="og:type" content="article" />
@@ -609,6 +613,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   <RelatedDecisionLinks links={data.related ?? []} />
                 </div>
               </ReviewSection>
+              <PreferredSourceCTA />
             </article>
           </div>
         </Container>

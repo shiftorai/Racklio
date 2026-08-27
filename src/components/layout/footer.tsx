@@ -6,6 +6,7 @@ import { cn } from '@/lib/cn';
 export interface FooterProps extends HTMLAttributes<HTMLElement> {
   brand?: ReactNode;
   legal?: ReactNode;
+  prelude?: ReactNode;
   tone?: 'light' | 'dark';
 }
 
@@ -14,6 +15,7 @@ export function Footer({
   children,
   className,
   legal,
+  prelude,
   tone = 'light',
   ...props
 }: FooterProps) {
@@ -28,6 +30,11 @@ export function Footer({
       )}
       {...props}
     >
+      {prelude ? (
+        <Container className="min-w-0 max-w-full pt-8 sm:pt-10">
+          {prelude}
+        </Container>
+      ) : null}
       <Container
         className={cn(
           'flex flex-col gap-8 py-10 text-sm sm:flex-row sm:items-start sm:justify-between sm:py-12',

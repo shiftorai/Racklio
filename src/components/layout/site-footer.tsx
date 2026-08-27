@@ -1,4 +1,5 @@
 import { RacklioLogo } from '@/components/brand';
+import { PreferredSourceCTA } from '@/components/editorial';
 import { Link } from '@/components/ui';
 
 import { Footer } from './footer';
@@ -40,7 +41,11 @@ const groups = [
   },
 ] as const;
 
-export function SiteFooter() {
+export function SiteFooter({
+  showPreferredSource = true,
+}: {
+  showPreferredSource?: boolean;
+}) {
   return (
     <Footer
       brand={<RacklioLogo tone="dark" />}
@@ -50,6 +55,9 @@ export function SiteFooter() {
           <br />
           &copy; {new Date().getFullYear()} Keleva LLC
         </>
+      }
+      prelude={
+        showPreferredSource ? <PreferredSourceCTA tone="dark" /> : undefined
       }
       tone="dark"
     >

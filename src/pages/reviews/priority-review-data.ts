@@ -262,6 +262,19 @@ export const eazyChatData: SoftwareReviewData = {
     'Evidence-first EazyChat.io review covering AI chat, knowledge inputs, human handoff, help desk, integrations, pricing limits, strengths, and limitations.',
   officialUrl: 'https://eazychat.io/',
   providerKey: 'eazyChat',
+  video: {
+    allow: 'encrypted-media; picture-in-picture',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/BxoM9BskIgE',
+    title:
+      'EazyChat.io Review 2026: Is It Actually Worth It for Small Businesses?',
+    eyebrow: 'Video review',
+    heading: 'Watch the EazyChat.io review',
+    description:
+      "Prefer the short version? This video summarizes EazyChat.io's core fit, pricing considerations, strengths, and limitations for small businesses.",
+    note: '2-minute overview • Published by Racklio',
+    sectionId: 'video-review',
+    referrerPolicy: 'strict-origin-when-cross-origin',
+  },
   relatedComparisons: [
     { title: 'EazyChat.io pricing guide', href: '/guides/eazychat-pricing' },
     {

@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 
 import { ResearchMarker } from '@/components/brand';
-import { EvidenceBlock } from '@/components/editorial';
+import { EvidenceBlock, PreferredSourceCTA } from '@/components/editorial';
 import { PageLayout, SiteFooter, SiteHeader } from '@/components/layout';
 import { Container, Link, Section } from '@/components/ui';
 
@@ -14,6 +14,7 @@ function InformationPage({
   children,
   noindex = false,
   heroExtra,
+  preferredSource = false,
   wideContent = false,
 }: {
   code: string;
@@ -24,6 +25,7 @@ function InformationPage({
   children: ReactNode;
   noindex?: boolean;
   heroExtra?: ReactNode;
+  preferredSource?: boolean;
   wideContent?: boolean;
 }) {
   useEffect(() => {
@@ -38,7 +40,10 @@ function InformationPage({
   }, [description, metaDescription]);
 
   return (
-    <PageLayout footer={<SiteFooter />} header={<SiteHeader />}>
+    <PageLayout
+      footer={<SiteFooter showPreferredSource={!preferredSource} />}
+      header={<SiteHeader />}
+    >
       <title>{`${title} | Racklio`}</title>
       <link rel="canonical" href={canonical} />
       {noindex ? <meta name="robots" content="noindex,follow" /> : null}
@@ -66,6 +71,7 @@ function InformationPage({
             className={`${wideContent ? 'max-w-5xl' : 'max-w-3xl'} space-y-8 leading-7`}
           >
             {children}
+            {preferredSource ? <PreferredSourceCTA /> : null}
           </article>
         </Container>
       </Section>
@@ -88,6 +94,7 @@ export function AboutPage() {
       title="About Racklio"
       description="Racklio is an independent software decision resource operated by Keleva LLC."
       canonical="https://racklio.com/about"
+      preferredSource
     >
       <PolicyDate />
       <section>
