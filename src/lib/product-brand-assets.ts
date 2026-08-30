@@ -24,6 +24,7 @@ const productBrandAssets = {
   'Help Scout': '/brands/help-scout.svg',
   HubSpot: '/brands/hubspot.png',
   Quo: '/brands/quo.png',
+  RingOperator: '/brands/ringoperator.svg',
 } as const;
 
 const currentProductBrandNames = new Set(Object.keys(productBrandAssets));

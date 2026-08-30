@@ -38,6 +38,23 @@ function getEntryProductName(title: string) {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'RingOperator Review',
+    description:
+      'AI receptionist coverage for inbound call answering, booking, qualification, Google Calendar, minutes, SMS, and commercial limits.',
+    href: '/reviews/ringoperator',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/ringoperator-pricing' },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/ringoperator-alternatives',
+      },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/ringoperator-vs-callhippo',
+      },
+    ],
+  },
+  {
     title: 'Help Scout Review',
     description:
       'Shared inbox, Docs, Beacon, automation, reporting, permissions, and AI Answers economics for customer-support teams.',
@@ -341,6 +358,23 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'RingOperator Pricing',
+    description:
+      'Monthly AI receptionist plans, included minutes, per-minute overage, SMS rates, trial terms, and workflow-specific cost checks.',
+    href: '/guides/ringoperator-pricing',
+    relatedLinks: [
+      { title: 'RingOperator review', href: '/reviews/ringoperator' },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/ringoperator-alternatives',
+      },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/ringoperator-vs-callhippo',
+      },
+    ],
+  },
+  {
     title: 'Help Scout Pricing',
     description:
       'User billing, additional inboxes, Docs sites, AI Answer resolutions, spending limits, and support-team cost.',
@@ -554,6 +588,20 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'RingOperator Alternatives',
+    description:
+      'Choose between a focused AI receptionist and broader business-phone options through workflow, users, numbers, routing, and cost.',
+    href: '/alternatives/ringoperator-alternatives',
+    relatedLinks: [
+      { title: 'RingOperator review', href: '/reviews/ringoperator' },
+      { title: 'RingOperator pricing', href: '/guides/ringoperator-pricing' },
+      {
+        title: 'Compare with CallHippo',
+        href: '/comparisons/ringoperator-vs-callhippo',
+      },
+    ],
+  },
   {
     title: 'Help Scout Alternatives',
     description:
@@ -838,6 +886,16 @@ const softwareDecisionEntries: Entry[] = [
 
 const comparisonEntries: Entry[] = [
   {
+    title: 'RingOperator vs CallHippo',
+    description:
+      'A focused inbound AI receptionist compared with a broader cloud-phone operating model.',
+    href: '/comparisons/ringoperator-vs-callhippo',
+    relatedLinks: [
+      { title: 'RingOperator review', href: '/reviews/ringoperator' },
+      { title: 'RingOperator pricing', href: '/guides/ringoperator-pricing' },
+    ],
+  },
+  {
     title: 'Help Scout vs Gorgias',
     description:
       'Shared inbox, Docs, and Beacon support compared with ecommerce-centered help desk workflow.',
@@ -960,23 +1018,30 @@ function selectActiveEntries(entries: Entry[], paths: ReadonlySet<string>) {
     }));
 }
 
-const reviewNameCollator = new Intl.Collator('en', { sensitivity: 'base' });
+const entryNameCollator = new Intl.Collator('en', { sensitivity: 'base' });
+const sortEntriesByProductName = (entries: Entry[]) =>
+  entries.sort((a, b) =>
+    entryNameCollator.compare(
+      getEntryProductName(a.title),
+      getEntryProductName(b.title),
+    ),
+  );
 const activeReviewEntries = selectActiveEntries(
   reviewEntries,
   activeReviewPaths,
-).sort((a, b) =>
-  reviewNameCollator.compare(
-    getEntryProductName(a.title),
-    getEntryProductName(b.title),
+);
+sortEntriesByProductName(activeReviewEntries);
+const activeCommercialGuideEntries = sortEntriesByProductName(
+  selectActiveEntries(
+    commercialGuideEntries,
+    new Set<string>(activePricingGuidePaths),
   ),
 );
-const activeCommercialGuideEntries = selectActiveEntries(
-  commercialGuideEntries,
-  new Set<string>(activePricingGuidePaths),
-);
-const activeAlternativeEntries = selectActiveEntries(
-  alternativeEntries,
-  new Set<string>(activeAlternativesPaths),
+const activeAlternativeEntries = sortEntriesByProductName(
+  selectActiveEntries(
+    alternativeEntries,
+    new Set<string>(activeAlternativesPaths),
+  ),
 );
 const activeComparisonEntries = selectActiveEntries(
   comparisonEntries,
@@ -1450,6 +1515,7 @@ export function GuidesHub() {
       displayDescription="See the billing unit, usage limits, seat requirements, add-ons, and contract conditions that can change what your team actually pays."
       canonical="https://racklio.com/guides"
       entries={activeCommercialGuideEntries}
+      sectionNote="Pricing guides are listed alphabetically."
       sectionTitle="Pricing and product decisions"
       categoryEntries={softwareCategoryEntries}
       related={[
@@ -1471,6 +1537,7 @@ export function AlternativesHub() {
       displayDescription="Name the workflow, scope, or pricing condition that no longer fits. Then compare replacement paths that solve that specific problem—without universal rankings."
       canonical="https://racklio.com/alternatives"
       entries={activeAlternativeEntries}
+      sectionNote="Alternative guides are listed alphabetically."
       sectionTitle="Current alternative guides"
       categoryEntries={softwareCategoryEntries}
       showReviewMethodology

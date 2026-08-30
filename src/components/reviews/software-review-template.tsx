@@ -309,19 +309,9 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 {data.dek}
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                {usesAffiliateLink ? (
-                  <ButtonLink
-                    href={commercialUrl}
-                    rel="sponsored noopener noreferrer"
-                    target="_blank"
-                  >
-                    Check current {data.name} plans
-                  </ButtonLink>
-                ) : (
-                  <ButtonLink href="#overview" variant="secondary">
-                    See whether {data.name} fits
-                  </ButtonLink>
-                )}
+                <ButtonLink href="#overview" variant="secondary">
+                  See whether {data.name} fits
+                </ButtonLink>
                 <ButtonLink href="#decision" variant="secondary">
                   Find your scenario
                 </ButtonLink>
@@ -545,6 +535,16 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   </EvidenceNote>
                 </div>
               </ReviewSection>
+              <ProviderAction
+                actionLabel={`See current ${data.name} plans and limits`}
+                affiliate={usesAffiliateLink}
+                href={commercialUrl}
+                name={data.name}
+                secondaryHref="#decision"
+                secondaryLabel="Match your scenario"
+                showDisclosure={false}
+                variant="compact"
+              />
               {data.sections.map((s) => (
                 <ReviewSection
                   code={s.code}
@@ -719,12 +719,14 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 </div>
               </ReviewSection>
               <ProviderAction
+                actionLabel={`Visit ${data.name}`}
                 affiliate={usesAffiliateLink}
                 fit={data.fit[0]}
                 href={commercialUrl}
                 name={data.name}
                 secondaryHref="#pricing"
                 secondaryLabel="See the real cost"
+                showDisclosure={false}
                 watchOut={data.notFit[0]}
               />
               <ReviewSection

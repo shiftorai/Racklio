@@ -26,6 +26,11 @@ export const activeProducts = [
   { name: 'Landbot', slug: 'landbot', territory: 'ai-customer-support' },
   { name: 'Quo', slug: 'quo', territory: 'business-phone-voice-ai' },
   { name: 'Calilio', slug: 'calilio', territory: 'business-phone-voice-ai' },
+  {
+    name: 'RingOperator',
+    slug: 'ringoperator',
+    territory: 'business-phone-voice-ai',
+  },
   { name: 'Help Scout', slug: 'help-scout', territory: 'ai-customer-support' },
   {
     name: 'Capsule CRM',
@@ -57,6 +62,7 @@ export const activeComparisonPaths = [
   '/comparisons/tidio-vs-gorgias',
   '/comparisons/krispcall-vs-callhippo',
   '/comparisons/krispcall-vs-aircall',
+  '/comparisons/ringoperator-vs-callhippo',
 ] as const;
 
 export const activePricingGuidePaths = [
@@ -71,6 +77,7 @@ export const activePricingGuidePaths = [
   '/guides/engagebay-pricing',
   '/guides/eazychat-pricing',
   '/guides/vida-pricing',
+  '/guides/ringoperator-pricing',
 ] as const;
 
 export const activeAlternativesPaths = [
@@ -87,6 +94,7 @@ export const activeAlternativesPaths = [
   '/alternatives/tidio-alternatives',
   '/alternatives/gorgias-alternatives',
   '/alternatives/vida-alternatives',
+  '/alternatives/ringoperator-alternatives',
 ] as const;
 
 const activeReviewPaths = new Set(

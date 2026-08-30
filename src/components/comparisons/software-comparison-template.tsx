@@ -26,6 +26,10 @@ import {
   getActiveTerritoryLinks,
   isActiveDiscoveryPath,
 } from '@/lib/active-software-inventory';
+import {
+  resolveProviderDestination,
+  type ProviderDestination,
+} from '@/lib/provider-links';
 
 export type ComparisonData = {
   slug: string;
@@ -66,9 +70,91 @@ export type ComparisonData = {
   sources: { title: string; href: string }[];
 };
 
+function ComparisonProviderActions({
+  a,
+  aDestination,
+  aLabel,
+  b,
+  bDestination,
+  bLabel,
+  showDisclosure = false,
+  variant = 'panel',
+}: {
+  a: string;
+  aDestination: ProviderDestination;
+  aLabel: string;
+  b: string;
+  bDestination: ProviderDestination;
+  bLabel: string;
+  showDisclosure?: boolean;
+  variant?: 'compact' | 'panel';
+}) {
+  const actions = [
+    { destination: aDestination, label: aLabel, name: a },
+    { destination: bDestination, label: bLabel, name: b },
+  ];
+  const hasAffiliateLink = actions.some(
+    ({ destination }) => destination.affiliate,
+  );
+  const buttons = (
+    <div className="grid min-w-0 gap-2.5 sm:grid-cols-2">
+      {actions.map(({ destination, label, name }) => (
+        <ButtonLink
+          className="w-full min-w-0 max-w-full justify-center whitespace-normal text-center"
+          data-cta-kind="comparison-provider-action"
+          href={destination.href}
+          key={name}
+          rel="noopener noreferrer"
+          target="_blank"
+          variant="secondary"
+        >
+          {label} <span aria-hidden="true">↗</span>
+        </ButtonLink>
+      ))}
+    </div>
+  );
+  const disclosure = showDisclosure ? (
+    <p className="mt-3 break-words text-xs leading-5 text-muted-foreground">
+      {hasAffiliateLink
+        ? 'Affiliate disclosure: Racklio may earn a commission from eligible provider links, at no additional cost to you. Affiliate status does not influence this comparison.'
+        : 'These links open the providers’ official websites. Confirm current plans and terms before purchase.'}
+    </p>
+  ) : null;
+
+  if (variant === 'compact') {
+    return (
+      <div className="min-w-0 max-w-full">
+        <p className="mb-3 break-words text-sm font-semibold">
+          Confirm the live commercial terms before you choose.
+        </p>
+        {buttons}
+        {disclosure}
+      </div>
+    );
+  }
+
+  return (
+    <aside className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-surface-raised p-5 shadow-card sm:p-6">
+      <p className="section-eyebrow text-mint-deep">
+        Turn the comparison into a decision
+      </p>
+      <p className="mt-3 break-words text-sm leading-6 text-muted-foreground">
+        Choose the operating model that matches your workflow, then confirm
+        current scope, pricing, and terms directly with that provider.
+      </p>
+      <div className="mt-4">{buttons}</div>
+      {disclosure}
+    </aside>
+  );
+}
+
 export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
   const canonical = `https://racklio.com/comparisons/${data.slug}`;
   const activeCategoryLinks = getActiveTerritoryLinks([data.a, data.b]);
+  const providerADestination = resolveProviderDestination(data.aUrl);
+  const providerBDestination = resolveProviderDestination(data.bUrl);
+  const hasAffiliateDestination =
+    providerADestination.affiliate || providerBDestination.affiliate;
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -238,10 +324,24 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </div>
               <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
                 Independent editorial comparison. No paid ranking or score.
-                Outbound provider links are not affiliate links at publication.
+                {hasAffiliateDestination
+                  ? ' Some outbound provider links are affiliate links; this does not influence the comparison.'
+                  : ' Outbound provider links are not affiliate links at publication.'}
               </p>
             </div>
             <DecisionSummary
+              footer={
+                <ComparisonProviderActions
+                  a={data.a}
+                  aDestination={providerADestination}
+                  aLabel={`Check ${data.a} plans`}
+                  b={data.b}
+                  bDestination={providerBDestination}
+                  bLabel={`Check ${data.b} plans`}
+                  showDisclosure
+                  variant="compact"
+                />
+              }
               items={data.summary}
               title="Which operating model fits?"
             />
@@ -400,6 +500,15 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   </EvidenceNote>
                 </div>
               </ReviewSection>
+              <ComparisonProviderActions
+                a={data.a}
+                aDestination={providerADestination}
+                aLabel={`See current ${data.a} plans`}
+                b={data.b}
+                bDestination={providerBDestination}
+                bLabel={`See current ${data.b} plans`}
+                variant="compact"
+              />
               {data.sections.map((s) => (
                 <ReviewSection
                   code={s.code}
@@ -510,38 +619,14 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                   ))}
                 </div>
               </ReviewSection>
-              <aside className="min-w-0 max-w-full rounded-2xl border border-brand/20 bg-surface-raised p-5 shadow-card sm:p-6">
-                <p className="section-eyebrow text-mint-deep">
-                  Turn the comparison into a decision
-                </p>
-                <div className="mt-3 grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-                  <p className="break-words text-sm leading-6 text-muted-foreground">
-                    Choose the operating model that matches your workflow, then
-                    confirm current scope, pricing, and terms directly with that
-                    provider.
-                  </p>
-                  <div className="flex flex-wrap gap-3 md:justify-end">
-                    <ButtonLink
-                      data-cta-kind="comparison-provider-action"
-                      href={data.aUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      variant="secondary"
-                    >
-                      Check {data.a} plans <span aria-hidden="true">↗</span>
-                    </ButtonLink>
-                    <ButtonLink
-                      data-cta-kind="comparison-provider-action"
-                      href={data.bUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      variant="secondary"
-                    >
-                      Check {data.b} plans <span aria-hidden="true">↗</span>
-                    </ButtonLink>
-                  </div>
-                </div>
-              </aside>
+              <ComparisonProviderActions
+                a={data.a}
+                aDestination={providerADestination}
+                aLabel={`Visit ${data.a}`}
+                b={data.b}
+                bDestination={providerBDestination}
+                bLabel={`Visit ${data.b}`}
+              />
               <ReviewSection
                 code="S0"
                 id="sources"
@@ -572,36 +657,20 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                     </li>
                   ))}
                 </ol>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {data.aReview ? (
-                    <ButtonLink href={data.aReview} variant="secondary">
-                      Read {data.a} review
-                    </ButtonLink>
-                  ) : (
-                    <ButtonLink
-                      href={data.aUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      variant="secondary"
-                    >
-                      Visit {data.a}
-                    </ButtonLink>
-                  )}
-                  {data.bReview ? (
-                    <ButtonLink href={data.bReview} variant="secondary">
-                      Read {data.b} review
-                    </ButtonLink>
-                  ) : (
-                    <ButtonLink
-                      href={data.bUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      variant="secondary"
-                    >
-                      Visit {data.b}
-                    </ButtonLink>
-                  )}
-                </div>
+                {data.aReview || data.bReview ? (
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    {data.aReview ? (
+                      <ButtonLink href={data.aReview} variant="secondary">
+                        Read {data.a} review
+                      </ButtonLink>
+                    ) : null}
+                    {data.bReview ? (
+                      <ButtonLink href={data.bReview} variant="secondary">
+                        Read {data.b} review
+                      </ButtonLink>
+                    ) : null}
+                  </div>
+                ) : null}
                 <div className="mt-8">
                   <EvidenceBlock label="Racklio analysis" tone="analysis">
                     Racklio has not represented this comparison as hands-on

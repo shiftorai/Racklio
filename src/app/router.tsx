@@ -138,6 +138,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/ringoperator',
+        lazy: async () => {
+          const { RingOperatorReview } =
+            await import('@/pages/reviews/ringoperator-review');
+          return { Component: RingOperatorReview };
+        },
+      },
+      {
+        path: 'guides/ringoperator-pricing',
+        lazy: async () => {
+          const { RingOperatorPricing } =
+            await import('@/pages/guides/ringoperator-pricing');
+          return { Component: RingOperatorPricing };
+        },
+      },
+      {
+        path: 'alternatives/ringoperator-alternatives',
+        lazy: async () => {
+          const { RingOperatorAlternatives } =
+            await import('@/pages/alternatives/ringoperator-alternatives');
+          return { Component: RingOperatorAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/ringoperator-vs-callhippo',
+        lazy: async () => {
+          const { RingOperatorVsCallHippo } =
+            await import('@/pages/comparisons/ringoperator-vs-callhippo');
+          return { Component: RingOperatorVsCallHippo };
+        },
+      },
+      {
         path: 'guides/calilio-pricing',
         lazy: async () => {
           const { CalilioPricing } =

@@ -27,7 +27,8 @@ export type CoreProvider =
   | 'quo'
   | 'calilio'
   | 'capsuleCrm'
-  | 'helpScout';
+  | 'helpScout'
+  | 'ringOperator';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -54,6 +55,7 @@ export const currentSoftwareProviders = [
   'calilio',
   'capsuleCrm',
   'helpScout',
+  'ringOperator',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -123,11 +125,44 @@ export const providerLinks = {
   calilio: { official: 'https://www.calilio.com/', affiliate: null },
   capsuleCrm: { official: 'https://capsulecrm.com/', affiliate: null },
   helpScout: { official: 'https://www.helpscout.com/', affiliate: null },
+  ringOperator: {
+    official: 'https://www.ringoperator.com/',
+    affiliate: 'https://www.ringoperator.com?ref=CONTACT948',
+  },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 
 export function getProviderUrl(provider: CoreProvider): string {
   const link = providerLinks[provider];
   return link.affiliate ?? link.official;
+}
+
+export interface ProviderDestination {
+  affiliate: boolean;
+  href: string;
+}
+
+function normalizeProviderHostname(href: string): string | null {
+  try {
+    return new URL(href).hostname.toLowerCase().replace(/^www\./, '');
+  } catch {
+    return null;
+  }
+}
+
+export function resolveProviderDestination(href: string): ProviderDestination {
+  const hostname = normalizeProviderHostname(href);
+  if (!hostname) return { affiliate: false, href };
+
+  const provider = Object.values(providerLinks).find(
+    (link) => normalizeProviderHostname(link.official) === hostname,
+  );
+
+  if (!provider) return { affiliate: false, href };
+
+  return {
+    affiliate: provider.affiliate !== null,
+    href: provider.affiliate ?? provider.official,
+  };
 }
 
 export function getExternalLinkRel(

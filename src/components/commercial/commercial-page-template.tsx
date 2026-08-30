@@ -281,6 +281,25 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               </p>
             </div>
             <DecisionSummary
+              footer={
+                <ProviderAction
+                  actionLabel={
+                    isPricingGuide
+                      ? `Check current ${data.provider} pricing`
+                      : `Review current ${data.provider} plans`
+                  }
+                  affiliate={usesAffiliateLink}
+                  href={commercialUrl}
+                  name={data.provider}
+                  secondaryHref="#overview"
+                  secondaryLabel={
+                    isPricingGuide
+                      ? 'See what changes the cost'
+                      : 'See the replacement paths'
+                  }
+                  variant="compact"
+                />
+              }
               items={summaryItems}
               title={
                 isPricingGuide
@@ -436,6 +455,20 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </EvidenceNote>
                 </div>
               </ReviewSection>
+              <ProviderAction
+                actionLabel={
+                  isPricingGuide
+                    ? `See current ${data.provider} plans and limits`
+                    : `Check current ${data.provider} plans`
+                }
+                affiliate={usesAffiliateLink}
+                href={commercialUrl}
+                name={data.provider}
+                secondaryHref="#scenarios"
+                secondaryLabel="Match your scenario"
+                showDisclosure={false}
+                variant="compact"
+              />
               {visibleSections.map((section) => (
                 <ReviewSection
                   code={section.code}
@@ -554,8 +587,8 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
               <ProviderAction
                 actionLabel={
                   isPricingGuide
-                    ? `Check current ${data.provider} pricing`
-                    : `Check current ${data.provider} plans`
+                    ? `Verify current pricing with ${data.provider}`
+                    : `Visit ${data.provider}`
                 }
                 affiliate={usesAffiliateLink}
                 fit={visibleSummary[0]?.text}
@@ -563,6 +596,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 name={data.provider}
                 secondaryHref="#sources"
                 secondaryLabel="Check the evidence"
+                showDisclosure={false}
                 watchOut={visibleSummary[1]?.text}
               />
               <ReviewSection
@@ -592,15 +626,6 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   ))}
                 </ol>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  {usesAffiliateLink ? (
-                    <ButtonLink
-                      href={commercialUrl}
-                      rel="sponsored noopener noreferrer"
-                      target="_blank"
-                    >
-                      Check current {data.provider} plans
-                    </ButtonLink>
-                  ) : null}
                   {activeRelated.slice(0, 2).map((link) => (
                     <ButtonLink
                       href={link.href}

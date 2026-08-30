@@ -334,6 +334,10 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         label: 'Pilot-led omnichannel AI agents',
         text: 'Consider Vida.io when the project requires agents across voice, text, email, web chat, and connected operational workflows rather than a self-service phone plan.',
       },
+      {
+        label: 'Focused inbound AI receptionist',
+        text: 'Consider RingOperator when the job is call answering, qualification, booking, Google Calendar synchronization, and a defined transfer path rather than a broad team phone system.',
+      },
     ],
     scenarios: [
       {
@@ -366,6 +370,11 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         scenario: 'Business designing a cross-channel AI agent deployment',
         consider: 'Consider Vida.io',
         why: 'Vida documents omnichannel agents, integrations, operations automation, and a discovery-to-pilot deployment process.',
+      },
+      {
+        scenario: 'Small business needs an AI receptionist for inbound calls',
+        consider: 'Consider RingOperator',
+        why: 'Its documented public workflow focuses on answering, qualification, booking, Google Calendar synchronization, and human transfer.',
       },
     ],
     metaTitle: 'Business Phone & Voice AI Software | Racklio',
@@ -411,6 +420,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     ],
     products: [
       {
+        title: 'RingOperator Review',
+        description:
+          'Focused inbound AI receptionist coverage for booking, qualification, Google Calendar, minutes, SMS, call records, and handoff boundaries.',
+        href: '/reviews/ringoperator',
+      },
+      {
         title: 'Aircall Review',
         description:
           'Structured cloud calling, routing, integrations, analytics, plan minimums, messaging economics, and separately scoped AI capabilities.',
@@ -455,6 +470,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
+        title: 'RingOperator vs CallHippo',
+        description:
+          'A focused AI receptionist compared with a broader cloud-phone operating model.',
+        href: '/comparisons/ringoperator-vs-callhippo',
+      },
+      {
         title: 'Quo vs KrispCall',
         description:
           'Collaborative phone workspace compared with a virtual-number-centered cloud phone model.',
@@ -475,6 +496,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     ],
     alternativeGuides: [
       {
+        title: 'RingOperator Alternatives',
+        description:
+          'Choose between a narrow inbound receptionist workflow and broader business-phone paths.',
+        href: '/alternatives/ringoperator-alternatives',
+      },
+      {
         title: 'Quo Alternatives',
         description:
           'Compare collaborative business phone, virtual-number, cloud-calling, and broader communications operating models.',
@@ -494,6 +521,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
+      {
+        title: 'RingOperator Pricing',
+        description:
+          'Model monthly plans, included minutes, per-minute overage, SMS, and receptionist workflow scope.',
+        href: '/guides/ringoperator-pricing',
+      },
       {
         title: 'Quo Pricing',
         description:
@@ -1465,6 +1498,7 @@ export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
     '/reviews/vida',
     '/reviews/quo',
     '/reviews/calilio',
+    '/reviews/ringoperator',
   ],
   'crm-customer-engagement': [
     '/reviews/engagebay',
@@ -1491,6 +1525,7 @@ const territoryMembers: Record<string, readonly string[]> = {
     'Vida.io',
     'Quo',
     'Calilio',
+    'RingOperator',
   ],
   'crm-customer-engagement': [
     'EngageBay',

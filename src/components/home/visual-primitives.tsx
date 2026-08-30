@@ -45,6 +45,7 @@ export function ProductLogo({
     <span
       className={cn(
         'grid shrink-0 place-items-center rounded-xl border border-border bg-surface-raised font-bold text-accent-strong shadow-subtle',
+        name === 'RingOperator' && '!border-brand !bg-brand',
         dimensions,
       )}
     >

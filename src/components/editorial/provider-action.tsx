@@ -8,6 +8,7 @@ export function ProviderAction({
   name,
   secondaryHref,
   secondaryLabel,
+  showDisclosure = true,
   variant = 'default',
   watchOut,
 }: {
@@ -18,6 +19,7 @@ export function ProviderAction({
   name: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  showDisclosure?: boolean;
   variant?: 'compact' | 'default';
   watchOut?: string;
 }) {
@@ -27,7 +29,7 @@ export function ProviderAction({
         <p className="text-sm font-semibold">If the fit matches your team:</p>
         <div className="mt-2.5 flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
           <ButtonLink
-            className="w-full sm:w-auto"
+            className="w-full min-w-0 max-w-full whitespace-normal text-center sm:w-auto"
             data-cta-kind="provider-action-early"
             href={href}
             rel={
@@ -50,11 +52,13 @@ export function ProviderAction({
             </Link>
           ) : null}
         </div>
-        <p className="mt-2.5 break-words text-xs leading-5 text-muted-foreground">
-          {affiliate
-            ? 'Affiliate link. Racklio may earn a commission at no additional cost to you; this does not influence the review.'
-            : 'Opens the provider’s official website. Confirm current plans and terms before purchase.'}
-        </p>
+        {showDisclosure ? (
+          <p className="mt-2.5 break-words text-xs leading-5 text-muted-foreground">
+            {affiliate
+              ? 'Affiliate link. Racklio may earn a commission at no additional cost to you; this does not influence the analysis.'
+              : 'Opens the provider’s official website. Confirm current plans and terms before purchase.'}
+          </p>
+        ) : null}
       </div>
     );
   }
@@ -82,6 +86,7 @@ export function ProviderAction({
         </div>
         <div className="flex min-w-0 flex-wrap gap-3 md:justify-end">
           <ButtonLink
+            className="min-w-0 max-w-full whitespace-normal text-center"
             data-cta-kind="provider-action"
             href={href}
             rel={
@@ -105,11 +110,13 @@ export function ProviderAction({
           ) : null}
         </div>
       </div>
-      <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
-        {affiliate
-          ? 'Affiliate disclosure: Racklio may earn a commission if you use this link, at no additional cost to you. This does not influence the editorial conclusion.'
-          : 'This opens the provider’s official website. Confirm current pricing, eligibility, and terms there before purchase.'}
-      </p>
+      {showDisclosure ? (
+        <p className="mt-4 break-words text-xs leading-5 text-muted-foreground">
+          {affiliate
+            ? 'Affiliate disclosure: Racklio may earn a commission if you use this link, at no additional cost to you. This does not influence the editorial conclusion.'
+            : 'This opens the provider’s official website. Confirm current pricing, eligibility, and terms there before purchase.'}
+        </p>
+      ) : null}
     </aside>
   );
 }
