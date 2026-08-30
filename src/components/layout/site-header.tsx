@@ -1,10 +1,12 @@
 import { RacklioLogo } from '@/components/brand';
+import { HomepageSearch } from '@/components/home';
 import { Container, Link } from '@/components/ui';
 
 const navigation = [
-  ['Categories', '/#categories'],
   ['Reviews', '/#reviews'],
   ['Comparisons', '/#comparisons'],
+  ['Pricing', '/guides'],
+  ['Alternatives', '/alternatives'],
   ['Methodology', '/#methodology'],
 ] as const;
 
@@ -50,14 +52,17 @@ export function SiteHeader() {
             <NavigationLinks />
           </nav>
 
-          <Link
-            aria-label="Search Racklio"
-            className="hidden size-10 items-center justify-center rounded-md border border-border text-muted-foreground hover:text-foreground lg:inline-flex"
-            href="/#software-search"
-            variant="unstyled"
-          >
-            <span aria-hidden="true" className="search-icon" />
-          </Link>
+          <details className="group relative hidden lg:block">
+            <summary
+              aria-label="Search Racklio"
+              className="flex size-10 cursor-pointer list-none items-center justify-center rounded-md border border-border text-muted-foreground marker:content-none hover:text-foreground"
+            >
+              <span aria-hidden="true" className="search-icon" />
+            </summary>
+            <div className="absolute top-[calc(100%+0.75rem)] right-0 w-[min(32rem,calc(100vw-3rem))] rounded-2xl border border-border bg-surface-raised p-3 shadow-panel">
+              <HomepageSearch compact />
+            </div>
+          </details>
 
           <details className="group relative lg:hidden">
             <summary className="flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md border border-border bg-surface-raised px-3 text-sm font-semibold marker:content-none">
@@ -76,14 +81,7 @@ export function SiteHeader() {
                 <NavigationLinks mobile />
               </nav>
               <div className="mt-4">
-                <Link
-                  aria-label="Search Racklio"
-                  className="inline-flex size-11 items-center justify-center rounded-md border border-border"
-                  href="/#software-search"
-                  variant="unstyled"
-                >
-                  <span aria-hidden="true" className="search-icon" />
-                </Link>
+                <HomepageSearch compact />
               </div>
             </div>
           </details>

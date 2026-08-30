@@ -3,7 +3,6 @@ import { useState, type ReactNode } from 'react';
 import {
   CategoryPill,
   EvidenceLabel,
-  HomepageSearch,
   ProductLogo,
   RacklioVsBadge,
 } from '@/components/home';
@@ -15,59 +14,64 @@ import {
   Link,
   Reveal,
 } from '@/components/ui';
-import { editorialCoverageCounts } from '@/lib/editorial-coverage';
 
-const categories = [
+const decisionTerritories = [
   {
-    code: 'AI',
-    name: 'AI Customer Support',
-    shortName: 'AI Support',
-    href: '/categories/ai-customer-support',
-    description:
-      'AI agents, help desks, automation, and accountable human handoff.',
-    start:
-      'Start with resolution scope, knowledge quality, and escalation controls.',
-    products: ['Typewise', 'Tidio', 'Gorgias'],
-  },
-  {
-    code: 'VO',
+    code: 'COMMUNICATE',
     name: 'Business Phone & Voice AI',
-    shortName: 'Business Phone',
     href: '/categories/business-phone-voice-ai',
     description:
-      'Cloud calling, virtual numbers, routing, messaging, and voice automation.',
+      'Business phone systems, cloud calling, virtual numbers, routing, messaging, and voice AI.',
     start:
-      'Start with number coverage, usage economics, routing, and integrations.',
-    products: ['KrispCall', 'Aircall', 'Calilio'],
+      'Start with number coverage, routing, usage economics, and integrations.',
+    products: [
+      'KrispCall',
+      'Aircall',
+      'CallHippo',
+      'Vida.io',
+      'Quo',
+      'Calilio',
+    ],
   },
   {
-    code: 'CH',
-    name: 'Live Chat & Messaging',
-    shortName: 'Live Chat',
-    href: '/categories/live-chat-messaging',
+    code: 'SUPPORT',
+    name: 'AI Customer Support',
+    href: '/categories/ai-customer-support',
     description:
-      'Website chat, WhatsApp, shared inboxes, and omnichannel workflows.',
+      'AI agents, help desks, support automation, chatbots, knowledge workflows, and human handoff.',
     start:
-      'Start with channel coverage, ownership, automation, and human support.',
-    products: ['Tidio', 'respond.io', 'Landbot'],
+      'Start with resolution scope, knowledge quality, escalation, and human oversight.',
+    products: [
+      'Typewise',
+      'Tidio',
+      'Gorgias',
+      'EazyChat.io',
+      'Landbot',
+      'Help Scout',
+    ],
   },
   {
-    code: 'CRM',
-    name: 'CRM & Customer Engagement',
-    shortName: 'CRM',
+    code: 'ENGAGE',
+    name: 'Customer Engagement',
     href: '/categories/crm-customer-engagement',
     description:
-      'Customer records, lifecycle activity, communication, and engagement.',
+      'Email, lifecycle communication, campaigns, journeys, and engagement automation.',
     start:
-      'Start with pipeline depth, record ownership, automation, and suite breadth.',
-    products: ['Pipedrive', 'EngageBay', 'Campaign Monitor'],
+      'Start with the relationship lifecycle, campaign scope, automation, and channels.',
+    products: [
+      'EngageBay',
+      'Campaign Monitor',
+      'AWeber',
+      'Pipedrive',
+      'Capsule CRM',
+    ],
   },
 ] as const;
 
 const reviews = [
   {
     name: 'Tidio',
-    category: 'Live Chat & Messaging',
+    category: 'AI Customer Support',
     fit: 'Teams evaluating web chat, help-desk workflows, and Lyro AI with documented usage limits.',
     cue: 'Inspect how conversations, AI usage, and support workflows are packaged.',
     notFor:
@@ -77,14 +81,14 @@ const reviews = [
     alternatives: '/alternatives/tidio-alternatives',
   },
   {
-    name: 'respond.io',
-    category: 'Live Chat & Messaging',
-    fit: 'Omnichannel messaging teams working across WhatsApp and other channels.',
-    cue: 'Compare channel operations, active-contact economics, and workflow control.',
-    notFor: 'Your main requirement is a conventional website-chat workflow.',
-    review: '/reviews/respond-io',
-    compare: '/comparisons/respond-io-vs-tidio',
-    alternatives: '/alternatives/respond-io-alternatives',
+    name: 'Help Scout',
+    category: 'AI Customer Support',
+    fit: 'Support teams evaluating a shared inbox, knowledge content, customer-facing assistance, and AI usage economics.',
+    cue: 'Inspect inbox scope, user billing, AI Answer usage, and workflow controls.',
+    notFor: 'Your primary requirement is an ecommerce-centered help desk.',
+    review: '/reviews/help-scout',
+    compare: '/comparisons/help-scout-vs-gorgias',
+    alternatives: '/alternatives/help-scout-alternatives',
   },
   {
     name: 'KrispCall',
@@ -97,7 +101,7 @@ const reviews = [
   },
   {
     name: 'Pipedrive',
-    category: 'CRM & Customer Engagement',
+    category: 'Customer Engagement',
     fit: 'Sales teams that want a pipeline-first CRM rather than a broader customer suite.',
     cue: 'Map plan scope, add-ons, automation, and configured annual cost.',
     notFor: 'You need a broad marketing and service suite in the same product.',
@@ -118,13 +122,13 @@ const reviews = [
   },
   {
     name: 'EngageBay',
-    category: 'CRM & Customer Engagement',
+    category: 'Customer Engagement',
     fit: 'Smaller teams seeking connected CRM, marketing, sales, and service workflows.',
     cue: 'Decide whether suite breadth or specialist depth matters more.',
     notFor: 'Your priority is specialist, pipeline-first sales CRM depth.',
     review: '/reviews/engagebay',
     pricing: '/guides/engagebay-pricing',
-    compare: '/comparisons/engagebay-vs-hubspot',
+    compare: '/comparisons/pipedrive-vs-engagebay',
     alternatives: '/alternatives/engagebay-alternatives',
   },
 ] as const;
@@ -139,12 +143,11 @@ const comparisons = [
     href: '/comparisons/tidio-vs-gorgias',
   },
   {
-    a: 'respond.io',
-    b: 'Tidio',
-    question:
-      'Omnichannel messaging operations or web chat and ticket support?',
-    distinction: 'Start with channel breadth, ownership, and support workflow.',
-    href: '/comparisons/respond-io-vs-tidio',
+    a: 'Help Scout',
+    b: 'Gorgias',
+    question: 'Shared-inbox support or an ecommerce-centered help desk?',
+    distinction: 'Start with the support operating model and commerce context.',
+    href: '/comparisons/help-scout-vs-gorgias',
   },
   {
     a: 'Pipedrive',
@@ -167,51 +170,39 @@ const comparisons = [
 
 const decisionPaths = [
   {
+    label: 'Improve customer communication',
+    title: 'Business Phone & Voice AI',
+    description:
+      'Evaluate business phone systems, cloud calling, virtual numbers, routing, messaging, and voice AI.',
+    href: '/categories/business-phone-voice-ai',
+    suggestions: [
+      ['CallHippo review', '/reviews/callhippo'],
+      ['KrispCall vs Aircall', '/comparisons/krispcall-vs-aircall'],
+      ['Calilio pricing', '/guides/calilio-pricing'],
+    ],
+  },
+  {
     label: 'Reduce support workload',
     title: 'AI Customer Support',
     description:
-      'Evaluate resolution scope, knowledge inputs, escalation, oversight, and usage economics.',
+      'Evaluate resolution scope, knowledge inputs, escalation, oversight, and support operating economics.',
     href: '/categories/ai-customer-support',
     suggestions: [
-      ['Typewise review', '/reviews/typewise'],
+      ['Help Scout review', '/reviews/help-scout'],
       ['Tidio vs Gorgias', '/comparisons/tidio-vs-gorgias'],
       ['EazyChat.io alternatives', '/alternatives/eazychat-alternatives'],
     ],
   },
   {
-    label: 'Improve sales follow-up',
-    title: 'CRM & Customer Engagement',
+    label: 'Build customer engagement',
+    title: 'Customer Engagement',
     description:
-      'Compare pipeline ownership, communication, automation, reporting, and broader suite requirements.',
+      'Compare email, lifecycle communication, campaigns, journeys, and engagement automation.',
     href: '/categories/crm-customer-engagement',
     suggestions: [
-      ['Pipedrive review', '/reviews/pipedrive'],
-      ['Pipedrive vs EngageBay', '/comparisons/pipedrive-vs-engagebay'],
-      ['EngageBay pricing', '/guides/engagebay-pricing'],
-    ],
-  },
-  {
-    label: 'Upgrade business calling',
-    title: 'Business Phone & Voice AI',
-    description:
-      'Evaluate numbers, country coverage, routing, included usage, messaging, AI scope, and integrations.',
-    href: '/categories/business-phone-voice-ai',
-    suggestions: [
-      ['Calilio review', '/reviews/calilio'],
-      ['KrispCall vs Aircall', '/comparisons/krispcall-vs-aircall'],
-      ['Quo alternatives', '/alternatives/quo-alternatives'],
-    ],
-  },
-  {
-    label: 'Manage customer conversations',
-    title: 'Live Chat & Messaging',
-    description:
-      'Compare channel coverage, shared context, routing, automation, and human ownership.',
-    href: '/categories/live-chat-messaging',
-    suggestions: [
-      ['respond.io review', '/reviews/respond-io'],
-      ['Landbot vs Tidio', '/comparisons/landbot-vs-tidio'],
-      ['Tidio alternatives', '/alternatives/tidio-alternatives'],
+      ['EngageBay review', '/reviews/engagebay'],
+      ['Campaign Monitor vs AWeber', '/comparisons/campaign-monitor-vs-aweber'],
+      ['AWeber pricing', '/guides/aweber-pricing'],
     ],
   },
 ] as const;
@@ -294,8 +285,8 @@ function DecisionExplorer() {
   const [selected, setSelected] = useState(0);
   const current = decisionPaths[selected] ?? decisionPaths[0];
   return (
-    <div className="grid min-w-0 gap-4">
-      <div className="grid min-w-0 gap-2 sm:grid-cols-2">
+    <div className="grid min-w-0 gap-3 sm:gap-4">
+      <div className="grid min-w-0 gap-2 sm:grid-cols-3">
         {decisionPaths.map((path, index) => (
           <button
             aria-controls="decision-result"
@@ -313,16 +304,16 @@ function DecisionExplorer() {
         ))}
       </div>
       <div
-        className="decision-result rounded-[1.5rem] bg-foreground p-6 text-white shadow-panel sm:p-8"
+        className="decision-result rounded-[1.5rem] bg-foreground p-6 text-white shadow-panel"
         id="decision-result"
         key={current.label}
       >
         <p className="section-eyebrow text-mint">Suggested research path</p>
-        <h3 className="mt-4 text-2xl font-semibold">{current.title}</h3>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-stone-300">
+        <h3 className="mt-3 text-2xl font-semibold">{current.title}</h3>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-stone-300">
           {current.description}
         </p>
-        <ul className="mt-6 grid gap-2 sm:grid-cols-3">
+        <ul className="mt-4 grid gap-2 sm:grid-cols-3">
           {current.suggestions.map(([label, href]) => (
             <li key={href}>
               <Link
@@ -337,11 +328,11 @@ function DecisionExplorer() {
           ))}
         </ul>
         <Link
-          className="group mt-6 inline-flex items-center gap-2 font-semibold text-mint"
+          className="group mt-4 inline-flex items-center gap-2 font-semibold text-mint"
           href={current.href}
           variant="unstyled"
         >
-          Explore category <Arrow />
+          Explore research <Arrow />
         </Link>
       </div>
     </div>
@@ -350,9 +341,10 @@ function DecisionExplorer() {
 
 export function Home() {
   const canonical = 'https://racklio.com/';
-  const title = 'Racklio — Compare AI Customer Support Software';
+  const title =
+    'Racklio — Customer Communication, Support & Engagement Software';
   const description =
-    'Evidence-based reviews and comparisons of AI customer support, business communications, CRM, and customer engagement software.';
+    'Independent reviews, comparisons, pricing guides, and alternatives for customer communication, AI support, business phone, voice AI, and customer engagement software.';
   const schemas = [
     {
       '@context': 'https://schema.org',
@@ -393,54 +385,53 @@ export function Home() {
         />
       ))}
 
-      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-10 sm:py-14 lg:py-16">
+      <section className="homepage-hero relative z-10 overflow-visible border-b border-border py-8 sm:py-10 lg:py-9">
         <div
           aria-hidden="true"
           className="hero-grid absolute inset-0 opacity-70"
         />
         <Container className="relative" size="wide">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
-            <div className="lg:pt-3">
+          <div className="grid items-start gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-10">
+            <div className="lg:pt-2">
               <p className="section-eyebrow text-accent-strong">
-                No vendor pays for placement or rankings.
+                Independent software research
               </p>
               <h1 className="mt-3 max-w-[35rem] text-[clamp(2.75rem,11vw,3.25rem)] leading-[1.02] font-semibold tracking-[-0.05em] sm:mt-4 sm:text-[clamp(3.25rem,5vw,4.25rem)]">
-                Stop demoing.
+                Choose the Right Customer Software.
                 <span className="block text-accent-strong">
-                  Start deciding.
+                  Without the Guesswork.
                 </span>
               </h1>
               <p className="mt-4 max-w-lg text-[1.0625rem] leading-7 text-muted-foreground sm:text-lg sm:leading-7">
-                Verified pricing, documented limitations, and honest
-                alternatives—drawn from provider documentation, not vendor
-                positioning. Tell us the problem you are solving and we will
-                show you the research paths that fit.
+                Compare pricing, limitations, and real use cases across customer
+                communication, support, and engagement software — so you can
+                make the right choice before you spend.
               </p>
-              <div className="hero-search mt-7" id="software-search">
-                <HomepageSearch />
+              <div className="mt-6 flex flex-wrap gap-3">
+                <ButtonLink href="#decision-path">
+                  Find the Right Software <Arrow />
+                </ButtonLink>
+                <ButtonLink href="/comparisons" variant="secondary">
+                  Compare Tools <Arrow />
+                </ButtonLink>
               </div>
-              <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                Search {editorialCoverageCounts.reviews} reviews,{' '}
-                {editorialCoverageCounts.comparisons} head-to-head comparisons,
-                and {editorialCoverageCounts.pricingGuides} pricing guides{' '}
-                <span aria-hidden="true">→</span>
-              </p>
             </div>
             <div
-              className="rounded-[2rem] border border-border bg-white/90 p-5 shadow-panel sm:p-7"
+              className="rounded-[2rem] border border-border bg-white/90 p-5 shadow-panel sm:p-6"
               id="decision-path"
             >
               <p className="section-eyebrow text-accent-strong">
                 Start with your problem
               </p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
                 What are you trying to improve?
               </h2>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                Choose an operating need. Racklio will surface the relevant
-                research without pretending to calculate a universal answer.
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Choose how you need to communicate with, support, or engage
+                customers. Racklio will surface the relevant research without
+                pretending to calculate a universal answer.
               </p>
-              <div className="mt-5">
+              <div className="mt-4">
                 <DecisionExplorer />
               </div>
             </div>
@@ -507,7 +498,7 @@ export function Home() {
               ],
               [
                 '↳',
-                'Recommendations depend on fit',
+                'Recommendations based on fit',
                 'The right choice depends on workload, team, and operating constraints.',
               ],
             ].map(([icon, label, detail], index) => (
@@ -743,31 +734,30 @@ export function Home() {
         <Reveal>
           <section id="categories" aria-labelledby="territories-heading">
             <SectionIntro
-              eyebrow="Four focused verticals"
+              eyebrow="Decision territories"
               headingId="territories-heading"
-              title="We cover four categories properly instead of forty badly."
-              text="Each category starts with the operational problem it solves and the criteria that actually separate the options."
+              title="Start With What You Need to Improve"
+              text="Find software based on how your business communicates with, supports, and engages customers."
             />
-            <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2">
-              {categories.map((item, index) => (
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {decisionTerritories.map((item, index) => (
                 <ClickableCard
-                  className="category-territory rounded-none border-0 bg-surface-raised p-6 sm:p-8"
+                  className="category-territory flex min-h-72 flex-col rounded-2xl border border-border bg-surface-raised p-6 sm:p-8"
                   href={item.href}
                   key={item.code}
-                  label={`Explore the ${item.name} category`}
+                  label={`Explore ${item.name} research`}
                 >
                   <div className="flex items-center justify-between gap-4">
                     <span className="font-mono text-xs font-bold text-accent-strong">
-                      0{index + 1} / {item.code}
+                      0{index + 1} — {item.code}
                     </span>
-                    <CategoryPill>{item.shortName}</CategoryPill>
                   </div>
                   <h3 className="mt-7 text-2xl font-semibold">{item.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {item.description}
                   </p>
                   <p className="mt-4 text-sm leading-6">
-                    <strong>Buyer starting point:</strong> {item.start}
+                    <strong>Start with:</strong> {item.start}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {item.products.map((product) => (
@@ -779,8 +769,8 @@ export function Home() {
                       </span>
                     ))}
                   </div>
-                  <span className="group mt-6 inline-flex items-center gap-2 font-semibold">
-                    Enter category <Arrow />
+                  <span className="group mt-auto inline-flex items-center gap-2 pt-6 font-semibold">
+                    Explore research <Arrow />
                   </span>
                 </ClickableCard>
               ))}
@@ -836,9 +826,9 @@ export function Home() {
                     'Reviews and pricing guides carry verification dates so buyers can see when material product information was last checked. Current terms should still be confirmed directly with the provider before purchase.',
                 },
                 {
-                  question: 'Why does Racklio focus on four categories?',
+                  question: 'Why this editorial focus?',
                   answer:
-                    'Focused coverage makes it possible to examine pricing mechanics, operating models, and limitations in greater depth instead of publishing thin summaries across unrelated software markets.',
+                    'Focused coverage makes it possible to examine customer communication, support, and engagement software in greater depth instead of publishing thin summaries across unrelated software markets.',
                 },
               ].map((item) => (
                 <details

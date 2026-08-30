@@ -14,6 +14,13 @@ import {
   Section,
 } from '@/components/ui';
 import { editorialCoverageCounts } from '@/lib/editorial-coverage';
+import {
+  activeAlternativesPaths,
+  activeComparisonPaths,
+  activePricingGuidePaths,
+  activeProducts,
+  isActiveDiscoveryPath,
+} from '@/lib/active-software-inventory';
 
 import { softwareCategories } from './categories/category-data';
 
@@ -938,6 +945,38 @@ const comparisonEntries: Entry[] = [
   },
 ];
 
+const activeReviewPaths = new Set(
+  activeProducts.map((product) => `/reviews/${product.slug}`),
+);
+
+function selectActiveEntries(entries: Entry[], paths: ReadonlySet<string>) {
+  return entries
+    .filter((entry) => paths.has(entry.href))
+    .map((entry) => ({
+      ...entry,
+      relatedLinks: entry.relatedLinks?.filter((link) =>
+        isActiveDiscoveryPath(link.href),
+      ),
+    }));
+}
+
+const activeReviewEntries = selectActiveEntries(
+  reviewEntries,
+  activeReviewPaths,
+);
+const activeCommercialGuideEntries = selectActiveEntries(
+  commercialGuideEntries,
+  new Set<string>(activePricingGuidePaths),
+);
+const activeAlternativeEntries = selectActiveEntries(
+  alternativeEntries,
+  new Set<string>(activeAlternativesPaths),
+);
+const activeComparisonEntries = selectActiveEntries(
+  comparisonEntries,
+  new Set<string>(activeComparisonPaths),
+);
+
 function useDescription(content: string) {
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
@@ -1323,8 +1362,8 @@ export function ReviewsHub() {
       displayTitle="Customer Software Reviews That Show Where the Fit Breaks"
       displayDescription="Start with who the product is for, what changes the real cost, and when to walk away. Every conclusion is tied to official evidence and explicit limitations."
       canonical="https://racklio.com/reviews"
-      entries={reviewEntries}
-      sectionTitle="Customer service software"
+      entries={activeReviewEntries}
+      sectionTitle="Active software reviews"
       categoryEntries={softwareCategoryEntries}
       showReviewMethodology
       related={[
@@ -1344,8 +1383,8 @@ export function ComparisonsHub() {
       displayTitle="Customer Service Software Comparisons Without the Guesswork"
       displayDescription="Put two operating models side by side, find the differences that can change your decision, and choose by workflow—not a manufactured score."
       canonical="https://racklio.com/comparisons"
-      entries={comparisonEntries}
-      sectionTitle="Customer service software"
+      entries={activeComparisonEntries}
+      sectionTitle="Active software comparisons"
       related={[
         { title: 'Read provider reviews', description: '', href: '/reviews' },
         { title: 'Choose by workload', description: '', href: '/guides' },
@@ -1383,12 +1422,12 @@ export function GuidesHub() {
     <HubPage
       code="BG"
       eyebrow="The headline price is not the real cost"
-      title="Customer Service Software Guides"
+      title="Customer Software Pricing Guides"
       description="Start with the customer workflow your team needs to improve, then evaluate software around relevant capabilities, limits, and operating fit."
       displayTitle="Customer Software Pricing Guides That Expose the Cost Drivers"
       displayDescription="See the billing unit, usage limits, seat requirements, add-ons, and contract conditions that can change what your team actually pays."
       canonical="https://racklio.com/guides"
-      entries={commercialGuideEntries}
+      entries={activeCommercialGuideEntries}
       sectionTitle="Pricing and product decisions"
       categoryEntries={softwareCategoryEntries}
       related={[
@@ -1409,7 +1448,7 @@ export function AlternativesHub() {
       displayTitle="Software Alternatives Built Around the Reason You’re Switching"
       displayDescription="Name the workflow, scope, or pricing condition that no longer fits. Then compare replacement paths that solve that specific problem—without universal rankings."
       canonical="https://racklio.com/alternatives"
-      entries={alternativeEntries}
+      entries={activeAlternativeEntries}
       sectionTitle="Current alternative guides"
       categoryEntries={softwareCategoryEntries}
       showReviewMethodology
@@ -1430,10 +1469,10 @@ export function SearchPage() {
   );
   const entries = useMemo(
     () => [
-      ...reviewEntries,
-      ...comparisonEntries,
-      ...commercialGuideEntries,
-      ...alternativeEntries,
+      ...activeReviewEntries,
+      ...activeComparisonEntries,
+      ...activeCommercialGuideEntries,
+      ...activeAlternativeEntries,
       ...softwareCategoryEntries,
     ],
     [],

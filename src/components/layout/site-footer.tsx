@@ -8,12 +8,10 @@ const groups = [
   {
     title: 'Explore',
     links: [
-      ['Categories', '/#categories'],
       ['Reviews', '/#reviews'],
       ['Comparisons', '/#comparisons'],
+      ['Pricing Guides', '/guides'],
       ['Alternatives', '/alternatives'],
-      ['Best Software', '/#best'],
-      ['Guides', '/guides'],
     ],
   },
   {
@@ -51,7 +49,8 @@ export function SiteFooter({
       brand={<RacklioLogo tone="dark" />}
       legal={
         <>
-          Independent software research operated by Keleva LLC.
+          Independent research for customer communication, support, and
+          engagement software, operated by Keleva LLC.
           <br />
           &copy; {new Date().getFullYear()} Keleva LLC
         </>

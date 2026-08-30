@@ -22,6 +22,10 @@ import {
   Link,
   Section,
 } from '@/components/ui';
+import {
+  getActiveTerritoryLinks,
+  isActiveDiscoveryPath,
+} from '@/lib/active-software-inventory';
 
 export type ComparisonData = {
   slug: string;
@@ -64,6 +68,7 @@ export type ComparisonData = {
 
 export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
   const canonical = `https://racklio.com/comparisons/${data.slug}`;
+  const activeCategoryLinks = getActiveTerritoryLinks([data.a, data.b]);
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -199,12 +204,12 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <div className="rounded-2xl border border-brand/15 bg-white/75 p-3 shadow-card sm:p-4">
                 <ComparisonIdentity a={data.a} b={data.b} useProductLogos />
               </div>
-              {data.categoryLinks?.length ? (
+              {activeCategoryLinks.length ? (
                 <nav
                   aria-label="Related software categories"
                   className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
                 >
-                  {data.categoryLinks.map((category) => (
+                  {activeCategoryLinks.map((category) => (
                     <Link href={category.href} key={category.href}>
                       {category.title}
                     </Link>
@@ -214,7 +219,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <div className="mt-4">
                 <ResearchMarker
                   code="CP"
-                  label={`${data.category} comparison`}
+                  label={`${activeCategoryLinks[0]?.title ?? data.category} comparison`}
                 />
               </div>
               <h1 className="mt-4 max-w-4xl break-words text-4xl leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[clamp(3.25rem,5vw,4.75rem)] sm:leading-[0.98]">
@@ -416,7 +421,8 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                       <EvidenceNote>{s.evidence}</EvidenceNote>
                     </div>
                   ) : null}
-                  {s.contextualLink ? (
+                  {s.contextualLink &&
+                  isActiveDiscoveryPath(s.contextualLink.href) ? (
                     <p className="mt-5 text-sm leading-6">
                       <Link href={s.contextualLink.href}>
                         {s.contextualLink.title} →

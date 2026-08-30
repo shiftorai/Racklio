@@ -502,7 +502,7 @@ export const landbotAlternativesData: CommercialPageData = {
   eyebrow: 'Conditional alternatives guide',
   headline: 'Landbot Alternatives: Compare Chat, Messaging & Support Models',
   dek: 'Landbot alternatives should be selected by operating model. Compare custom conversational-flow design with agent-centric live chat, omnichannel messaging, and ecommerce help-desk workflows rather than treating every chatbot product as equivalent.',
-  metaTitle: 'Landbot Alternatives: Tidio, respond.io & Gorgias | Racklio',
+  metaTitle: 'Landbot Alternatives by Conversational Workflow | Racklio',
   metaDescription:
     'Compare Landbot alternatives conditionally across conversational automation, live chat, omnichannel messaging, ecommerce support, pricing and buyer fit.',
   verificationDate,

@@ -23,6 +23,11 @@ import {
   Section,
 } from '@/components/ui';
 import { getProviderUrl, type CoreProvider } from '@/lib/provider-links';
+import {
+  containsInactiveProductReference,
+  getActiveTerritoryLinks,
+  isActiveDiscoveryPath,
+} from '@/lib/active-software-inventory';
 
 export type CommercialPageData = {
   path: string;
@@ -66,6 +71,22 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
     ? getProviderUrl(data.providerKey)
     : data.officialUrl;
   const usesAffiliateLink = commercialUrl !== data.officialUrl;
+  const activeCategoryLinks = getActiveTerritoryLinks([data.provider]);
+  const visibleCategoryLinks = activeCategoryLinks.length
+    ? activeCategoryLinks
+    : data.categoryLinks;
+  const activeRelated = data.related.filter((link) =>
+    isActiveDiscoveryPath(link.href),
+  );
+  const isActivePage = isActiveDiscoveryPath(data.path);
+  const keepActiveReference = (value: unknown) =>
+    !isActivePage || !containsInactiveProductReference(JSON.stringify(value));
+  const visibleSummary = data.summary.filter(keepActiveReference);
+  const visibleTableRows = data.table.rows.filter(keepActiveReference);
+  const visibleSections = data.sections.filter(keepActiveReference);
+  const visibleScenarios = data.scenarios.filter(keepActiveReference);
+  const visibleFaqs = data.faqs.filter(keepActiveReference);
+  const visibleSources = data.sources.filter(keepActiveReference);
   const isPricingGuide = data.path.startsWith('/guides/');
   const isAlternativesGuide = data.path.startsWith('/alternatives/');
   const contentType = isPricingGuide
@@ -84,14 +105,14 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
       ? `Start with why ${data.provider} may not fit, then compare replacement paths that solve a different constraint.`
       : 'The published facts and decision implications that matter first.';
   const commercialText = [
-    ...data.table.rows.flat(),
-    ...data.summary.flatMap((item) => [item.label, item.text]),
+    ...visibleTableRows.flat(),
+    ...visibleSummary.flatMap((item) => [item.label, item.text]),
   ]
     .join(' ')
     .toLowerCase();
   const trueCostFactors = deriveTrueCostFactors(commercialText);
   const summaryItems = [
-    ...data.summary.slice(0, 4),
+    ...visibleSummary.slice(0, 4),
     { label: 'Last verified', text: data.verificationDate },
   ];
   useEffect(() => {
@@ -125,7 +146,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
         name: 'Keleva LLC',
         url: 'https://racklio.com/',
       },
-      citation: data.sources.map((source) => source.href),
+      citation: visibleSources.map((source) => source.href),
     },
     {
       '@context': 'https://schema.org',
@@ -154,7 +175,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
   ];
   const toc = [
     ['overview', 'Decision snapshot'],
-    ...data.sections.map((section) => [section.id, section.title]),
+    ...visibleSections.map((section) => [section.id, section.title]),
     ['scenarios', 'Scenario guidance'],
     ['faq', 'Buyer questions'],
     ['sources', 'Sources reviewed'],
@@ -217,7 +238,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </p>
                   <div className="mt-1.5 flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold tracking-[0.1em] uppercase">
                     <span className="rounded-full bg-accent-subtle px-2.5 py-1 text-brand">
-                      {data.categoryLinks[0]?.title ?? 'Business software'}
+                      {visibleCategoryLinks[0]?.title ?? 'Business software'}
                     </span>
                     <span className="text-muted-foreground">{contentType}</span>
                   </div>
@@ -227,7 +248,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 aria-label="Related software categories"
                 className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
               >
-                {data.categoryLinks.map((category) => (
+                {visibleCategoryLinks.map((category) => (
                   <Link href={category.href} key={category.href}>
                     {category.title}
                   </Link>
@@ -295,7 +316,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 ) : null}
                 {isAlternativesGuide ? (
                   <div className="grid min-w-0 gap-4 md:grid-cols-2">
-                    {data.table.rows.map((row) => (
+                    {visibleTableRows.map((row) => (
                       <article
                         className="min-w-0 rounded-2xl border border-brand/20 bg-white p-5 shadow-card"
                         key={row[0]}
@@ -358,7 +379,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                           </tr>
                         </thead>
                         <tbody>
-                          {data.table.rows.map((row) => (
+                          {visibleTableRows.map((row) => (
                             <tr className="border-t border-border" key={row[0]}>
                               {row.map((cell, index) =>
                                 index === 0 ? (
@@ -380,7 +401,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       </table>
                     </div>
                     <div className="grid min-w-0 gap-3 sm:hidden">
-                      {data.table.rows.map((row) => (
+                      {visibleTableRows.map((row) => (
                         <Card className="min-w-0" key={row[0]}>
                           <CardContent>
                             <h3 className="break-words font-semibold">
@@ -415,7 +436,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </EvidenceNote>
                 </div>
               </ReviewSection>
-              {data.sections.map((section) => (
+              {visibleSections.map((section) => (
                 <ReviewSection
                   code={section.code}
                   description={section.description}
@@ -436,7 +457,8 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       <EvidenceNote>{section.evidence}</EvidenceNote>
                     </div>
                   ) : null}
-                  {section.contextualLink ? (
+                  {section.contextualLink &&
+                  isActiveDiscoveryPath(section.contextualLink.href) ? (
                     <p className="mt-5 text-sm leading-6">
                       <Link href={section.contextualLink.href}>
                         {section.contextualLink.title} →
@@ -475,7 +497,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.scenarios.map((item) => (
+                      {visibleScenarios.map((item) => (
                         <tr
                           className="border-t border-border"
                           key={item.scenario}
@@ -493,7 +515,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </table>
                 </div>
                 <div className="grid min-w-0 max-w-full gap-4 sm:hidden">
-                  {data.scenarios.map((item) => (
+                  {visibleScenarios.map((item) => (
                     <Card key={item.scenario}>
                       <CardContent>
                         <h3 className="break-words font-semibold">
@@ -517,7 +539,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 title="Questions to settle before you choose"
               >
                 <div className="divide-y divide-border border-y border-border">
-                  {data.faqs.map((item) => (
+                  {visibleFaqs.map((item) => (
                     <section className="min-w-0 py-6" key={item.question}>
                       <h3 className="break-words font-semibold">
                         {item.question}
@@ -536,12 +558,12 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                     : `Check current ${data.provider} plans`
                 }
                 affiliate={usesAffiliateLink}
-                fit={data.summary[0]?.text}
+                fit={visibleSummary[0]?.text}
                 href={commercialUrl}
                 name={data.provider}
                 secondaryHref="#sources"
                 secondaryLabel="Check the evidence"
-                watchOut={data.summary[1]?.text}
+                watchOut={visibleSummary[1]?.text}
               />
               <ReviewSection
                 code="S0"
@@ -555,7 +577,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   hands-on testing is represented.
                 </p>
                 <ol className="mt-6 min-w-0 space-y-3 text-sm">
-                  {data.sources.map((source, index) => (
+                  {visibleSources.map((source, index) => (
                     <li className="min-w-0" key={source.href}>
                       [{index + 1}]{' '}
                       <a
@@ -579,7 +601,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                       Check current {data.provider} plans
                     </ButtonLink>
                   ) : null}
-                  {data.related.slice(0, 2).map((link) => (
+                  {activeRelated.slice(0, 2).map((link) => (
                     <ButtonLink
                       href={link.href}
                       key={link.href}
@@ -605,7 +627,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                   </EvidenceBlock>
                 </div>
                 <div className="mt-8">
-                  <RelatedDecisionLinks links={data.related} />
+                  <RelatedDecisionLinks links={activeRelated} />
                 </div>
               </ReviewSection>
             </article>

@@ -1,11 +1,14 @@
-/**
- * Published software coverage represented by the active hub inventories.
- * Keep this snapshot aligned with the corresponding arrays in content-hubs.tsx.
- */
+import {
+  activeAlternativesPaths,
+  activeComparisonPaths,
+  activePricingGuidePaths,
+  activeProducts,
+} from './active-software-inventory';
+
 export const editorialCoverageCounts = {
-  reviews: 24,
-  comparisons: 15,
-  pricingGuides: 17,
-  alternativesGuides: 21,
-  categories: 4,
+  reviews: activeProducts.length,
+  comparisons: activeComparisonPaths.length,
+  pricingGuides: activePricingGuidePaths.length,
+  alternativesGuides: activeAlternativesPaths.length,
+  categories: 3,
 } as const;

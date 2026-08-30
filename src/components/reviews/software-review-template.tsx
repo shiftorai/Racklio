@@ -23,6 +23,11 @@ import {
   Section,
 } from '@/components/ui';
 import { getProviderUrl, type CoreProvider } from '@/lib/provider-links';
+import {
+  containsInactiveProductReference,
+  getActiveTerritoryLinks,
+  isActiveDiscoveryPath,
+} from '@/lib/active-software-inventory';
 
 export type SoftwareReviewData = {
   slug: string;
@@ -77,7 +82,13 @@ export type SoftwareReviewData = {
 export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
   const canonical = `https://racklio.com/reviews/${data.slug}`;
   const verificationDate = data.verificationDate ?? 'August 13, 2026';
-  const primaryCategory = data.categoryLinks?.[0];
+  const activeCategoryLinks = getActiveTerritoryLinks([data.name]);
+  const primaryCategory = activeCategoryLinks[0] ?? data.categoryLinks?.[0];
+  const activeAlternatives = data.alternatives?.filter(
+    (alternative) =>
+      !containsInactiveProductReference(JSON.stringify(alternative)) &&
+      (!alternative.href || isActiveDiscoveryPath(alternative.href)),
+  );
   const commercialUrl = data.providerKey
     ? getProviderUrl(data.providerKey)
     : data.officialUrl;
@@ -271,7 +282,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   </p>
                   <div className="mt-1 flex flex-wrap items-center gap-2 text-[0.68rem] font-semibold tracking-[0.1em] uppercase">
                     <span className="rounded-full bg-accent-subtle px-2.5 py-0.5 text-brand">
-                      {data.category}
+                      {primaryCategory?.title ?? data.category}
                     </span>
                     <span className="text-muted-foreground">
                       Evidence-first review
@@ -279,12 +290,12 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   </div>
                 </div>
               </div>
-              {data.categoryLinks?.length ? (
+              {activeCategoryLinks.length ? (
                 <nav
                   aria-label="Related software categories"
                   className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-sm"
                 >
-                  {data.categoryLinks.map((category) => (
+                  {activeCategoryLinks.map((category) => (
                     <Link href={category.href} key={category.href}>
                       {category.title}
                     </Link>
@@ -562,7 +573,8 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                       <EvidenceNote>{s.evidence}</EvidenceNote>
                     </div>
                   ) : null}
-                  {s.contextualLink ? (
+                  {s.contextualLink &&
+                  isActiveDiscoveryPath(s.contextualLink.href) ? (
                     <p className="mt-5 text-sm leading-6">
                       <Link href={s.contextualLink.href}>
                         {s.contextualLink.title} →
@@ -655,7 +667,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   </div>
                 </ReviewSection>
               ) : null}
-              {data.alternatives?.length ? (
+              {activeAlternatives?.length ? (
                 <ReviewSection
                   code="A1"
                   id="alternatives"
@@ -663,7 +675,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   description="Category overlap does not make products interchangeable. Start with the workflow or cost condition that makes this option a poor fit."
                 >
                   <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
-                    {data.alternatives.map((alternative) => (
+                    {activeAlternatives.map((alternative) => (
                       <Card key={alternative.title}>
                         <CardContent>
                           <h3 className="break-words font-semibold">

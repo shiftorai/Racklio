@@ -9,7 +9,7 @@ export const tidioAlternativesData: CommercialPageData = {
   eyebrow: 'Scenario-led alternatives',
   headline: 'Tidio alternatives: choose by support workflow and usage model',
   dek: 'Consider an alternative to Tidio when ecommerce specialization, omnichannel messaging, or a narrower AI website-chat product fits better than Tidio’s combined live chat, ticketing, Flows, and Lyro stack. Tidio remains relevant when those functions belong together.',
-  metaTitle: 'Tidio Alternatives: EazyChat.io, Gorgias & respond.io | Racklio',
+  metaTitle: 'Tidio Alternatives by Support Workflow | Racklio',
   metaDescription:
     'Compare Tidio alternatives by AI chat, ecommerce support, omnichannel messaging, pricing units, integrations, documentation, and practical business fit.',
   verificationDate,
@@ -191,7 +191,7 @@ export const gorgiasAlternativesData: CommercialPageData = {
   headline:
     'Gorgias alternatives: choose by commerce context and support model',
   dek: 'Consider a Gorgias alternative when the business is not ecommerce-centered, needs a lighter website-support stack, prioritizes omnichannel messaging, or wants broader CRM and engagement coverage. Gorgias remains relevant when store context belongs inside every support interaction.',
-  metaTitle: 'Gorgias Alternatives: Tidio, respond.io & EngageBay | Racklio',
+  metaTitle: 'Gorgias Alternatives by Support Model | Racklio',
   metaDescription:
     'Compare Gorgias alternatives by ecommerce specialization, live chat, omnichannel messaging, CRM scope, ticket economics, and practical business fit.',
   verificationDate,

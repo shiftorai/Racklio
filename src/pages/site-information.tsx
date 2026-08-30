@@ -92,7 +92,7 @@ export function AboutPage() {
     <InformationPage
       code="AB"
       title="About Racklio"
-      description="Racklio is an independent software decision resource operated by Keleva LLC."
+      description="Racklio is an independent research publication for customer communication, support, and engagement software, operated by Keleva LLC."
       canonical="https://racklio.com/about"
       preferredSource
     >
@@ -100,8 +100,8 @@ export function AboutPage() {
       <section>
         <h2 className="text-2xl font-semibold">Compare. Choose. Grow.</h2>
         <p className="mt-3">
-          Racklio helps businesses evaluate AI customer support and business
-          communication software without turning a complex purchase into a
+          Racklio helps businesses evaluate customer communication, support, and
+          engagement software without turning a complex purchase into a
           universal ranking. The goal is to reduce unnecessary research
           complexity by organizing relevant provider information around business
           fit, operational needs, and the tradeoffs that can affect a buying
@@ -117,9 +117,10 @@ export function AboutPage() {
       <section>
         <h2 className="text-2xl font-semibold">What Racklio covers</h2>
         <p className="mt-3">
-          Racklio covers AI customer support, business phone systems, AI
-          receptionists, customer messaging, and help desk and live chat
-          software. Provider reviews examine documented product scope and
+          Racklio covers business phone and voice AI, AI customer support, and
+          customer engagement software. This includes the tools businesses use
+          to communicate with customers, provide support, and build ongoing
+          engagement. Provider reviews examine documented product scope and
           practical fit; conditional comparisons explain meaningful differences;
           and decision guides organize options around a defined business need.
           Together, these formats help readers move from broad research to a
@@ -238,18 +239,17 @@ export function PartnerMediaKitPage() {
     <InformationPage
       code="PM"
       title="Partner & Media Kit"
-      description="Racklio is an independent B2B software comparison and buying-guidance publication operated by Keleva LLC. We help SMBs evaluate and choose software through research-based reviews, comparisons, alternatives, pricing guides, and decision-focused content."
-      metaDescription="Learn about Racklio's audience, B2B software coverage, editorial approach, promotional channels, and affiliate partnership model."
+      description="Racklio is an independent B2B publication for customer communication, support, and engagement software, operated by Keleva LLC. We help SMBs evaluate software through research-based reviews, comparisons, alternatives, pricing guides, and decision-focused content."
+      metaDescription="Learn about Racklio's customer communication, support, and engagement software coverage, editorial approach, promotional channels, and affiliate partnership model."
       canonical="https://racklio.com/partner-media-kit"
     >
       <section>
         <h2 className="text-2xl font-semibold">What Racklio Covers</h2>
         <p className="mt-3">Racklio&apos;s primary coverage areas are:</p>
         <ul className="mt-3 list-disc space-y-2 pl-5">
-          <li>AI Customer Support</li>
           <li>Business Phone &amp; Voice AI</li>
-          <li>Live Chat &amp; Messaging</li>
-          <li>CRM &amp; Customer Engagement</li>
+          <li>AI Customer Support</li>
+          <li>Customer Engagement</li>
         </ul>
       </section>
 
@@ -349,7 +349,7 @@ export function MethodologyPage() {
     <InformationPage
       code="MT"
       title="Editorial Methodology"
-      description="How Racklio evaluates business software and turns official documentation into conditional buying guidance."
+      description="How Racklio evaluates customer communication, support, and engagement software and turns official documentation into conditional buying guidance."
       canonical="https://racklio.com/methodology"
       wideContent
       heroExtra={

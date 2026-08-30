@@ -560,14 +560,15 @@ export function CategoryHubTemplate({
   categories: SoftwareCategoryData[];
 }) {
   const canonical = 'https://racklio.com/#categories';
-  const title = 'Customer Service Software Categories | Racklio';
+  const title =
+    'Customer Communication, Support & Engagement Software Categories | Racklio';
   const description =
-    'Explore Racklio categories for AI customer support, business phone and voice AI, live chat and messaging, and CRM customer engagement software.';
+    'Explore Racklio territories for business phone and voice AI, AI customer support, and customer engagement software.';
   useMetaDescription(description);
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Customer Service Software Categories',
+    name: 'Customer Communication, Support & Engagement Software Categories',
     description,
     url: canonical,
     hasPart: categories.map((category) => ({
@@ -623,7 +624,7 @@ export function CategoryHubTemplate({
             </div>
             <aside className="min-w-0 rounded-2xl border border-brand/20 bg-white/92 p-5 shadow-panel sm:p-6">
               <p className="text-xs font-bold tracking-[0.14em] text-accent-strong uppercase">
-                Four problems. Four starting points.
+                Three problems. Three starting points.
               </p>
               <ol className="mt-4 divide-y divide-border">
                 {categoryMembership.map(({ category, products }, index) => (

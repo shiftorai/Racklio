@@ -2,6 +2,7 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Link } from '@/components/ui';
+import { isActiveDiscoveryPath } from '@/lib/active-software-inventory';
 
 import { ProductLogo } from './visual-primitives';
 
@@ -41,16 +42,12 @@ const nameOverrides: Record<string, string> = {
   ai: 'AI',
   aircall: 'Aircall',
   aweber: 'AWeber',
-  bookyourdata: 'Bookyourdata',
   callhippo: 'CallHippo',
   eazychat: 'EazyChat.io',
   engagebay: 'EngageBay',
-  fireflies: 'Fireflies.ai',
   krispcall: 'KrispCall',
-  ninjaone: 'NinjaOne',
   pipedrive: 'Pipedrive',
   quo: 'Quo',
-  salesmsg: 'Salesmsg',
   tidio: 'Tidio',
 };
 
@@ -119,7 +116,7 @@ function rankEntry(entry: SearchEntry, query: string) {
   return 4;
 }
 
-export function HomepageSearch() {
+export function HomepageSearch({ compact = false }: { compact?: boolean }) {
   const navigate = useNavigate();
   const inputId = useId();
   const listId = useId();
@@ -146,7 +143,10 @@ export function HomepageSearch() {
               return null;
             }
           })
-          .filter((entry): entry is SearchEntry => entry !== null);
+          .filter(
+            (entry): entry is SearchEntry =>
+              entry !== null && isActiveDiscoveryPath(entry.href),
+          );
         const products = Array.from(
           new Map(
             nextEntries
@@ -199,7 +199,10 @@ export function HomepageSearch() {
   const showResults = open && query.trim().length > 0;
 
   return (
-    <div className="relative z-20 mt-7 max-w-2xl" ref={rootRef}>
+    <div
+      className={`relative z-20 ${compact ? 'w-full max-w-none' : 'mt-7 max-w-2xl'}`}
+      ref={rootRef}
+    >
       <label className="sr-only" htmlFor={inputId}>
         Search Racklio software research
       </label>
@@ -292,41 +295,43 @@ export function HomepageSearch() {
           </ul>
         </div>
       ) : null}
-      <p className="mt-3 text-xs leading-5 text-muted-foreground">
-        Try:{' '}
-        <button
-          className="search-example"
-          onClick={() => {
-            setQuery('Tidio vs Gorgias');
-            setOpen(true);
-          }}
-          type="button"
-        >
-          Tidio vs Gorgias
-        </button>
-        {' · '}
-        <button
-          className="search-example"
-          onClick={() => {
-            setQuery('Pipedrive pricing');
-            setOpen(true);
-          }}
-          type="button"
-        >
-          Pipedrive pricing
-        </button>
-        {' · '}
-        <button
-          className="search-example"
-          onClick={() => {
-            setQuery('Business Phone');
-            setOpen(true);
-          }}
-          type="button"
-        >
-          Business phone
-        </button>
-      </p>
+      {!compact ? (
+        <p className="mt-3 text-xs leading-5 text-muted-foreground">
+          Try:{' '}
+          <button
+            className="search-example"
+            onClick={() => {
+              setQuery('Tidio vs Gorgias');
+              setOpen(true);
+            }}
+            type="button"
+          >
+            Tidio vs Gorgias
+          </button>
+          {' · '}
+          <button
+            className="search-example"
+            onClick={() => {
+              setQuery('Pipedrive pricing');
+              setOpen(true);
+            }}
+            type="button"
+          >
+            Pipedrive pricing
+          </button>
+          {' · '}
+          <button
+            className="search-example"
+            onClick={() => {
+              setQuery('Business Phone');
+              setOpen(true);
+            }}
+            type="button"
+          >
+            Business phone
+          </button>
+        </p>
+      ) : null}
     </div>
   );
 }

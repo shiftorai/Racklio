@@ -459,7 +459,7 @@ export const helpScoutAlternativesData: CommercialPageData = {
   dek: 'A meaningful alternative should solve a different support operating problem. Compare Help Scout with ecommerce help desk, chat-led automation, or messaging-led conversation workflows only when that distinction is real.',
   metaTitle: 'Help Scout Alternatives 2026: Decision Guide | Racklio',
   metaDescription:
-    'Conditional Help Scout alternatives guide covering Gorgias, Tidio and respond.io by support workflow, channels, automation and buyer fit.',
+    'Conditional Help Scout alternatives guide covering support workflows, channels, automation, operating models, and buyer fit.',
   verificationDate,
   schemaDate,
   provider: 'Help Scout',

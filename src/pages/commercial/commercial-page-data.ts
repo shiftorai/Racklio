@@ -375,7 +375,7 @@ export const engageBayAlternativesData: CommercialPageData = {
   headline:
     'EngageBay alternatives: choose by workflow, depth, and operating model',
   dek: 'Consider an EngageBay alternative when a broader enterprise platform, a specialist service tool, or an omnichannel messaging workspace fits better than an integrated small-business suite. EngageBay remains relevant when connected breadth and simpler consolidation are the priority.',
-  metaTitle: 'EngageBay Alternatives: HubSpot, Tidio & respond.io | Racklio',
+  metaTitle: 'EngageBay Alternatives by Customer Workflow | Racklio',
   metaDescription:
     'Compare meaningful EngageBay alternatives by CRM scope, support depth, messaging workflow, pricing model, complexity, and practical business fit.',
   verificationDate,
@@ -562,7 +562,7 @@ export const eazyChatAlternativesData: CommercialPageData = {
   headline:
     'EazyChat.io alternatives: compare support scope, maturity, and usage models',
   dek: 'Consider an EazyChat.io alternative when you need more established help-desk operations, ecommerce specialization, or broader messaging-channel coverage. EazyChat.io remains relevant for smaller website-chat deployments with forecastable AI usage.',
-  metaTitle: 'EazyChat.io Alternatives: Tidio, Gorgias & respond.io | Racklio',
+  metaTitle: 'EazyChat.io Alternatives by Support Scope | Racklio',
   metaDescription:
     'Compare EazyChat.io alternatives by AI chat, help desk, ecommerce context, messaging channels, pricing model, documentation, and business fit.',
   verificationDate,

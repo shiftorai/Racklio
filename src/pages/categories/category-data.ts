@@ -1,6 +1,10 @@
 import type { SoftwareCategoryData } from '@/components/categories';
+import {
+  activeProducts,
+  isActiveDiscoveryPath,
+} from '@/lib/active-software-inventory';
 
-export const softwareCategories: SoftwareCategoryData[] = [
+const allSoftwareCategories: SoftwareCategoryData[] = [
   {
     slug: 'ai-customer-support',
     code: 'AI',
@@ -1445,54 +1449,158 @@ export const softwareCategories: SoftwareCategoryData[] = [
   },
 ];
 
+export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
+  'ai-customer-support': [
+    '/reviews/typewise',
+    '/reviews/tidio',
+    '/reviews/gorgias',
+    '/reviews/eazychat',
+    '/reviews/landbot',
+    '/reviews/help-scout',
+  ],
+  'business-phone-voice-ai': [
+    '/reviews/krispcall',
+    '/reviews/aircall',
+    '/reviews/callhippo',
+    '/reviews/vida',
+    '/reviews/quo',
+    '/reviews/calilio',
+  ],
+  'crm-customer-engagement': [
+    '/reviews/engagebay',
+    '/reviews/campaign-monitor',
+    '/reviews/aweber',
+    '/reviews/pipedrive',
+    '/reviews/capsule-crm',
+  ],
+};
+
+const territoryMembers: Record<string, readonly string[]> = {
+  'ai-customer-support': [
+    'Typewise',
+    'Tidio',
+    'Gorgias',
+    'EazyChat.io',
+    'Landbot',
+    'Help Scout',
+  ],
+  'business-phone-voice-ai': [
+    'KrispCall',
+    'Aircall',
+    'CallHippo',
+    'Vida.io',
+    'Quo',
+    'Calilio',
+  ],
+  'crm-customer-engagement': [
+    'EngageBay',
+    'Campaign Monitor',
+    'AWeber',
+    'Pipedrive',
+    'Capsule CRM',
+  ],
+};
+
+const productCatalog = new Map(
+  allSoftwareCategories.flatMap((category) =>
+    category.products.map((product) => [product.href, product] as const),
+  ),
+);
+
+const knownProductNames = [
+  ...activeProducts.map((product) => product.name),
+  'NinjaOne',
+  'Bookyourdata',
+  'Demodesk',
+  'Claap',
+  'Fireflies.ai',
+  'Salesmsg',
+  'respond.io',
+  'HubSpot',
+];
+
+function belongsToTerritory(value: unknown, members: readonly string[]) {
+  const text = JSON.stringify(value).toLowerCase();
+  const mentionedProducts = knownProductNames.filter((name) =>
+    text.includes(name.toLowerCase()),
+  );
+
+  return (
+    mentionedProducts.length === 0 ||
+    mentionedProducts.some((name) => members.includes(name))
+  );
+}
+
+function curateCategory(category: SoftwareCategoryData) {
+  const members = territoryMembers[category.slug] ?? [];
+  const products = members
+    .map((name) => {
+      const product = activeProducts.find((item) => item.name === name);
+      if (!product) return undefined;
+      const href = `/reviews/${product.slug}`;
+
+      return (
+        productCatalog.get(href) ?? {
+          title: `${product.name} Review`,
+          description:
+            'Review documented capabilities, commercial limits, and conditional buyer fit.',
+          href,
+        }
+      );
+    })
+    .filter((product): product is SoftwareCategoryData['products'][number] =>
+      Boolean(product),
+    );
+  const filterLinks = (links: SoftwareCategoryData['products']) =>
+    links.filter(
+      (link) =>
+        isActiveDiscoveryPath(link.href) && belongsToTerritory(link, members),
+    );
+
+  return {
+    ...category,
+    ...(category.slug === 'crm-customer-engagement'
+      ? {
+          code: 'CE',
+          title: 'Customer Engagement Software',
+          shortTitle: 'Customer Engagement',
+          metaTitle: 'Customer Engagement Software | Racklio',
+          metaDescription:
+            'Explore customer engagement software for relationship workflows, lifecycle communication, campaigns, and focused CRM use cases.',
+        }
+      : {}),
+    quickDecision: category.quickDecision.filter((item) =>
+      belongsToTerritory(item, members),
+    ),
+    scenarios: category.scenarios.filter((item) =>
+      belongsToTerritory(item, members),
+    ),
+    startPaths: filterLinks(category.startPaths),
+    products,
+    comparisons: filterLinks(category.comparisons),
+    alternativeGuides: filterLinks(category.alternativeGuides),
+    guides: filterLinks(category.guides),
+    alternatives: category.alternatives.filter((item) =>
+      belongsToTerritory(item, members),
+    ),
+    faqs: category.faqs.filter((item) => belongsToTerritory(item, members)),
+  } satisfies SoftwareCategoryData;
+}
+
+export const softwareCategories = [
+  'business-phone-voice-ai',
+  'ai-customer-support',
+  'crm-customer-engagement',
+].map((slug) => {
+  const category = allSoftwareCategories.find((item) => item.slug === slug);
+  if (!category) throw new Error(`Unknown software category: ${slug}`);
+  return curateCategory(category);
+});
+
 export function getSoftwareCategory(slug: string) {
-  const category = softwareCategories.find((item) => item.slug === slug);
+  const category =
+    softwareCategories.find((item) => item.slug === slug) ??
+    allSoftwareCategories.find((item) => item.slug === slug);
   if (!category) throw new Error(`Unknown software category: ${slug}`);
   return category;
 }
-
-/**
- * Full category membership for hub summaries. This mirrors the explicit
- * categoryLinks published on each review, rather than broader category-page
- * references such as comparisons, alternatives, or buyer paths.
- */
-export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
-  'ai-customer-support': [
-    '/reviews/help-scout',
-    '/reviews/typewise',
-    '/reviews/tidio',
-    '/reviews/respond-io',
-    '/reviews/gorgias',
-    '/reviews/eazychat',
-    '/reviews/vida',
-  ],
-  'business-phone-voice-ai': [
-    '/reviews/calilio',
-    '/reviews/aircall',
-    '/reviews/quo',
-    '/reviews/krispcall',
-    '/reviews/callhippo',
-    '/reviews/salesmsg',
-    '/reviews/vida',
-    '/reviews/fireflies',
-  ],
-  'live-chat-messaging': [
-    '/reviews/landbot',
-    '/reviews/tidio',
-    '/reviews/respond-io',
-    '/reviews/gorgias',
-  ],
-  'crm-customer-engagement': [
-    '/reviews/capsule-crm',
-    '/reviews/pipedrive',
-    '/reviews/engagebay',
-    '/reviews/salesmsg',
-    '/reviews/vida',
-    '/reviews/demodesk',
-    '/reviews/claap',
-    '/reviews/fireflies',
-    '/reviews/campaign-monitor',
-    '/reviews/aweber',
-    '/reviews/bookyourdata',
-  ],
-};

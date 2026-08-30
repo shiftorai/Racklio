@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import { ProductLogo, RacklioVsBadge } from '@/components/home';
 import { Link } from '@/components/ui';
+import { isActiveDiscoveryPath } from '@/lib/active-software-inventory';
 import { cn } from '@/lib/cn';
 import {
   getDecisionInitials,
@@ -302,7 +303,8 @@ export function RelatedDecisionLinks({
 }: {
   links: { title: string; href: string }[];
 }) {
-  if (!links.length) return null;
+  const activeLinks = links.filter((link) => isActiveDiscoveryPath(link.href));
+  if (!activeLinks.length) return null;
 
   return (
     <div className="min-w-0 max-w-full border-t border-border pt-6">
@@ -310,7 +312,7 @@ export function RelatedDecisionLinks({
         Continue your research
       </p>
       <div className="mt-4 flex min-w-0 flex-wrap gap-x-6 gap-y-3 break-words text-sm">
-        {links.map((link) => (
+        {activeLinks.map((link) => (
           <Link href={link.href} key={link.href}>
             {link.title}
           </Link>
