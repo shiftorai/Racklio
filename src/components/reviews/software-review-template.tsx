@@ -292,7 +292,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
               </div>
               {activeCategoryLinks.length ? (
                 <nav
-                  aria-label="Related software categories"
+                  aria-label="Related software research areas"
                   className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-sm"
                 >
                   {activeCategoryLinks.map((category) => (
@@ -672,7 +672,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                   code="A1"
                   id="alternatives"
                   title="If the fit breaks, look here"
-                  description="Category overlap does not make products interchangeable. Start with the workflow or cost condition that makes this option a poor fit."
+                  description="Research-area overlap does not make products interchangeable. Start with the workflow or cost condition that makes this option a poor fit."
                 >
                   <div className="grid min-w-0 max-w-full gap-4 sm:grid-cols-2">
                     {activeAlternatives.map((alternative) => (

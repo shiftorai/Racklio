@@ -245,7 +245,7 @@ export function CommercialPageTemplate({ data }: { data: CommercialPageData }) {
                 </div>
               </div>
               <nav
-                aria-label="Related software categories"
+                aria-label="Related software research areas"
                 className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
               >
                 {visibleCategoryLinks.map((category) => (

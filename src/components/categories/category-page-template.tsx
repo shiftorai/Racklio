@@ -133,7 +133,7 @@ function Breadcrumbs({ current }: { current: string }) {
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href="/#categories">Categories</Link>
+              <Link href="/#categories">Research Areas</Link>
             </li>
             <li aria-hidden="true">/</li>
             <li aria-current="page">{current}</li>
@@ -255,7 +255,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
             <SectionHeading
               eyebrow="Start with fit"
               id="quick-decision-heading"
-              title="Is this the right category for your problem?"
+              title="Is this the right research area for your problem?"
             />
             <dl className="mt-5 grid overflow-hidden rounded-lg border border-border bg-white shadow-card md:grid-cols-2">
               {data.quickDecision.map((item) => (
@@ -333,7 +333,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               <div className="mt-5 rounded-2xl border border-border bg-white p-6 shadow-card">
                 <p className="font-semibold">
                   Dedicated Racklio reviews are not yet published for this
-                  category.
+                  research area.
                 </p>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                   Racklio will add products only after evidence-first coverage
@@ -356,11 +356,11 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               <div className="mt-5 rounded-2xl border border-border bg-white p-6 shadow-card">
                 <p className="font-semibold">
                   No dedicated comparison is currently published for this
-                  category.
+                  research area.
                 </p>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  Browse the existing software research while this category is
-                  developed.
+                  Browse the existing software research while this research area
+                  is developed.
                 </p>
                 <Link className="mt-4 inline-block" href="/#reviews">
                   Browse reviews &rarr;
@@ -418,7 +418,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
           <section className="grid gap-4 lg:grid-cols-2">
             <article className="rounded-2xl border border-border bg-white p-6 shadow-card">
               <h2 className="text-xl font-semibold tracking-[-0.03em]">
-                Shortlist this category when
+                Shortlist this research area when
               </h2>
               <ul className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground">
                 {data.audience.map((item) => (
@@ -493,8 +493,8 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                 Racklio separates official provider facts from editorial
-                analysis and does not sell paid rankings. Category evidence was
-                reviewed {data.verificationDate}.
+                analysis and does not sell paid rankings. Research-area evidence
+                was reviewed {data.verificationDate}.
               </p>
               <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                 {data.sources.map((source) => (
@@ -533,7 +533,7 @@ export function CategoryPageTemplate({ data }: { data: SoftwareCategoryData }) {
                   What should you do next?
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Pick a product only after the category, cost model, and
+                  Pick a product only after the research area, cost model, and
                   operating trade-offs match your team.
                 </p>
               </div>
@@ -663,7 +663,7 @@ export function CategoryHubTemplate({
             <div className="grid gap-5 lg:grid-cols-[0.55fr_1fr] lg:items-end">
               <div>
                 <p className="text-xs font-semibold tracking-[0.14em] text-brand uppercase">
-                  Four focused decision paths
+                  Three research areas
                 </p>
                 <h2
                   className="mt-3 text-2xl font-semibold tracking-[-0.04em] sm:text-3xl"
@@ -673,8 +673,8 @@ export function CategoryHubTemplate({
                 </h2>
               </div>
               <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
-                These categories stay focused on software businesses use to
-                communicate with, support, engage, and manage relationships with
+                These research areas stay focused on software businesses use to
+                communicate with, support, and build ongoing relationships with
                 customers.
               </p>
             </div>
@@ -684,14 +684,14 @@ export function CategoryHubTemplate({
                   className="flex min-w-0 min-h-80 flex-col rounded-2xl border border-border bg-white p-6 shadow-card transition-colors hover:border-brand/30"
                   href={categoryPath(category.slug)}
                   key={category.slug}
-                  label={`Explore the ${category.shortTitle} category`}
+                  label={`Explore the ${category.shortTitle} research area`}
                 >
                   <div className="flex min-w-0 items-center justify-between gap-4">
                     <span className="grid size-10 place-items-center rounded-lg bg-accent-subtle text-xs font-bold text-brand">
                       {category.code}
                     </span>
                     <span className="min-w-0 break-words text-right text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
-                      Primary category
+                      Research area
                     </span>
                   </div>
                   <h3 className="mt-5 break-words text-xl font-semibold tracking-[-0.03em]">
@@ -727,7 +727,7 @@ export function CategoryHubTemplate({
             {[
               [
                 '1',
-                'Choose a category',
+                'Choose a research area',
                 'Identify the workflow and customer interaction your team needs to improve.',
               ],
               [
@@ -759,10 +759,10 @@ export function CategoryHubTemplate({
           <section className="grid items-center gap-5 rounded-2xl border border-brand/20 bg-accent-subtle/70 p-6 shadow-card lg:grid-cols-[1fr_auto]">
             <div>
               <h2 className="font-semibold">
-                The category map is not pay-to-play
+                The research-area map is not pay-to-play
               </h2>
               <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-                Products are included for category relevance and documented
+                Products are included for research relevance and documented
                 buyer value, not affiliate availability or paid placement.
               </p>
             </div>

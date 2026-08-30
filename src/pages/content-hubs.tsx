@@ -182,7 +182,7 @@ const reviewEntries: Entry[] = [
         href: '/alternatives/campaign-monitor-alternatives',
       },
       {
-        title: 'CRM & Customer Engagement',
+        title: 'Customer Engagement',
         href: '/categories/crm-customer-engagement',
       },
     ],
@@ -1148,7 +1148,7 @@ function HubPage({
                       ],
                       [
                         String(editorialCoverageCounts.categories),
-                        'Focused categories',
+                        'Research areas',
                       ],
                     ].map(([value, label]) => (
                       <div className="bg-white p-4" key={label}>
@@ -1168,7 +1168,7 @@ function HubPage({
                   <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 border-t border-border pt-4 text-sm">
                     <Link href="/comparisons">Browse comparisons</Link>
                     <Link href="/guides">Pricing guides</Link>
-                    <Link href="/#categories">Categories</Link>
+                    <Link href="/#categories">Research Areas</Link>
                   </div>
                 </aside>
               ) : null}
@@ -1179,11 +1179,13 @@ function HubPage({
           <Container>
             {categoryEntries?.length ? (
               <div className="mb-10 border-b border-border pb-10 sm:mb-12 sm:pb-12">
-                <h2 className="text-2xl font-semibold">Browse by category</h2>
+                <h2 className="text-2xl font-semibold">
+                  Browse by Research Area
+                </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
                   Pick the workflow that is failing first. Then compare the
                   products, pricing mechanics, and trade-offs inside that
-                  category.
+                  research area.
                 </p>
                 <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {categoryEntries.map((entry) => (
@@ -1201,7 +1203,7 @@ function HubPage({
                           {entry.description}
                         </p>
                         <span className="mt-auto pt-5 text-sm font-semibold">
-                          Explore category →
+                          Explore research →
                         </span>
                       </CardContent>
                     </ClickableCard>
@@ -1409,7 +1411,11 @@ export function BestSoftwareHub() {
           description: '',
           href: '/#reviews',
         },
-        { title: 'Explore categories', description: '', href: '/#categories' },
+        {
+          title: 'Explore research areas',
+          description: '',
+          href: '/#categories',
+        },
       ]}
     />
   );

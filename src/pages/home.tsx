@@ -55,7 +55,7 @@ const decisionTerritories = [
     name: 'Customer Engagement',
     href: '/categories/crm-customer-engagement',
     description:
-      'Email, lifecycle communication, campaigns, journeys, and engagement automation.',
+      'Email, lifecycle communication, campaigns, journeys, and engagement automation for building ongoing customer relationships.',
     start:
       'Start with the relationship lifecycle, campaign scope, automation, and channels.',
     products: [

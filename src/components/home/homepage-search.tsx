@@ -250,7 +250,7 @@ export function HomepageSearch({ compact = false }: { compact?: boolean }) {
               void navigate(results[activeIndex].href);
             }
           }}
-          placeholder="Search software, reviews, comparisons, or categories…"
+          placeholder="Search software, reviews, comparisons, or research areas…"
           role="combobox"
           type="search"
           value={query}
@@ -287,7 +287,7 @@ export function HomepageSearch({ compact = false }: { compact?: boolean }) {
                     <span className="font-semibold">{entry.label}</span>
                   </span>
                   <span className="shrink-0 text-xs text-muted-foreground">
-                    {entry.kind}
+                    {entry.kind === 'Category' ? 'Research Area' : entry.kind}
                   </span>
                 </Link>
               </li>

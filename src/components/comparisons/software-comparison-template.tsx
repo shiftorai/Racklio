@@ -206,7 +206,7 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               </div>
               {activeCategoryLinks.length ? (
                 <nav
-                  aria-label="Related software categories"
+                  aria-label="Related software research areas"
                   className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"
                 >
                   {activeCategoryLinks.map((category) => (

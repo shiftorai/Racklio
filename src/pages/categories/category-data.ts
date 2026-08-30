@@ -270,7 +270,7 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     alternatives: [
       'Teams that only need a business phone system should explore Business Phone & Voice AI.',
       'Teams centered on WhatsApp or shared messaging may need Live Chat & Messaging.',
-      'Organizations seeking broad relationship and lifecycle management may need CRM & Customer Engagement.',
+      'Organizations seeking lifecycle communication and engagement automation may need Customer Engagement.',
     ],
     verificationDate: 'August 21, 2026',
     sources: [
@@ -295,7 +295,7 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
       {
         question: 'Has Racklio ranked these products?',
         answer:
-          'No. The category uses scenario-based guidance because product fit changes with workflow, channel, usage, governance, and budget.',
+          'No. The research area uses scenario-based guidance because product fit changes with workflow, channel, usage, governance, and budget.',
       },
     ],
   },
@@ -574,7 +574,7 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     alternatives: [
       'Website chat and WhatsApp-first teams may need Live Chat & Messaging.',
       'Ticket-based service operations may need an AI Customer Support platform.',
-      'Teams seeking contact records and lifecycle automation may need CRM & Customer Engagement.',
+      'Teams seeking lifecycle communication and engagement automation may need Customer Engagement.',
     ],
     verificationDate: 'August 24, 2026',
     sources: [
@@ -877,7 +877,7 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     alternatives: [
       'Voice-first operations may need Business Phone & Voice AI.',
       'Teams centered on ticketing and service automation may need AI Customer Support.',
-      'Businesses requiring relationship records and lifecycle management may need CRM & Customer Engagement.',
+      'Businesses requiring lifecycle communication and engagement automation may need Customer Engagement.',
     ],
     verificationDate: 'August 24, 2026',
     sources: [
@@ -1564,11 +1564,16 @@ function curateCategory(category: SoftwareCategoryData) {
           code: 'CE',
           title: 'Customer Engagement Software',
           shortTitle: 'Customer Engagement',
+          eyebrow: 'Software research area',
+          definition:
+            'Email, lifecycle communication, campaigns, journeys, and engagement automation for building ongoing customer relationships.',
+          introduction:
+            'Start with the ongoing customer relationship. This research area focuses on email, lifecycle communication, campaigns, journeys, and engagement automation.',
           metaTitle: 'Customer Engagement Software | Racklio',
           metaDescription:
             'Explore customer engagement software for relationship workflows, lifecycle communication, campaigns, and focused CRM use cases.',
         }
-      : {}),
+      : { eyebrow: 'Software research area' }),
     quickDecision: category.quickDecision.filter((item) =>
       belongsToTerritory(item, members),
     ),
