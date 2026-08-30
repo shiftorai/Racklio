@@ -960,9 +960,15 @@ function selectActiveEntries(entries: Entry[], paths: ReadonlySet<string>) {
     }));
 }
 
+const reviewNameCollator = new Intl.Collator('en', { sensitivity: 'base' });
 const activeReviewEntries = selectActiveEntries(
   reviewEntries,
   activeReviewPaths,
+).sort((a, b) =>
+  reviewNameCollator.compare(
+    getEntryProductName(a.title),
+    getEntryProductName(b.title),
+  ),
 );
 const activeCommercialGuideEntries = selectActiveEntries(
   commercialGuideEntries,
@@ -1000,6 +1006,7 @@ function HubPage({
   canonical,
   entries,
   sectionTitle,
+  sectionNote,
   related,
   categoryEntries,
   showReviewMethodology = false,
@@ -1014,6 +1021,7 @@ function HubPage({
   canonical: string;
   entries: Entry[];
   sectionTitle?: string;
+  sectionNote?: string;
   related: Entry[];
   categoryEntries?: Entry[];
   showReviewMethodology?: boolean;
@@ -1212,7 +1220,14 @@ function HubPage({
               </div>
             ) : null}
             {sectionTitle ? (
-              <h2 className="mb-7 text-2xl font-semibold">{sectionTitle}</h2>
+              <div className="mb-7">
+                <h2 className="text-2xl font-semibold">{sectionTitle}</h2>
+                {sectionNote ? (
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {sectionNote}
+                  </p>
+                ) : null}
+              </div>
             ) : null}
             <div className="grid min-w-0 gap-4 md:grid-cols-2">
               {entries.map((entry, index) => {
@@ -1366,6 +1381,7 @@ export function ReviewsHub() {
       canonical="https://racklio.com/reviews"
       entries={activeReviewEntries}
       sectionTitle="Active software reviews"
+      sectionNote="Reviews are listed alphabetically."
       categoryEntries={softwareCategoryEntries}
       showReviewMethodology
       related={[
