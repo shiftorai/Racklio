@@ -38,6 +38,23 @@ function getEntryProductName(title: string) {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'AI-Receptionist.com Review',
+    description:
+      'Focused AI receptionist coverage spanning call handling, knowledge, transfers, calendar workflows, minutes, messaging, geography, and commercial limits.',
+    href: '/reviews/ai-receptionist',
+    relatedLinks: [
+      { title: 'Pricing guide', href: '/guides/ai-receptionist-pricing' },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/ai-receptionist-alternatives',
+      },
+      {
+        title: 'Compare with RingOperator',
+        href: '/comparisons/ai-receptionist-vs-ringoperator',
+      },
+    ],
+  },
+  {
     title: 'RingOperator Review',
     description:
       'AI receptionist coverage for inbound call answering, booking, qualification, Google Calendar, minutes, SMS, and commercial limits.',
@@ -358,6 +375,23 @@ const reviewEntries: Entry[] = [
 
 const commercialGuideEntries: Entry[] = [
   {
+    title: 'AI-Receptionist.com Pricing',
+    description:
+      'Monthly and annual plans, included AI voice minutes, workflow tiers, booster rates, transfer and messaging economics, and cost checks.',
+    href: '/guides/ai-receptionist-pricing',
+    relatedLinks: [
+      { title: 'AI-Receptionist.com review', href: '/reviews/ai-receptionist' },
+      {
+        title: 'Alternatives',
+        href: '/alternatives/ai-receptionist-alternatives',
+      },
+      {
+        title: 'Compare with RingOperator',
+        href: '/comparisons/ai-receptionist-vs-ringoperator',
+      },
+    ],
+  },
+  {
     title: 'RingOperator Pricing',
     description:
       'Monthly AI receptionist plans, included minutes, per-minute overage, SMS rates, trial terms, and workflow-specific cost checks.',
@@ -588,6 +622,20 @@ const commercialGuideEntries: Entry[] = [
 ];
 
 const alternativeEntries: Entry[] = [
+  {
+    title: 'AI-Receptionist.com Alternatives',
+    description:
+      'Choose between another focused AI receptionist and broader business-phone platforms through workflow, geography, users, minutes, and cost.',
+    href: '/alternatives/ai-receptionist-alternatives',
+    relatedLinks: [
+      { title: 'AI-Receptionist.com review', href: '/reviews/ai-receptionist' },
+      { title: 'Pricing guide', href: '/guides/ai-receptionist-pricing' },
+      {
+        title: 'Compare with RingOperator',
+        href: '/comparisons/ai-receptionist-vs-ringoperator',
+      },
+    ],
+  },
   {
     title: 'RingOperator Alternatives',
     description:
@@ -885,6 +933,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'AI-Receptionist.com vs RingOperator',
+    description:
+      'Two focused AI receptionist models compared across entry price, included minutes, booking, transfers, higher-tier scope, and geography.',
+    href: '/comparisons/ai-receptionist-vs-ringoperator',
+    relatedLinks: [
+      { title: 'AI-Receptionist.com review', href: '/reviews/ai-receptionist' },
+      { title: 'RingOperator review', href: '/reviews/ringoperator' },
+    ],
+  },
   {
     title: 'RingOperator vs CallHippo',
     description:

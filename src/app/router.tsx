@@ -170,6 +170,38 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/ai-receptionist',
+        lazy: async () => {
+          const { AiReceptionistReview } =
+            await import('@/pages/reviews/ai-receptionist-review');
+          return { Component: AiReceptionistReview };
+        },
+      },
+      {
+        path: 'guides/ai-receptionist-pricing',
+        lazy: async () => {
+          const { AiReceptionistPricing } =
+            await import('@/pages/guides/ai-receptionist-pricing');
+          return { Component: AiReceptionistPricing };
+        },
+      },
+      {
+        path: 'alternatives/ai-receptionist-alternatives',
+        lazy: async () => {
+          const { AiReceptionistAlternatives } =
+            await import('@/pages/alternatives/ai-receptionist-alternatives');
+          return { Component: AiReceptionistAlternatives };
+        },
+      },
+      {
+        path: 'comparisons/ai-receptionist-vs-ringoperator',
+        lazy: async () => {
+          const { AiReceptionistVsRingOperator } =
+            await import('@/pages/comparisons/ai-receptionist-vs-ringoperator');
+          return { Component: AiReceptionistVsRingOperator };
+        },
+      },
+      {
         path: 'guides/calilio-pricing',
         lazy: async () => {
           const { CalilioPricing } =

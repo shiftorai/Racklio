@@ -134,6 +134,29 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
   )
     ? 'review-tradeoffs'
     : 'tradeoffs';
+  const frameworkSectionIds = new Set([
+    ...(data.video?.sectionId ? [data.video.sectionId] : []),
+    'overview',
+    ...(data.capabilities?.length ? ['capabilities'] : []),
+    'pricing',
+    'decision',
+    ...(data.strengths?.length || data.limitations?.length
+      ? [tradeoffsId]
+      : []),
+    ...(data.alternatives?.length ? ['alternatives'] : []),
+    'faq',
+    'sources',
+  ]);
+  const resolvedSections = data.sections.map((section) => {
+    let resolvedId = section.id;
+
+    while (frameworkSectionIds.has(resolvedId)) {
+      resolvedId = `review-${resolvedId}`;
+    }
+
+    frameworkSectionIds.add(resolvedId);
+    return { ...section, resolvedId };
+  });
   useEffect(() => {
     const meta = document.querySelector<HTMLMetaElement>(
       'meta[name="description"]',
@@ -210,7 +233,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
       ? [['capabilities', 'Key capabilities']]
       : []),
     ['pricing', 'Pricing and billing'],
-    ...data.sections.map((s) => [s.id, s.title]),
+    ...resolvedSections.map((section) => [section.resolvedId, section.title]),
     ['decision', 'Decision guidance'],
     ...(data.strengths?.length || data.limitations?.length
       ? [[tradeoffsId, 'Strengths and limitations']]
@@ -545,12 +568,12 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 showDisclosure={false}
                 variant="compact"
               />
-              {data.sections.map((s) => (
+              {resolvedSections.map((s) => (
                 <ReviewSection
                   code={s.code}
                   description={s.description}
-                  id={s.id}
-                  key={s.id}
+                  id={s.resolvedId}
+                  key={s.resolvedId}
                   title={s.title}
                 >
                   {s.paragraphs.map((p) => (

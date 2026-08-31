@@ -31,6 +31,11 @@ export const activeProducts = [
     slug: 'ringoperator',
     territory: 'business-phone-voice-ai',
   },
+  {
+    name: 'AI-Receptionist.com',
+    slug: 'ai-receptionist',
+    territory: 'business-phone-voice-ai',
+  },
   { name: 'Help Scout', slug: 'help-scout', territory: 'ai-customer-support' },
   {
     name: 'Capsule CRM',
@@ -63,6 +68,7 @@ export const activeComparisonPaths = [
   '/comparisons/krispcall-vs-callhippo',
   '/comparisons/krispcall-vs-aircall',
   '/comparisons/ringoperator-vs-callhippo',
+  '/comparisons/ai-receptionist-vs-ringoperator',
 ] as const;
 
 export const activePricingGuidePaths = [
@@ -78,6 +84,7 @@ export const activePricingGuidePaths = [
   '/guides/eazychat-pricing',
   '/guides/vida-pricing',
   '/guides/ringoperator-pricing',
+  '/guides/ai-receptionist-pricing',
 ] as const;
 
 export const activeAlternativesPaths = [
@@ -95,6 +102,7 @@ export const activeAlternativesPaths = [
   '/alternatives/gorgias-alternatives',
   '/alternatives/vida-alternatives',
   '/alternatives/ringoperator-alternatives',
+  '/alternatives/ai-receptionist-alternatives',
 ] as const;
 
 const activeReviewPaths = new Set(

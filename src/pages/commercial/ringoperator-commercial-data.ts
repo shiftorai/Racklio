@@ -238,6 +238,10 @@ export const ringOperatorReviewData: SoftwareReviewData = {
   ],
   relatedComparisons: [
     {
+      title: 'AI-Receptionist.com vs RingOperator',
+      href: '/comparisons/ai-receptionist-vs-ringoperator',
+    },
+    {
       title: 'RingOperator vs CallHippo',
       href: '/comparisons/ringoperator-vs-callhippo',
     },
@@ -401,6 +405,10 @@ export const ringOperatorPricingData: CommercialPageData = {
       href: '/alternatives/ringoperator-alternatives',
     },
     {
+      title: 'AI-Receptionist.com vs RingOperator',
+      href: '/comparisons/ai-receptionist-vs-ringoperator',
+    },
+    {
       title: 'RingOperator vs CallHippo',
       href: '/comparisons/ringoperator-vs-callhippo',
     },
@@ -558,6 +566,10 @@ export const ringOperatorAlternativesData: CommercialPageData = {
   related: [
     { title: 'RingOperator review', href: '/reviews/ringoperator' },
     { title: 'RingOperator pricing', href: '/guides/ringoperator-pricing' },
+    {
+      title: 'AI-Receptionist.com vs RingOperator',
+      href: '/comparisons/ai-receptionist-vs-ringoperator',
+    },
     {
       title: 'RingOperator vs CallHippo',
       href: '/comparisons/ringoperator-vs-callhippo',

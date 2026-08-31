@@ -338,6 +338,10 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         label: 'Focused inbound AI receptionist',
         text: 'Consider RingOperator when the job is call answering, qualification, booking, Google Calendar synchronization, and a defined transfer path rather than a broad team phone system.',
       },
+      {
+        label: 'Low-entry automated receptionist',
+        text: 'Consider AI-Receptionist.com when a US- or Canada-based business needs focused call answering, knowledge, transfers, and plan-dependent calendar or team workflows.',
+      },
     ],
     scenarios: [
       {
@@ -375,6 +379,11 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         scenario: 'Small business needs an AI receptionist for inbound calls',
         consider: 'Consider RingOperator',
         why: 'Its documented public workflow focuses on answering, qualification, booking, Google Calendar synchronization, and human transfer.',
+      },
+      {
+        scenario: 'Low-volume US or Canada business wants automated answering',
+        consider: 'Consider AI-Receptionist.com',
+        why: 'Its public plans start at $14 monthly and document call handling, knowledge, transfers, transcripts, and plan-dependent calendar workflows.',
       },
     ],
     metaTitle: 'Business Phone & Voice AI Software | Racklio',
@@ -419,6 +428,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
       },
     ],
     products: [
+      {
+        title: 'AI-Receptionist.com Review',
+        description:
+          'Focused automated receptionist coverage for plans, minutes, knowledge, calendar workflows, transfers, transcripts, geography, and usage economics.',
+        href: '/reviews/ai-receptionist',
+      },
       {
         title: 'RingOperator Review',
         description:
@@ -470,6 +485,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     ],
     comparisons: [
       {
+        title: 'AI-Receptionist.com vs RingOperator',
+        description:
+          'Two focused voice-agent models compared across entry price, included minutes, booking, transfers, higher-tier scope, and geography.',
+        href: '/comparisons/ai-receptionist-vs-ringoperator',
+      },
+      {
         title: 'RingOperator vs CallHippo',
         description:
           'A focused AI receptionist compared with a broader cloud-phone operating model.',
@@ -496,6 +517,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
     ],
     alternativeGuides: [
       {
+        title: 'AI-Receptionist.com Alternatives',
+        description:
+          'Choose between another focused AI receptionist and broader cloud-phone operating models.',
+        href: '/alternatives/ai-receptionist-alternatives',
+      },
+      {
         title: 'RingOperator Alternatives',
         description:
           'Choose between a narrow inbound receptionist workflow and broader business-phone paths.',
@@ -521,6 +548,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
       },
     ],
     guides: [
+      {
+        title: 'AI-Receptionist.com Pricing',
+        description:
+          'Model monthly or annual plans, included AI voice minutes, workflow tiers, booster rates, and usage charges.',
+        href: '/guides/ai-receptionist-pricing',
+      },
       {
         title: 'RingOperator Pricing',
         description:
@@ -1492,6 +1525,7 @@ export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
     '/reviews/help-scout',
   ],
   'business-phone-voice-ai': [
+    '/reviews/ai-receptionist',
     '/reviews/krispcall',
     '/reviews/aircall',
     '/reviews/callhippo',
@@ -1519,6 +1553,7 @@ const territoryMembers: Record<string, readonly string[]> = {
     'Help Scout',
   ],
   'business-phone-voice-ai': [
+    'AI-Receptionist.com',
     'KrispCall',
     'Aircall',
     'CallHippo',

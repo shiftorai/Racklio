@@ -28,7 +28,8 @@ export type CoreProvider =
   | 'calilio'
   | 'capsuleCrm'
   | 'helpScout'
-  | 'ringOperator';
+  | 'ringOperator'
+  | 'aiReceptionist';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -56,6 +57,7 @@ export const currentSoftwareProviders = [
   'capsuleCrm',
   'helpScout',
   'ringOperator',
+  'aiReceptionist',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -128,6 +130,10 @@ export const providerLinks = {
   ringOperator: {
     official: 'https://www.ringoperator.com/',
     affiliate: 'https://www.ringoperator.com?ref=CONTACT948',
+  },
+  aiReceptionist: {
+    official: 'https://ai-receptionist.com/',
+    affiliate: 'https://ai-receptionist.com/?via=mohammed743',
   },
 } as const satisfies Record<CoreProvider, ProviderLinkConfig>;
 

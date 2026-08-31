@@ -51,8 +51,8 @@ export function ComparisonIdentity({
   const identity = (name: string, alignRight = false) => (
     <div
       className={cn(
-        'flex min-w-0 items-center gap-3',
-        alignRight && 'flex-row-reverse text-right',
+        'flex min-w-0 flex-col items-center gap-2 text-center sm:flex-row sm:gap-3 sm:text-left',
+        alignRight && 'sm:flex-row-reverse sm:text-right',
       )}
     >
       {useProductLogos ? (
@@ -65,7 +65,7 @@ export function ComparisonIdentity({
           {getDecisionInitials(name)}
         </span>
       )}
-      <span className="min-w-0 break-words text-sm font-semibold sm:text-base">
+      <span className="min-w-0 max-w-full break-words text-sm leading-5 font-semibold sm:text-base">
         {name}
       </span>
     </div>
