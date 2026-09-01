@@ -19,9 +19,8 @@ export const engageBayData: SoftwareReviewData = {
   officialUrl: 'https://www.engagebay.com/',
   providerKey: 'engageBay',
   video: {
-    embedUrl: 'https://www.youtube-nocookie.com/embed/Z2_30q90dHc',
-    title:
-      'EngageBay Review 2026: Is It Worth It for Small Businesses? by Racklio',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/pLie_4y3f5s',
+    title: 'EngageBay Review 2026: Watch This Before Choosing a Plan',
     heading: 'Watch: EngageBay Review 2026',
     description:
       'This video summarizes who EngageBay fits, its main trade-offs, and the factors small businesses should evaluate before choosing it.',
