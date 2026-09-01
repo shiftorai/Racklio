@@ -3512,9 +3512,9 @@ export const callHippoData: SoftwareReviewData = {
   headline:
     'CallHippo review: cloud business calling, routing, and usage-based cost boundaries',
   dek: 'CallHippo combines business numbers, cloud calling, messaging, routing, analytics, and plan-dependent supervisor or AI functions. Its multiple product tracks and region-sensitive pricing make scope definition essential before comparing headline seat prices.',
-  metaTitle: 'CallHippo Review (2026): Pricing, Calling & Fit | Racklio',
+  metaTitle: 'CallHippo Review 2026: Pricing, Features & Limits | Racklio',
   metaDescription:
-    'Evidence-based CallHippo review covering business phone pricing, numbers, calling allowances, routing, SMS, integrations, add-ons, and buyer fit.',
+    'Independent CallHippo review covering current business-phone plans, calling and SMS allowances, number eligibility, routing, integrations, add-ons, and key limitations.',
   officialUrl: 'https://callhippo.com/',
   providerKey: 'callHippo',
   video: {
@@ -3524,8 +3524,9 @@ export const callHippoData: SoftwareReviewData = {
     description:
       'Watch the video overview for a concise breakdown of CallHippo’s pricing structure, key features, limitations, and who it makes the most sense for.',
   },
-  verificationDate: 'August 21, 2026',
-  schemaDate: '2026-08-21',
+  verificationDate: 'September 1, 2026',
+  publishedDate: '2026-08-21',
+  modifiedDate: '2026-09-01',
   idealUser:
     'Small and midsize teams that need a cloud business phone system with virtual numbers, routing, messaging, and plan-based call administration.',
   pricingModel:
@@ -3549,7 +3550,7 @@ export const callHippoData: SoftwareReviewData = {
     },
     {
       label: 'Facts verified',
-      text: 'August 21, 2026, using current CallHippo pricing, product, help-center, integration, security, and policy documentation.',
+      text: 'September 1, 2026, using current CallHippo pricing, product, help-center, integration, security, and policy documentation.',
     },
   ],
   fit: [
@@ -3719,6 +3720,7 @@ export const callHippoData: SoftwareReviewData = {
         'Seat price, billing frequency, regional eligibility, and communications usage belong in one cost model.',
       paragraphs: [
         'Provider fact: the current pricing page exposes monthly/yearly, region, team-size, and currency controls. Its yearly-selected Core Calling view shows Basic at $0, Starter at $18, Professional at $30, and Ultimate at $42 per user/month. The page also uses custom-pricing labels and publishes separate product suites and add-ons.',
+        'Provider fact: the pricing page currently advertises a 10-day free trial with no credit card required and the ability to cancel at any time. Trial eligibility and the exact product scope should still be confirmed before relying on it for evaluation.',
         'Provider fact: CallHippo’s July 1, 2026 billing guide uses Starter at $25 per seat for a US/Canada monthly example. It also states that seats remain billable until the seat count is changed, extra or premium numbers can be charged, add-ons are separate, and credits cover certain out-of-plan calls and messages.',
         'Racklio analysis: the two official price contexts are not equivalent. Use the current selected billing toggle and region, then obtain a written quote covering users, minimums, included numbers, number rental, inbound and outbound calls, destinations, SMS/MMS, A2P costs, recording, storage, AI, add-ons, taxes, contract term, overages, and fair-use consequences.',
       ],
@@ -3741,6 +3743,10 @@ export const callHippoData: SoftwareReviewData = {
       ],
       evidence:
         'Comparison content uses official provider documentation and conditional fit analysis; Racklio has not benchmarked either platform.',
+      contextualLink: {
+        title: 'Compare KrispCall and CallHippo',
+        href: '/comparisons/krispcall-vs-callhippo',
+      },
     },
   ],
   scenarios: [
@@ -3784,10 +3790,16 @@ export const callHippoData: SoftwareReviewData = {
       href: '/comparisons/krispcall-vs-callhippo',
     },
     {
-      title: 'Salesmsg Review',
+      title: 'RingOperator Review',
       description:
-        'Consider Salesmsg when CRM-connected business texting and shared message ownership matter more than a general cloud-phone system.',
-      href: '/reviews/salesmsg',
+        'Consider RingOperator when an AI receptionist and call-handling workflow is the primary buying requirement.',
+      href: '/reviews/ringoperator',
+    },
+    {
+      title: 'Calilio Review',
+      description:
+        'Consider Calilio when published US/Canada calling and messaging bundles provide a clearer starting point for usage modeling.',
+      href: '/reviews/calilio',
     },
   ],
   relatedComparisons: [

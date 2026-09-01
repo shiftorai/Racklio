@@ -1,7 +1,5 @@
 import type { SoftwareReviewData } from '@/components/reviews';
 
-const verificationDate = 'August 14, 2026';
-
 export const engageBayData: SoftwareReviewData = {
   slug: 'engagebay',
   name: 'EngageBay',
@@ -15,9 +13,9 @@ export const engageBayData: SoftwareReviewData = {
   headline:
     'EngageBay review: an integrated CRM, marketing, sales, and service workspace for smaller teams',
   dek: 'EngageBay combines contact management, deal workflows, marketing automation, live chat, and help-desk functions. The buying question is whether one connected suite is more useful than deeper specialist tools for each team.',
-  metaTitle: 'EngageBay Review 2026: Pricing, Features & Fit | Racklio',
+  metaTitle: 'EngageBay Review 2026: Pricing, Features & Limits | Racklio',
   metaDescription:
-    'Evidence-first EngageBay review covering CRM, marketing, sales, help desk, pricing limits, integrations, strengths, limitations, and small-business fit.',
+    'Independent EngageBay review for smaller teams. Compare current pricing, CRM, marketing, sales and service features, plan limits, integrations, and fit.',
   officialUrl: 'https://www.engagebay.com/',
   providerKey: 'engageBay',
   video: {
@@ -39,7 +37,9 @@ export const engageBayData: SoftwareReviewData = {
       href: '/comparisons/engagebay-vs-hubspot',
     },
   ],
-  verificationDate,
+  verificationDate: 'September 1, 2026',
+  publishedDate: '2026-08-13',
+  modifiedDate: '2026-09-01',
   idealUser:
     'Small or growing businesses that want customer records, sales activity, marketing workflows, and service context in one system.',
   pricingModel:
@@ -127,8 +127,8 @@ export const engageBayData: SoftwareReviewData = {
       title: 'What EngageBay is',
       description: 'A customer platform sold as a suite or as functional bays.',
       paragraphs: [
-        'EngageBay organizes customer-facing work into All-in-One, Marketing, CRM & Sales, and Service Bay offerings. Its official pricing comparison connects contact records with email marketing, sales pipelines, live chat, ticketing, and automation.',
-        'That breadth is the central decision factor. A smaller business may reduce handoffs between separate systems, while a team with advanced departmental requirements should validate whether each included module has sufficient depth.',
+        'Provider fact: EngageBay organizes customer-facing work into All-in-One, Marketing, CRM & Sales, and Service Bay offerings. Its official pricing comparison connects contact records with email marketing, sales pipelines, live chat, ticketing, and automation.',
+        'Racklio analysis: that breadth is the central decision factor. A smaller business may reduce handoffs between separate systems, while a team with advanced departmental requirements should validate whether each included module has sufficient depth.',
       ],
       evidence:
         'Verified against EngageBay’s official All-in-One pricing, product, support, integration, and API pages. No hands-on product testing is claimed.',
@@ -144,8 +144,8 @@ export const engageBayData: SoftwareReviewData = {
       description:
         'Model the selected bay, users, contacts, billing term, and feature limits together.',
       paragraphs: [
-        'The official pricing interface displays different effective rates for annual and longer commitments. The table above uses the annual All-in-One prices shown during verification rather than presenting the lowest advertised rate without its commitment context.',
-        'Plan progression changes more than contact capacity. Lists, forms, automation workflows, workflow nodes, reporting, file storage, service views, macros, and other functions have tier-specific availability or limits.',
+        'Provider fact: the official pricing interface displays different effective rates for annual and longer commitments. The table above uses the annual All-in-One prices shown during verification rather than presenting the lowest advertised rate without its commitment context.',
+        'Racklio analysis: plan progression changes more than contact capacity. Lists, forms, automation workflows, workflow nodes, reporting, file storage, service views, macros, and other functions have tier-specific availability or limits that should be mapped before purchase.',
       ],
       contextualLink: {
         title: 'See EngageBay’s pricing and plan structure',
@@ -159,8 +159,8 @@ export const engageBayData: SoftwareReviewData = {
       description:
         'A directory listing establishes availability, not implementation depth.',
       paragraphs: [
-        'EngageBay publishes connections for services including Zapier, Shopify, SendGrid, Stripe, Outlook, Salesforce, Aircall, and other tools, alongside APIs and webhooks.',
-        'Buyers should verify the exact objects, sync direction, update frequency, permissions, and plan access required for their workflow. Racklio does not infer those details from the presence of an integration listing.',
+        'Provider fact: EngageBay publishes connections for services including Zapier, Shopify, SendGrid, Stripe, Outlook, Salesforce, Aircall, and other tools, alongside APIs and webhooks.',
+        'Racklio analysis: buyers should verify the exact objects, sync direction, update frequency, permissions, and plan access required for their workflow. An integration listing alone does not establish implementation depth.',
       ],
       contextualLink: {
         title: 'Explore EngageBay alternatives',
@@ -221,6 +221,11 @@ export const engageBayData: SoftwareReviewData = {
         'Yes. The official All-in-One pricing page listed a free plan with 250 contacts at verification. Limits and eligibility should be reconfirmed before use.',
     },
     {
+      question: 'Who is EngageBay best suited for?',
+      answer:
+        'EngageBay is most relevant to smaller teams that want CRM records connected with marketing, sales, live chat, and service workflows. Teams needing specialist enterprise depth should verify each module against their requirements.',
+    },
+    {
       question: 'Has Racklio tested EngageBay hands-on?',
       answer:
         'No. This review is an editorial analysis of current official provider documentation.',
@@ -234,6 +239,10 @@ export const engageBayData: SoftwareReviewData = {
     {
       title: 'EngageBay — Marketing product',
       href: 'https://www.engagebay.com/products/marketing',
+    },
+    {
+      title: 'EngageBay — All-in-One product',
+      href: 'https://www.engagebay.com/products/all-in-one-marketing-platform',
     },
     {
       title: 'EngageBay — Integrations',
@@ -257,9 +266,9 @@ export const eazyChatData: SoftwareReviewData = {
   headline:
     'EazyChat.io review: AI website chat with human handoff and an optional help-desk layer',
   dek: 'EazyChat.io combines an AI-trained website chat experience with human conversations, multisite controls, integrations, and EazyDesk on higher plans. Its fit depends on AI-conversation volume and how much operational maturity a buyer requires from the surrounding support platform.',
-  metaTitle: 'EazyChat.io Review 2026: Pricing, AI Chat & Fit | Racklio',
+  metaTitle: 'EazyChat.io Review 2026: Small-Team Fit & Limits | Racklio',
   metaDescription:
-    'Evidence-first EazyChat.io review covering AI chat, knowledge inputs, human handoff, help desk, integrations, pricing limits, strengths, and limitations.',
+    'Independent EazyChat.io review for small teams. Compare current pricing, AI conversation limits, human handoff, EazyDesk, and key limitations before choosing.',
   officialUrl: 'https://eazychat.io/',
   providerKey: 'eazyChat',
   video: {
@@ -286,7 +295,9 @@ export const eazyChatData: SoftwareReviewData = {
       href: '/comparisons/eazychat-vs-tidio',
     },
   ],
-  verificationDate,
+  verificationDate: 'September 1, 2026',
+  publishedDate: '2026-08-13',
+  modifiedDate: '2026-09-01',
   idealUser:
     'Small teams that want website AI chat trained from existing content, with unlimited human chats and a path to connected ticketing.',
   pricingModel:
