@@ -29,7 +29,8 @@ export type CoreProvider =
   | 'capsuleCrm'
   | 'helpScout'
   | 'ringOperator'
-  | 'aiReceptionist';
+  | 'aiReceptionist'
+  | 'getOblic';
 
 export const currentSoftwareProviders = [
   'typewise',
@@ -58,6 +59,7 @@ export const currentSoftwareProviders = [
   'helpScout',
   'ringOperator',
   'aiReceptionist',
+  'getOblic',
 ] as const satisfies readonly CoreProvider[];
 
 interface ProviderLinkConfig {
@@ -66,6 +68,10 @@ interface ProviderLinkConfig {
 }
 
 export const providerLinks = {
+  getOblic: {
+    official: 'https://getoblic.com/',
+    affiliate: 'https://claim.getoblic.com/business-add-listing?am_id=racklio',
+  },
   liquidWeb: {
     official: 'https://www.liquidweb.com/',
     affiliate: null,

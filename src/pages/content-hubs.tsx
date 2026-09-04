@@ -38,6 +38,18 @@ function getEntryProductName(title: string) {
 
 const reviewEntries: Entry[] = [
   {
+    title: 'GetOblic Review',
+    description:
+      'Free directory assistant versus paid AI receptionist: booking, call handoff, website voice, WhatsApp scope, and unresolved published pricing.',
+    href: '/reviews/getoblic',
+    relatedLinks: [
+      {
+        title: 'Compare with RingOperator',
+        href: '/comparisons/getoblic-vs-ringoperator',
+      },
+    ],
+  },
+  {
     title: 'AI-Receptionist.com Review',
     description:
       'Focused AI receptionist coverage spanning call handling, knowledge, transfers, calendar workflows, minutes, messaging, geography, and commercial limits.',
@@ -933,6 +945,16 @@ const softwareDecisionEntries: Entry[] = [
 ];
 
 const comparisonEntries: Entry[] = [
+  {
+    title: 'GetOblic vs RingOperator',
+    description:
+      'Directory-led voice assistance versus a minute-bundle receptionist, with booking, handoff, setup, and pricing-verification trade-offs.',
+    href: '/comparisons/getoblic-vs-ringoperator',
+    relatedLinks: [
+      { title: 'GetOblic review', href: '/reviews/getoblic' },
+      { title: 'RingOperator review', href: '/reviews/ringoperator' },
+    ],
+  },
   {
     title: 'AI-Receptionist.com vs RingOperator',
     description:

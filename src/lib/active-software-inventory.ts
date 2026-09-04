@@ -1,4 +1,5 @@
 export const activeProducts = [
+  { name: 'GetOblic', slug: 'getoblic', territory: 'business-phone-voice-ai' },
   { name: 'Typewise', slug: 'typewise', territory: 'ai-customer-support' },
   {
     name: 'KrispCall',
@@ -55,6 +56,7 @@ export const excludedProductSlugs = [
 ] as const;
 
 export const activeComparisonPaths = [
+  '/comparisons/getoblic-vs-ringoperator',
   '/comparisons/help-scout-vs-gorgias',
   '/comparisons/capsule-crm-vs-pipedrive',
   '/comparisons/calilio-vs-callhippo',

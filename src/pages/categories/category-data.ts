@@ -435,6 +435,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         href: '/reviews/ai-receptionist',
       },
       {
+        title: 'GetOblic Review',
+        description:
+          'Directory-led voice assistance and paid AI receptionist workflows, with booking, handoff, and pricing verification before purchase.',
+        href: '/reviews/getoblic',
+      },
+      {
         title: 'RingOperator Review',
         description:
           'Focused inbound AI receptionist coverage for booking, qualification, Google Calendar, minutes, SMS, call records, and handoff boundaries.',
@@ -489,6 +495,12 @@ const allSoftwareCategories: SoftwareCategoryData[] = [
         description:
           'Two focused voice-agent models compared across entry price, included minutes, booking, transfers, higher-tier scope, and geography.',
         href: '/comparisons/ai-receptionist-vs-ringoperator',
+      },
+      {
+        title: 'GetOblic vs RingOperator',
+        description:
+          'Compare listing-led voice assistance with minute-based receptionist plans and booking workflows.',
+        href: '/comparisons/getoblic-vs-ringoperator',
       },
       {
         title: 'RingOperator vs CallHippo',
@@ -1526,6 +1538,7 @@ export const fullCategoryReviewMembership: Record<string, readonly string[]> = {
   ],
   'business-phone-voice-ai': [
     '/reviews/ai-receptionist',
+    '/reviews/getoblic',
     '/reviews/krispcall',
     '/reviews/aircall',
     '/reviews/callhippo',
@@ -1554,6 +1567,7 @@ const territoryMembers: Record<string, readonly string[]> = {
   ],
   'business-phone-voice-ai': [
     'AI-Receptionist.com',
+    'GetOblic',
     'KrispCall',
     'Aircall',
     'CallHippo',

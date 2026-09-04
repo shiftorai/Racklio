@@ -212,6 +212,12 @@ export const ringOperatorReviewData: SoftwareReviewData = {
   ],
   alternatives: [
     {
+      title: 'GetOblic',
+      description:
+        'Evaluate directory-led voice assistance and a paid receptionist; verify the conflicting official subscription prices before comparing costs.',
+      href: '/reviews/getoblic',
+    },
+    {
       title: 'CallHippo',
       description:
         'Consider a broader cloud-phone model when virtual numbers, routing, team calling, and plan configuration lead the decision.',
@@ -237,6 +243,10 @@ export const ringOperatorReviewData: SoftwareReviewData = {
     },
   ],
   relatedComparisons: [
+    {
+      title: 'GetOblic vs RingOperator',
+      href: '/comparisons/getoblic-vs-ringoperator',
+    },
     {
       title: 'AI-Receptionist.com vs RingOperator',
       href: '/comparisons/ai-receptionist-vs-ringoperator',
@@ -499,6 +509,21 @@ export const ringOperatorAlternativesData: CommercialPageData = {
       contextualLink: {
         title: 'Compare RingOperator and CallHippo',
         href: '/comparisons/ringoperator-vs-callhippo',
+      },
+    },
+    {
+      id: 'getoblic',
+      code: 'G1',
+      title: 'GetOblic for a directory-led receptionist path',
+      description:
+        'Relevant when public business discovery and voice assistance belong in the same workflow.',
+      paragraphs: [
+        'Racklio analysis: evaluate GetOblic when a listing-based voice assistant and a paid receptionist are part of the buying brief. Its official subscription prices conflict as checked September 4, 2026, so confirm the offer before making a cost comparison.',
+        'Use the GetOblic review for the documented free-versus-paid boundary, booking and channel questions, official sources, and pricing caveats.',
+      ],
+      contextualLink: {
+        title: 'Read the GetOblic review and pricing caveats',
+        href: '/reviews/getoblic',
       },
     },
     {

@@ -43,6 +43,8 @@ export type ComparisonData = {
   metaDescription: string;
   aUrl: string;
   bUrl: string;
+  aActionLabel?: string;
+  bActionLabel?: string;
   aReview?: string;
   bReview?: string;
   verificationDate?: string;
@@ -334,10 +336,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
                 <ComparisonProviderActions
                   a={data.a}
                   aDestination={providerADestination}
-                  aLabel={`Check ${data.a} plans`}
+                  aLabel={data.aActionLabel ?? `Check ${data.a} plans`}
                   b={data.b}
                   bDestination={providerBDestination}
-                  bLabel={`Check ${data.b} plans`}
+                  bLabel={data.bActionLabel ?? `Check ${data.b} plans`}
                   showDisclosure
                   variant="compact"
                 />
@@ -503,10 +505,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ComparisonProviderActions
                 a={data.a}
                 aDestination={providerADestination}
-                aLabel={`See current ${data.a} plans`}
+                aLabel={data.aActionLabel ?? `See current ${data.a} plans`}
                 b={data.b}
                 bDestination={providerBDestination}
-                bLabel={`See current ${data.b} plans`}
+                bLabel={data.bActionLabel ?? `See current ${data.b} plans`}
                 variant="compact"
               />
               {data.sections.map((s) => (
@@ -622,10 +624,10 @@ export function SoftwareComparisonTemplate({ data }: { data: ComparisonData }) {
               <ComparisonProviderActions
                 a={data.a}
                 aDestination={providerADestination}
-                aLabel={`Visit ${data.a}`}
+                aLabel={data.aActionLabel ?? `Visit ${data.a}`}
                 b={data.b}
                 bDestination={providerBDestination}
-                bLabel={`Visit ${data.b}`}
+                bLabel={data.bActionLabel ?? `Visit ${data.b}`}
               />
               <ReviewSection
                 code="S0"

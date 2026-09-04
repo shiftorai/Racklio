@@ -40,6 +40,8 @@ export type SoftwareReviewData = {
   metaDescription: string;
   officialUrl: string;
   providerKey?: CoreProvider;
+  commercialActionLabel?: string;
+  pricingVerificationNote?: string;
   video?: {
     embedUrl: string;
     title: string;
@@ -350,6 +352,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
             <DecisionSummary
               footer={
                 <ProviderAction
+                  actionLabel={data.commercialActionLabel}
                   affiliate={usesAffiliateLink}
                   href={commercialUrl}
                   name={data.name}
@@ -483,7 +486,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 code="P0"
                 id="pricing"
                 title="What it will actually cost"
-                description={`Pricing verified: ${verificationDate}. Start with the billing unit, allowances, and conditions—not the headline price alone.`}
+                description={
+                  data.pricingVerificationNote ??
+                  `Pricing verified: ${verificationDate}. Start with the billing unit, allowances, and conditions—not the headline price alone.`
+                }
               >
                 <div className="mb-6">
                   <TrueCostFactors factors={pricingFactors} />
@@ -561,7 +567,10 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 </div>
               </ReviewSection>
               <ProviderAction
-                actionLabel={`See current ${data.name} plans and limits`}
+                actionLabel={
+                  data.commercialActionLabel ??
+                  `See current ${data.name} plans and limits`
+                }
                 affiliate={usesAffiliateLink}
                 href={commercialUrl}
                 name={data.name}
@@ -744,7 +753,7 @@ export function SoftwareReviewTemplate({ data }: { data: SoftwareReviewData }) {
                 </div>
               </ReviewSection>
               <ProviderAction
-                actionLabel={`Visit ${data.name}`}
+                actionLabel={data.commercialActionLabel ?? `Visit ${data.name}`}
                 affiliate={usesAffiliateLink}
                 fit={data.fit[0]}
                 href={commercialUrl}

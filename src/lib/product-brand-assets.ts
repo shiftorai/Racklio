@@ -1,4 +1,5 @@
 const productBrandAssets = {
+  GetOblic: '/brands/getoblic.png',
   Typewise: '/brands/typewise.png',
   KrispCall: '/brands/krispcall.png',
   Tidio: '/brands/tidio.ico',

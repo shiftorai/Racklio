@@ -178,6 +178,22 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: 'reviews/getoblic',
+        lazy: async () => {
+          const { GetOblicReview } =
+            await import('@/pages/reviews/getoblic-review');
+          return { Component: GetOblicReview };
+        },
+      },
+      {
+        path: 'comparisons/getoblic-vs-ringoperator',
+        lazy: async () => {
+          const { GetOblicVsRingOperator } =
+            await import('@/pages/comparisons/getoblic-vs-ringoperator');
+          return { Component: GetOblicVsRingOperator };
+        },
+      },
+      {
         path: 'guides/ai-receptionist-pricing',
         lazy: async () => {
           const { AiReceptionistPricing } =

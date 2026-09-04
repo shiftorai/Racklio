@@ -45,9 +45,11 @@ const nameOverrides: Record<string, string> = {
   callhippo: 'CallHippo',
   eazychat: 'EazyChat.io',
   engagebay: 'EngageBay',
+  getoblic: 'GetOblic',
   krispcall: 'KrispCall',
   pipedrive: 'Pipedrive',
   quo: 'Quo',
+  ringoperator: 'RingOperator',
   tidio: 'Tidio',
 };
 
